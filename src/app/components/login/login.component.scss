@@ -1,0 +1,465 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    overflow: hidden;
+}
+
+.split-screen {
+    min-height: 100vh;
+    display: flex;
+}
+
+.left, .right {
+    width: 50vw;
+}
+
+.vector {
+    position: absolute;
+    top: -90px;
+    left: 60px;
+    z-index: 1;
+    width: 1000px;
+    height: 1000px;
+}
+
+.circle-1 {
+    height: 0%;
+    width: 0%;
+    border: 450px solid #7CC644;
+    border-radius: 5000px;
+    position: absolute;
+    top: -300px;
+    left: -20px;
+    display: flex;
+    justify-content: center;
+}
+.circle-2 {
+    height: 0%;
+    width: 0%;
+    border: 450px solid #31A463;
+    border-radius: 5000px;
+    position: absolute;
+    top: -250px;
+    left: -100px;
+}
+
+.background {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: -20;
+    opacity: 45%;
+    overflow: hidden;
+}
+
+.right {
+    justify-content: center;
+    position: relative;
+    display: flex;
+}
+
+.appname {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 5%;
+    font-family: 'poppins', sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    justify-content: center;
+}
+
+.right-logo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: -30px;
+    margin-top: 50px;
+}
+
+.appname h1{
+    font-family: 'poppins', sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.circu {
+    font-family: 'poppins', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 100%;
+    margin-bottom: -10px;
+}
+
+
+.form-user, .form-pass {
+    position: relative;
+    margin-top: -10;
+}
+
+
+.input {
+    width: 56%;
+    border-radius: 40px;
+    padding: 1rem;
+    padding-left: 55px;
+    margin-bottom: 10%;
+    justify-content: center;
+    justify-self: center;
+    position: relative;
+    left: 10%;
+    margin:20px;
+    font-family: 'poppins',sans-serif;
+    
+}
+
+.icon {
+    position: absolute;
+    top: 22px;
+    left: 0; 
+    width: 50px;
+    height: 55%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-size: 150%;
+    box-sizing: border-box;
+    left: 16%;
+}
+.icon2 {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    width: 50px;
+    height: 55%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-size: 150%;
+    left: 16%;
+}
+
+.loginbtn {
+    margin-top: 20px;
+}
+
+.loginbtn a{
+    margin-top: 20px;
+    left: 40%;
+}
+
+.login-btn {
+    border-radius: 30px;
+    justify-content: center;
+    position: relative;
+    left: 35%;
+    padding: 0.5rem;
+    width: 30%;
+    background-color: #31A463;
+    border: none;
+    border-radius: 40px;
+    font-family: 'poppins',sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    color: #fff;
+    font-size: 22px;
+    
+    text-decoration: none;
+}
+
+.login-btn:hover {
+    box-shadow: 0px 8px 15px -10px rgb(61, 61, 61);
+    transform: translate(0px, -2px);
+    background: white;
+    color: #31A463;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.version {
+    font-family: 'poppins', sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    position: relative;
+    justify-content: center;
+    left: 40%;
+}
+
+@media (max-width: 1607px) {
+    .left, .right {
+        width: 100%;
+    }
+
+    .right-logo {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 15px;
+        margin-top: 30px;
+    }
+
+    .input {
+        width: 56%;
+        border-radius: 40px;
+        padding: 1rem;
+        padding-left: 66px;
+        margin-bottom: 10%;
+        justify-content: center;
+        justify-self: center;
+        position: relative;
+        left: 17%;
+        margin:20px;
+        font-family: 'poppins',sans-serif;
+    }
+    
+    .icon {
+        position: absolute;
+        top: 22px;
+        left: 0; 
+        width: 50px;
+        height: 55%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        font-size: 150%;
+        box-sizing: border-box;
+        left: 23%;
+    }
+    .icon2 {
+        position: absolute;
+        top: 22px;
+        left: 0;
+        width: 50px;
+        height: 55%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        font-size: 150%;
+        left: 23%;
+    }
+    .appname h1{
+        font-family: 'poppins', sans-serif;
+        font-weight: 900;
+        font-style: normal;
+        font-size: 30px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+
+    .vector {
+        position: absolute;
+        top: -90px;
+        left: 60px;
+        z-index: 1;
+        width: 900px;
+        height: 900px;
+    }
+
+    .version {
+        font-family: 'poppins', sans-serif;
+        font-weight: 900;
+        font-style: normal;
+        position: relative;
+        justify-content: center;
+        left: 39%;
+        margin-top: 5px;
+    }
+
+    
+    
+}
+
+@media (max-width: 1286px) {
+    .left, .right {
+        width: 100%;
+    }
+
+    .right-logo {
+        width: 200px;
+        height: 200px;
+        margin-bottom: -50px;
+        margin-top: 30px;
+    }
+
+    .circle-1 {
+        height: 0%;
+        width: 0%;
+        border: 450px solid #7CC644;
+        border-radius: 5000px;
+        position: absolute;
+        top: -330px;
+        left: -110px;
+        display: flex;
+        justify-content: center;
+    }
+    .circle-2 {
+        height: 0%;
+        width: 0%;
+        border: 450px solid #31A463;
+        border-radius: 5000px;
+        position: absolute;
+        top: -320px;
+        left: -150px;
+    }
+
+    .circu {
+        font-size: 20px;
+    }
+
+    .input {
+        width: 56%;
+        border-radius: 40px;
+        padding: 1rem;
+        padding-left: 66px;
+        margin-bottom: 10%;
+        justify-content: center;
+        justify-self: center;
+        position: relative;
+        left: 17%;
+        margin:20px;
+        font-family: 'poppins',sans-serif;
+    }
+    
+    .icon {
+        position: absolute;
+        top: 22px;
+        left: 0; 
+        width: 50px;
+        height: 55%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        font-size: 150%;
+        box-sizing: border-box;
+        left: 23%;
+    }
+    .icon2 {
+        position: absolute;
+        top: 22px;
+        left: 0;
+        width: 50px;
+        height: 55%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        font-size: 150%;
+        left: 23%;
+    }
+    .appname h1{
+        font-family: 'poppins', sans-serif;
+        font-weight: 900;
+        font-style: normal;
+        font-size: 20px;
+        padding-top: 30px;
+        padding-bottom: 5px;
+    }
+
+    .vector {
+        position: absolute;
+        top: -90px;
+        left: 60px;
+        z-index: 1;
+        width: 700px;
+        height: 700px;
+    }
+
+    .version {
+        font-family: 'poppins', sans-serif;
+        font-weight: 900;
+        font-size: 10px;
+        font-style: normal;
+        position: relative;
+        justify-content: center;
+        left: 39%;
+        margin-top: 5px;
+    }
+
+    .login-btn {
+        padding: 0.1rem;
+        left: 108px;
+    }
+    
+}
+
+
+@media (max-width: 1920px) {
+    .left, .right {
+        width: 100%;
+    }
+
+    .input {
+        width: 56%;
+        border-radius: 40px;
+        padding: 1rem;
+        padding-left: 66px;
+        margin-bottom: 10%;
+        justify-content: center;
+        justify-self: center;
+        position: relative;
+        left: 11%;
+        margin:10px;
+        font-family: 'poppins',sans-serif;
+    }
+
+    .appname h1{
+        margin-top: -30px;
+    }
+    
+    .icon {
+        position: absolute;
+        top: 18px;
+        left: 0; 
+        width: 50px;
+        height: 55%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        font-size: 150%;
+        box-sizing: border-box;
+        left: 16%;
+    }
+    .icon2 {
+        position: absolute;
+        top: 18px;
+        left: 0;
+        width: 50px;
+        height: 55%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        font-size: 150%;
+        left: 16%;
+    }
+
+    .circu {
+        margin-top: -30px;
+    }
+}
+
+@media (max-width: 1286px) {
+    .appname h1{
+        margin-top: -10px;
+    }
+
+    .circu {
+        margin-top: 5px;
+    }
+
+    .input {
+        width: 50%;
+        left: 20px;
+    }
+
+    .icon, .icon2 {
+        left: 12%;
+    }
+    
+    .login-btn {
+        padding: .01rem;
+    }
+}
+
+
+
+
