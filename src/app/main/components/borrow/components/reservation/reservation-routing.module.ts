@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReservationComponent } from './reservation.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'reservation', pathMatch: 'full' },
+  { path: '', redirectTo: 'reserve', pathMatch: 'full' },
   { path: 'reservation', component: ReservationComponent},
   { path: 'reserve', component: ReserveComponent},
   { path: 'popup', component: ReservationPopupComponent},

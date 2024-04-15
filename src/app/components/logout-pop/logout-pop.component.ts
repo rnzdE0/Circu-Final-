@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-logout-pop',
@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrl: './logout-pop.component.scss'
 })
 export class LogoutPopComponent {
+  @Output() leaveClicked = new EventEmitter<void>();
+  @Output() closedPopup = new EventEmitter<void>();
 
+  close() {
+    this.closedPopup.emit();
+  }
+
+  onLeaveClick() {
+    this.leaveClicked.emit();
+  }
 }

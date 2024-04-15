@@ -5,6 +5,10 @@ import { ReturnedComponent } from './components//returned/returned.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { UserComponent } from './components/user/user.component';
 import { MainRoutingModule } from './main-routing.module';
+import { UserModule } from './components/user/user.module';
+import { ReturnedModule } from './components/returned/returned.module';
+import { ReportsModule } from './components/reports/reports.module';
+import { BorrowModule } from './components/borrow/borrow.module';
 
 
 
@@ -17,7 +21,11 @@ import { MainRoutingModule } from './main-routing.module';
   ],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    UserModule,
+    ReturnedModule,
+    ReportsModule,
+    BorrowModule
   ]
 })
 export class MainModule { }

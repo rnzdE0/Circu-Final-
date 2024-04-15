@@ -120,7 +120,7 @@
     justify-content: center;
     position: relative;
     padding: .1rem;
-    width: 20%;
+    width: 50%;
     border: none;
     border-radius: 10px;
     font-family: 'poppins',sans-serif;
@@ -129,6 +129,10 @@
     color: #fff;
     font-size: 22px;
     top: -20px;
+    text-decoration: none;
+
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .reserve {
@@ -137,7 +141,7 @@
     justify-content: center;
     position: relative;
     padding: .1rem;
-    width: 20%;
+    width: 50%;
     border: none;
     border-radius: 10px;
     font-family: 'poppins',sans-serif;
@@ -146,24 +150,27 @@
     color: #fff;
     font-size: 22px;
     top: -20px;
+    text-decoration: none;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
-.list {
-    background-color: #31A463;
-    margin-right: 10px;
-    justify-content: center;
-    position: relative;
-    padding: .1rem;
-    width: 20%;
-    border: none;
-    border-radius: 10px;
-    font-family: 'poppins',sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    color: #fff;
-    font-size: 22px;
-    top: -20px;
-}
+// .list {
+//     background-color: #31A463;
+//     margin-right: 10px;
+//     justify-content: center;
+//     position: relative;
+//     padding: .1rem;
+//     width: 20%;
+//     border: none;
+//     border-radius: 10px;
+//     font-family: 'poppins',sans-serif;
+//     font-weight: 700;
+//     font-style: normal;
+//     color: #fff;
+//     font-size: 22px;
+//     top: -20px;
+// }
 
 .add:hover{
     box-shadow: 0px 8px 15px -10px rgb(61, 61, 61);

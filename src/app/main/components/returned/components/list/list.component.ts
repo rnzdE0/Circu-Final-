@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 
 @Component({
   selector: 'app-list',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class ListComponent {
 
+  
 }
