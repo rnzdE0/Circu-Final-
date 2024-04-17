@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class MainComponent {
   showPopup: boolean = false;
+  dropdownOpen: boolean | undefined;
+  projectDropdownOpen: boolean | undefined;
 
   togglePopup() {
     this.showPopup = !this.showPopup;
@@ -21,5 +23,15 @@ export class MainComponent {
 
   redirectToLoginPage() {
     this.router.navigate(['login']); 
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+    this.projectDropdownOpen = false
+  }
+
+  toggleUserDropdown() {
+    this.projectDropdownOpen = !this.projectDropdownOpen;
+    this.dropdownOpen = false
   }
 }

@@ -24,8 +24,6 @@ body {
     left: 30px;
 }
 
-
-
 /* SIDEBAR CONTENTS */
 .logo img {
     height: 130px;
@@ -115,17 +113,21 @@ body {
 }
 
 .admin-tab a:hover {
-    color: var(--main-green);
+    color: #31A463;
 }
 
 .admin-tab a.active-link {
-    font-weight: bold;
-    color: var(--main-green);
+    font-weight: 300;
+    color: #31A463;
 }
 
 .tab-link .tab-link-name {
     padding-left: 10px;
     padding-top: 2px;
+}
+
+.tab-link-name {
+    padding-left: 40px;
 }
 
 .admin-tabs .tab-link-icon {
@@ -136,6 +138,75 @@ ul ul {
     list-style: none;
 }
 
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    color: #333; 
+    font-size: 16px;
+    margin-left: 180px;
+    margin-top: -25px;
+    transform: translateY(-9px);
+}
+
+.gc-library {
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.acadproj {
+    flex-grow: 1;
+}
+
+.dropdown-icon {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-icon.active {
+    transform: rotate(-90deg);
+}
+
+.dropbtn span {
+    margin-left: 5px;
+}
+
+.dropdown-content.ng-tns-c15-0 {
+    display: block;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: #333; 
+    padding: 12px 16px; 
+    text-decoration: none; 
+    display: block; 
+    transition: background-color 0.3s; 
+}
+
+/* Change color of links on hover */
+.dropdown-content a:hover {
+    background-color: #f2f2f2; 
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Align icon to the right */
+.dropdown i {
+    margin-left: auto; 
+}
+
+/* Active Link */
+.active-link {
+    // background-color:; /* Active link background color */
+    color: #31A463; /* Active link text color */
+}
 
 .logoutbtn .logout {
     display: flex;
