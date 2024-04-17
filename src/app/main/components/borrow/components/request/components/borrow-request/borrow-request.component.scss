@@ -15,6 +15,10 @@ body {
     margin-bottom: 20px;
 }
 
+input[type=date]:invalid::-webkit-datetime-edit {
+    color: #999;
+}
+
 .users {
     margin: 30px;
     position: absolute;
