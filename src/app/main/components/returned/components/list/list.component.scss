@@ -27,7 +27,7 @@ i{
   }
 
 .search input[type="text"] {
-    width: 200px;
+    width: 260px;
     padding: 10px;
     border: none;
     border-style: groove;
@@ -76,27 +76,36 @@ i{
 }
 
 .edit {
-    width: 100px;
-    margin-left: -30px;
-    margin-right: -30px;
+    width: 30px;
+    margin-left: -15px;
+    margin-right: auto;
     background-color: #31A463;
     border-style: none;
     cursor: pointer;
     border-radius: 10px;
     height: 30px;
     color: white;
+    position: relative;
+    margin-left: 1px;
 }
 
 .delete {
     width: 30px;
-    margin-left: -20px;
+    margin-left: -15px;
     margin-right: auto;
     background-color: #BE2E2E;
     border-style: none;
     cursor: pointer;
     border-radius: 10px;
     height: 30px;
-    float: right;
+    margin-left: 10px;
+}
+
+
+th {
+    letter-spacing: 1px;
+    color: black;
+    border-bottom: 2px solid black;
 }
 
 
