@@ -61,20 +61,20 @@
 }
 
 .tabs {
-    padding-left: 5px;
+    padding-left: 37px;
     margin-top: 30px;
 	display: flex;
 	align-items: stretch;
 	list-style: none;
-    width: 400px;  
-    margin-bottom: -30px;
+    width: 600px;  
+    margin-bottom: -5px;
 }
 
 .tabs:hover {
 	display: flex;
 	align-items: stretch;
 	list-style: none;
-    width: 400px;
+    width: 600px;
 }
 
 .tab {
@@ -84,7 +84,7 @@
 .tab > label {
     color: black;
 	display: block;
-    font-size: 15px; 
+    font-size: 30px; 
     font-weight: bold;
     line-height: 10px;
     padding: 10px 10px;
@@ -95,6 +95,7 @@
 	transition: all 0.3s;
     border-bottom: 3px solid black;
     margin-top: 10px;
+    font-family: 'poppins', sans-serif;
 }
 
 .tab:hover label {
@@ -104,7 +105,8 @@
 
 .tab-content {
 	display: none;
-    margin-left: -30px;
+    margin-left: 10px;
+    font-family: 'poppins', sans-serif;
 }
 
 .tabbed [type="radio"]:nth-of-type(2):checked ~ .tabs .tab:nth-of-type(2) label,
@@ -144,10 +146,12 @@ h1 {
     width: 100%;
     font-size: 14px;  
     background-color: #E1E1E1;
+    table-layout: fixed;
 }
 
 .table-head {
     // background-color: grey;
+    font-size: 15px;
 }
 
 .content-table th,

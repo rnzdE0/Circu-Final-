@@ -64,10 +64,13 @@ i{
     width: 100%;
     font-size: 14px;  
     background-color: #E1E1E1;
+    font-family: 'poppins', sans-serif;
+    table-layout: fixed;
 }
 
 .table-head {
     // background-color: grey;
+    font-size: 15px;
 }
 
 .content-table th,
