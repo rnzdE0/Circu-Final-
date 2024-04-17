@@ -10,13 +10,10 @@
         <strong> <h2>CIRCULATION</h2> </strong>
     </div>
 
-    
-
     <!-- BODY CONTENT -->
     <div class="body-content">
         <div class="admin-container"> <router-outlet></router-outlet> </div>
     </div>
-
 
     <nav class="sidebar-content">
         <!-- LOGO AND SUBSYSTEM TITLE -->
@@ -79,7 +76,7 @@
             <div class="logoutbtn">
                 <div class="logout" (click)="togglePopup()" >
                     <span> <i class='bx bx-log-out bx-rotate-180' ></i> 
-                        <!-- <app-logout-popup *ngIf="showPopup" (closedPopup)="closePopup()" (leaveClicked)="redirectToLoginPage()"></app-logout-popup> -->
+                        <app-logout-pop *ngIf="showPopup" (closedPopup)="closePopup()" (leaveClicked)="redirectToLoginPage()"></app-logout-pop>
                     </span>
                 </div>
             </div>

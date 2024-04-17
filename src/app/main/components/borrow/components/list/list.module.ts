@@ -6,6 +6,10 @@ import { TableComponent } from './components/table/table.component';
 import { ListRoutingModule } from './list-routing.module';
 
 
+import { MatDialogModule } from '@angular/material/dialog';
+
+
+
 
 @NgModule({
   declarations: [
@@ -15,7 +19,8 @@ import { ListRoutingModule } from './list-routing.module';
   ],
   imports: [
     CommonModule,
-    ListRoutingModule
+    ListRoutingModule,
+    MatDialogModule
   ]
 })
 export class ListModule { }

@@ -8,6 +8,11 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutPopComponent } from './components/logout-pop/logout-pop.component';
 import { RouterModule } from '@angular/router';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MaterialModule } from './modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -19,10 +24,11 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    MaterialModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
