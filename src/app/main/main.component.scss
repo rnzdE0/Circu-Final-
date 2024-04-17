@@ -6,23 +6,24 @@ body {
 }
 
 /* HEADER */
-.header {
+.header h1 {
     position: fixed;
     // background-color: var(--primary-color);
     height: 70px;
     width: 100%;
     border-bottom: 2px solid #C5C5C5;
-    margin-left: 220px;
-    padding-top: 15px;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    font-size: 18px;
+    // margin-left: 230px;
+    padding-top: 40px;
+    padding-left: 250px;
+    padding-bottom: 0px;
+    font-size: 30px;
     font-weight: bold;
     letter-spacing: 1px;
     color:#31A463 ;
     z-index: 1;
     left: 30px;
 }
+
 
 
 /* SIDEBAR CONTENTS */
@@ -36,7 +37,7 @@ body {
 
 .systemname h1 {
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
 }
 

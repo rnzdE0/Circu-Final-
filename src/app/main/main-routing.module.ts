@@ -18,7 +18,7 @@ import { ReservationComponent } from './components/borrow/components/reservation
 const routes: Routes = [
 
   // child
-  { path: '', redirectTo: 'request', pathMatch: 'full' },
+  { path: '', redirectTo: 'user', pathMatch: 'full' },
   { path: 'request', component: BorrowRequestComponent},
   { path: 'list', component: TableComponent},
   { path: 'reserve', component: ReserveComponent},

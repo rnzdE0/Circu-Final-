@@ -9,6 +9,7 @@ import { UserModule } from './components/user/user.module';
 import { ReturnedModule } from './components/returned/returned.module';
 import { ReportsModule } from './components/reports/reports.module';
 import { BorrowModule } from './components/borrow/borrow.module';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -25,7 +26,8 @@ import { BorrowModule } from './components/borrow/borrow.module';
     UserModule,
     ReturnedModule,
     ReportsModule,
-    BorrowModule
+    BorrowModule,
+    MatDialogModule
   ]
 })
 export class MainModule { }

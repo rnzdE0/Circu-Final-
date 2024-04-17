@@ -200,43 +200,14 @@ body {
     }
 
     .input {
-        width: 56%;
-        border-radius: 40px;
-        padding: 1rem;
-        padding-left: 66px;
-        margin-bottom: 10%;
-        justify-content: center;
-        justify-self: center;
-        position: relative;
-        left: 17%;
-        margin:20px;
-        font-family: 'poppins',sans-serif;
+       
     }
     
     .icon {
-        position: absolute;
-        top: 22px;
-        left: 0; 
-        width: 50px;
-        height: 55%;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        font-size: 150%;
-        box-sizing: border-box;
-        left: 23%;
+       
     }
     .icon2 {
-        position: absolute;
-        top: 22px;
-        left: 0;
-        width: 50px;
-        height: 55%;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        font-size: 150%;
-        left: 23%;
+       
     }
     .appname h1{
         font-family: 'poppins', sans-serif;
@@ -248,22 +219,12 @@ body {
     }
 
     .vector {
-        position: absolute;
-        top: -90px;
-        left: 60px;
-        z-index: 1;
-        width: 900px;
-        height: 900px;
+        width: 850px;
+        height: 850px;
     }
 
     .version {
-        font-family: 'poppins', sans-serif;
-        font-weight: 900;
-        font-style: normal;
-        position: relative;
-        justify-content: center;
-        left: 39%;
-        margin-top: 5px;
+        
     }
 
     
@@ -288,7 +249,7 @@ body {
         border: 450px solid #7CC644;
         border-radius: 5000px;
         position: absolute;
-        top: -330px;
+        top: -360px;
         left: -110px;
         display: flex;
         justify-content: center;
@@ -299,7 +260,7 @@ body {
         border: 450px solid #31A463;
         border-radius: 5000px;
         position: absolute;
-        top: -320px;
+        top: -340px;
         left: -150px;
     }
 
@@ -308,44 +269,17 @@ body {
     }
 
     .input {
-        width: 56%;
-        border-radius: 40px;
-        padding: 1rem;
-        padding-left: 66px;
-        margin-bottom: 10%;
-        justify-content: center;
-        justify-self: center;
-        position: relative;
-        left: 17%;
-        margin:20px;
-        font-family: 'poppins',sans-serif;
+       
     }
     
     .icon {
-        position: absolute;
-        top: 22px;
-        left: 0; 
-        width: 50px;
-        height: 55%;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        font-size: 150%;
-        box-sizing: border-box;
-        left: 23%;
+       padding-left: 20px;
     }
+
     .icon2 {
-        position: absolute;
-        top: 22px;
-        left: 0;
-        width: 50px;
-        height: 55%;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        font-size: 150%;
-        left: 23%;
+        padding-left: 10px;
     }
+    
     .appname h1{
         font-family: 'poppins', sans-serif;
         font-weight: 900;
@@ -356,28 +290,18 @@ body {
     }
 
     .vector {
-        position: absolute;
-        top: -90px;
-        left: 60px;
-        z-index: 1;
-        width: 700px;
-        height: 700px;
+        padding-top: 40px;
+        width: 600px;
+        height: 600px;
+        padding-left: 40px;
     }
 
     .version {
-        font-family: 'poppins', sans-serif;
-        font-weight: 900;
-        font-size: 10px;
-        font-style: normal;
-        position: relative;
-        justify-content: center;
-        left: 39%;
-        margin-top: 5px;
+        
     }
 
     .login-btn {
-        padding: 0.1rem;
-        left: 108px;
+        
     }
     
 }
@@ -389,51 +313,30 @@ body {
     }
 
     .input {
-        width: 56%;
-        border-radius: 40px;
-        padding: 1rem;
-        padding-left: 66px;
-        margin-bottom: 10%;
-        justify-content: center;
-        justify-self: center;
-        position: relative;
-        left: 11%;
-        margin:10px;
-        font-family: 'poppins',sans-serif;
+       
     }
 
     .appname h1{
-        margin-top: -30px;
+
     }
     
     .icon {
-        position: absolute;
-        top: 18px;
-        left: 0; 
-        width: 50px;
-        height: 55%;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        font-size: 150%;
-        box-sizing: border-box;
-        left: 16%;
+       
     }
     .icon2 {
-        position: absolute;
-        top: 18px;
-        left: 0;
-        width: 50px;
-        height: 55%;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        font-size: 150%;
-        left: 16%;
+       
     }
 
     .circu {
-        margin-top: -30px;
+       
+    }
+    .login-btn {
+        // padding: 0.1rem;
+        // left: 108px;
+    }
+
+    .version {
+        padding-top: 20px;
     }
 }
 
