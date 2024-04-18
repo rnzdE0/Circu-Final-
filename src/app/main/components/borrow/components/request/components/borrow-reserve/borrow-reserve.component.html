@@ -73,12 +73,16 @@
           <p class="due">Due</p>
           <div class="date">
             <div class="group1">
+              <script>
+                var today = new Date().toISOString().split('T')[0];
+                    document.getElementsByName("date")[0].setAttribute('min', today);
+              </script>
                 <div class="input-group">
-                  <input required="" type="date" name="text" autocomplete="off" class="input" >
+                  <input required="" type="date" name="text" autocomplete="off" class="input" min="2024-04-18">
                   <label class="userlabel">Date of Request</label>
                 </div>
                 <div class="input-group">
-                  <input required="" type="date" name="text" autocomplete="off" class="input" >
+                  <input required="" type="date" name="text" autocomplete="off" class="input" min="2024-04-18">
                   <label class="userlabel">Due</label>
                 </div>
             </div>
