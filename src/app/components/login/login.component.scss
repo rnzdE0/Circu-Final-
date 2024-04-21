@@ -15,12 +15,22 @@ body {
 
 .vector {
     position: absolute;
-    top: -90px;
+    top: -50px;
     left: 60px;
     z-index: 1;
     width: 1000px;
     height: 1000px;
+
+    transition: transform 1.1s ease-in-out;
+    transition-delay: 0.4s;
+
+    margin: -10vh auto; 
+    animation: slideInFromLeft 1s ease forwards; 
+    transition: 1.8s ease-in-out;
+    transform: translateY(-5%);
+
 }
+
 
 .circle-1 {
     height: 0%;
@@ -32,6 +42,7 @@ body {
     left: -20px;
     display: flex;
     justify-content: center;
+
 }
 .circle-2 {
     height: 0%;
@@ -41,6 +52,7 @@ body {
     position: absolute;
     top: -250px;
     left: -100px;
+
 }
 
 .background {
@@ -206,27 +218,36 @@ body {
     .right-logo {
         width: 200px;
         height: 200px;
-        margin-bottom: 15px;
-        margin-top: 30px;
+        margin-bottom: 5px;
+        margin-top: 15px;
     }
 
+
     .input {
-       
+       width: 100;
+       padding: .5rem;
+       padding-left: 60px;
     }
     
     .icon {
-       
+       top: 24px;
+       left: 20px;
     }
     .icon2 {
-       
+        top: 24px;
+        left: 20px;
     }
     .appname h1{
         font-family: 'poppins', sans-serif;
-        font-weight: 900;
+        font-weight: 600;
         font-style: normal;
-        font-size: 30px;
-        padding-top: 10px;
+        font-size: 25px;
+        padding-top: 0px;
         padding-bottom: 20px;
+    }
+
+    .circu {
+        font-size: 25px;
     }
 
     .vector {
@@ -236,8 +257,12 @@ body {
     }
 
     .version {
-        
+        font-size: 1rem;
+        font-weight: 500;
+        left: 159px;
+        margin-top: 10px;
     }
+
 
     
     
