@@ -15,7 +15,7 @@ body {
 
 .vector {
     position: absolute;
-    top: -50px;
+    top: 15px;
     left: 60px;
     z-index: 1;
     width: 1000px;
@@ -30,7 +30,6 @@ body {
     transform: translateY(-5%);
 
 }
-
 
 .circle-1 {
     height: 0%;
@@ -263,9 +262,6 @@ body {
         margin-top: 10px;
     }
 
-
-    
-    
 }
 
 @media (max-width: 1286px) {

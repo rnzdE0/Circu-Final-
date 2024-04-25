@@ -221,9 +221,11 @@ body {
 }
    
 .input {
-    border: solid 1.5px black;
-    border-radius: 10px;
-    background: none;
+    // border: solid 1.5px black;
+    border: none;
+    border-bottom: solid 1.5px black;
+    border-radius: 5px;
+    background: #d3d3d3;
     padding: 1rem;
     font-size: 1rem;
     color: black;
@@ -233,9 +235,11 @@ body {
 }
 
 .input2 {
-    border: solid 1.5px black;
-    border-radius: 10px;
-    background: none;
+    // border: solid 1.5px black;
+    border: none;
+    border-bottom: solid 1.5px black;
+    border-radius: 5px;
+    background: #d3d3d3;
     padding: 1rem;
     font-size: 1rem;
     color: black;
@@ -245,9 +249,11 @@ body {
 }
 
 .input-reason {
-    border: solid 1.5px black;
-    border-radius: 10px;
-    background: none;
+    // border: solid 1.5px black;
+    border: none;
+    border-bottom: solid 1.5px black;
+    // border-radius: 10px;
+    background: #C5C5C5;
     padding: 2rem;
     font-size: 1rem;
     color: black;
@@ -270,14 +276,19 @@ body {
 
 .input:focus, input:valid, .input2:focus, .input2:valid{
     outline: none;
-    border: 1.5px solid #31A463;
+    border-bottom: 1.5px solid #31A463;
 }
 
 .input:focus ~ label, input:valid ~ label, .input2:focus ~ label, .input2:valid ~ label{
     transform: translateY(-50%) scale(0.8);
     background-color: white;
+    border: solid 1.5px #31A463;
+    border-radius: 5px;
     padding: 0 .2em;
-    color: #31A463;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+    left: 15px;
 }
 
 .userlabel {
@@ -286,6 +297,8 @@ body {
     left: 20px;
     transform: translateY(-50%) scale(0.8);
     background-color: white;
+    border: solid 1.5px black;
+    border-radius: 5px;
     padding: 0 .2em;
     color: black;
     font-family: 'poppins', sans-serif;
