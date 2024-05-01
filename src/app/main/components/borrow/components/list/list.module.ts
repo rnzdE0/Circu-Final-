@@ -7,6 +7,7 @@ import { ListRoutingModule } from './list-routing.module';
 
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { PushPopupComponent } from './components/push-popup/push-popup.component';
 
 
 
@@ -15,7 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [
     DeletePopupComponent,
     EditPopupComponent,
-    TableComponent
+    TableComponent,
+    PushPopupComponent
   ],
   imports: [
     CommonModule,

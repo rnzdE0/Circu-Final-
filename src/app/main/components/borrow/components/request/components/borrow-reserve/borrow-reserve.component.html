@@ -1,6 +1,7 @@
 <div class="body">
 
   <p class="title">Borrow Reserve</p>
+  <hr>
       
 
       <div class="form">
@@ -79,7 +80,7 @@
             </script>
               <div class="input-group">
                 <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-04-18" >
-                <label class="userlabel">Date of Request</label>
+                <label class="userlabel2">Date of Request</label>
               </div>
           </div>
           <div class="input-group">
@@ -107,7 +108,7 @@
 
                 <div class="input-group">
                   <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" >
-                  <label class="userlabel" for="NumOfMat">Number of Materials</label>
+                  <label class="userlabel2" for="NumOfMat">Num of Materials</label>
                   <label for="NumOfMat" class="max">/3</label>
                 </div>
             </div>
@@ -132,8 +133,9 @@
           </div>
 
           <div class="buttons">
-            <a class="add" routerLink="">Add</a>
-            <!-- <a class="reserve" routerLink="./BorrowReserve">Reserve</a> -->
+            <a class="add" routerLink="">Reserve</a>
+            <!-- <a class="reserve">Returned</a> -->
+            <a class="close" matDialogClose>Close</a>
             <!-- <button class="reserve" (click)="openDialog()">Reserve</button> -->
             <!-- <a class="list" routerLink="/sample">List</a> -->
 

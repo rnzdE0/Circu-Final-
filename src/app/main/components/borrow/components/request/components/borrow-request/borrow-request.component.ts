@@ -19,7 +19,7 @@ export class BorrowRequestComponent {
 
   openDialog() {
     this.dialog.open(BorrowReserveComponent, {
-      width: '4000px',
+      width: '70%',
       height: '800px',
     })
   };

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReservationPopupComponent } from '../reservation-popup/reservation-popup.component';
+import { DeleteComponent } from '../delete/delete.component';
 
 @Component({
   selector: 'app-reserve',
@@ -12,8 +13,15 @@ export class ReserveComponent {
 
   openDialog() {
     this.dialog.open(ReservationPopupComponent, {
-      width: '4000px',
+      width: '70%',
       height: '800px',
+    })
+  };
+
+  deleteDialog() {
+    this.dialog.open(DeleteComponent, {
+      width: '400px',
+      height: '250px',
     })
   };
 }
