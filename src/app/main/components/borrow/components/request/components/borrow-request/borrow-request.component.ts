@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router'
 import { BorrowReserveComponent } from '../borrow-reserve/borrow-reserve.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-borrow-request',
@@ -13,4 +14,13 @@ export class BorrowRequestComponent {
   //   // Programmatically navigate to another route
   //   this.router.navigate(BorrowReserveComponent);
   // }
+
+  constructor(private dialog : MatDialog) {}
+
+  openDialog() {
+    this.dialog.open(BorrowReserveComponent, {
+      width: '4000px',
+      height: '800px',
+    })
+  };
 }

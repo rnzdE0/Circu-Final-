@@ -4,9 +4,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './components/list/list.component';
 import { RequestComponent } from './components/request/request.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
+import { BorrowComponent } from './borrow.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'request', pathMatch: 'full' },
+
+
+  { path: 'borrow', 
+    component: BorrowComponent,
+    children: [{
+      path: '',
+      loadChildren: ()=>import('./borrow.module').then((m)=>m.BorrowModule)
+    }]
+  },
+
+
   { path: 'list', 
     component: ListComponent,
     children: [{

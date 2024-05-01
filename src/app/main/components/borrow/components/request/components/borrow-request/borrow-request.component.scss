@@ -40,7 +40,8 @@ body {
 .date {
     margin: 30px;
     position: absolute;
-    margin-top: 27%;
+    margin-top: 15px;
+    margin-left: 755px ;
 }
 
 .group1, .group2 , .group3{
@@ -88,10 +89,11 @@ body {
 }
 
 .due {
-    margin-top: 485px;
+    margin-top: -5px;
     // padding-top: 26%;
     padding-left: 40px;
     margin-bottom: -15px;
+    margin-left: 725px;
     font-family: 'poppins', sans-serif;
     font-weight: 700;
     color: #C5C5C5;
@@ -106,7 +108,7 @@ body {
 }
 
 .time {
-    margin-top: 40px;
+    margin-top: 210px;
     padding-left: 45%;
     border-radius: 30px;
 }

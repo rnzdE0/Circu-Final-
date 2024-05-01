@@ -5,6 +5,7 @@ import { BorrowReserveComponent } from './components/borrow-reserve/borrow-reser
 import { RequestRoutingModule } from './request-routing.module';
 import { ListModule } from '../list/list.module';
 import { TableComponent } from '../list/components/table/table.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -16,6 +17,7 @@ import { TableComponent } from '../list/components/table/table.component';
   imports: [
     CommonModule,
     RequestRoutingModule,
+    MatDialogModule
   ]
 })
 export class RequestModule { }

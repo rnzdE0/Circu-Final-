@@ -81,22 +81,22 @@
                   <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-04-18" >
                   <label class="userlabel">Date of Request</label>
                 </div>
-                <div class="input-group">
-                  <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-04-18">
-                  <label class="userlabel">Due</label>
-                </div>
+            </div>
+            <div class="input-group">
+              <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-04-18">
+              <label class="userlabel">Due</label>
             </div>
           </div>
   
-            <div class="reason">
+            <!-- <div class="reason">
               <div class="group1">
                   <div class="input-group">
-                    <!-- <input required="" type="time" name="text" autocomplete="off" class="input" > -->
+                    <input required="" type="time" name="text" autocomplete="off" class="input" >
                     <textarea class="input-reason" name="text" id="" cols="30" rows="10" placeholder=""></textarea>
                     <label class="userlabel">Reason</label>
                   </div>
               </div>
-            </div>
+            </div> -->
   
             <div class="time">
               <div class="group1">
@@ -133,7 +133,9 @@
   
             <div class="buttons">
               <a class="add" routerLink="">Add</a>
-              <a class="reserve" routerLink="./BorrowReserve">Reserve</a>
+              <!-- <a class="reserve" routerLink="./BorrowReserve">Reserve</a> -->
+              <button class="reserve" (click)="openDialog()">Reserve</button>
               <!-- <a class="list" routerLink="/sample">List</a> -->
+
             </div>
   </div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReservationPopupComponent } from './components/reservation-popup/reservation-popup.component';
 import { ReserveComponent } from './components/reserve/reserve.component';
 import { ReservationRoutingModule } from './reservation-routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -13,7 +14,8 @@ import { ReservationRoutingModule } from './reservation-routing.module';
   ],
   imports: [
     CommonModule,
-    ReservationRoutingModule
+    ReservationRoutingModule,
+    MatDialogModule
   ]
 })
 export class ReservationModule { }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
+import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-table',
@@ -13,7 +14,15 @@ export class TableComponent {
 
   openDialog() {
     this.dialog.open(EditPopupComponent, {
+      width: '70%',
+      height: '800px',
+    })
+  };
+
+  deleteDialog() {
+    this.dialog.open(DeletePopupComponent, {
       width: '400px',
+      height: '300px',
     })
   };
 }
