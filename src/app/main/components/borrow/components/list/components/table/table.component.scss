@@ -66,11 +66,13 @@ i{
     background-color: #E1E1E1;
     font-family: 'poppins', sans-serif;
     table-layout: fixed ;
+    
 }
 
 .table-head {
-    // background-color: grey;
+    background-color: #31A463;
     font-size: 15px;
+    border: 0;
 }
 
 .content-table th,
@@ -118,7 +120,7 @@ i{
 
 th {
     letter-spacing: 1px;
-    color: black;
+    color: white;
     border-bottom: 2px solid black;
 }
 

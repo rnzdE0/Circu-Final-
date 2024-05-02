@@ -107,6 +107,7 @@
 	display: none;
     margin-left: 10px;
     font-family: 'poppins', sans-serif;
+    margin-top: -10px;
 }
 
 .tabbed [type="radio"]:nth-of-type(2):checked ~ .tabs .tab:nth-of-type(2) label,
@@ -153,7 +154,7 @@ h1 {
 }
 
 .table-head {
-    // background-color: grey;
+    background-color: #31A463;
     font-size: 15px;
 }
 
@@ -192,7 +193,7 @@ h1 {
 
 th {
     letter-spacing: 1px;
-    color: black;
+    color: white;
     border-bottom: 2px solid black;
 }
 
