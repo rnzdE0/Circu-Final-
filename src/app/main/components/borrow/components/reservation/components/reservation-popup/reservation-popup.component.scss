@@ -12,15 +12,19 @@ hr {
 }
 
 .title {
-    color: #31A463;
+    color: #fff;
     font-family: 'poppins', sans-serif;
     font-weight: 700;
-    font-size: 100px;
-    margin-top: 80px;
+    font-size: 80px;
     margin-left: 35px;
-    margin-bottom: 60px;
 }
 
+.header{ 
+    background-color: #31A463;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2.5px solid black;
+}
 // input[type=date]:invalid::-webkit-datetime-edit {
 //     color: #999;
 // }
@@ -134,12 +138,12 @@ hr {
 }
 
 .buttons {
-    margin-top: 60px;
-    padding-left: 63%;
+    margin-top: 100px;
+    padding-left: 59.5%;
 }
 
 .add {
-    background-color: #008000;
+    background-color: #31A463;
     margin-right: 10px;
     justify-content: center;
     position: relative;
@@ -154,11 +158,12 @@ hr {
     font-size: 22px;
     top: -20px;
     text-decoration: none;
-
+    border-radius: 5px;
     margin-left: 10px;
     padding-left: 30px;
     padding-right: 30px;
-    
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .reserve {
@@ -177,8 +182,12 @@ hr {
     font-size: 22px;
     top: -20px;
     text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
     padding-left: 30px;
     padding-right: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .close {
@@ -197,8 +206,12 @@ hr {
     font-size: 22px;
     top: -20px;
     text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
     padding-left: 30px;
     padding-right: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     cursor: pointer;
 }
 

@@ -131,12 +131,10 @@ body {
 }
 
 .add {
-    background-color: #008000;
+    background-color: #31A463;
     margin-right: 10px;
     justify-content: center;
     position: relative;
-    padding: .1rem;
-    width: 50%;
     border: none;
     border-radius: 10px;
     font-family: 'poppins',sans-serif;
@@ -146,11 +144,11 @@ body {
     font-size: 22px;
     top: -20px;
     text-decoration: none;
-
     margin-left: 10px;
-
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .reserve {
@@ -159,7 +157,6 @@ body {
     justify-content: center;
     position: relative;
     padding: .1rem;
-    width: 50%;
     border: none;
     border-radius: 10px;
     font-family: 'poppins',sans-serif;
@@ -169,8 +166,10 @@ body {
     font-size: 22px;
     top: -20px;
     text-decoration: none;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 // .list {
