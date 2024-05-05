@@ -24,7 +24,7 @@ hr {
 }
 
 .yes {
-    background-color: #008000;
+    background-color: #31A463;
     margin-right: 10px;
     justify-content: center;
     position: relative;
@@ -39,14 +39,18 @@ hr {
     font-size: 22px;
     top: -20px;
     text-decoration: none;
+    border-radius: 5px;
     margin-left: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-right: 40px;
     cursor: pointer;
 }
 
 .cancel {
-    background-color: red;
+    background-color: #BE2E2E;
     margin-right: 10px;
     justify-content: center;
     position: relative;
@@ -61,7 +65,12 @@ hr {
     font-size: 22px;
     top: -20px;
     text-decoration: none;
-    padding-left: 30px;
-    padding-right: 30px;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     cursor: pointer;
+    margin-right: 30px;
 }

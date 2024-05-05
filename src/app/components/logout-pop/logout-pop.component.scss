@@ -22,6 +22,7 @@
 .popup-content p {
     font-size: 20px;
     font-weight: 400;
+    font-family: 'poppins',sans-serif;
 }
 
 .button-container {
@@ -29,7 +30,7 @@
 }
 
 button {
-    font-family: 'poppins';
+    font-family: 'poppins',sans-serif;
     padding: 10px 20px;
     margin: 0 10px;
     cursor: pointer;
@@ -50,7 +51,7 @@ button {
 }
 
 .leave-btn {
-    background: red;
+    background: #BE2E2E;
     color: white;
 }
 
