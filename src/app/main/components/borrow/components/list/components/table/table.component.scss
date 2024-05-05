@@ -3,6 +3,82 @@ body{
     width: 100%;
 }
 
+// dropdown
+.filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.table-filters {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 25px;
+    margin-top: 30px;
+    border: black;
+    border-radius: 10px;
+    margin-bottom: -40px;
+}
+
+.table-filters2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: -830px;
+    margin-top: 30px;
+    border: black;
+    border-radius: 10px;
+    margin-bottom: -40px;
+}
+
+.table-filters, .table-filters2  a {
+    color: black;
+    font-size: 16px;
+    padding: 12px 16px;
+    font-weight: 500;
+    margin-right: 1em;
+    display: inline-block;
+    
+}
+
+.table-filters a:hover {
+    text-decoration: none;
+}
+
+.table-filters select {
+    background: var(--primary-color);
+    font-family: 'Poppins';
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 12em;
+    height: 2.5em;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.table-filters2 select {
+    background: var(--primary-color);
+    font-family: 'Poppins';
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 12em;
+    height: 2.5em;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.table-filters option {
+    padding: 30px;
+    margin: 30px;
+}
+
+
+// content
+
 .title {
     color: #C5C5C5;
     font-family: 'poppins', sans-serif;
@@ -22,8 +98,8 @@ i{
     position: relative;
     float: right;
     margin-right: 5%;
-    margin-bottom: 30px;
-    margin-top: 50px;
+    margin-bottom: -20px;
+    margin-top: 10px;
   }
 
 .search input[type="text"] {
