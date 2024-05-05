@@ -2,14 +2,44 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/boxicons/2.0.7/css/boxicons.min.css">
 
 <body>
+ <p class="title">Most Borrowed Books</p>
+<div class="container">
 
+   <!-- filter -->
 
-    <div class="search">
-        <input placeholder="Search..." type="text">
-        <button type="submit"><i class="bx bx-search" ></i></button>
+   <div class="filter">
+
+    <div class="table-filters">
+      <select id="filter">
+          <option selected value="All Departments"> All Departments </option>
+          <option> CCS </option>
+          <option> CBA </option>
+          <option> CAHS </option>
+          <option> CEAS </option>
+          <option> CHTM </option>
+      </select>
     </div>
 
-  <p class="title">Most Borrowed Books</p>
+    <!-- <div class="table-filters2">
+      <select id="filter">
+          <option selected value="Patron"> All Patron </option>
+          <option> Admin </option>
+          <option> Faculty </option>
+          <option> Student </option>
+          <option> Staff </option>
+          <option> Visitor </option>
+      </select>
+    </div> -->
+
+  <div class="search">
+      <input placeholder="Search..." type="text">
+      <button type="submit"><i class="bx bx-search" ></i></button>
+  </div>
+
+  </div>
+  
+
+ 
   <table class="content-table">
     <thead class="table-head">
       <tr>
@@ -44,4 +74,5 @@
         </tr>
     </tbody>
   </table>
+</div>
 </body>

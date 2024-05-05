@@ -1,1 +1,97 @@
-<p>user-table works!</p>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<body>
+
+  <p class="title">Users</p>
+
+  <div class="search">
+    <input placeholder="Search..." type="text">
+    <button type="submit"><i class="bx bx-search" ></i></button>
+  </div>
+  
+  <div class="container">
+
+    <p class="list">User List</p>
+
+      <!-- filter -->
+  
+      <div class="filters">
+  
+        <div class="table-filters">
+          <select class="filter "id="filter">
+              <option selected value="All Departments"> All Departments </option>
+              <option> CCS </option>
+              <option> CBA </option>
+              <option> CAHS </option>
+              <option> CEAS </option>
+              <option> CHTM </option>
+          </select>
+        </div>
+  
+        <div class="patron">
+          <select class="filter" id="filter">
+              <option selected value="All Patron"> All Patron </option>
+              <option> Admin </option>
+              <option> Faculty </option>
+              <option> Student </option>
+              <option> Staff </option>
+              <option> Visitor </option>
+          </select>
+        </div>
+
+        <div class="gender">
+            <select class="filter" id="filter">
+                <option selected value="All Gender"> All Gender </option>
+                <option> Male </option>
+                <option> Famale </option>
+            </select>
+          </div>
+  
+      <!-- <div class="search">
+          <input placeholder="Search..." type="text">
+          <button type="submit"><i class="bx bx-search" ></i></button>
+      </div> -->
+  
+      </div>
+
+      <hr>
+
+      <!-- table -->
+    <table class="content-table">
+      <thead class="table-head">
+        <tr>
+          <th>Name</th>
+          <th>Patron Type</th>
+          <th>Id Number</th>
+          <th>Department</th>
+          <th>Gender</th>
+          <th>Action</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ace</td>
+          <td>Student</td>
+          <td>202111304</td>
+          <td>CCS</td>
+          <td>Male</td>
+
+          <td>
+            <button class="edit" (click)="openUser()">
+              <i class="bx bxs-edit" ></i>
+            </button>
+            <button class="delete" >
+              <i class="bx bx-archive" ></i>
+            </button>
+            
+            </td>
+          </tr>
+  
+  
+      </tbody>
+    </table>
+  </div>
+  </body>
+  
+  

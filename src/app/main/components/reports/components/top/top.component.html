@@ -1,12 +1,41 @@
 <body>
+ <p class="title">Top 10 Borrowers</p>
+ 
+  <div class="container">
 
+    <div class="filter">
 
+      <div class="table-filters">
+        <select id="filter">
+            <option selected value="All Departments"> All Departments </option>
+            <option> CCS </option>
+            <option> CBA </option>
+            <option> CAHS </option>
+            <option> CEAS </option>
+            <option> CHTM </option>
+        </select>
+      </div>
+  
+      <div class="table-filters2">
+        <select id="filter">
+            <option selected value="Patron"> All Patron </option>
+            <option> Admin </option>
+            <option> Faculty </option>
+            <option> Student </option>
+            <option> Staff </option>
+            <option> Visitor </option>
+        </select>
+      </div>
+  
     <div class="search">
         <input placeholder="Search..." type="text">
         <button type="submit"><i class="bx bx-search" ></i></button>
     </div>
+  
+    </div>
 
-  <p class="title">Top 10 Borrowers</p>
+
+ 
   <table class="content-table">
     <thead class="table-head">
       <tr>
@@ -26,4 +55,5 @@
         <td>17</td>
     </tbody>
   </table>
+</div>
 </body>

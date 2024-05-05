@@ -1,5 +1,44 @@
-<p class="title">Reservation List</p>
+
+  
 <main>
+
+<p class="title">Reservation List</p>
+
+<div class="container">
+
+  <!-- filter -->
+
+  <div class="filter">
+
+    <div class="table-filters">
+      <select id="filter">
+          <option selected value="All Departments"> All Departments </option>
+          <option> CCS </option>
+          <option> CBA </option>
+          <option> CAHS </option>
+          <option> CEAS </option>
+          <option> CHTM </option>
+      </select>
+    </div>
+
+    <div class="table-filters2">
+      <select id="filter">
+          <option selected value="Patron"> All Patron </option>
+          <option> Admin </option>
+          <option> Faculty </option>
+          <option> Student </option>
+          <option> Staff </option>
+          <option> Visitor </option>
+      </select>
+    </div>
+    <div class="search">
+      <input placeholder="Search..." type="text">
+      <button type="submit"><i class="bx bx-search" ></i></button>
+  </div>
+
+
+  </div>
+
 
     <div class="content">
     <div class="tabbed">
@@ -15,10 +54,6 @@
         <div class="tab-content">
             <div class="table">
 
-                <div class="search">
-                    <input placeholder="Search..." type="text">
-                    <button type="submit"><i class="bx bx-search" ></i></button>
-                </div>
                
                 <!-- <h1>Walk-in</h1> -->
 
@@ -64,12 +99,15 @@
 
         <!-- Online  -->
         <div class="tab-content">
+
+          
+
             <div class="table">
 
-                <div class="search">
+                <!-- <div class="search">
                     <input placeholder="Search..." type="text">
                     <button type="submit"><i class="bx bx-search" ></i></button>
-                </div>
+                </div> -->
 
                 <!-- <h1>Online</h1> -->
                 
@@ -117,4 +155,5 @@
 
         </div>
     </div>
+  </div>
 </main>

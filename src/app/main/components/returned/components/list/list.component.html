@@ -1,12 +1,43 @@
 <body>
 
+  <p class="title">Returned</p>
 
-    <div class="search">
-        <input placeholder="Search..." type="text">
-        <button type="submit"><i class="bx bx-search" ></i></button>
+<div class="container">
+
+  <!-- filter -->
+
+  <div class="filter">
+
+    <div class="table-filters">
+      <select id="filter">
+          <option selected value="All Departments"> All Departments </option>
+          <option> CCS </option>
+          <option> CBA </option>
+          <option> CAHS </option>
+          <option> CEAS </option>
+          <option> CHTM </option>
+      </select>
     </div>
 
-  <p class="title">Returned</p>
+    <div class="table-filters2">
+      <select id="filter">
+          <option selected value="Patron"> All Patron </option>
+          <option> Admin </option>
+          <option> Faculty </option>
+          <option> Student </option>
+          <option> Staff </option>
+          <option> Visitor </option>
+      </select>
+    </div>
+
+  <div class="search">
+      <input placeholder="Search..." type="text">
+      <button type="submit"><i class="bx bx-search" ></i></button>
+  </div>
+
+  </div>
+
+  <!-- <p class="title">Returned</p> -->
   <table class="content-table">
     <thead class="table-head">
       <tr>
@@ -35,72 +66,9 @@
             </button>
         </td>
       </tr>
-
-      <tr>
-        <td>Student</td>
-        <td>202110063</td>
-        <td>6108</td>
-        <td class="late">02/24/24</td>
-        <td class="late">Late</td>
-        <td>
-            <button class="edit">
-                <i class="bx bxs-edit"></i>
-            </button>
-            <button class="delete">
-                <i class="bx bx-archive" ></i>
-            </button>
-        </td>
-      </tr>
-
-      <tr>
-        <td>Student</td>
-        <td>202110063</td>
-        <td>6108</td>
-        <td class="returned">02/24/24</td>
-        <td class="returned">Returned</td>
-        <td>
-            <button class="edit">
-                <i class="bx bxs-edit"></i>
-            </button>
-            <button class="delete">
-                <i class="bx bx-archive" ></i>
-            </button>
-        </td>
-      </tr>
-
-      <tr>
-        <td>Student</td>
-        <td>202110063</td>
-        <td>6108</td>
-        <td class="returned">02/24/24</td>
-        <td class="returned">Returned</td>
-        <td>
-            <button class="edit">
-                <i class="bx bxs-edit"></i>
-            </button>
-            <button class="delete">
-                <i class="bx bx-archive" ></i>
-            </button>
-        </td>
-      </tr>
-
-      <tr>
-        <td>Student</td>
-        <td>202110063</td>
-        <td>6108</td>
-        <td class="late">02/24/24</td>
-        <td class="late">Late</td>
-        <td>
-            <button class="edit">
-                <i class="bx bxs-edit"></i>
-            </button>
-            <button class="delete">
-                <i class="bx bx-archive" ></i>
-            </button>
-        </td>
-      </tr>
-
     </tbody>
   </table>
+
+</div>
 
 </body>
