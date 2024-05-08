@@ -71,11 +71,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>Ace</td>
-          <td>Student</td>
-          <td>202111304</td>
-          <td>CCS</td>
-          <td>Male</td>
+          <tr *ngFor="let user of userlist">
+            <td>{{ user.username }}</td>
+            <td>{{ user.patronType }}</td>
+            <td>{{ user.course_id }}</td>
+            <td>{{ user.department }}</td>
+            <td>{{ user.gender }}</td>
 
           <td>
             <button class="edit" (click)="openUser()">
