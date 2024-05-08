@@ -13,8 +13,8 @@ export class ReserveComponent {
 
   openDialog() {
     this.dialog.open(ReservationPopupComponent, {
-      width: '70%',
-      height: '800px',
+      width: '55%',
+      height: '760px',
     })
   };
 

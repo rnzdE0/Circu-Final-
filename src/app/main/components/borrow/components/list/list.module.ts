@@ -8,6 +8,7 @@ import { ListRoutingModule } from './list-routing.module';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { PushPopupComponent } from './components/push-popup/push-popup.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -22,7 +23,8 @@ import { PushPopupComponent } from './components/push-popup/push-popup.component
   imports: [
     CommonModule,
     ListRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginator
   ]
 })
 export class ListModule { }

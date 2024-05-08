@@ -3,28 +3,23 @@
 
 body {
     padding-top: 30px;
-    padding-bottom: 100px;
 }
 
-hr {
-    margin-right: 10px;
-    margin-left: 10px;
-    border-width: 8px;
-}
-
-.header {
-    background-color: #31A463;
-    padding-top: 40px;
-    padding-bottom: 30px;
-    border-bottom: 2.5px solid black;
-}
 
 .title {
-    color: #ffffff;
+    color: #fff;
     font-family: 'poppins', sans-serif;
     font-weight: 700;
-    font-size: 80px;
+    font-size: 43px;
     margin-left: 35px;
+    // padding-top: -19px;
+}
+
+.header{ 
+    background-color: #31A463;
+    padding-top: 35px;
+    padding-bottom: 20px;
+    // border-bottom: 2.5px solid black;
 }
 
 // input[type=date]:invalid::-webkit-datetime-edit {
@@ -37,25 +32,28 @@ hr {
     margin: 30px;
     position: absolute;
     margin-top: 2%;
+    margin-left: 50px;
 }
 
 .materials {
     margin: 30px;
     position: absolute;
-    margin-top: 17%;
+    margin-top: 19%;
+    margin-left: 50px;
 }
 
 .staffs {
     margin: 30px;
     position: absolute;
-    margin-top: 31.5%;
+    margin-top: 36.5%;
+    margin-left: 50px;
 }
 
 .date {
     margin: 30px;
     position: absolute;
-    margin-top: 21px;
-    margin-left: 865px ;
+    margin-top: 46.5%;
+    margin-left: 50px;
 }
 
 .group1, .group2 , .group3{
@@ -76,10 +74,11 @@ hr {
     font-weight: 700;
     color: #C5C5C5;
     font-size: 30px;
+    margin-left: 20px;
 }
 
 .material {
-    margin-top: 190px;
+    margin-top: 170px;
     // padding-top: 10%;
     padding-left: 40px;
     margin-bottom: -15px;
@@ -88,10 +87,11 @@ hr {
     color: #C5C5C5;
     font-size: 30px;
     position: absolute;
+    margin-left: 20px;
 }
 
 .staff {
-    margin-top: 390px;
+    margin-top: 354px;
     // padding-top: 20%;
     padding-left: 40px;
     margin-bottom: -15px;
@@ -100,19 +100,20 @@ hr {
     color: #C5C5C5;
     font-size: 30px;
     position: absolute;
+    margin-left: 20px;
 }
 
 .due {
-    margin-top: -5px;
-    // padding-top: 26%;
+    margin-top: 460px;
+    // padding-top: 20%;
     padding-left: 40px;
     margin-bottom: -15px;
-    margin-left: 835px;
     font-family: 'poppins', sans-serif;
     font-weight: 700;
     color: #C5C5C5;
     font-size: 30px;
     position: absolute;
+    margin-left: 20px;
 }
 
 .reason {
@@ -140,18 +141,20 @@ hr {
 }
 
 .buttons {
-    margin-top: 100px;
-    padding-left: 63.5%;
+    margin-top: 58%;
+    float: right;
+    margin-right: 50px;
 }
 
-.add {
-    background-color: #31A463;
+.reserve {
+    background-color: #FFA500;
     margin-right: 10px;
     justify-content: center;
     position: relative;
     padding: .1rem;
     width: 50%;
     border: none;
+    border-radius: 10px;
     font-family: 'poppins',sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -165,25 +168,7 @@ hr {
     padding-right: 30px;
     padding-bottom: 10px;
     padding-top: 10px;
-}
-
-.reserve {
-    background-color: #FFA500;
-    margin-right: 10px;
-    justify-content: center;
-    position: relative;
-    padding: .1rem;
-    width: 50%;
-    border: none;
-    font-family: 'poppins',sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    color: #fff;
-    font-size: 22px;
-    top: -20px;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 5px;
+    cursor: pointer;
 }
 
 .close {
@@ -194,6 +179,7 @@ hr {
     padding: .1rem;
     width: 50%;
     border: none;
+    border-radius: 10px;
     font-family: 'poppins',sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -201,11 +187,12 @@ hr {
     font-size: 22px;
     top: -20px;
     text-decoration: none;
-    padding-left: 30px;
-    padding-right: 30px;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
     padding-bottom: 10px;
     padding-top: 10px;
-    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -213,7 +200,7 @@ hr {
     box-shadow: 0px 8px 15px -10px rgb(61, 61, 61);
     transform: translate(0px, -2px);
     background: white;
-    color:  #008000;
+    color:  #FFA500;
     cursor: pointer;
     text-decoration: none;
 }
@@ -245,8 +232,8 @@ hr {
     // border: solid 1.5px black;
     border: none;
     border-bottom: solid 1.5px black;
-    border-radius: 5px;
-    background: #d3d3d3;
+    border-radius: 1px;
+    background: #f1f1f1;
     padding: 1rem;
     font-size: 1rem;
     color: black;
@@ -259,14 +246,14 @@ hr {
     // border: solid 1.5px black;
     border: none;
     border-bottom: solid 1.5px black;
-    border-radius: 5px;
-    background: #d3d3d3;
+    border-radius: 1px;
+    background: #f1f1f1;
     padding: 1rem;
     font-size: 1rem;
     color: black;
     transition: border 150ms cubic-bezier(0.4,0,0.2,1);
     margin: 10px;
-    width: 140px;
+    width: 130px;
 }
 
 .input-reason {
@@ -341,7 +328,3 @@ hr {
 ::placeholder {
     color: black;
 }
-
-
-
-  

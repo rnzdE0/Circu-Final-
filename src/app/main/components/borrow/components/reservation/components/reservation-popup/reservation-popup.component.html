@@ -15,8 +15,13 @@
                   <label class="user-label">Id Number</label>
                 </div>
                 <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input" >
+                  <input required="" type="text" name="text" autocomplete="off" class="input" disabled>
                   <label class="user-label">Name</label>
+                </div>
+
+                <div class="input-group">
+                  <input required="" type="text" name="text" autocomplete="off" class="input2" placeholder="fillable">
+                  <label class="userlabel">Gender</label>
                 </div>
             </div>
 
@@ -43,6 +48,13 @@
                     <input required="" type="text" name="text" autocomplete="off" class="input" >
                     <label class="user-label">Title</label>
                   </div>
+                  <div class="input-group">
+                    <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" >
+                    <label class="userlabel2" for="NumOfMat">No. of Materials</label>
+                    <label for="NumOfMat" class="max">/3</label>
+                  </div>
+                  
+                  
               </div>
 
               <div class="group2">
@@ -54,6 +66,8 @@
                     <input required="" type="text" name="text" autocomplete="off" class="input" >
                     <label class="user-label">Author</label>
                   </div>
+                  
+                  
               </div>
           </div>
       </div>
@@ -83,11 +97,17 @@
                 <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-04-18" >
                 <label class="userlabel2">Date of Request</label>
               </div>
+
+              <div class="input-group">
+                <input required="" type="datetime-local" name="date" autocomplete="off" class="input" min="2024-04-18" >
+                <label class="userlabel">Due</label>
+              </div>
+              <div class="input-group">
+                <input required="" type="number" name="text" autocomplete="off" class="input2" placeholder="fillable">
+                <label class="userlabel">User Fine</label>
+              </div>
           </div>
-          <div class="input-group">
-            <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-04-18">
-            <label class="userlabel">Due</label>
-          </div>
+    
         </div>
 
           <!-- <div class="reason">
@@ -100,45 +120,15 @@
             </div>
           </div> -->
 
-          <div class="time">
-            <div class="group1">
-                <div class="input-group">
-                  <input required="" type="time" name="text" autocomplete="off" class="input2" >
-                  <label class="userlabel">Time</label>
-                </div>
-
-                <div class="input-group">
-                  <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" >
-                  <label class="userlabel2" for="NumOfMat">Num of Materials</label>
-                  <label for="NumOfMat" class="max">/3</label>
-                </div>
-            </div>
-          </div>
-
-          <div class="gender">
-            <div class="group1">
-                <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input2" placeholder="fillable">
-                  <label class="userlabel">Gender</label>
-                </div>
-            </div>
-          </div>
-
-          <div class="fine">
-            <div class="group1">
-                <div class="input-group">
-                  <input required="" type="number" name="text" autocomplete="off" class="input2" placeholder="fillable">
-                  <label class="userlabel">User Fine</label>
-                </div>
-            </div>
-          </div>
+          
 
           <div class="buttons">
-            <a class="add" routerLink="">Save</a>
-            <a class="reserve">Returned</a>
             <a class="close" matDialogClose>Close</a>
             <!-- <button class="reserve" (click)="openDialog()">Reserve</button> -->
-            <!-- <a class="list" routerLink="/sample">List</a> -->
+            <!-- <a class="list" routerLink="/sample">List</a> -->            
+            <a class="reserve" routerLink="">Reserve</a>
+            <!-- <a class="reserve">Returned</a> -->
+
 
           </div>
 </div>

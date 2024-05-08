@@ -4,6 +4,7 @@ import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { PushPopupComponent } from '../push-popup/push-popup.component';
 
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -15,8 +16,8 @@ export class TableComponent {
 
   openDialog() {
     this.dialog.open(EditPopupComponent, {
-      width: '70%',
-      height: '800px',
+      width: '55%',
+      height: '760px',
     })
   };
 

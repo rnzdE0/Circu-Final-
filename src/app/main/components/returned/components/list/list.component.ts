@@ -12,8 +12,8 @@ export class ListComponent {
 
   openEdit() {
     this.dialog.open(EditComponent, {
-      width: '70%',
-      height: '800px',
+      width: '55%',
+      height: '760px',
     })
   };
 

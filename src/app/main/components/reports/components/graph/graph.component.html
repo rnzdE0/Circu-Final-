@@ -1,1 +1,74 @@
-<p>graph works!</p>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<body>
+
+  <p class="title">Report</p>
+
+  <div class="search">
+    <input placeholder="Search..." type="text">
+    <button type="submit"><i class="bx bx-search" ></i></button>
+  </div>
+  
+  <div class="container">
+
+    <p class="list">Graph</p>
+
+      <!-- filter -->
+  
+      <div class="filters">
+  
+        <div class="table-filters">
+          <select class="filter "id="filter">
+              <option selected value="Graph Selection"> Weekly </option>
+              <option> Monthly </option>
+              <option> Yearly </option>
+              <option> Sem </option>
+          </select>
+        </div>
+  
+        <div class="gender">
+            <select class="filter" id="filter">
+                <option selected value="All Gender"> All Gender </option>
+                <option> Male </option>
+                <option> Famale </option>
+            </select>
+          </div>
+  
+      <!-- <div class="search">
+          <input placeholder="Search..." type="text">
+          <button type="submit"><i class="bx bx-search" ></i></button>
+      </div> -->
+  
+      </div>
+
+      <hr>
+
+      <!-- graph -->
+      <div class="row">
+        <div class="line">
+          <h2>Borrowers</h2>
+          <canvas id="linechart" class="line2"></canvas>
+         </div>
+
+
+
+        <div class="">
+            <h2>Bar chart</h2>
+            <canvas id="barchart"></canvas>
+        </div>
+
+        <!-- <div class="">
+            <h2>Pie chart</h2>
+            <canvas id="piechart"></canvas>
+        </div> -->
+        
+        <!-- <div class="">
+            <h2>Line chart</h2>
+            <canvas id="linechart"></canvas>
+        </div> -->
+      </div>
+
+  </div>
+  </body>
+  
+  
