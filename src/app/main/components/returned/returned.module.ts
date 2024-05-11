@@ -5,6 +5,7 @@ import { DeletePopupComponent } from './components/delete-popup/delete-popup.com
 import { ReturnedRoutingModule } from './returned-routing.module';
 import { EditComponent } from './components/edit/edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -17,7 +18,8 @@ import { MatDialogModule } from '@angular/material/dialog';
   imports: [
     CommonModule,
     ReturnedRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginator
   ]
 })
 export class ReturnedModule { }

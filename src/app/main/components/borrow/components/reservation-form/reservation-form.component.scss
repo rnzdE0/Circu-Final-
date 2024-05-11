@@ -28,7 +28,7 @@ body {
     background: white;
     margin-left: 67px;
     width: 90%;
-    height: 750px;
+    height: auto;
     margin-bottom: 30px;
     box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
     border: 0.5px solid grey;
@@ -149,7 +149,7 @@ body {
 
 .buttons {
     margin-top: 42%;
-    padding-left: 43%;
+    padding-left: 37%;
     
 }
 
@@ -169,16 +169,16 @@ body {
     text-decoration: none;
 
     margin-left: 10px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 40px;
+    padding-right: 40px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
 .reserve {
     background-color: #FFA500;
-    margin-right: 10px;
-    justify-content: center;
+    margin-left: 30px;
+    // justify-content: center;
     position: relative;
     padding: .1rem;
     border: none;
@@ -188,10 +188,11 @@ body {
     font-style: normal;
     color: #fff;
     font-size: 22px;
-    top: -20px;
+    // top: -20px;
     text-decoration: none;
-    padding-left: 60px;
-    padding-right: 60px;
+
+    padding-left: 40px;
+    padding-right: 40px;
     padding-top: 10px;
     padding-bottom: 10px;
 }

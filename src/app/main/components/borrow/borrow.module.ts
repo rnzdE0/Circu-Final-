@@ -5,6 +5,8 @@ import { ListComponent } from './components/list/list.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { BorrowRoutingModule } from './borrow-routing.module';
 import { RouterModule } from '@angular/router';
+import { ReservationFormComponent } from './components/reservation-form/reservation-form.component';
+
 
 
 
@@ -12,7 +14,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     RequestComponent,
     ListComponent,
-    ReservationComponent
+    ReservationComponent,
+    ReservationFormComponent,
   ],
   imports: [
     CommonModule,

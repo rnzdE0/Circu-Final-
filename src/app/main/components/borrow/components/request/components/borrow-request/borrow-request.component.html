@@ -1,75 +1,86 @@
 <div class="body">
 
-  <p class="title">Borrow Request</p>
-
       <div class="container">
+        
+        <p class="title">Borrow Form</p>
 
         <div class="form">
-          
-          <p class="user">Users</p>
-          <div class="users">
+
+          <!-- books -->
+          <p class="book">Book</p>
+          <div class="books">
               <div class="group1">
                   <div class="input-group">
                     <input required="" type="text" name="text" autocomplete="off" class="input" >
-                    <label class="user-label">Id Number</label>
+                    <label class="book-label">Accession Number</label>
                   </div>
                   <div class="input-group">
                     <input required="" type="text" name="text" autocomplete="off" class="input" >
-                    <label class="user-label">Name</label>
+                    <label class="book-label">Title</label>
+                  </div>
+
+                  <div class="input-group">
+                    <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" >
+                    <label class="booklabel" for="NumOfMat">Number of Materials</label>
+                    <label for="NumOfMat" class="max">/3</label>
                   </div>
               </div>
   
               <div class="group2">
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input" >
-                    <label class="user-label">Patron Type</label>
+                    <input required="" type="text" name="text" autocomplete="off" class="input3" >
+                    <label class="book-label">Location</label>
                   </div>
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input" >
-                    <label class="user-label">Department</label>
+                    <input required="" type="text" name="text" autocomplete="off" class="input3" >
+                    <label class="book-label">Author</label>
                   </div>
               </div>
           </div>
   
-          <p class="material">Material</p>
+          <p class="material">User</p>
           <div class="materials">
                 <div class="group1">
                     <div class="input-group">
                       <input required="" type="text" name="text" autocomplete="off" class="input" >
-                      <label class="user-label">Accession Number</label>
+                      <label class="book-label">Id Number</label>
                     </div>
                     <div class="input-group">
                       <input required="" type="text" name="text" autocomplete="off" class="input" >
-                      <label class="user-label">Title</label>
+                      <label class="book-label">Name</label>
+                    </div>
+                    <div class="input-group">
+                      <input required="" type="text" name="text" autocomplete="off" class="input2" >
+                      <label class="book-label">Gender</label>
                     </div>
                   </div>
 
                 <div class="group2">
                       <div class="input-group">
-                        <input required="" type="text" name="text" autocomplete="off" class="input" >
-                        <label class="user-label">Location</label>
+                        <input required="" type="text" name="text" autocomplete="off" class="input3" >
+                        <label class="book-label">Patron</label>
                       </div>
                       <div class="input-group">
-                        <input required="" type="text" name="text" autocomplete="off" class="input" >
-                        <label class="user-label">Author</label>
+                        <input required="" type="text" name="text" autocomplete="off" class="input3" >
+                        <label class="book-label">Department</label>
                       </div>
                 </div>
             </div>
-          </div>
+        
 
-      <p class="staff">Staff</p>
-        <div class="staffs">
-          <div class="group1">
-              <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input" >
-                <label class="user-label">Name of Staff</label>
+            <p class="staff">Staff</p>
+              <div class="staffs">
+                <div class="group1">
+                    <div class="input-group">
+                      <input required="" type="text" name="text" autocomplete="off" class="input3" >
+                      <label class="book-label">Name of Staff</label>
+                    </div>
+                    <div class="input-group">
+                      <input required="" type="text" name="text" autocomplete="off" class="input3" >
+                      <label class="book-label">Position</label>
+                    </div>
+                </div>
               </div>
-              <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input" >
-                <label class="user-label">Position</label>
-              </div>
-          </div>
-        </div>
 
         <p class="due">Due</p>
         <div class="date">
@@ -80,47 +91,49 @@
             </script>
               <div class="input-group">
                 <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-04-18" >
-                <label class="userlabel">Date of Request</label>
+                <label class="booklabel">Date of Request</label>
               </div>
-          </div>
-          <div class="input-group">
-            <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-04-18">
-            <label class="userlabel">Due</label>
+
+              <div class="input-group">
+                <input required="" type="datetime-local" name="date" autocomplete="off" class="input" min="2024-04-18">
+                <label class="booklabel">Due for Borrow</label>
+              </div>
+              <div class="input-group">
+                <input required="" type="text" name="text" autocomplete="off" class="input2" >
+                <label class="book-label">User Fine</label>
+              </div>
           </div>
         </div>
 
-          <!-- <div class="reason">
-            <div class="group1">
-                <div class="input-group">
-                  <input required="" type="time" name="text" autocomplete="off" class="input" >
-                  <textarea class="input-reason" name="text" id="" cols="30" rows="10" placeholder=""></textarea>
-                  <label class="userlabel">Reason</label>
-                </div>
-            </div>
-      </div>
-  </div>
-          </div> -->
+        <div class="buttons">
+            <a class="add" routerLink="">Add</a>
+            <!-- <a class="reserve" routerLink="./BorrowReserve">Reserve</a> -->
+            <!-- <button class="reserve" (click)="openDialog()">Reserve</button> -->
+            <!-- <a class="list" routerLink="/sample">List</a> -->
 
-          <div class="time">
+          </div>
+
+
+          <!-- <div class="time">
             <div class="group1">
                 <div class="input-group">
                   <input required="" type="time" name="text" autocomplete="off" class="input2" >
-                  <label class="userlabel">Time</label>
+                  <label class="booklabel">Time</label>
                 </div>
 
                 <div class="input-group">
                   <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" >
-                  <label class="userlabel" for="NumOfMat">Number of Materials</label>
+                  <label class="booklabel" for="NumOfMat">Number of Materials</label>
                   <label for="NumOfMat" class="max">/3</label>
                 </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="gender">
+          <!-- <div class="gender">
             <div class="group1">
                 <div class="input-group">
                   <input required="" type="text" name="text" autocomplete="off" class="input2" placeholder="fillable">
-                  <label class="userlabel">Gender</label>
+                  <label class="booklabel">Gender</label>
                 </div>
             </div>
           </div>
@@ -129,17 +142,19 @@
             <div class="group1">
                 <div class="input-group">
                   <input required="" type="number" name="text" autocomplete="off" class="input2" placeholder="fillable">
-                  <label class="userlabel">User Fine</label>
+                  <label class="booklabel">book Fine</label>
                 </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="buttons">
-            <a class="add" routerLink="">Add</a>
+          <!-- <div class="buttons"> -->
+            <!-- <a class="add" routerLink="">Add</a> -->
             <!-- <a class="reserve" routerLink="./BorrowReserve">Reserve</a> -->
-            <button class="reserve" (click)="openDialog()">Reserve</button>
+            <!-- <button class="reserve" (click)="openDialog()">Reserve</button> -->
             <!-- <a class="list" routerLink="/sample">List</a> -->
 
-          </div>
-</div>
+          <!-- </div> -->
 
+
+ </div>
+</div>

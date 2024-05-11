@@ -1,8 +1,8 @@
 <body>
 
-  <p class="title">Returned</p>
-
 <div class="container">
+
+  <p class="title">Returned</p>
 
   <!-- filter -->
 
@@ -30,6 +30,14 @@
       </select>
     </div>
 
+    <div class="table-filters3">
+      <p>From:  <input type="date" ></p>
+    </div>
+
+    <div class="table-filters4">
+      <p>To:  <input type="date" ></p>
+    </div>
+
   <div class="search">
       <input placeholder="Search..." type="text">
       <button type="submit"><i class="bx bx-search" ></i></button>
@@ -44,9 +52,9 @@
         <th>Patron Type</th>
         <th>Id Number</th>
         <th>Accession Number</th>
-        <th>Due Date</th>
+        <th>Date Created</th>
         <th>Date Returned</th>
-        <th>Action</th>
+        <th>Status</th>
        
       </tr>
     </thead>
@@ -55,19 +63,28 @@
         <td>Student</td>
         <td>202110063</td>
         <td>6108</td>
-        <td class="returned">02/24/24</td>
+        <td >01/24/24</td>
+        <td >01/30/24</td>
         <td class="returned">Returned</td>
-        <td>
+        <!-- <td>
             <button class="edit" (click)="openEdit()">
                 <i class="bx bxs-edit"></i>
             </button>
             <button class="delete" (click)="deletePop()">
                 <i class="bx bx-archive" ></i>
             </button>
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>
+    <div class="page">
+        <mat-paginator [length]="100"
+                  [pageSize]="10"
+                  [pageSizeOptions]="[5, 10, 25, 100]"
+                  aria-label="Select page">
+        </mat-paginator>
+    </div>
+  
 </div>
 
 </body>

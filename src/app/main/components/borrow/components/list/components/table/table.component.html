@@ -1,9 +1,8 @@
 <body>
 
-  <p class="title">Borrow List</p>
-
-
 <div class="container">
+
+  <p class="title">Borrow List</p>
 
     <!-- filter -->
 
@@ -22,6 +21,14 @@
 
       <div class="table-filters2">
         <select id="filter">
+            <option selected value="Patron"> All Program </option>
+            <option> Program sample </option>
+            
+        </select>
+      </div>
+
+      <div class="table-filters3">
+        <select id="filter">
             <option selected value="Patron"> All Patron </option>
             <option> Admin </option>
             <option> Faculty </option>
@@ -31,21 +38,31 @@
         </select>
       </div>
 
+      <div class="table-filters4">
+        <select id="filter">
+            <option selected value="Patron"> All Status </option>
+            <option> Pending </option>
+            <option> Overdue </option>
+        </select>
+      </div>
+
     <div class="search">
         <input placeholder="Search..." type="text">
         <button type="submit"><i class="bx bx-search" ></i></button>
     </div>
 
     </div>
+
+
   <table class="content-table">
     <thead class="table-head">
       <tr>
         <th>Patron Type</th>
         <th>Id Number</th>
         <th>Department</th>
+        <th>Program</th>
         <th>Accession Number</th>
-        <th>Category</th>
-        <th>Request</th>
+        <th>Status</th>
         <th>Action</th>
       
       </tr>
@@ -57,7 +74,7 @@
         <td>CCS</td>
         <td>4001</td>
         <td>LOC</td>
-        <td>1/3</td>
+        <td>Pending</td>
         <td>
           <button class="edit" (click)="openDialog()">
             <i class="bx bxs-edit" ></i>
@@ -66,7 +83,7 @@
             <i class="bx bx-archive" ></i>
           </button>
           <button class="returned" (click)="pushDialog()">
-            <i class="bx bx-subdirectory-left" ></i>
+            <i class="bx bx-check" ></i>
           </button>
           </td>
         </tr>

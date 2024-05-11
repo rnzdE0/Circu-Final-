@@ -9,7 +9,7 @@
 <div class="content">
     <!-- HEADER -->
     <div class="header">
-        <strong> <h1 class="circulation">CIRCULATION</h1> </strong>
+        <strong> <h1 class="circulation">GCLMS - Circulation System</h1> </strong>
     </div> 
 
     <!-- BODY CONTENT -->
@@ -39,7 +39,7 @@
                         <span class="gc-library" (click)="toggleDropdown()">
                             <a class="tab-link" routerLink="borrow" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
                                 <span class="tab-link-icon"> <i class='bx bx-book-alt'></i> </span>
-                                <span class="tab-link-name"> Borrow </span>
+                                <span class="tab-link-name"> Borrow/Request </span>
                             </a>
                         </span>
                         <button class="dropbtn" (click)="toggleDropdown()"> 
@@ -49,7 +49,10 @@
                         </button>
                         <div class="dropdown-content" *ngIf="dropdownOpen">
                             <a routerLink="request" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
-                                <span class="tab-link-name1"> Borrow Request </span>
+                                <span class="tab-link-name1"> Borrow Form </span>
+                            </a>
+                            <a routerLink="resform" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                                <span class="tab-link-name1"> Reservation Form </span>
                             </a>
                             <a routerLink="list" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
                                 <span class="tab-link-name1"> Borrow List </span>

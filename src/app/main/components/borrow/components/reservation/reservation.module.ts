@@ -5,6 +5,7 @@ import { ReserveComponent } from './components/reserve/reserve.component';
 import { ReservationRoutingModule } from './reservation-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteComponent } from './components/delete/delete.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -17,7 +18,8 @@ import { DeleteComponent } from './components/delete/delete.component';
   imports: [
     CommonModule,
     ReservationRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginator
   ]
 })
 export class ReservationModule { }

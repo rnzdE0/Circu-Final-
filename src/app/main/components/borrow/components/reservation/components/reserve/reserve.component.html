@@ -1,11 +1,9 @@
 
-  
 <main>
-
-<p class="title">Reservation List</p>
 
 <div class="container">
 
+  <p class="title">Reservation List</p>
   <!-- filter -->
 
   <div class="filter">
@@ -31,6 +29,15 @@
           <option> Visitor </option>
       </select>
     </div>
+
+    <div class="table-filters3">
+      <select id="filter">
+          <option selected value="ReserveType"> All Type </option>
+          <option> Pick-Up </option>
+          <option> Queue </option>
+      </select>
+    </div>
+
     <div class="search">
       <input placeholder="Search..." type="text">
       <button type="submit"><i class="bx bx-search" ></i></button>
@@ -154,6 +161,15 @@
 
 
         </div>
+  
+    </div>
+    <div class="page">
+      <mat-paginator [length]="100"
+                [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                aria-label="Select page">
+      </mat-paginator>
     </div>
   </div>
+  
 </main>
