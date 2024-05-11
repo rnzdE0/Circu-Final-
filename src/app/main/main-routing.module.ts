@@ -15,13 +15,14 @@ import { TopComponent } from './components/reports/components/top/top.component'
 import { MostComponent } from './components/reports/components/most/most.component';
 import { ReservationComponent } from './components/borrow/components/reservation/reservation.component';
 import { ReservationFormComponent } from './components/borrow/components/reservation-form/reservation-form.component';
+import { ResformComponent } from './components/borrow/components/reservation-form/components/resform/resform.component';
 
 const routes: Routes = [
 
   // child
   { path: '', redirectTo: 'request', pathMatch: 'full' },
   { path: 'request', component: BorrowRequestComponent},
-  { path: 'resform', component: ReservationFormComponent},
+  { path: 'form', component: ResformComponent},
   { path: 'list', component: TableComponent},
   { path: 'reserve', component: ReserveComponent},
   { path: 'top', component: TopComponent},

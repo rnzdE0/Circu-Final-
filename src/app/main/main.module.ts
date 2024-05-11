@@ -18,7 +18,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     BorrowComponent,
     ReturnedComponent,
     ReportsComponent,
-    UserComponent
+    UserComponent,
   ],
   imports: [
     CommonModule,

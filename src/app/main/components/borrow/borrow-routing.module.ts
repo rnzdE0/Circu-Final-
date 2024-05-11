@@ -5,6 +5,7 @@ import { ListComponent } from './components/list/list.component';
 import { RequestComponent } from './components/request/request.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { BorrowComponent } from './borrow.component';
+import { ReservationFormComponent } from './components/reservation-form/reservation-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'request', pathMatch: 'full' },
@@ -40,6 +41,14 @@ const routes: Routes = [
       loadChildren: ()=>import('./components/reservation/reservation.module').then((m)=>m.ReservationModule)
     }]
   },
+
+  { path: 'resform', 
+  component: ReservationFormComponent,
+  children: [{
+    path: '',
+    loadChildren: ()=>import('./components/reservation-form/reservation-form.module').then((m)=>m.ReservationFormModule)
+  }]
+},
 ]
 
 @NgModule({
