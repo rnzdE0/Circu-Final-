@@ -7,9 +7,6 @@ import { BorrowRoutingModule } from './borrow-routing.module';
 import { RouterModule } from '@angular/router';
 import { ReservationFormComponent } from './components/reservation-form/reservation-form.component';
 
-
-
-
 @NgModule({
   declarations: [
     RequestComponent,

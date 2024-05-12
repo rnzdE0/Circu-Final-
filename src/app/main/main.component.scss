@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
     transition: all 0.5s ease;
-    font-family: "poppins";
+    font-family: "montserrat";
 }
 
 
@@ -24,16 +26,17 @@ body {
     z-index: 1;
     left: 30px;
     background-color: white;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 /* SIDEBAR CONTENTS */
 .logo img {
-    height: 200px;
-    width: 200px;
+    height: 160px;
+    width: 160px;
     display: flex;
     justify-content: center;
     margin: auto;
+    margin-bottom: 20px;
 }
 
 .systemname h1 {
@@ -41,7 +44,7 @@ body {
     font-size: 25px;
     font-weight: 700;
     margin-bottom: -10px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .systemname h2 {
@@ -52,7 +55,7 @@ body {
     text-transform: uppercase;
     padding-top: 5px;
     margin-bottom: -20px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
     font-weight: 300;
 }
 
@@ -81,7 +84,7 @@ body {
     flex-direction: column;
     // top , right, bottomn left
     padding: 0px 10px 0px 50px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
     font-weight: 300;
     font-size: 14px;
 }
@@ -138,7 +141,7 @@ body {
 .tab-link-name {
     padding-left: 40px;
     font-weight: 700;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
     font-size: 16px;
     margin-top: -2px;
 }
@@ -146,7 +149,7 @@ body {
 .tab-link-name1 {
     padding-left: 40px;
     font-weight: 300;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
     font-size: 16px;
     margin-top: -2px;
 }
@@ -154,7 +157,7 @@ body {
 .tab-link-name2 {
     padding-left: 40px;
     font-weight: 300;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
     font-size: 13px;
     margin-top: -2px;
 }
