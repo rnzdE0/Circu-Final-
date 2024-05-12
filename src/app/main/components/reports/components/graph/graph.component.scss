@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body{
     height: 100%;
@@ -19,7 +19,13 @@ body{
     box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
     // border: 0.5px solid grey;
 }
+// this is the style for pie chart
 
+canvas {
+    max-width: 100%; /* Ensure the chart fits within the container */
+    max-height: 100%;
+  }
+// end style for the pie chart
 hr {
     margin-top: 30px;
 }
@@ -29,7 +35,7 @@ hr {
 .list{
     float: right;
     color: #C5C5C5;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
     font-weight: 700;
     font-size: 50px;
     margin-top: 50px;
@@ -46,7 +52,7 @@ hr {
     color: black;
     background-color: #31A463;
     border-radius: 10px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .table-filters {
@@ -58,7 +64,7 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .patron {
@@ -70,7 +76,7 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .gender {
@@ -82,6 +88,39 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
+    font-family: 'montserrat', sans-serif;
+}
+.from{
+    display: inline;
+    align-items: center;
+    gap: 10px;
+    margin-left: 0px;
+    margin-top: 30px;
+    border: black;
+    padding-left: 20px;
+    border-radius: 10px;
+    margin-bottom: -40px;
+    font-family: 'poppins', sans-serif;
+}
+.to{
+    display: inline;
+    align-items: center;
+    gap: 10px;
+    margin-left: 0px;
+    margin-top: 30px;
+    border: black;
+    padding-left: 20px;
+    border-radius: 10px;
+    margin-bottom: -40px;
+    font-family: 'poppins', sans-serif;
+}
+input[type=date]{
+    border-radius: 10px;
+    border-width: 1.5px;
+    padding: 8px;
+    margin-left: 5px;
+    appearance: none;
+    color: black;
     font-family: 'poppins', sans-serif;
 }
 
@@ -101,7 +140,7 @@ hr {
 
 .table-filters select {
     background: var(--primary-color);
-    font-family: 'Poppins';
+    font-family: 'montserrat';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -109,12 +148,12 @@ hr {
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .patron select {
     background: var(--primary-color);
-    font-family: 'Poppins';
+    font-family: 'montserrat';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -122,12 +161,12 @@ hr {
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .gender select {
     background: var(--primary-color);
-    font-family: 'Poppins';
+    font-family: 'montserrat';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -135,7 +174,7 @@ hr {
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 
@@ -143,7 +182,7 @@ hr {
 
 .title {
     color: #8f8f8f;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
     font-weight: 700;
     font-size: 100px;
     margin-top: 80px;
@@ -202,7 +241,7 @@ i{
     width: 100%;
     font-size: 14px;  
     background-color: #E1E1E1;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
     table-layout: fixed ;
     
 }
@@ -310,5 +349,258 @@ th {
 .row{
     align-items: center;
     justify-content: center;
+}
+
+// Style for Print Button
+.parent-container {
+    position: relative; /* Maaaring kailanganin ito depende sa ibang styles ng mga elements */
+  }
+  .menu-container {
+    position: absolute;
+    bottom: -8px;
+    right: 46px;
+    display: flex;
+    align-items: center;
+    z-index: 1000; /* Siguruhing mataas ang z-index para hindi matakpan ng ibang elements */
+  }
+  .menu-button {
+    font-size: 10px;
+   }
+   .hamburger-menu-container {
+    position: relative;
+    top: 80px;
+    right: 0;
+  }
+  
+  #content {
+    .button-container {
+      display: flex;
+      justify-content: center;
+      // margin-bottom: 20px;
+  
+      .button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        background-color: 31A463; /* Change to your desired color */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #31A463; /* Change to your desired hover color */
+        }
+      }
+    }
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    z-index: 0;
+  }
+  
+  .button-container button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0 10px;
+    position: relative; 
+    z-index: 0;
+  }
+  
+  .button-container button:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px; 
+    background: #31A463; 
+    position: absolute;
+    bottom: -5px; 
+    left: 0;
+    transition: width 0.3s ease; 
+    z-index: 0;
+  }
+  
+  .button-container button:hover:after,
+  .button-container button.active:after {
+    width: 100%; 
+    z-index: 0;
+  }
+
+  .chartsBx{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
+  }
+  .chart-canvas {
+    max-width: 100%; /* Ensure canvas fills its container */
+    height: 400px; /* Allow the canvas to adjust its height */
+  }
+
+  #content main .table-data {
+	display: flex;
+	flex-wrap: wrap;
+	grid-gap: 24px;
+	margin-top: 24px;
+	width: 100%;
+	color: var(--dark);
+
+
+}
+#content main .table-data > div {
+	border-radius: 20px;
+  background-color: #ffffff;
+  border: .5px solid rgb(49, 164, 99);
+	padding: 24px;
+	overflow-x: auto;
+	border-left: 4px solid #31A463;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+#content main .table-data .head {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+	margin-bottom: 24px;
+}
+#content main .table-data .head h3 {
+	margin-right: auto;
+	font-size: 24px;
+	font-weight: 600;
+}
+#content main .table-data .head .bx {
+	cursor: pointer;
+}
+
+#content main .table-data .order {
+	flex-grow: 1;
+	flex-basis: 311px;
+}
+#content main .table-data .order table {
+	width: 100%;
+	border-collapse: collapse;
+}
+#content main .table-data .order table th {
+	padding-bottom: 12px;
+	font-size: 13px;
+	text-align: left;
+	border-bottom: 1px solid var(--grey);
+}
+#content main .table-data .order table td {
+	padding: 16px 0;
+  background-color: whitesmoke;
+}
+#content main .table-data .order table tr td:first-child {
+	display: flex;
+	align-items: center;
+	grid-gap: 12px;
+	padding-left: 6px;
+}
+#content main .table-data .order table td img {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+#content main .table-data .order table tbody tr:hover {
+	background: var(--grey);
+}
+#content main .table-data .order table tr td .status {
+	font-size: 10px;
+	padding: 6px 16px;
+	color: var(--light);
+	border-radius: 20px;
+	font-weight: 700;
+}
+#content main .table-data .order table tr td .status.completed {
+	background: var(--blue);
+}
+#content main .table-data .order table tr td .status.process {
+	background: var(--yellow);
+}
+#content main .table-data .order table tr td .status.pending {
+	background: var(--orange);
+}
+
+
+#content main .table-data .todo {
+	flex-grow: 1;
+	flex-basis: 300px;
+}
+#content main .table-data .todo .todo-list {
+	width: 100%;
+}
+#content main .table-data .todo .todo-list li {
+	width: 100%;
+	margin-bottom: 16px;
+	background: var(--light);
+	border-radius: 10px;
+	padding: 14px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#content main .table-data .todo .todo-list li .bx {
+	cursor: pointer;
+}
+#content main .table-data .todo .todo-list li.completed {
+	border-left: 10px solid var(--blue);
+}
+#content main .table-data .todo .todo-list li.not-completed {
+	border-left: 10px solid var(--orange);
+}
+#content main .table-data .todo .todo-list li:last-child {
+	margin-bottom: 0;
+}
+
+@media screen and (max-width: 576px) {
+	#content nav form .form-input input {
+		display: none;
+	}
+
+	#content nav form .form-input button {
+		width: auto;
+		height: auto;
+		background: transparent;
+		border-radius: none;
+		color: var(--dark);
+	}
+
+	#content nav form.show .form-input input {
+		display: block;
+		width: 100%;
+	}
+	#content nav form.show .form-input button {
+		width: 36px;
+		height: 100%;
+		border-radius: 0 36px 36px 0;
+		color: var(--light);
+		background: var(--red);
+	}
+
+	#content nav form.show ~ .notification,
+	#content nav form.show ~ .profile {
+		display: none;
+	}
+
+	#content main .box-info {
+		grid-template-columns: 1fr;
+	}
+
+	#content main .table-data .head {
+		min-width: 420px;
+	}
+	#content main .table-data .order table {
+		min-width: 420px;
+	}
+	#content main .table-data .todo .todo-list {
+		min-width: 420px;
+	}
 }
 

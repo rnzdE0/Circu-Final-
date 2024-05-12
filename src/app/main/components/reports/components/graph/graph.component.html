@@ -33,30 +33,53 @@
                 <option> Famale </option>
             </select>
           </div>
+
+          <div class="from">
+            <label for="start-date">From:</label>
+            <input type="date" id="start-date"> 
+          </div>
+
+          <div class="to">
+            <label for="end-date">To:</label>
+            <input type="date" id="end-date">
+          </div>
   
       <!-- <div class="search">
           <input placeholder="Search..." type="text">
           <button type="submit"><i class="bx bx-search" ></i></button>
       </div> -->
-  
+      <div class="parent-container">
+        <div class="menu-container">
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+            <mat-icon>cloud_download</mat-icon>
+            <span class="download-text">Print</span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="downloadFile('png')">
+              <mat-icon>image</mat-icon> Download PNG
+            </button>
+            <button mat-menu-item (click)="downloadFile('svg')">
+              <mat-icon>image</mat-icon> Download SVG
+            </button>
+            <button mat-menu-item [disabled]="isProgramChartVisible" (click)="downloadPDF()">
+              <mat-icon>picture_as_pdf</mat-icon> Download PDF
+            </button>
+          </mat-menu>
+        </div>
+      </div>
       </div>
 
       <hr>
 
       <!-- graph -->
-      <div class="row">
-        <div class="line">
-          <h2>Borrowers</h2>
-          <canvas id="linechart" class="line2"></canvas>
-         </div>
-
-
-
-        <div class="">
-            <h2>Bar chart</h2>
-            <canvas id="barchart"></canvas>
+      <div style="display: flex; justify-content: space-around;">
+        <div style="width: 50%;">
+          <canvas id="pieChart"></canvas>
         </div>
-
+        <div style="width: 50%;">
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
         <!-- <div class="">
             <h2>Pie chart</h2>
             <canvas id="piechart"></canvas>
@@ -67,8 +90,6 @@
             <canvas id="linechart"></canvas>
         </div> -->
       </div>
-
-  </div>
   </body>
   
   
