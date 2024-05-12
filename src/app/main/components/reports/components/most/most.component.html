@@ -4,90 +4,58 @@
 <body>
  <p class="title">Most Borrowed Books</p>
 
- <div class="search">
-  <input placeholder="Search..." type="text">
-  <button type="submit"><i class="bx bx-search" ></i></button>
-</div>
+ 
 <div class="container">
-   <!-- filter -->
+    <!-- filter -->
 
-   <div class="filter">
-
-    <div class="table-filters">
-      <select id="filter">
-          <option selected value="All Departments"> All Departments </option>
-          <option> CCS </option>
-          <option> CBA </option>
-          <option> CAHS </option>
-          <option> CEAS </option>
-          <option> CHTM </option>
-      </select>
-    </div>
-    <div class="table-filters2">
-      <select id="filter">
-          <option selected value="All Departments"> Program </option>
-          <!-- CCS -->
-          <option> BSCS </option>
-          <option> BSIT </option>
-          <option> BSEMC </option>
-          <option> ACT </option>
-          <!-- CBA -->
-          <option> BSA </option>
-          <option> BSCA </option>
-          <option> BSBA-FM </option>
-          <option> BSBA-HRM </option>
-          <option> BSBA-MKT </option>
-          <!-- CAHS -->
-          <option> BSN </option>
-          <option> BSM </option>
-          <option> GM </option>
-          <!-- CHTM -->
-          <option> BSHM </option>
-          <option> BSTM </option>
-          <!-- CEAS -->
-          <option> BEEd </option>
-          <option> BECEd </option>
-          <option> BSEd-E </option>
-          <option> BSEd-FIL </option>
-          <option> BSEd-M </option>
-          <option> BSEd-SCI </option>
-          <option> BSEd-SOC </option>
-          <option> BPEd </option>
-          <option> BCAEd </option>
-          <option> BACOM </option>
-          <option> TCP </option>
-      </select>
-    </div>
-    <div class="table-filters3">
-      <select id="filter">
-          <option selected value="Patron"> All Patron </option>
-          <option> Admin </option>
-          <option> Faculty </option>
-          <option> Student </option>
-          <option> Staff </option>
-          <option> Visitor </option>
-      </select>
-    </div>
-    <div class="parent-container">
-      <div class="menu-container">
-        <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
-          <mat-icon>cloud_download</mat-icon>
-          <span class="download-text">Print</span>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="downloadFile('png')">
-            <mat-icon>image</mat-icon> Download PNG
-          </button>
-          <button mat-menu-item (click)="downloadFile('svg')">
-            <mat-icon>image</mat-icon> Download SVG
-          </button>
-          <button mat-menu-item [disabled]="isProgramChartVisible" (click)="downloadPDF()">
-            <mat-icon>picture_as_pdf</mat-icon> Download PDF
-          </button>
-        </mat-menu>
+    <div class="filter-container">
+      <div class="filter-options">
+        <div class="filter-group">
+          <label for="department">Department:</label>
+          <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
+            <option value="">All Departments</option>
+            <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+          </select>
+        </div>
+        <div class="filter-group" *ngIf="selectedDepartment">
+          <label for="secondFilter">Program:</label>
+          <select id="secondFilter" [(ngModel)]="selectedSecondFilter">
+            <option value="">All Options</option>
+            <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="startDate">From:</label>
+          <input type="date" id="startDate">
+        </div>
+        <div class="filter-group">
+          <label for="endDate">To:</label>
+          <input type="date" id="endDate">
+        </div>
       </div>
     </div>
+
+
+  <div class="parent-container">
+    <div class="menu-container">
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+        <mat-icon>cloud_download</mat-icon>
+        <span class="download-text">Print</span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="downloadFile('png')">
+          <mat-icon>image</mat-icon> Download PNG
+        </button>
+        <button mat-menu-item (click)="downloadFile('svg')">
+          <mat-icon>image</mat-icon> Download SVG
+        </button>
+        <button mat-menu-item [disabled]="isProgramChartVisible" (click)="downloadPDF()">
+          <mat-icon>picture_as_pdf</mat-icon> Download PDF
+        </button>
+      </mat-menu>
+    </div>
   </div>
+
 <hr>
   
   <!-- chart for most borrowed books -->
@@ -129,6 +97,5 @@
     </mat-paginator>
 
   </div>
-
 </div>
 </body>

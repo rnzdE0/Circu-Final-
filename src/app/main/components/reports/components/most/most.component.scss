@@ -4,8 +4,8 @@ body{
 }
 
 .title {
-    color: #8f8f8f;
-    font-family: 'montserrat', sans-serif;
+    color: #444444;
+    font-family: 'poppins', sans-serif;
     font-weight: 700;
     font-size: 100px;
     margin-top: 80px;
@@ -58,7 +58,7 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 
 .table-filters2 {
@@ -70,7 +70,7 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 .table-filters3{
     display: inline;
@@ -100,7 +100,7 @@ hr {
 
 .table-filters select {
     background: var(--primary-color);
-    font-family: 'montserrat';
+    font-family: 'Poppins';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -108,12 +108,12 @@ hr {
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 
 .table-filters2 select {
     background: var(--primary-color);
-    font-family: 'montserrat';
+    font-family: 'Poppins';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -121,7 +121,7 @@ hr {
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 .table-filters3 select {
     background: var(--primary-color);
@@ -193,7 +193,7 @@ i{
     width: 100%;
     font-size: 14px;  
     background-color: #E1E1E1;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
     table-layout: fixed;
 }
 
@@ -290,3 +290,131 @@ th {
   .menu-button {
     font-size: 10px;
    }
+   .hamburger-menu-container {
+    position: relative;
+    top: 80px;
+    right: 0;
+  }
+  
+  #content {
+    .button-container {
+      display: flex;
+      justify-content: center;
+      // margin-bottom: 20px;
+  
+      .button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        background-color: 31A463; /* Change to your desired color */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #31A463; /* Change to your desired hover color */
+        }
+      }
+    }
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    z-index: 0;
+  }
+  
+  .button-container button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0 10px;
+    position: relative; 
+    z-index: 0;
+  }
+  
+  .button-container button:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px; 
+    background: #31A463; 
+    position: absolute;
+    bottom: -5px; 
+    left: 0;
+    transition: width 0.3s ease; 
+    z-index: 0;
+  }
+  
+  .button-container button:hover:after,
+  .button-container button.active:after {
+    width: 100%; 
+    z-index: 0;
+  }
+
+  .chartsBx{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
+  }
+  .chart-canvas {
+    max-width: 100%; /* Ensure canvas fills its container */
+    height: 400px; /* Allow the canvas to adjust its height */
+  }
+
+  .filter-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+  }
+  
+//   .filter-header {
+//     font-size: 18px;
+//     font-weight: bold;
+//     color: #444444;
+//     margin-bottom: 10px;
+//   }
+
+
+//   filter for department
+  .filter-options {
+    display: inline-block;
+  }
+  
+  .filter-group {
+    margin-right: 20px;
+    display: inline-block;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #444444;
+    margin-right: 5px;
+  }
+  
+  select,
+  input[type="date"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+  }
+  
+  /* Styling for select dropdown arrow */
+  select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px top 50%;
+    background-size: 20px;
+    padding-right: 25px;
+  }

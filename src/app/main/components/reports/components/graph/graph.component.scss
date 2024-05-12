@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body{
     height: 100%;
@@ -35,7 +35,7 @@ hr {
 .list{
     float: right;
     color: #C5C5C5;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
     font-weight: 700;
     font-size: 50px;
     margin-top: 50px;
@@ -52,7 +52,7 @@ hr {
     color: black;
     background-color: #31A463;
     border-radius: 10px;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 
 .table-filters {
@@ -64,7 +64,7 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 
 .patron {
@@ -76,7 +76,7 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 
 .gender {
@@ -88,7 +88,7 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 .from{
     display: inline;
@@ -140,7 +140,7 @@ input[type=date]{
 
 .table-filters select {
     background: var(--primary-color);
-    font-family: 'montserrat';
+    font-family: 'Poppins';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -148,12 +148,12 @@ input[type=date]{
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 
 .patron select {
     background: var(--primary-color);
-    font-family: 'montserrat';
+    font-family: 'Poppins';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -161,12 +161,12 @@ input[type=date]{
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 
 .gender select {
     background: var(--primary-color);
-    font-family: 'montserrat';
+    font-family: 'Poppins';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -174,15 +174,15 @@ input[type=date]{
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 
 
 // content
 
 .title {
-    color: #8f8f8f;
-    font-family: 'montserrat', sans-serif;
+    color: #444444;
+    font-family: 'poppins', sans-serif;
     font-weight: 700;
     font-size: 100px;
     margin-top: 80px;
@@ -241,7 +241,7 @@ i{
     width: 100%;
     font-size: 14px;  
     background-color: #E1E1E1;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'poppins', sans-serif;
     table-layout: fixed ;
     
 }
@@ -381,7 +381,7 @@ th {
       .button {
         margin: 0 10px;
         padding: 10px 20px;
-        background-color: 31A463; /* Change to your desired color */
+        background-color: #31A463; /* Change to your desired color */
         color: #fff;
         border: none;
         border-radius: 5px;
@@ -444,163 +444,51 @@ th {
     height: 400px; /* Allow the canvas to adjust its height */
   }
 
-  #content main .table-data {
-	display: flex;
-	flex-wrap: wrap;
-	grid-gap: 24px;
-	margin-top: 24px;
-	width: 100%;
-	color: var(--dark);
-
-
-}
-#content main .table-data > div {
-	border-radius: 20px;
-  background-color: #ffffff;
-  border: .5px solid rgb(49, 164, 99);
-	padding: 24px;
-	overflow-x: auto;
-	border-left: 4px solid #31A463;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-#content main .table-data .head {
-	display: flex;
-	align-items: center;
-	grid-gap: 16px;
-	margin-bottom: 24px;
-}
-#content main .table-data .head h3 {
-	margin-right: auto;
-	font-size: 24px;
-	font-weight: 600;
-}
-#content main .table-data .head .bx {
-	cursor: pointer;
-}
-
-#content main .table-data .order {
-	flex-grow: 1;
-	flex-basis: 311px;
-}
-#content main .table-data .order table {
-	width: 100%;
-	border-collapse: collapse;
-}
-#content main .table-data .order table th {
-	padding-bottom: 12px;
-	font-size: 13px;
-	text-align: left;
-	border-bottom: 1px solid var(--grey);
-}
-#content main .table-data .order table td {
-	padding: 16px 0;
-  background-color: whitesmoke;
-}
-#content main .table-data .order table tr td:first-child {
-	display: flex;
-	align-items: center;
-	grid-gap: 12px;
-	padding-left: 6px;
-}
-#content main .table-data .order table td img {
-	width: 36px;
-	height: 36px;
-	border-radius: 50%;
-	object-fit: cover;
-}
-#content main .table-data .order table tbody tr:hover {
-	background: var(--grey);
-}
-#content main .table-data .order table tr td .status {
-	font-size: 10px;
-	padding: 6px 16px;
-	color: var(--light);
-	border-radius: 20px;
-	font-weight: 700;
-}
-#content main .table-data .order table tr td .status.completed {
-	background: var(--blue);
-}
-#content main .table-data .order table tr td .status.process {
-	background: var(--yellow);
-}
-#content main .table-data .order table tr td .status.pending {
-	background: var(--orange);
-}
-
-
-#content main .table-data .todo {
-	flex-grow: 1;
-	flex-basis: 300px;
-}
-#content main .table-data .todo .todo-list {
-	width: 100%;
-}
-#content main .table-data .todo .todo-list li {
-	width: 100%;
-	margin-bottom: 16px;
-	background: var(--light);
-	border-radius: 10px;
-	padding: 14px 20px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-#content main .table-data .todo .todo-list li .bx {
-	cursor: pointer;
-}
-#content main .table-data .todo .todo-list li.completed {
-	border-left: 10px solid var(--blue);
-}
-#content main .table-data .todo .todo-list li.not-completed {
-	border-left: 10px solid var(--orange);
-}
-#content main .table-data .todo .todo-list li:last-child {
-	margin-bottom: 0;
-}
-
-@media screen and (max-width: 576px) {
-	#content nav form .form-input input {
-		display: none;
-	}
-
-	#content nav form .form-input button {
-		width: auto;
-		height: auto;
-		background: transparent;
-		border-radius: none;
-		color: var(--dark);
-	}
-
-	#content nav form.show .form-input input {
-		display: block;
-		width: 100%;
-	}
-	#content nav form.show .form-input button {
-		width: 36px;
-		height: 100%;
-		border-radius: 0 36px 36px 0;
-		color: var(--light);
-		background: var(--red);
-	}
-
-	#content nav form.show ~ .notification,
-	#content nav form.show ~ .profile {
-		display: none;
-	}
-
-	#content main .box-info {
-		grid-template-columns: 1fr;
-	}
-
-	#content main .table-data .head {
-		min-width: 420px;
-	}
-	#content main .table-data .order table {
-		min-width: 420px;
-	}
-	#content main .table-data .todo .todo-list {
-		min-width: 420px;
-	}
-}
-
+  .filter-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+  }
+  
+//   .filter-header {
+//     font-size: 18px;
+//     font-weight: bold;
+//     color: #444444;
+//     margin-bottom: 10px;
+//   }
+  
+  .filter-options {
+    display: inline-block;
+  }
+  
+  .filter-group {
+    margin-right: 20px;
+    display: inline-block;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #444444;
+    margin-right: 5px;
+  }
+  
+  select,
+  input[type="date"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+  }
+  
+  /* Styling for select dropdown arrow */
+  select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px top 50%;
+    background-size: 20px;
+    padding-right: 25px;
+  }

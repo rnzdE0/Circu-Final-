@@ -7,6 +7,17 @@ import Chart from 'chart.js/auto';
   styleUrl: './most.component.scss'
 })
 export class MostComponent implements OnInit{
+  selectedDepartment: string = '';
+  selectedSecondFilter: string = '';
+  departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
+  secondFilterOptions: { [key: string]: string[] } = {
+    CBA: ['BSA', 'BSCA', 'BSBA-FM', 'BSBA-HRM', 'BSBA-MKT'],
+    CEAS: ['BEEd', 'BECEd', 'BSEd-E', 'BSEd-FIL', 'BSEd-M', 'BSEd-SCI', 'BSEd-SOC', 'BPEd', 'BCAEd', 'BACOM', 'TCP'],
+    CCS: ['BSIT', 'BSCS', 'EMC', 'ACT'],
+    CHTM: ['BSHM', 'BSTM'],
+    CAHS: ['BSN', 'BSM', 'GM']
+  };
+  
   isProgramChartVisible: any;
   downloadPDF() {
   throw new Error('Method not implemented.');
@@ -78,5 +89,8 @@ export class MostComponent implements OnInit{
       gradient.push(colors[i % colors.length]);
     }
     return gradient;
+  }
+  onDepartmentChange(): void {
+    this.selectedSecondFilter = '';
   }
 }

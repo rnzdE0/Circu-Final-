@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -9,13 +8,20 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './graph.component.scss'
 })
 export class GraphComponent implements OnInit {
-updateCharts() {
-throw new Error('Method not implemented.');
-}
+  selectedDepartment: string = '';
+  selectedSecondFilter: string = '';
+  departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
+  secondFilterOptions: { [key: string]: string[] } = {
+    CBA: ['BSA', 'BSCA', 'BSBA-FM', 'BSBA-HRM', 'BSBA-MKT'],
+    CEAS: ['BEEd', 'BECEd', 'BSEd-E', 'BSEd-FIL', 'BSEd-M', 'BSEd-SCI', 'BSEd-SOC', 'BPEd', 'BCAEd', 'BACOM', 'TCP'],
+    CCS: ['BSIT', 'BSCS', 'EMC', 'ACT'],
+    CHTM: ['BSHM', 'BSTM'],
+    CAHS: ['BSN', 'BSM', 'GM']
+  };
+  
   pieChart: any;
   barChart: any;
   isProgramChartVisible: any;
-selectedDepartment: any;
   downloadPDF() {
   throw new Error('Method not implemented.');
   }
@@ -90,5 +96,8 @@ selectedDepartment: any;
         }
       }
     });
+  }
+  onDepartmentChange(): void {
+    this.selectedSecondFilter = '';
   }
 }

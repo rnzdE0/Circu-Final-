@@ -11,9 +11,9 @@ import { ReportsModule } from './components/reports/reports.module';
 import { BorrowModule } from './components/borrow/borrow.module';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MaterialModule } from "../modules/material/material.module";
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+import { GraphComponent } from './components/reports/components/graph/graph.component';
 
 
 
@@ -23,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     ReturnedComponent,
     ReportsComponent,
     UserComponent,
+    GraphComponent
   ],
   imports: [
     CommonModule,
@@ -33,8 +34,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     BorrowModule,
     MatDialogModule,
     MaterialModule,
-    MatTooltipModule,
-    MatToolbarModule
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class MainModule { }

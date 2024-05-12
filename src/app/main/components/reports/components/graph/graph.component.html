@@ -4,50 +4,41 @@
 
   <p class="title">Report</p>
 
-  <div class="search">
-    <input placeholder="Search..." type="text">
-    <button type="submit"><i class="bx bx-search" ></i></button>
-  </div>
+  
   
   <div class="container">
 
-    <p class="list">Graph</p>
-
       <!-- filter -->
-  
-      <div class="filters">
-  
-        <div class="table-filters">
-          <select class="filter "id="filter">
-              <option selected value="Graph Selection"> Weekly </option>
-              <option> Monthly </option>
-              <option> Yearly </option>
-              <option> Sem </option>
-          </select>
-        </div>
-  
-        <div class="gender">
-            <select class="filter" id="filter">
-                <option selected value="All Gender"> All Gender </option>
-                <option> Male </option>
-                <option> Famale </option>
+
+      <div class="filter-container">
+        <div class="filter-options">
+          <div class="filter-group">
+            <label for="department">Department:</label>
+            <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
+              <option value="">All Departments</option>
+              <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
             </select>
           </div>
-
-          <div class="from">
-            <label for="start-date">From:</label>
-            <input type="date" id="start-date"> 
+          <div class="filter-group" *ngIf="selectedDepartment">
+            <label for="secondFilter">Program:</label>
+            <select id="secondFilter" [(ngModel)]="selectedSecondFilter">
+              <option value="">All Options</option>
+              <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
+            </select>
           </div>
-
-          <div class="to">
-            <label for="end-date">To:</label>
-            <input type="date" id="end-date">
+          <div class="filter-group">
+            <label for="startDate">From:</label>
+            <input type="date" id="startDate">
           </div>
-  
-      <!-- <div class="search">
-          <input placeholder="Search..." type="text">
-          <button type="submit"><i class="bx bx-search" ></i></button>
-      </div> -->
+          <div class="filter-group">
+            <label for="endDate">To:</label>
+            <input type="date" id="endDate">
+          </div>
+        </div>
+      </div>
+
+
+
       <div class="parent-container">
         <div class="menu-container">
           <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
@@ -66,7 +57,6 @@
             </button>
           </mat-menu>
         </div>
-      </div>
       </div>
 
       <hr>

@@ -7,9 +7,8 @@ import { ReportRoutingModule } from './report-routing.module';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -18,7 +17,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   declarations: [
     MostComponent,
     TopComponent,
-    GraphComponent
+    
+
   ],
   imports: [
     CommonModule,
@@ -26,8 +26,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatPaginator,
     MatIconModule,
     MatMenuModule,
-    MatTooltipModule,
-    MatToolbarModule
+    FormsModule,
+    HttpClientModule
     
   ]
 })
