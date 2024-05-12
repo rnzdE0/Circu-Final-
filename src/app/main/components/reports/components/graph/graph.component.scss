@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body{
     height: 100%;
@@ -35,7 +35,7 @@ hr {
 .list{
     float: right;
     color: #C5C5C5;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
     font-weight: 700;
     font-size: 50px;
     margin-top: 50px;
@@ -52,7 +52,7 @@ hr {
     color: black;
     background-color: #31A463;
     border-radius: 10px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .table-filters {
@@ -64,7 +64,7 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .patron {
@@ -76,7 +76,7 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .gender {
@@ -88,7 +88,7 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 .from{
     display: inline;
@@ -140,7 +140,7 @@ input[type=date]{
 
 .table-filters select {
     background: var(--primary-color);
-    font-family: 'Poppins';
+    font-family: 'montserrat';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -148,12 +148,12 @@ input[type=date]{
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .patron select {
     background: var(--primary-color);
-    font-family: 'Poppins';
+    font-family: 'montserrat';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -161,12 +161,12 @@ input[type=date]{
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 .gender select {
     background: var(--primary-color);
-    font-family: 'Poppins';
+    font-family: 'montserrat';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -174,7 +174,7 @@ input[type=date]{
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
 }
 
 
@@ -182,7 +182,7 @@ input[type=date]{
 
 .title {
     color: #8f8f8f;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
     font-weight: 700;
     font-size: 100px;
     margin-top: 80px;
@@ -241,7 +241,7 @@ i{
     width: 100%;
     font-size: 14px;  
     background-color: #E1E1E1;
-    font-family: 'poppins', sans-serif;
+    font-family: 'montserrat', sans-serif;
     table-layout: fixed ;
     
 }
