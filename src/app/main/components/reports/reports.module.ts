@@ -7,6 +7,9 @@ import { ReportRoutingModule } from './report-routing.module';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 
 
@@ -22,7 +25,9 @@ import { MatMenuModule } from '@angular/material/menu';
     ReportRoutingModule,
     MatPaginator,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule,
+    MatToolbarModule
     
   ]
 })

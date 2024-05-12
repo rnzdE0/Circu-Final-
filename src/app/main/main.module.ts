@@ -11,6 +11,8 @@ import { ReportsModule } from './components/reports/reports.module';
 import { BorrowModule } from './components/borrow/borrow.module';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MaterialModule } from "../modules/material/material.module";
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
@@ -31,6 +33,8 @@ import { MaterialModule } from "../modules/material/material.module";
     BorrowModule,
     MatDialogModule,
     MaterialModule,
+    MatTooltipModule,
+    MatToolbarModule
   ]
 })
 export class MainModule { }

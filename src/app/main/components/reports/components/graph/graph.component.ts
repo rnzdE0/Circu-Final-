@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -8,9 +9,13 @@ import Chart from 'chart.js/auto';
   styleUrl: './graph.component.scss'
 })
 export class GraphComponent implements OnInit {
+updateCharts() {
+throw new Error('Method not implemented.');
+}
   pieChart: any;
   barChart: any;
   isProgramChartVisible: any;
+selectedDepartment: any;
   downloadPDF() {
   throw new Error('Method not implemented.');
   }

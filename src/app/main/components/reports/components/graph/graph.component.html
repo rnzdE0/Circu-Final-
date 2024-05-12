@@ -48,9 +48,26 @@
           <input placeholder="Search..." type="text">
           <button type="submit"><i class="bx bx-search" ></i></button>
       </div> -->
-     
+      <div class="parent-container">
+        <div class="menu-container">
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+            <mat-icon>cloud_download</mat-icon>
+            <span class="download-text">Print</span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="downloadFile('png')">
+              <mat-icon>image</mat-icon> Download PNG
+            </button>
+            <button mat-menu-item (click)="downloadFile('svg')">
+              <mat-icon>image</mat-icon> Download SVG
+            </button>
+            <button mat-menu-item [disabled]="isProgramChartVisible" (click)="downloadPDF()">
+              <mat-icon>picture_as_pdf</mat-icon> Download PDF
+            </button>
+          </mat-menu>
+        </div>
       </div>
-      
+      </div>
 
       <hr>
 
