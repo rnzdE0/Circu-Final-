@@ -1,50 +1,89 @@
 import { Component, OnInit } from '@angular/core';
+import Chart from 'chart.js/auto';
 
-import { Chart, registerables } from 'chart.js/auto';
-
-Chart.register(...registerables);
 
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
   styleUrl: './graph.component.scss'
 })
-export class GraphComponent implements OnInit{
-  constructor() {}
+export class GraphComponent implements OnInit {
+  pieChart: any;
+  barChart: any;
+  isProgramChartVisible: any;
+  downloadPDF() {
+  throw new Error('Method not implemented.');
+  }
+  downloadFile(arg0: string) {
+  throw new Error('Method not implemented.');
+  }
+  export(arg0: string) {
+  throw new Error('Method not implemented.');
+  }
 
-    ngOnInit(): void {
-      this.RenderChart('bar', 'barchart');
-      this.RenderChart('pie', 'piechart');
-      this.RenderChart('line', 'linechart');
-    }
+  constructor() { }
 
-    RenderChart(type:any, id:any) {
-      const ctx = document.getElementById(type);
+  ngOnInit(): void {
+    // Mock data for departments
+    const departmentData = {
+      CEAS: 20,
+      CCS: 15,
+      CHTM: 10,
+      CAHS: 25,
+      CBA: 30
+    };
+    //mock data for gender counts
+    const genderData = {
+      male: 80,
+      female: 120
+    };
 
-      new Chart(id, {
-        type: type,
-        data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          datasets: [
-            {
-            label: 'Male of Borrowers',
-            data: [11, 19, 13, 53, 23, 34, 38, 21, 35, 67, 26, 15],
-            borderWidth: 1
-            },
-            {
-              label: 'Female of Borrowers',
-              data: [32, 20, 32, 15, 32, 34, 16, 65, 12, 32 ,12, 34],
-              borderWidth: 1
-              },
-        ]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+    // Pie chart
+    const pieCanvas = document.getElementById('pieChart');
+    this.pieChart = new Chart('pieChart', {
+      type: 'pie',
+      data: {
+        labels: Object.keys(departmentData),
+        datasets: [{
+          data: Object.values(departmentData),
+          backgroundColor: ['rgb(15, 127, 228, 1)', 'orange', 'pink', 'red', 'yellow'], 
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Book Borrowers by Department'
           }
         }
-      });
-}
+      }
+    });
+    // Bar chart
+    const barCanvas = document.getElementById('barChart');
+    this.barChart = new Chart('barChart', {
+      type: 'bar',
+      data: {
+        labels: ['Male', 'Female'],
+        datasets: [{
+          data: Object.values(genderData),
+          backgroundColor: ['rgb(15, 172, 228, 1)', 'pink'],
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+              display: false // Hide the legend
+            }
+          // title: {
+          //   display: true,
+          //   text: 'Book Borrowers by gender'
+          // }
+        }
+      }
+    });
+  }
 }

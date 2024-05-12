@@ -12,10 +12,15 @@ body{
     margin-left: 67px;
     margin-bottom: 20px;
 }
-
+.mostChart {
+    max-width: 100%; /* Ensure the chart fits within the container */
+    max-height: 100%;
+  }
 // filter
 
-
+hr {
+    margin-top: 30px;
+}
 .container {
     border-radius: 5px;
     padding: 20px;
@@ -67,8 +72,19 @@ body{
     margin-bottom: -40px;
     font-family: 'poppins', sans-serif;
 }
+.table-filters3{
+    display: inline;
+    align-items: center;
+    gap: 10px;
+    margin-left: 25px;
+    margin-top: 30px;
+    border: black;
+    border-radius: 10px;
+    margin-bottom: -40px;
+    font-family: 'poppins', sans-serif;
+}
 
-.table-filters, .table-filters2  a {
+.table-filters, .table-filters2 .table-filters3 a {
     color: black;
     font-size: 16px;
     padding: 12px 16px;
@@ -107,6 +123,18 @@ body{
     border-radius: 10px;
     font-family: 'poppins', sans-serif;
 }
+.table-filters3 select {
+    background: var(--primary-color);
+    font-family: 'Poppins';
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 200px;
+    height: 2.5em;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-family: 'poppins', sans-serif;
+}
 
 .table-filters option {
     padding: 30px;
@@ -123,8 +151,8 @@ i{
     position: relative;
     float: right;
     margin-right: 5%;
-    margin-bottom: 30px;
-    margin-top: 40px;
+    margin-bottom: -20px;
+    margin-top: -50px;
   }
 
 .search input[type="text"] {
@@ -246,3 +274,19 @@ th {
     text-decoration: none;
     cursor: pointer;
 }
+
+// Style for Print Button
+.parent-container {
+    position: relative; /* Maaaring kailanganin ito depende sa ibang styles ng mga elements */
+  }
+  .menu-container {
+    position: absolute;
+    bottom: -8px;
+    right: 46px;
+    display: flex;
+    align-items: center;
+    z-index: 1000; /* Siguruhing mataas ang z-index para hindi matakpan ng ibang elements */
+  }
+  .menu-button {
+    font-size: 10px;
+   }

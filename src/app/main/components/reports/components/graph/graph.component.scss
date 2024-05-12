@@ -19,7 +19,13 @@ body{
     box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
     // border: 0.5px solid grey;
 }
+// this is the style for pie chart
 
+canvas {
+    max-width: 100%; /* Ensure the chart fits within the container */
+    max-height: 100%;
+  }
+// end style for the pie chart
 hr {
     margin-top: 30px;
 }
@@ -82,6 +88,39 @@ hr {
     border: black;
     border-radius: 10px;
     margin-bottom: -40px;
+    font-family: 'poppins', sans-serif;
+}
+.from{
+    display: inline;
+    align-items: center;
+    gap: 10px;
+    margin-left: 0px;
+    margin-top: 30px;
+    border: black;
+    padding-left: 20px;
+    border-radius: 10px;
+    margin-bottom: -40px;
+    font-family: 'poppins', sans-serif;
+}
+.to{
+    display: inline;
+    align-items: center;
+    gap: 10px;
+    margin-left: 0px;
+    margin-top: 30px;
+    border: black;
+    padding-left: 20px;
+    border-radius: 10px;
+    margin-bottom: -40px;
+    font-family: 'poppins', sans-serif;
+}
+input[type=date]{
+    border-radius: 10px;
+    border-width: 1.5px;
+    padding: 8px;
+    margin-left: 5px;
+    appearance: none;
+    color: black;
     font-family: 'poppins', sans-serif;
 }
 
@@ -311,4 +350,97 @@ th {
     align-items: center;
     justify-content: center;
 }
+
+// Style for Print Button
+.parent-container {
+    position: relative; /* Maaaring kailanganin ito depende sa ibang styles ng mga elements */
+  }
+  .menu-container {
+    position: absolute;
+    bottom: -8px;
+    right: 46px;
+    display: flex;
+    align-items: center;
+    z-index: 1000; /* Siguruhing mataas ang z-index para hindi matakpan ng ibang elements */
+  }
+  .menu-button {
+    font-size: 10px;
+   }
+   .hamburger-menu-container {
+    position: relative;
+    top: 80px;
+    right: 0;
+  }
+  
+  #content {
+    .button-container {
+      display: flex;
+      justify-content: center;
+      // margin-bottom: 20px;
+  
+      .button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        background-color: 31A463; /* Change to your desired color */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #31A463; /* Change to your desired hover color */
+        }
+      }
+    }
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    z-index: 0;
+  }
+  
+  .button-container button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0 10px;
+    position: relative; 
+    z-index: 0;
+  }
+  
+  .button-container button:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px; 
+    background: #31A463; 
+    position: absolute;
+    bottom: -5px; 
+    left: 0;
+    transition: width 0.3s ease; 
+    z-index: 0;
+  }
+  
+  .button-container button:hover:after,
+  .button-container button.active:after {
+    width: 100%; 
+    z-index: 0;
+  }
+
+  .chartsBx{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
+  }
+  .chart-canvas {
+    max-width: 100%; /* Ensure canvas fills its container */
+    height: 400px; /* Allow the canvas to adjust its height */
+  }
 
