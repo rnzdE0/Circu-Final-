@@ -14,7 +14,7 @@ export class UserTableComponent {
   openUser() {
     this.dialog.open(UserPopupComponent, {
       width: '55%',
-      height: '760px',
+      height: '520px',
     })
   };
 

@@ -4,6 +4,7 @@ import { UserTableComponent } from './components/user-table/user-table.component
 import { UserPopupComponent } from './components/user-popup/user-popup.component';
 import { UserRoutingModule } from './user-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -15,7 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
   imports: [
     CommonModule,
     UserRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginator
   ]
 })
 export class UserModule { }
