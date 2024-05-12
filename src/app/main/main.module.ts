@@ -20,7 +20,7 @@ import { MaterialModule } from "../modules/material/material.module";
     BorrowComponent,
     ReturnedComponent,
     ReportsComponent,
-    UserComponent
+    UserComponent,
   ],
   imports: [
     CommonModule,

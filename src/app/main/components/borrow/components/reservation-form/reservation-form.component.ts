@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './reservation-form.component.scss'
 })
 export class ReservationFormComponent {
-
+  
 }
