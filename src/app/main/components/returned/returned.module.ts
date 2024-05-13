@@ -6,6 +6,7 @@ import { ReturnedRoutingModule } from './returned-routing.module';
 import { EditComponent } from './components/edit/edit.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,8 @@ import { MatPaginator } from '@angular/material/paginator';
     CommonModule,
     ReturnedRoutingModule,
     MatDialogModule,
-    MatPaginator
+    MatPaginator,
+    FormsModule
   ]
 })
 export class ReturnedModule { }

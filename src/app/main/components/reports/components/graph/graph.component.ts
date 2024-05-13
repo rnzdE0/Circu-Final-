@@ -10,6 +10,8 @@ import Chart from 'chart.js/auto';
 export class GraphComponent implements OnInit {
   selectedDepartment: string = '';
   selectedSecondFilter: string = '';
+  startDate: string = '';
+  endDate: string = '';
   departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
   secondFilterOptions: { [key: string]: string[] } = {
     CBA: ['BSA', 'BSCA', 'BSBA-FM', 'BSBA-HRM', 'BSBA-MKT'],
@@ -35,6 +37,7 @@ export class GraphComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
     // Mock data for departments
     const departmentData = {
       CEAS: 20,
@@ -66,7 +69,10 @@ export class GraphComponent implements OnInit {
         plugins: {
           title: {
             display: true,
-            text: 'Book Borrowers by Department'
+            text: 'Book Borrowers by Department',
+            font: {
+              weight: 'bold' // Make the text bold
+            }
           }
         }
       }
@@ -88,11 +94,14 @@ export class GraphComponent implements OnInit {
         plugins: {
             legend: {
               display: false // Hide the legend
+            },
+            title: {
+            display: true,
+            text: 'Book Borrowers by gender',
+            font: {
+              weight: 'bold' // Make the text bold
             }
-          // title: {
-          //   display: true,
-          //   text: 'Book Borrowers by gender'
-          // }
+          }
         }
       }
     });

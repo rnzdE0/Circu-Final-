@@ -277,84 +277,22 @@ th {
 
 // Style for Print Button
 .parent-container {
-    position: relative; /* Maaaring kailanganin ito depende sa ibang styles ng mga elements */
-  }
-  .menu-container {
-    position: absolute;
-    bottom: -8px;
-    right: 46px;
-    display: flex;
-    align-items: center;
-    z-index: 1000; /* Siguruhing mataas ang z-index para hindi matakpan ng ibang elements */
-  }
-  .menu-button {
-    font-size: 10px;
-   }
-   .hamburger-menu-container {
-    position: relative;
-    top: 80px;
-    right: 0;
-  }
-  
-  #content {
-    .button-container {
-      display: flex;
-      justify-content: center;
-      // margin-bottom: 20px;
-  
-      .button {
-        margin: 0 10px;
-        padding: 10px 20px;
-        background-color: 31A463; /* Change to your desired color */
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-  
-        &:hover {
-          background-color: #31A463; /* Change to your desired hover color */
-        }
-      }
-    }
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-    z-index: 0;
-  }
-  
-  .button-container button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 18px;
-    margin: 0 10px;
-    position: relative; 
-    z-index: 0;
-  }
-  
-  .button-container button:after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px; 
-    background: #31A463; 
-    position: absolute;
-    bottom: -5px; 
-    left: 0;
-    transition: width 0.3s ease; 
-    z-index: 0;
-  }
-  
-  .button-container button:hover:after,
-  .button-container button.active:after {
-    width: 100%; 
-    z-index: 0;
-  }
+  position: relative; /* Maaaring kailanganin ito depende sa ibang styles ng mga elements */
+}
 
+.menu-container {
+  position: absolute;
+  bottom: -8px;
+  right: 46px;
+  display: flex;
+  align-items: center;
+  z-index: 1000; /* Siguruhing mataas ang z-index para hindi matakpan ng ibang elements */
+}
+
+.menu-button {
+ font-size: 10px;
+}
+  // ----------Charts---------
   .chartsBx{
     position: relative;
     width: 100%;
@@ -418,3 +356,39 @@ th {
     background-size: 20px;
     padding-right: 25px;
   }
+
+  // -------------------bar chart
+  .chartsBx {
+    position: relative;
+    width: auto;
+    padding: 20px;
+    display: flex;
+    grid-template-columns: 1fr; /* Adjusted grid layout */
+    justify-content: center; /* Horizontally center the charts */
+    align-items: center; /* Vertically center the charts */
+  }
+  
+  .chart {
+    position: relative;
+    background: #fff;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    border: .5px solid rgb(49, 164, 99);
+    padding: 24px;
+    display: flex;
+    justify-content: center; /* Horizontally center the charts */
+    align-items: center; /* Vertically center the charts */
+    overflow-x: auto;
+    border-left: 4px solid #31A463;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Set width to occupy full space in the grid */
+    height: 400px; /* Set a specific height for both charts */
+  }
+  
+  .chart-canvas {
+    /* Remove max-width to allow the canvas to expand */
+    max-width: 100%;
+    height: 100%; /* Allow the canvas to adjust its height */
+  }
+
+  

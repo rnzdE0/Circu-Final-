@@ -13,65 +13,36 @@
       </div>
 
     <!-- <p class="list">User List</p> -->
-
-      <!-- filter -->
-  
-      <div class="filters">
-  
-        <div class="table-filters">
-          <select class="filter "id="filter">
-              <option selected value="Department"> Department </option>
-              <option> CCS </option>
-              <option> CBA </option>
-              <option> CAHS </option>
-              <option> CEAS </option>
-              <option> CHTM </option>
+    <div class="filter-container">
+      <div class="filter-options">
+        <div class="filter-group">
+          <label for="department">Department:</label>
+          <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
+            <option value="">All Departments</option>
+            <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
           </select>
         </div>
-  
-        <div class="program">
-          <select class="filter" id="filter" onchange="filterCourses()">
-              <option selected value="Program"> Program </option>
-              <option> BSCS </option>
-              <option> BSIT </option>
-              <option> BSEMC </option>
-              <option> ACT </option>
-              <option> BSA </option>
-              <option> BSCA </option>
-              <option> BSBA-FM</option>
-              <option> BSBA-HRM </option>
-              <option> BSBA-MKT</option>
-              <option> BSN </option>
-              <option> GM </option>
-              <option> BSHM </option>
-              <option> BSTM </option>
-              <option> BEEd </option>
-              <option> BSEd-E </option>
-              <option> BSEd-FIL </option>
-              <option> BSEd-M </option>
-              <option> BSEd-SCI </option>
-              <option> BSEd-SOC </option>
-              <option> BPEd  </option>
-              <option> BCAEd </option>
-              <option> BACOM  </option>
-              <option> TCP  </option>
+        <div class="filter-group" *ngIf="selectedDepartment">
+          <label for="secondFilter">Program:</label>
+          <select id="secondFilter" [(ngModel)]="selectedProgram">
+            <option value="">All Options</option>
+            <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
           </select>
         </div>
-
-        <div class="patron">
-            <select class="filter" id="filter">
-                <option selected value="Patron Type"> Patron Type </option>
-                <option> Admin </option>
-                <option> Faculty </option>
-                <option> Student </option>
-                <option> Staff </option>
-                <option> Visitor </option>
-            </select>
-          </div>
-  
+        <div class="filter-group">
+          <label for="patronType">Patron Type:</label>
+          <select id="patronType" [(ngModel)]="selectedPatronType">
+            <option value="">All Patron Types</option>
+            <option value="Admin">Admin</option>
+            <option value="Faculty">Faculty</option>
+            <option value="Student">Student</option>
+            <option value="Staff">Staff</option>
+            <option value="Visitor">Visitor</option>
+          </select>
+        </div>
       </div>
-
-      <hr>
+    </div>
+      
 
       <!-- table -->
     <table class="content-table">
