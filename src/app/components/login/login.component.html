@@ -2,6 +2,7 @@
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/boxicons/2.0.7/css/boxicons.min.css">
 
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -30,10 +31,11 @@
         <p class="circu">Circulation</p>
       </section>
 
-      <section class="">
+      <form [formGroup]="loginForm" (ngSubmit)="login()" >
+
         <div class="form-user">
           <label for="user">
-            <input type="email" name="" id="" class="input" placeholder="Username">
+            <input type="user" name="user" id="user" class="input" placeholder="Username" formControlName="user">
             <div class="icon"> 
               <i class='bx bxs-user'></i> 
             </div>
@@ -42,20 +44,26 @@
 
         <div class="form-pass">
           <label for="pass">
-            <input type="password" name="" id="" class="input" placeholder="Password">
+            <input type="pass" name="pass" id="pass" class="input" placeholder="Password" formControlName="pass">
             <div class="icon2"> 
               <i class='bx bxs-lock-alt'></i> 
             </div>
+            <!-- <i (click)="toggleShow()" class="fa-solid fa-eye" *ngIf="!showpassword"></i> -->
+            <!-- <i (click)="toggleShow()" class="fa-solid fa-eye-slash" *ngIf="showpassword"></i> -->
           </label>
         </div>
 
         <div class="loginbtn">
           <!-- <a class="loginbtn" type="submit">Login</a> -->
           <a class="login-btn" routerLink="/main">LOGIN</a>
+
+          <!-- <a class="login-btn" type="submit" onclick="login()" >LOGIN</a> -->
+          <!-- <a type="submit" class="login-btn" (click)="login()">LOGIN</a> -->
+          
           <p class="version">GCLMS v0.1</p>
         </div>
     
-      </section>
+      </form>
     </form>
 
   </div>
