@@ -5,6 +5,7 @@ import { UserPopupComponent } from './components/user-popup/user-popup.component
 import { UserRoutingModule } from './user-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { MatPaginator } from '@angular/material/paginator';
     CommonModule,
     UserRoutingModule,
     MatDialogModule,
-    MatPaginator
+    MatPaginator,
+    FormsModule 
   ]
 })
 export class UserModule { }

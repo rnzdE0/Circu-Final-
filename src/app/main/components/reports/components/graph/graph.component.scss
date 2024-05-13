@@ -366,82 +366,46 @@ th {
   .menu-button {
     font-size: 10px;
    }
+   
    .hamburger-menu-container {
     position: relative;
     top: 80px;
     right: 0;
   }
-  
-  #content {
-    .button-container {
-      display: flex;
-      justify-content: center;
-      // margin-bottom: 20px;
-  
-      .button {
-        margin: 0 10px;
-        padding: 10px 20px;
-        background-color: #31A463; /* Change to your desired color */
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-  
-        &:hover {
-          background-color: #31A463; /* Change to your desired hover color */
-        }
-      }
-    }
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-    z-index: 0;
-  }
-  
-  .button-container button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 18px;
-    margin: 0 10px;
-    position: relative; 
-    z-index: 0;
-  }
-  
-  .button-container button:after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px; 
-    background: #31A463; 
-    position: absolute;
-    bottom: -5px; 
-    left: 0;
-    transition: width 0.3s ease; 
-    z-index: 0;
-  }
-  
-  .button-container button:hover:after,
-  .button-container button.active:after {
-    width: 100%; 
-    z-index: 0;
-  }
 
-  .chartsBx{
+
+
+  // -------------------Charts----------------------
+
+  .chartsBx {
     position: relative;
     width: 100%;
-    padding: 20px;
+    padding: 15px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-gap: 30px;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Adjusted grid layout */
+    grid-gap: 20px;
+    justify-content: center; /* Horizontally center the charts */
+    align-items: center; /* Vertically center the charts */
   }
+  
+  .chart {
+    position: relative;
+    background: #fff;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    border: .5px solid rgb(49, 164, 99);
+    padding: 24px;
+    overflow-x: auto;
+    border-left: 4px solid #31A463;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Set width to occupy full space in the grid */
+    height: 500px; /* Set a specific height for both charts */
+  }
+  
   .chart-canvas {
-    max-width: 100%; /* Ensure canvas fills its container */
-    height: 400px; /* Allow the canvas to adjust its height */
+    /* Remove max-width to allow the canvas to expand */
+    max-width: 100%;
+    height: 100%; /* Allow the canvas to adjust its height */
   }
 
   .filter-container {
@@ -452,14 +416,7 @@ th {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: inline-block;
   }
-  
-//   .filter-header {
-//     font-size: 18px;
-//     font-weight: bold;
-//     color: #444444;
-//     margin-bottom: 10px;
-//   }
-  
+
   .filter-options {
     display: inline-block;
   }

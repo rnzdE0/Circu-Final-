@@ -5,44 +5,42 @@
   <p class="title">Returned</p>
 
   <!-- filter -->
-
-  <div class="filter">
-
-    <div class="table-filters">
-      <select id="filter">
-          <option selected value="All Departments"> All Departments </option>
-          <option> CCS </option>
-          <option> CBA </option>
-          <option> CAHS </option>
-          <option> CEAS </option>
-          <option> CHTM </option>
-      </select>
+  <div class="filter-container">
+    <div class="filter-options">
+      <div class="filter-group">
+        <label for="department">Department:</label>
+        <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
+          <option value="">All Departments</option>
+          <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+        </select>
+      </div>
+      <div class="filter-group" *ngIf="selectedDepartment">
+        <label for="secondFilter">Program:</label>
+        <select id="secondFilter" [(ngModel)]="selectedProgram">
+          <option value="">All Options</option>
+          <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="patronType">Patron Type:</label>
+        <select id="patronType" [(ngModel)]="selectedPatronType">
+          <option value="">All Patron Types</option>
+          <option value="Admin">Admin</option>
+          <option value="Faculty">Faculty</option>
+          <option value="Student">Student</option>
+          <option value="Staff">Staff</option>
+          <option value="Visitor">Visitor</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="startDate">From:</label>
+        <input type="date" id="startDate">
+      </div>
+      <div class="filter-group">
+        <label for="endDate">To:</label>
+        <input type="date" id="endDate">
+      </div>
     </div>
-
-    <div class="table-filters2">
-      <select id="filter">
-          <option selected value="Patron"> All Patron </option>
-          <option> Admin </option>
-          <option> Faculty </option>
-          <option> Student </option>
-          <option> Staff </option>
-          <option> Visitor </option>
-      </select>
-    </div>
-
-    <div class="table-filters3">
-      <p>From:  <input type="date" ></p>
-    </div>
-
-    <div class="table-filters4">
-      <p>To:  <input type="date" ></p>
-    </div>
-
-  <div class="search">
-      <input placeholder="Search..." type="text">
-      <button type="submit"><i class="bx bx-search" ></i></button>
-  </div>
-
   </div>
 
   <!-- <p class="title">Returned</p> -->
