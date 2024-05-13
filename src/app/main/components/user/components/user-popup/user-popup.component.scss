@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
-.table1, .table2, .table3{
+body{
+    max-height: 300px;
+}
+.table1, .table2{
     display: flex;
     flex-direction: row;
 }
-
+.table3{
+    padding-bottom: 23px;
+    display: inline-block;
+}
 .table1 p {
     margin-right: 179px; /* Adjust the margin as needed for spacing between elements */
     margin-left: 50px;
@@ -22,6 +27,7 @@
 }
 
 .table3 p {
+    display: inline-block;
     margin-top: 30px;
     margin-right: 250px; /* Adjust the margin as needed for spacing between elements */
     margin-left: 50px;
@@ -48,10 +54,8 @@
 // }
 
 .buttons {
-    position: relative;
-    margin-left: 920px;
-    margin-top:-30px;
-
+    display: inline-block;
+    padding-bottom: 23px;
 }
 
 .close {
@@ -93,32 +97,51 @@
     color: black;
 }
 
-.content-table {
-    margin-top: 30px;
-    text-align: center;
-    width: 92%;
-    font-size: 14px;  
-    background-color: #E1E1E1;
-    font-family: 'poppins', sans-serif;
-    table-layout: fixed ;
-    color: black;
-    outline: 2px solid black;
-    margin-left: 50px;
-    border-radius: 5px;
-}
+// .content-table {
+//     margin-top: 30px;
+//     text-align: center;
+//     width: 92%;
+//     font-size: 14px;  
+//     background-color: #E1E1E1;
+//     font-family: 'poppins', sans-serif;
+//     table-layout: fixed ;
+//     color: black;
+//     outline: 2px solid black;
+//     margin-left: 50px;
+//     border-radius: 5px;
+    
+// }
 
 .table-head {
     background-color: #31A463;
     font-size: 20px;
     border: 0;
     color: white;
-    border-bottom: 2px solid #000000 
+    border-bottom: 2px solid #000000;
+    position: sticky;
+    top: 0;
+   
+    
 }
-
+tbody{
+    background-color: #E1E1E1;
+}
 .content-table th,
 .content-table td {
     padding: 4px 20px;
     font-size: 20px;
 }
-
-
+td {
+    text-align: center; /* Center the content within td elements */
+}
+.scrollable-table-container {
+    max-height: 300px; /* Adjust the maximum height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  .content-table {
+    margin: 0 auto; /* Center the table horizontally */
+    width: 90%;
+    border: 2px solid black; /* Set a fixed-size border */
+    border-radius: 5px; /* Add border radius for aesthetics */
+  }

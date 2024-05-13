@@ -212,7 +212,7 @@ i{
   
 
 .content-table {
-    margin-top: 50px;
+    margin-top: 30px;
     text-align: center;
     width: 100%;
     font-size: 14px;  
@@ -316,18 +316,25 @@ th {
     color: #31A463  ;
 }
 
-// style for filter
+// Filter style
 .filter-container {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
+    margin-top: 35px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: inline-block;
-    margin-top: 20px;
   }
   
-.filter-options {
+//   .filter-header {
+//     font-size: 18px;
+//     font-weight: bold;
+//     color: #444444;
+//     margin-bottom: 10px;
+//   }
+  
+  .filter-options {
     display: inline-block;
   }
   

@@ -390,14 +390,14 @@ th {
   
   .chart {
     position: relative;
-    background: #fff;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-    border-radius: 20px;
-    border: .5px solid rgb(49, 164, 99);
+    // background: #fff;
+    // box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    // border-radius: 20px;
+    // border: .5px solid rgb(49, 164, 99);
     padding: 24px;
     overflow-x: auto;
-    border-left: 4px solid #31A463;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    // border-left: 4px solid #31A463;
+    // box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     width: 80%; /* Set width to occupy full space in the grid */
     height: 500px; /* Set a specific height for both charts */
   }

@@ -26,11 +26,11 @@
         </div>
         <div class="filter-group">
           <label for="startDate">From:</label>
-          <input type="date" id="startDate">
+          <input type="date" id="startDate" min="2024-01-01">
         </div>
         <div class="filter-group">
           <label for="endDate">To:</label>
-          <input type="date" id="endDate">
+          <input type="date" id="endDate" min="2024-01-01">
         </div>
       </div>
     </div>
@@ -60,11 +60,12 @@
   <!-- chart for most borrowed books -->
 
   
-<div class="chartsBx">
-  <div class="chart">
-    <canvas #chart2 class="chart-canvas" id="mostChart"></canvas>
+  <div style="display: flex; justify-content: space-around;">
+    <div style="width: 60%;">
+      <canvas id="mostChart" ></canvas>
+    </div>
   </div>
-</div>
+ 
 
  
   <table class="content-table">

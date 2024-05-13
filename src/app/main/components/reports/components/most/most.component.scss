@@ -277,21 +277,45 @@ th {
 
 // Style for Print Button
 .parent-container {
-  position: relative; /* Maaaring kailanganin ito depende sa ibang styles ng mga elements */
-}
+    position: relative; /* Maaaring kailanganin ito depende sa ibang styles ng mga elements */
+  }
+  .menu-container {
+    position: absolute;
+    bottom: -8px;
+    right: 46px;
+    display: flex;
+    align-items: center;
+    z-index: 1000; /* Siguruhing mataas ang z-index para hindi matakpan ng ibang elements */
+  }
+  .menu-button {
+    font-size: 10px;
+   }
+  
+  
+  #content {
+    .button-container {
+      display: flex;
+      justify-content: center;
+      // margin-bottom: 20px;
+  
+      .button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        background-color: 31A463; /* Change to your desired color */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #31A463; /* Change to your desired hover color */
+        }
+      }
+    }
+  }
+  
 
-.menu-container {
-  position: absolute;
-  bottom: -8px;
-  right: 46px;
-  display: flex;
-  align-items: center;
-  z-index: 1000; /* Siguruhing mataas ang z-index para hindi matakpan ng ibang elements */
-}
-
-.menu-button {
- font-size: 10px;
-}
   // ----------Charts---------
   .chartsBx{
     position: relative;
@@ -305,7 +329,8 @@ th {
     max-width: 100%; /* Ensure canvas fills its container */
     height: 400px; /* Allow the canvas to adjust its height */
   }
-
+  
+//   filter style
   .filter-container {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -315,15 +340,7 @@ th {
     display: inline-block;
   }
   
-//   .filter-header {
-//     font-size: 18px;
-//     font-weight: bold;
-//     color: #444444;
-//     margin-bottom: 10px;
-//   }
 
-
-//   filter for department
   .filter-options {
     display: inline-block;
   }
@@ -358,37 +375,16 @@ th {
   }
 
   // -------------------bar chart
-  .chartsBx {
+  
+  .chartsBx{
     position: relative;
-    width: auto;
+    width: 100%;
     padding: 20px;
-    display: flex;
-    grid-template-columns: 1fr; /* Adjusted grid layout */
-    justify-content: center; /* Horizontally center the charts */
-    align-items: center; /* Vertically center the charts */
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
   }
-  
-  .chart {
-    position: relative;
-    background: #fff;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-    border-radius: 20px;
-    border: .5px solid rgb(49, 164, 99);
-    padding: 24px;
-    display: flex;
-    justify-content: center; /* Horizontally center the charts */
-    align-items: center; /* Vertically center the charts */
-    overflow-x: auto;
-    border-left: 4px solid #31A463;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    width: 80%; /* Set width to occupy full space in the grid */
-    height: 400px; /* Set a specific height for both charts */
-  }
-  
   .chart-canvas {
-    /* Remove max-width to allow the canvas to expand */
-    max-width: 100%;
-    height: 100%; /* Allow the canvas to adjust its height */
-  }
-
-  
+    max-width: 100%; /* Ensure canvas fills its container */
+    height: 400px; /* Allow the canvas to adjust its height */
+  } 

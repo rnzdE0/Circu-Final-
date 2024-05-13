@@ -30,7 +30,7 @@ export class UserTableComponent implements OnInit{
   openUser() {
     this.dialog.open(UserPopupComponent, {
       width: '55%',
-      height: '520px',
+      height: '565px',
     })
   };
 

@@ -4,8 +4,7 @@ import { DeletePopupComponent } from './components/delete-popup/delete-popup.com
 import { EditPopupComponent } from './components/edit-popup/edit-popup.component';
 import { TableComponent } from './components/table/table.component';
 import { ListRoutingModule } from './list-routing.module';
-
-
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from '@angular/material/dialog';
 import { PushPopupComponent } from './components/push-popup/push-popup.component';
 import { MatPaginator } from '@angular/material/paginator';
@@ -18,13 +17,14 @@ import { MatPaginator } from '@angular/material/paginator';
     DeletePopupComponent,
     EditPopupComponent,
     TableComponent,
-    PushPopupComponent
+    PushPopupComponent,
   ],
   imports: [
     CommonModule,
     ListRoutingModule,
     MatDialogModule,
-    MatPaginator
+    MatPaginator,
+    FormsModule,
   ]
 })
 export class ListModule { }
