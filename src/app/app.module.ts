@@ -13,23 +13,31 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MaterialModule } from './modules/material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     LoginComponent,
-    LogoutPopComponent
+    LogoutPopComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule, 
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent]
 })

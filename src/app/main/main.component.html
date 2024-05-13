@@ -11,8 +11,8 @@
 <div class="content">
     <!-- HEADER -->
     <div class="header">
-        <strong> <h1 class="circulation">GCLMS - Circulation System</h1> </strong>
-        <!-- <strong> <h1 class="circulation">Circulation</h1> </strong> -->
+        <!-- <strong> <h1 class="circulation">GCLMS - Circulation System</h1> </strong> -->
+        <strong> <h1 class="circulation">CIRCULATION</h1> </strong>
     </div> 
 
     <!-- BODY CONTENT -->
@@ -117,11 +117,18 @@
             
             <!-- LOGOUT BUTTON -->
             <div class="logoutbtn">
-                <div class="logout" (click)="togglePopup()" >
+                <!-- <div class="logout" (click)="togglePopup()" >
                     <span> <i class='bx bx-log-out bx-rotate-180' ></i> 
                         <app-logout-pop *ngIf="showPopup" (closedPopup)="closePopup()" (leaveClicked)="redirectToLoginPage()"></app-logout-pop>
                     </span>
+                </div> -->
+
+                <div class="logoutbtn">
+                    <div class="logout" (click)="logoutAlert()">
+                        <span> <i class='bx bx-log-out bx-rotate-180' ></i> </span>
+                    </div>
                 </div>
+
             </div>
 
                 <!-- <div class="logoutbtn">

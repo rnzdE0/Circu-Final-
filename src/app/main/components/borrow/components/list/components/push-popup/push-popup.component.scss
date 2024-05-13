@@ -7,8 +7,8 @@
 }
 
 hr {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .content p {
@@ -25,7 +25,7 @@ hr {
 
 .yes {
     background-color: #31A463;
-    margin-right: 10px;
+    // margin-right: 10px;
     justify-content: center;
     position: relative;
     padding: .1rem;
@@ -40,7 +40,8 @@ hr {
     top: -20px;
     text-decoration: none;
     border-radius: 5px;
-    margin-left: 10px;
+    margin-left: 15px;
+
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 10px;
@@ -72,5 +73,5 @@ hr {
     padding-bottom: 10px;
     padding-top: 10px;
     cursor: pointer;
-    margin-right: 30px;
+    margin-right: 25px;
 }

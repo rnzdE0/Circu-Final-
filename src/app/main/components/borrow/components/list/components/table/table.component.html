@@ -50,10 +50,12 @@
       <tr>
         <th>Patron Type</th>
         <th>Id Number</th>
+        <th>Name</th>
         <th>Department</th>
         <th>Program</th>
         <th>Accession Number</th>
         <th>Status</th>
+        <th>Fine</th>
         <th>Action</th>
       
       </tr>
@@ -64,26 +66,60 @@
         <td>Student</td>
         <!-- student ID -->
         <td>202110876</td>
+        <!-- user name -->
+        <td>John Laurenze G Leguidleguid</td>
         <!-- department id -->
         <td>CCS</td>
         <!-- accession id -->
-        <td>4001</td>
+        <td>BSIT</td>
         <!-- book location -->
-        <td>LOC</td>
+        <td>4001</td>
         <!-- status -->
         <td>Pending</td>
+        <td>--</td>
         <td>
-          <button class="edit" (click)="openDialog()">
-            <i class="bx bxs-edit" ></i>
+          <button class="returned" (click)="pushDialog()">
+            <i class="bx bx-check" ></i>
           </button>
           <button class="delete" (click)="deleteDialog()">
             <i class="bx bx-archive" ></i>
           </button>
-          <button class="returned" (click)="pushDialog()">
-            <i class="bx bx-check" ></i>
+          
+          <button class="edit" (click)="openDialog()">
+            <i class="bx bxs-edit" ></i>
           </button>
           </td>
         </tr>
+
+        <!-- for sample -->
+        <tr>
+          <!-- studentname -->
+          <td>Janitor</td>
+          <!-- student ID -->
+          <td>202111102</td>
+          <!-- user name -->
+          <td>Don Ace Ranada</td>
+          <!-- department id -->
+          <td>CCS</td>
+          <!-- accession id -->
+          <td>BSIT</td>
+          <!-- book location -->
+          <td>4002</td>
+          <!-- status -->
+          <td class="red">Overdue</td>
+          <td class="red">100.00</td>
+          <td>
+            <button class="returned" (click)="pushDialog()">
+              <i class="bx bx-check" ></i>
+            </button>
+            <button class="delete" (click)="deleteDialog()">
+              <i class="bx bx-archive" ></i>
+            </button>
+            <button class="edit" (click)="openDialog()">
+              <i class="bx bxs-edit" ></i>
+            </button>
+            </td>
+          </tr>
     </tbody>
   </table>
   <div class="page">
