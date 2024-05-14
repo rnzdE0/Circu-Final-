@@ -181,9 +181,10 @@ i{
     // display: inline-block;
     position: relative;
     float: right;
-    margin-right: 5%;
+    margin-right: 10%;
     margin-bottom: -20px;
-    margin-top: -3px;
+    margin-top: 50px;
+    width: 200px;
   }
 
 .search input[type="text"] {
@@ -205,17 +206,19 @@ i{
     padding: 10px 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: relative;
+    top: -41px;
+    right: -225px;
     transition: .9s ease;
 }
+
 
 .search button[type="submit"]:hover {
     transform: scale(1.1);
     color: rgb(255, 255, 255);
     background-color: #31A463;
 }
+  
   
 
 .content-table {
@@ -232,7 +235,6 @@ i{
 .table-head {
     background-color: #31A463;
     font-size: 15px;
-    border: 0;
 }
 
 .content-table th,

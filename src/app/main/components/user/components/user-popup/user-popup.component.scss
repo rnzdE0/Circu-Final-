@@ -130,6 +130,7 @@ tbody{
 .content-table td {
     padding: 4px 20px;
     font-size: 20px;
+    border-bottom: none;
 }
 td {
     text-align: center; /* Center the content within td elements */
@@ -144,4 +145,15 @@ td {
     width: 90%;
     border: 2px solid black; /* Set a fixed-size border */
     border-radius: 5px; /* Add border radius for aesthetics */
+    border-collapse: collapse; /* Collapse borders */
+    // width: 100%; /* Full width */
+  }
+  .content-table tr {
+    border-bottom: none; /* Hide bottom border */
+  }
+
+  /* Style to hide borders for table columns */
+  .content-table th{
+    border-right: none; /* Hide right border */
+    border-bottom: none;
   }
