@@ -1,29 +1,25 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  public loginForm!: FormGroup
-  session: any
-  result: any
-  authService: any;
-  router: any;
-
-  constructor(private builder: FormBuilder,) {}
+  loginForm: any;
+  builder: any;
 
   ngOnInit(): void {
-    this.loginForm = this.builder.group({
-      user: ['', Validators.required],
-      pass: ['', Validators.required]
+    this.loginForm = new FormGroup({
+      user: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     });
+    // console.log('loginForm initialized:', this.loginForm);   
+    console.log('bobo ka renze'); 
   }
 
-  
-  login(){
-    console.log('Submit button clicked');
+  login() {
+    console.log('bobo ka renze');
   }
 }
