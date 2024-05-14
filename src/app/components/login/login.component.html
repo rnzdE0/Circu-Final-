@@ -1,15 +1,8 @@
 <!-- hi renze!! -->
+<main>
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/boxicons/2.0.7/css/boxicons.min.css">
 
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Circulation</title>
-</head>
-<body>
 
   <img class="background" src="assets/img/building.png" alt="background">
 
@@ -24,19 +17,21 @@
   </div>
 
   <div class="right">
-    <form action="">
+    
+    <div >
       <section class="appname">
         <img class="right-logo" src="assets/img/logo.png" alt="">
         <h1>Gordon College <br> Library Management System</h1>
         <p class="circu">Circulation</p>
       </section>
 
-      <form [formGroup]="loginForm" (ngSubmit)="login()" >
+      <!-- <form [formGroup]="loginForm" (ngSubmit)="login()" > -->
+        <form id="login-form">
 
         <div class="form-user">
           <label for="user">
             <!-- <input type="user" name="user" id="user" class="input" placeholder="Domain Email" formControlName="user"> -->
-            <input class="input" id="username" name="username" type="username" placeholder="Username">
+            <input class="input" id="username" name="username" type="username" placeholder="Domain Email" autocomplete="off">
             <div class="icon"> 
               <i class='bx bxs-user'></i> 
             </div>
@@ -50,8 +45,6 @@
             <div class="icon2"> 
               <i class='bx bxs-lock-alt'></i> 
             </div>
-            <!-- <i (click)="toggleShow()" class="fa-solid fa-eye" *ngIf="!showpassword"></i> -->
-            <!-- <i (click)="toggleShow()" class="fa-solid fa-eye-slash" *ngIf="showpassword"></i> -->
           </label>
         </div>
 
@@ -59,19 +52,22 @@
           <!-- <a class="loginbtn" type="submit">Login</a> -->
           <!-- <a class="login-btn" routerLink="/main">LOGIN</a> -->
 
-          <a class="login-btn" type="submit" (click)="login()" routerLink="/main">LOGIN</a>
-          <!-- <input id="login-button" type="submit" class="login-btn" value="LogIn"> -->
 
+          <!-- <input id="login-button" type="submit" class="login-btn" value="LOGIN"> -->
+
+
+          <button id="login-button" class="login-btn" type="submit" value="LOGIN">LOGIN</button>
+          <!-- <input id="login-button" type="submit" class="login-btn" value="LogIn"> -->
           <!-- <button type="submit">login</button> -->
           
           <p class="version">GCLMS v0.1</p>
         </div>
     
       </form>
-    </form>
+  </div>
 
   </div>
 </div>
-</body>
-</html>
+</main>
+
 
