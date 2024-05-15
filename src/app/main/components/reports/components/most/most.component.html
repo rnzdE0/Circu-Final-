@@ -36,6 +36,7 @@
     </div>
 
 
+    <!-- Print button -->
     <div class="parent-container">
       <div class="menu-container">
         <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
@@ -44,7 +45,7 @@
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="downloadFile('png')">
-            <mat-icon>image</mat-icon> Download PNG
+            <mat-icon>image/</mat-icon> Download PNG
           </button>
           <button mat-menu-item (click)="downloadFile('svg')">
             <mat-icon>image</mat-icon> Download SVG
