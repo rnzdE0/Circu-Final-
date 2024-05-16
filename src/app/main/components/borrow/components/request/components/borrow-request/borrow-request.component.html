@@ -8,15 +8,16 @@
 
           <p class="book">Book</p>
 
-          <form id="request-form">
+          <form [formGroup]="borrowForm" id="request-form" (ngSubmit)="bookSubmit()">
           <!-- books -->
           
           <div class="books">
+            
               <div class="group1">
-                <form [formGroup]="borrowForm" id="request-form" (ngSubmit)="bookSubmit()"></form>
+                
                 <!-- for Accession Number -->
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input" required name="book_id" (change)="getBook($event)"> 
+                    <input required="" type="text" name="text" autocomplete="off" class="input" required name="book_id" (change)="getBook($event)" formControlName="book_id"> 
                     <label class="book-label">Accession</label>
                   </div>
 
@@ -139,11 +140,11 @@
               </div>
           </div>
         </div>
-      </form>
 
         <div class="buttons">
-            <a class="add" type="submit" (click)="bookSubmit()">Add</a>
-          </div>
+         <button class="add" type="submit">Add</button>
+        </div>
+        </form>
 
  </div>
 </div>

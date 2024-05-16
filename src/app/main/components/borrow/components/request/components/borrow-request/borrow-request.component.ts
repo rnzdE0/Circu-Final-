@@ -28,22 +28,22 @@ export class BorrowRequestComponent implements OnInit {
   constructor(
     private dialog : MatDialog,
     private ds: MainService,
-    private fb:FormBuilder, 
+    private fb: FormBuilder, 
     private mainService: MainService 
   
   ) {
     this.borrowForm = this.fb.group({
       book_id: ['', Validators.required],
-      // Other form controls go here, with their corresponding validators
       user_id: ['', Validators.required],
       borrow_date: ['', Validators.required],
       borrow_expiration: ['', Validators.required],
       fine: ['', Validators.required]
+      
     });
   }
  
   ngOnInit(): void {
-    this.bookSubmit();
+   this.bookSubmit();
   }
 
 
@@ -140,18 +140,31 @@ export class BorrowRequestComponent implements OnInit {
     if (this.borrowForm.valid) {
       this.mainService.submitBorrowForm(this.borrowForm.value).subscribe(
         response => {
-          console.log('Form submission successful', response);
-          // Handle successful response
+          Swal.fire({
+            title: 'Success',
+            text: 'The borrow request has been submitted successfully.',
+            icon: 'success',
+            confirmButtonColor: '#31A463'
+          });
         },
         error => {
           console.error('Form submission error', error);
-          // Handle error response
+          Swal.fire({
+            title: 'Error',
+            text: 'There was an error submitting the form. Please try again.',
+            icon: 'error',
+            confirmButtonColor: '#31A463'
+          });
         }
       );
     } else {
-      console.error('Form is invalid');
+      Swal.fire({
+        title: 'Invalid Form',
+        text: 'Please fill out all required fields correctly.',
+        icon: 'error',
+        confirmButtonColor: '#31A463'
+      });
     }
-  }
   }
   //   var form = document.getElementById('request-form') as HTMLFormElement;
 
@@ -229,4 +242,4 @@ export class BorrowRequestComponent implements OnInit {
   //   });
   // }
 
-
+}
