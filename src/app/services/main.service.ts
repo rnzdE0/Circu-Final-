@@ -23,8 +23,8 @@ export class MainService {
     return this.http.get(this.baseUrl+url, { headers: this.headers.get() });
   }
 
-  public post(url: string, formData: FormData) {
-    return this.http.post(this.baseUrl+url, formData, { headers: this.headers.get() });
+  public post(url: string, payload: any) {
+    return this.http.post(this.baseUrl+url, {payload:JSON.stringify(payload)}, { headers: this.headers.get() });
   }
 
   public delete(url: string) {

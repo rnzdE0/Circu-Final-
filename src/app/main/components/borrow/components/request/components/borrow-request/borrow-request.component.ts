@@ -21,8 +21,18 @@ export class BorrowRequestComponent implements OnInit {
   //   this.router.navigate(BorrowReserveComponent);
   // }
 
-  user: any;
-  book: any;
+  user = {
+    id: '',
+    name: '',
+    gender: '',
+    department: ''
+  }
+  book = {
+    accession: '',
+    title: '',
+    author: '',
+    location: ''
+  }
   admin: any;
 
   constructor(
@@ -43,7 +53,7 @@ export class BorrowRequestComponent implements OnInit {
   }
  
   ngOnInit(): void {
-   this.bookSubmit();
+  //  this.bookSubmit();
   }
 
 
@@ -110,19 +120,32 @@ export class BorrowRequestComponent implements OnInit {
     let target = event.target as HTMLInputElement;
     this.ds.get('circulation/get-user/' + target.value).subscribe({
       next: (res: any) => {
-        this.user = res;
-        console.log(this.user)
+        this.user.id=res.id;
+        this.user.name=res.first_name+' '+res.last_name;
+        this.user.department=res.program.department;
+        this.user.gender=res.gender;
+        console.log(res)
       }
     })
   }
 
   getBook(event: Event) {
     let target = event.target as HTMLInputElement;
-    this.ds.get('circulation/get-book/' + target.value).subscribe({
+    this.ds.get('circulation/get-book/' + 2).subscribe({
       next: (res: any) => {
-        this.book = res;
-        console.log(this.book)
-      }
+        console.log(res)
+        let authors = JSON.parse(res.authors);
+        authors.forEach(((x:any,index:any) => {
+
+          this.book.author=this.book.author+x;
+          if(index != authors.length - 1)
+            this.book.author = this.book.author+', ';
+        }));
+        this.book.title=res.title;
+        this.book.location=res.location.location;
+        
+      },
+      error:(err:any)=>console.log(err)
     })
   }
 
@@ -138,8 +161,10 @@ export class BorrowRequestComponent implements OnInit {
 
   bookSubmit() {
     if (this.borrowForm.valid) {
-      this.mainService.submitBorrowForm(this.borrowForm.value).subscribe(
+      console.log(this.borrowForm.value)
+      this.mainService.post('borrow/book',this.borrowForm.value).subscribe(
         response => {
+          console.log(response)
           Swal.fire({
             title: 'Success',
             text: 'The borrow request has been submitted successfully.',
@@ -158,6 +183,7 @@ export class BorrowRequestComponent implements OnInit {
         }
       );
     } else {
+      console.log(this.borrowForm.value)
       Swal.fire({
         title: 'Invalid Form',
         text: 'Please fill out all required fields correctly.',
