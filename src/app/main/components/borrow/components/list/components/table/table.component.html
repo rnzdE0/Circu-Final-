@@ -66,22 +66,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <!-- studentname -->
-        <td>Student</td>
+      <tr *ngFor="let element of elements">
+        <!-- patrontype -->
+        <td>{{element.patron}}</td>
         <!-- student ID -->
-        <td>202110876</td>
+        <td>{{element.student_id}}</td>
         <!-- user name -->
-        <td>John Laurenze G Leguidleguid</td>
+        <td>{{element.username}}</td>
         <!-- department id -->
-        <td>CCS</td>
+        <td>{{element.department}}</td>
         <!-- accession id -->
-        <td>BSIT</td>
+        <td>{{element.call_number}}</td>
         <!-- book location -->
-        <td>4001</td>
+        <td>{{element.location_id}}</td>
         <!-- status -->
-        <td>Pending</td>
-        <td>--</td>
+        <td>{{element.status}}</td>
+        <td>{{element.fine}}</td>
         <td>
           <button class="returned" (click)="pushDialog()">
             <i class="bx bx-check" ></i>

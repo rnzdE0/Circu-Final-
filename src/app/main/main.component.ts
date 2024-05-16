@@ -21,6 +21,10 @@ export class MainComponent {
   //   this.showPopup = this.showPopup;
   // }
 
+  timer: any;
+  name = sessionStorage.getItem('name');
+  role = sessionStorage.getItem('role');
+
   constructor(private router: Router) { }
 
   // redirectToLoginPage() {

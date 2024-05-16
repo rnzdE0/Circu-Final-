@@ -335,12 +335,14 @@ body {
 //     font-size: 10px;
 // }
 
-.input:focus, input:valid, .input2:focus, .input2:valid{
+.input:focus, input:valid, .input2:focus, .input2:valid
+, .input3:focus, .input3:valid{
     outline: none;
     border-bottom: 2px solid #31A463;
 }
 
-.input:focus ~ label, input:valid ~ label, .input2:focus ~ label, .input2:valid ~ label{
+.input:focus ~ label, input:valid ~ label, .input2:focus ~ label, .input2:valid ~ label
+, .input3:focus ~ label, .input3:valid ~ label{
     // transform: translateY(-50%) scale(0.8);
     // background-color: white;
     // border: solid 1.5px #31A463;

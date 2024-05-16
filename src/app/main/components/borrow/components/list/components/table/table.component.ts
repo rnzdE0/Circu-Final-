@@ -11,6 +11,9 @@ import { PushPopupComponent } from '../push-popup/push-popup.component';
   styleUrl: './table.component.scss'
 })
 export class TableComponent {
+onDepartmentChange() {
+throw new Error('Method not implemented.');
+}
   selectedDepartment: string = '';
   selectedProgram: string = '';
   selectedPatronType: string = '';
@@ -23,11 +26,10 @@ export class TableComponent {
     CHTM: ['BSHM', 'BSTM'],
     CAHS: ['BSN', 'BSM', 'GM']
   };
-  onDepartmentChange(): void {
-    this.selectedProgram = '';
-  }
+elements: any;
+   
 
-  constructor(private dialog : MatDialog) {}
+  constructor(private dialog: MatDialog) {}
 
   openDialog() {
     this.dialog.open(EditPopupComponent, {

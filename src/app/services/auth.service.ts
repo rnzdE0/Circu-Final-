@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HeaderService } from './header.service';
 import { HttpClient } from '@angular/common/http';
 import { response } from 'express';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,7 @@ export class AuthService {
       })
     );
   }
+
 
   public user() {
     return this.http.get(this.url + 'user', { headers: this.headers.get() });
