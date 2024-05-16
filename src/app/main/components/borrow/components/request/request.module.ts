@@ -6,6 +6,7 @@ import { RequestRoutingModule } from './request-routing.module';
 import { ListModule } from '../list/list.module';
 import { TableComponent } from '../list/components/table/table.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { MatDialogModule } from '@angular/material/dialog';
   imports: [
     CommonModule,
     RequestRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ]
 })
 export class RequestModule { }
