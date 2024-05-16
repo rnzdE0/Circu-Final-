@@ -14,7 +14,7 @@
 
             <!-- for Accession Number -->
               <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input" > 
+                <input required="" type="text" name="text" autocomplete="off" class="input" required name="book_id" (change)="getBook($event)" > 
                 <label class="book-label">Accession Number</label>
               </div>
 
@@ -22,13 +22,13 @@
 
             <!-- Title -->
               <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input" disabled >
+                <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.title || ''" disabled>
                 <label class="book-label">Title</label>
               </div>
             
             <!-- Number of materials -->
               <div class="input-group">
-                <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" disabled>
+                <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" [value]="book.available || ''"   disabled>
                 <label class="booklabel" for="NumOfMat">Number of Materials</label>
                 <label for="NumOfMat" class="max">/3</label>
               </div>
@@ -38,13 +38,13 @@
 
             <!-- Location (fil or foreign) -->
               <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input2" disabled >
+                <input required="" type="text" name="text" autocomplete="off" class="input2" [value]="book.location_id || ''"   disabled >
                 <label class="book-label">Location</label>
               </div>
 
             <!-- Author of the book -->
               <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input4" disabled>
+                <input required="" type="text" name="text" autocomplete="off" class="input4" [value]="book.author || ''"   disabled>
                 <label class="book-label">Author</label>
               </div>
           </div>
@@ -56,19 +56,19 @@
 
               <!-- user ID number -->
                 <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input" >
+                  <input required="" type="text" name="text" autocomplete="off" class="input" required name="user_id" (change)="getUser($event)">
                   <label class="book-label">Id Number</label>
                 </div>
 
               <!-- Name -->
                 <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input" disabled>
+                  <input required="" type="text" name="text" autocomplete="off" class="input" [value]="user.first_name + ' ' + user.last_name || ''"  disabled>
                   <label class="book-label">Name</label>
                 </div>
 
               <!-- Gender -->
                 <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input2" disabled>
+                  <input required="" type="text" name="text" autocomplete="off" class="input2" [value]="user.gender || ''"  disabled>>
                   <label class="book-label">Gender</label>
                 </div>
               </div>
@@ -77,13 +77,13 @@
               
               <!-- patron type (student/faculty/staff/.etc) -->
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input3" disabled>
+                    <input required="" type="text" name="text" autocomplete="off" class="input3" [value]="user.patron_id || ''" >
                     <label class="book-label">Patron</label>
                   </div>
 
               <!-- Department id -->
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input3" disabled>
+                    <input required="" type="text" name="text" autocomplete="off" class="input3" [value]="user.program.department || ''" disabled>
                     <label class="book-label">Department</label>
                   </div>
             </div>
@@ -96,13 +96,13 @@
 
               <!-- frontdesk admin id -->
                 <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input3" >
+                  <input required="" type="text" name="text" autocomplete="off" class="input3" disabled placeholder="{{name}}">
                   <label class="book-label">Name of Staff</label>
                 </div>
 
               <!-- frontdesk position -->
                 <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input3" disabled>
+                  <input required="" type="text" name="text" autocomplete="off" class="input3" disabled placeholder="{{role}}">
                   <label class="book-label">Position</label>
                 </div>
             </div>
@@ -133,7 +133,7 @@
     </div>
 
     <div class="buttons">
-      <a class="add" (click)="addAlert()">Add</a>
+      <a class="add" (click)="bookSubmit()">Add</a>
       <a class="reserve" (click)="queAlert()">Queue</a>
       <!-- <button class="reserve" (click)="openDialog()">Reserve</button> -->
       <!-- <a class="list" routerLink="/sample">List</a> -->

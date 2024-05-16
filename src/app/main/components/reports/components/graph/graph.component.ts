@@ -97,7 +97,7 @@ export class GraphComponent implements OnInit {
             },
             title: {
             display: true,
-            text: 'Book Borrowers by gender',
+            text: 'Book Borrowers by Gender',
             font: {
               weight: 'bold' // Make the text bold
             }
