@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { PushPopupComponent } from '../push-popup/push-popup.component';
@@ -9,12 +10,9 @@ import { BorrowMaterial } from './borrow-material.model';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+  styleUrls: ['./table.component.scss']
 })
-export class TableComponent {
-onDepartmentChange() {
-throw new Error('Method not implemented.');
-}
+export class TableComponent implements OnInit {
   selectedDepartment: string = '';
   selectedProgram: string = '';
   selectedPatronType: string = '';
@@ -57,20 +55,25 @@ elements: any;
     this.dialog.open(EditPopupComponent, {
       width: '55%',
       height: '760px',
-    })
-  };
+    });
+  }
 
   deleteDialog() {
     this.dialog.open(DeletePopupComponent, {
       width: '400px',
       height: '250px',
-    })
-  };
+    });
+  }
 
   pushDialog() {
     this.dialog.open(PushPopupComponent, {
       width: '400px',
       height: '250px',
-    })
-  };
+    });
+  }
+
+  // Implement the method to handle department change
+  onDepartmentChange(): void {
+    // Add your logic here
+  }
 }

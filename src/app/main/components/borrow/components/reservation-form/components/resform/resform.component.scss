@@ -37,30 +37,29 @@ body {
 
 .books {
     padding-left: 21px;
-    position: absolute;
-    margin-top: 30px;
+    // position: absolute;
+    margin-top: 15px;
     
 }
 
 .materials {
     padding-left: 21px;
-    position: absolute;
-    margin-top: 12%;
+    // position: absolute;
+    margin-top: 34px;
     
 }
 
 .staffs {
     padding-left: 21px;
-    position: absolute;
-    margin-top: 22%;
+    // position: absolute;
+    margin-top: 44px;
    
 }
 
 .date {
-    // margin: 30px;
-    position: absolute;
-    margin-top: 28%;
+    // position: absolute;
     padding-left: 21px;
+    margin-top: 46px;
 }
 
 .group1, .group2 , .group3{
@@ -84,7 +83,7 @@ body {
 }
 
 .material {
-    margin-top: 196px;
+    margin-top: 7px;
     // padding-top: 10%;
     padding-left: 30px;
     margin-bottom: -15px;
@@ -96,7 +95,7 @@ body {
 }
 
 .staff {
-    margin-top: 394px;
+    margin-top: 12px;
     // padding-top: 20%;
     padding-left: 30px;
     margin-bottom: -15px;
@@ -108,7 +107,7 @@ body {
 }
 
 .due {
-    margin-top: 510px;
+    margin-top: 13px;
     // padding-top: 26%;
     padding-left: 90px;
     margin-bottom: -15px;
@@ -145,6 +144,12 @@ body {
     padding-left: 50%;
     border-radius: 20px;
     padding-left: 57%;
+}
+
+.buttons {
+    margin-top: 12px;
+    padding-left: 42%;
+    
 }
 
 .add {
@@ -190,11 +195,6 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-
-.buttons {
-    margin-top: 42%;
-    padding-left: 37%;
-} 
 
 // .list {
 //     background-color: #31A463;
@@ -309,6 +309,22 @@ body {
     height: 25px;
 }
 
+.input5 {
+    // border: solid 1.5px black;
+    border: none;
+    border-bottom: solid 2px black;
+    opacity: 50%;
+    border-radius: 5px;
+    background: #F6F6F6;
+    padding: 1rem;
+    font-size: 1rem;
+    color: black;
+    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+    margin: 10px;
+    width: 1151px;
+    height: 25px;
+}
+
 
 
 
@@ -336,13 +352,13 @@ body {
 // }
 
 .input:focus, input:valid, .input2:focus, .input2:valid
-, .input3:focus, .input3:valid{
+, .input3:focus, .input3:valid, .input4:focus, .input4:valid{
     outline: none;
     border-bottom: 2px solid #31A463;
 }
 
-.input:focus ~ label, input:valid ~ label, .input2:focus ~ label, .input2:valid ~ label
-, .input3:focus ~ label, .input3:valid ~ label{
+.input:focus ~ label, input:valid ~ label, .input2:focus ~ label, .input2:valid ~ label,
+.input3:focus ~ label, .input3:valid ~ label, .input4:focus ~ label, .input4:valid ~ label{
     // transform: translateY(-50%) scale(0.8);
     // background-color: white;
     // border: solid 1.5px #31A463;

@@ -37,30 +37,29 @@ body {
 
 .books {
     padding-left: 21px;
-    position: absolute;
-    margin-top: 30px;
+    // position: absolute;
+    margin-top: 15px;
     
 }
 
 .materials {
     padding-left: 21px;
-    position: absolute;
-    margin-top: 12%;
+    // position: absolute;
+    margin-top: 34px;
     
 }
 
 .staffs {
     padding-left: 21px;
-    position: absolute;
-    margin-top: 22%;
+    // position: absolute;
+    margin-top: 44px;
    
 }
 
 .date {
-    // margin: 30px;
-    position: absolute;
-    margin-top: 28%;
+    // position: absolute;
     padding-left: 21px;
+    margin-top: 46px;
 }
 
 .group1, .group2 , .group3{
@@ -84,7 +83,7 @@ body {
 }
 
 .material {
-    margin-top: 196px;
+    margin-top: 7px;
     // padding-top: 10%;
     padding-left: 30px;
     margin-bottom: -15px;
@@ -96,7 +95,7 @@ body {
 }
 
 .staff {
-    margin-top: 394px;
+    margin-top: 12px;
     // padding-top: 20%;
     padding-left: 30px;
     margin-bottom: -15px;
@@ -108,7 +107,7 @@ body {
 }
 
 .due {
-    margin-top: 510px;
+    margin-top: 13px;
     // padding-top: 26%;
     padding-left: 90px;
     margin-bottom: -15px;
@@ -148,8 +147,8 @@ body {
 }
 
 .buttons {
-    margin-top: 42%;
-    padding-left: 43%;
+    margin-top: 12px;
+    padding-left: 42%;
     
 }
 
@@ -306,6 +305,22 @@ body {
     transition: border 150ms cubic-bezier(0.4,0,0.2,1);
     margin: 10px;
     width: auto;
+    height: 25px;
+}
+
+.input5 {
+    // border: solid 1.5px black;
+    border: none;
+    border-bottom: solid 2px black;
+    opacity: 50%;
+    border-radius: 5px;
+    background: #F6F6F6;
+    padding: 1rem;
+    font-size: 1rem;
+    color: black;
+    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+    margin: 10px;
+    width: 1151px;
     height: 25px;
 }
 

@@ -6,6 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReservationFormComponent } from './reservation-form.component';
 import { ResformComponent } from './components/resform/resform.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,7 +19,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ]
 })
 export class ReservationFormModule { }
