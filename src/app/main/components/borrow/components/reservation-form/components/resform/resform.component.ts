@@ -69,7 +69,7 @@ export class ResformComponent implements OnInit {
 
   getBook(event: Event) {
     let target = event.target as HTMLInputElement;
-    this.ds.get('circulation/get-book/' + 2).subscribe({
+    this.ds.get('circulation/get-book/' + target.value).subscribe({
       next: (res: any) => {
         console.log(res)
         let authors = JSON.parse(res.authors);

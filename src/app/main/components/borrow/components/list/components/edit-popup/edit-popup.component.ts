@@ -9,6 +9,19 @@ import Swal from 'sweetalert2'
 })
 export class EditPopupComponent {
 
+  user = {
+    id: '',
+    name: '',
+    gender: '',
+    department: ''
+  }
+  book = {
+    accession: '',
+    title: '',
+    author: '',
+    location: ''
+  }
+  admin: any;
   saveAlert() {
     Swal.fire({
       width: 350,

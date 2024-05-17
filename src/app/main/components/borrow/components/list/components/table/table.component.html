@@ -57,8 +57,8 @@
         <th>Id Number</th>
         <th>Name</th>
         <th>Department</th>
-        <th>Program</th>
         <th>Accession Number</th>
+        <th>Location</th>
         <th>Status</th>
         <th>Fine</th>
         <th>Action</th>
@@ -70,15 +70,15 @@
         <!-- patrontype -->
         <td>{{element.patron}}</td>
         <!-- student ID -->
-        <td>{{element.student_id}}</td>
+        <td>{{element.user_id}}</td>
         <!-- user name -->
-        <td>{{element.username}}</td>
+        <td>{{element.user.first_name}} {{element.user.last_name}}</td>
         <!-- department id -->
-        <td>{{element.department}}</td>
+        <td>{{element.user.program.department}}</td>
         <!-- accession id -->
-        <td>{{element.call_number}}</td>
+        <td>{{element.book_id}}</td>
         <!-- book location -->
-        <td>{{element.location_id}}</td>
+        <td>{{element.book.location.location}}</td>
         <!-- status -->
         <td>{{element.status}}</td>
         <td>{{element.fine}}</td>
@@ -97,7 +97,7 @@
         </tr>
 
         <!-- for sample -->
-        <tr>
+        <tr >
           <!-- studentname -->
           <td>Student</td>
           <!-- student ID -->

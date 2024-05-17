@@ -25,7 +25,8 @@ export class BorrowRequestComponent implements OnInit {
     id: '',
     name: '',
     gender: '',
-    department: ''
+    department: '',
+    count:0
   }
   book = {
     accession: '',
@@ -127,11 +128,17 @@ export class BorrowRequestComponent implements OnInit {
         console.log(res)
       }
     })
+    this.ds.get('circulation/user/'+target.value).subscribe({
+      next: (res: any) => {
+        this.user.count=res.count;
+        console.log(res)
+      }
+    })
   }
 
   getBook(event: Event) {
     let target = event.target as HTMLInputElement;
-    this.ds.get('circulation/get-book/' + 2).subscribe({
+    this.ds.get('circulation/get-book/' + target.value).subscribe({
       next: (res: any) => {
         console.log(res)
         let authors = JSON.parse(res.authors);
@@ -164,7 +171,6 @@ export class BorrowRequestComponent implements OnInit {
       console.log(this.borrowForm.value)
       this.mainService.post('borrow/book',this.borrowForm.value).subscribe(
         response => {
-          console.log(response)
           Swal.fire({
             title: 'Success',
             text: 'The borrow request has been submitted successfully.',
