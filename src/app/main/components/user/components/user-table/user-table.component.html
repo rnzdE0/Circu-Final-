@@ -60,13 +60,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Ace</td>
-          <td>Student</td>
-          <td>Male</td>
-          <td>202111304</td>
-          <td>CCS</td>
-          <td>BSIT</td>
+        <tr *ngFor="let user of users">
+          <td>{{ user.username }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.gender }}</td>
+          <td>{{ user.id }}</td>
+          <td>{{ user.program.department }}</td>
+          <td>{{ user.program.program }}</td>
 
           <td>
             <button class="edit" (click)="openUser()">

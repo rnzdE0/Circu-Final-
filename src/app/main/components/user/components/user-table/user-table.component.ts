@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from '../../../../../services/auth.service';
 import { UserPopupComponent } from '../user-popup/user-popup.component';
+
+import { User } from './user.model';
+
 
 @Component({
   selector: 'app-user-table',
@@ -19,13 +23,31 @@ export class UserTableComponent implements OnInit{
     CHTM: ['BSHM', 'BSTM'],
     CAHS: ['BSN', 'BSM', 'GM']
   };
-  onDepartmentChange(): void {
-    this.selectedProgram = '';
+
+  users: any[] = [];
+
+  constructor(private dialog : MatDialog,
+  private authService: AuthService
+  ) {}
+  ngOnInit(): void {
+    this.fetchUsers();
   }
 
-  constructor(private dialog : MatDialog) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  fetchUsers(): void {
+    this.authService.getUsers().subscribe(
+      (data: any) => {
+        console.log('Received data from backend:', data);
+        console.log('Type of data:', typeof data);
+        this.users = data as User[]; // Assign the fetched user data to the users array
+      },
+      (error) => {
+        console.error('Error fetching users:', error);
+      }
+    );
+  }
+
+  onDepartmentChange(): void {
+    this.selectedProgram = '';
   }
   openUser() {
     this.dialog.open(UserPopupComponent, {

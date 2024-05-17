@@ -3,7 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { PushPopupComponent } from '../push-popup/push-popup.component';
-
+import { AuthService } from '../../../../../../../services/auth.service';
+import { BorrowMaterial } from './borrow-material.model';
 
 @Component({
   selector: 'app-table',
@@ -26,10 +27,31 @@ throw new Error('Method not implemented.');
     CHTM: ['BSHM', 'BSTM'],
     CAHS: ['BSN', 'BSM', 'GM']
   };
+
+  borrowMaterials: any[] = [];
+
+  ngOnInit(): void {
+    this.fetchBorrowList();
+  }
+
+  fetchBorrowList(): void {
+    this.authService.getBorrowList().subscribe(
+      (data: any) => {
+        console.log('Received data from backend:', data);
+        console.log('Type of data:', typeof data);
+        this.borrowMaterials = data as BorrowMaterial[]; // Assign the fetched user data to the users array
+      },
+      (error) => {
+        console.error('Error fetching users:', error);
+      }
+    );
+  }
 elements: any;
    
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog,
+  private authService: AuthService
+  ) {}
 
   openDialog() {
     this.dialog.open(EditPopupComponent, {

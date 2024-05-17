@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { response } from 'express';
 import { Observable, tap } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,15 +34,27 @@ export class AuthService {
   }
 
 
+
+
+
   public user() {
     return this.http.get(this.url + 'user', { headers: this.headers.get() });
   }
 
   public refresh() {
     return this.http.post(this.url + 'refresh', {}, { headers: this.headers.get() })
-  }
+  } 
 
   public logout() {
     return this.http.post(this.url + 'logout', {}, { headers: this.headers.get() })
+  }
+
+  public getUsers() {
+    return this.http.get(this.url + 'users', { headers: this.headers.get() });
+  }
+
+
+  public getBorrowList(){
+    return this.http.get(this.url + 'borrow-list',  {headers: this.headers.get()})
   }
 }
