@@ -35,7 +35,7 @@ export class AuthService {
 
 
 
-
+  // for tables
 
   public user() {
     return this.http.get(this.url + 'user', { headers: this.headers.get() });

@@ -128,7 +128,7 @@ export class BorrowRequestComponent implements OnInit {
         console.log(res)
       }
     })
-    this.ds.get('circulation/user/'+target.value).subscribe({
+    this.ds.get('circulation/get-user/'+target.value).subscribe({
       next: (res: any) => {
         this.user.count=res.count;
         console.log(res)

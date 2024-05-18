@@ -23,6 +23,10 @@ export class MainService {
     return this.http.get(this.baseUrl+url, { headers: this.headers.get() });
   }
 
+  public put(url: string, payload: any) {
+    return this.http.put(this.baseUrl+url, {payload:JSON.stringify(payload)}, { headers: this.headers.get() });
+  }
+
   public post(url: string, payload: any) {
     return this.http.post(this.baseUrl+url, {payload:JSON.stringify(payload)}, { headers: this.headers.get() });
   }
@@ -37,3 +41,5 @@ export class MainService {
     this.cache.clear();
   }
 }
+
+//  nasa auth.service yung para sa mga tables

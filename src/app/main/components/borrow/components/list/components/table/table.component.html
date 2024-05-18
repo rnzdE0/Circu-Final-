@@ -49,7 +49,6 @@
       </div>
     </div>
 
-
   <table class="content-table">
     <thead class="table-head">
       <tr>
@@ -57,8 +56,8 @@
         <th>Id Number</th>
         <th>Name</th>
         <th>Department</th>
+        <th>Program</th>
         <th>Accession Number</th>
-        <th>Location</th>
         <th>Status</th>
         <th>Fine</th>
         <th>Action</th>
@@ -67,29 +66,21 @@
     </thead>
     <tbody>
       <tr *ngFor="let material of borrowMaterials">
-        <!-- patrontype -->
         <td>{{material.user.role}}</td>
-        <!-- student ID -->
         <td>{{material.user.id}}</td>
-        <!-- user name -->
         <td>{{material.user.username}}</td>
-        <!-- department id -->
         <td>{{material.user.program.department}}</td>
-        <!-- program -->
         <td>{{material.user.program.program}}</td>
-        <!-- acccession num -->
         <td>{{material.book_id}}</td>
-        <!-- status -->
         <td>{{material.status}}</td>
         <td>{{material.fine}}</td>
         <td>
-          <button class="returned" (click)="pushDialog()">
+          <button class="returned" (click)="pushDialog(material.id)">
             <i class="bx bx-check" ></i>
           </button>
           <button class="delete" (click)="deleteDialog()">
             <i class="bx bx-archive" ></i>
           </button>
-          
           <button class="edit" (click)="openDialog()">
             <i class="bx bxs-edit" ></i>
           </button>

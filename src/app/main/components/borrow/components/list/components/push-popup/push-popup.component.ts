@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
+
 
 import Swal from 'sweetalert2'
+import { privateDecrypt } from 'crypto';
+import { url } from 'inspector';
+import { MainService } from '../../../../../../../services/main.service';
 
 @Component({
   selector: 'app-push-popup',
@@ -9,7 +15,16 @@ import Swal from 'sweetalert2'
 })
 export class PushPopupComponent {
 
-  submit(){
+  constructor(
+    @Inject(MAT_DIALOG_DATA) 
+    public material: any,
+    private http: HttpClient,
+    private ds: MainService
+    ) {
+    console.log('Data received in dialog:', this.material.id);
+  }
+
+  submit(id: number) {
     Swal.fire({
       width: 300,
       title: "Book Returned!",
@@ -20,6 +35,27 @@ export class PushPopupComponent {
         icon: 'my-swal-icon',
         confirmButton: 'my-swal-confirm-button'
       }
+    }).then(() => {
+      // After user confirms the Swal, send AJAX request to update book status
+      this.updateBookStatus();
     });
+  }
+
+  // `api/return-book/${this.material}`
+  
+  updateBookStatus() {
+    const url = 'return-book/'
+
+    // Assuming you use Angular HttpClient to send PUT request to Laravel backend
+    this.ds.put( url+this.material ,{}).subscribe(
+      (response) => {
+        console.log('Book marked as returned:', response);
+        // Optionally handle success response
+      },
+      (error) => {
+        console.error('Error marking book as returned:', error);
+        // Optionally handle error
+      }
+    );
   }
 }

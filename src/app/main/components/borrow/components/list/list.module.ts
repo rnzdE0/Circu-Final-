@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from '@angular/material/dialog';
 import { PushPopupComponent } from './components/push-popup/push-popup.component';
 import { MatPaginator } from '@angular/material/paginator';
+import { MaterialModule } from '../../../../../modules/material/material.module';
 
 
 
@@ -25,6 +26,7 @@ import { MatPaginator } from '@angular/material/paginator';
     MatDialogModule,
     MatPaginator,
     FormsModule,
+    MaterialModule
   ]
 })
 export class ListModule { }

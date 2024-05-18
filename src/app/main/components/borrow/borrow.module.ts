@@ -6,6 +6,7 @@ import { ReservationComponent } from './components/reservation/reservation.compo
 import { BorrowRoutingModule } from './borrow-routing.module';
 import { RouterModule } from '@angular/router';
 import { ReservationFormComponent } from './components/reservation-form/reservation-form.component';
+import { MaterialModule } from '../../../modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ReservationFormComponent } from './components/reservation-form/reservat
   imports: [
     CommonModule,
     BorrowRoutingModule,
-    RouterModule
+    RouterModule,
+    MaterialModule
   ]
 })
 export class BorrowModule { }

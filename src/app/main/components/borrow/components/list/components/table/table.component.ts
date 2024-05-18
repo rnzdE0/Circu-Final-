@@ -26,7 +26,10 @@ export class TableComponent implements OnInit {
     CAHS: ['BSN', 'BSM', 'GM']
   };
 
-  borrowMaterials: any[] = [];
+  borrowMaterials: any;
+  dataSource: any=null;
+  material: any;
+  router: any;
 
   ngOnInit(): void {
     this.fetchBorrowList();
@@ -65,11 +68,39 @@ elements: any;
     });
   }
 
-  pushDialog() {
-    this.dialog.open(PushPopupComponent, {
+  // pushDialog(id: number) {
+  //   this.dialog.open(PushPopupComponent, {
+  //     width: '400px',
+  //     height: '250px',
+  //     data: id
+  //   });
+  // }
+
+  redirectToListPage() {
+    this.router.navigate(['main/borrow/list/table']); 
+  }
+
+  pushDialog(data: any) {
+    this.Openpopup(data, 'Push Popup', PushPopupComponent);
+  }
+
+  Openpopup(id: number, title: any, component:any) {
+    var _popup = this.dialog.open(component, {
       width: '400px',
       height: '250px',
+      enterAnimationDuration: '100ms',
+      exitAnimationDuration: '100ms',
+      data: id
     });
+    _popup.afterClosed().subscribe(result => {
+      this.redirectToListPage();
+      if(result == 'Changed Data') {
+        this.getData()
+      }
+    });
+  }
+  getData() {
+    throw new Error('Method not implemented.');
   }
 
   // Implement the method to handle department change
