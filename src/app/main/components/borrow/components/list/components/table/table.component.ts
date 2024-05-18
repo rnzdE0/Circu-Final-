@@ -6,6 +6,8 @@ import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { PushPopupComponent } from '../push-popup/push-popup.component';
 import { AuthService } from '../../../../../../../services/auth.service';
 import { BorrowMaterial } from './borrow-material.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-table',
@@ -29,7 +31,6 @@ export class TableComponent implements OnInit {
   borrowMaterials: any;
   dataSource: any=null;
   material: any;
-  router: any;
 
   ngOnInit(): void {
     this.fetchBorrowList();
@@ -51,13 +52,27 @@ elements: any;
    
 
   constructor(private dialog: MatDialog,
-  private authService: AuthService
+  private authService: AuthService,
+  private router: Router
   ) {}
 
-  openDialog() {
-    this.dialog.open(EditPopupComponent, {
+  openDialog(data: any) {
+    this.Editpopup(data, 'edit Popup', EditPopupComponent);
+  }
+
+  Editpopup(id: number, title: any, component:any) {
+    var _popup = this.dialog.open(component, {
       width: '55%',
       height: '760px',
+      enterAnimationDuration: '100ms',
+      exitAnimationDuration: '100ms',
+      data: id
+    });
+    _popup.afterClosed().subscribe(result => {
+      this.redirectToListPage();
+      if(result === 'Changed Data') {
+        this.fetchBorrowList()
+      }
     });
   }
 
@@ -94,8 +109,8 @@ elements: any;
     });
     _popup.afterClosed().subscribe(result => {
       this.redirectToListPage();
-      if(result == 'Changed Data') {
-        this.getData()
+      if(result === 'Changed Data') {
+        this.fetchBorrowList()
       }
     });
   }
