@@ -60,4 +60,8 @@ export class AuthService {
   public getReserveList(){
     return this.http.get(this.url + 'reservation-list', {headers: this.headers.get()})
   }
+
+  public getBorrowersReport(){
+    return this.http.get(this.url + 'report', {headers: this.headers.get() })
+  }
 }

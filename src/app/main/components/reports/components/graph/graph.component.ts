@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { AuthService } from '../../../../../services/auth.service';
 
 
 @Component({
@@ -34,32 +35,38 @@ export class GraphComponent implements OnInit {
   throw new Error('Method not implemented.');
   }
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-    
-    // Mock data for departments
-    const departmentData = {
-      CEAS: 20,
-      CCS: 15,
-      CHTM: 10,
-      CAHS: 25,
-      CBA: 30
-    };
-    //mock data for gender counts
-    const genderData = {
-      male: 80,
-      female: 120
-    };
+  departmentData: { [key: string]: number } = {};
+  genderData: { [key: string]: number } = {};
 
+  ngOnInit(): void{
+    this.fetchDataAndRenderCharts();
+  }
+
+  fetchDataAndRenderCharts(): void {
+    this.authService.getBorrowersReport().subscribe(
+      (data: any) => {
+        console.log('Received data from backend:', data);
+        this.departmentData = data.borrowersByDepartment;
+        this.genderData = data.borrowersByGender;
+        this.renderCharts();
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  }
+
+  renderCharts(): void {
     // Pie chart
     const pieCanvas = document.getElementById('pieChart');
     this.pieChart = new Chart('pieChart', {
       type: 'pie',
       data: {
-        labels: Object.keys(departmentData),
+        labels: Object.keys(this.departmentData),
         datasets: [{
-          data: Object.values(departmentData),
+          data: Object.values(this.departmentData),
           backgroundColor: ['rgb(15, 127, 228, 1)', 'orange', 'pink', 'red', 'yellow'], 
         }]
       },
@@ -77,6 +84,7 @@ export class GraphComponent implements OnInit {
         }
       }
     });
+
     // Bar chart
     const barCanvas = document.getElementById('barChart');
     this.barChart = new Chart('barChart', {
@@ -84,7 +92,7 @@ export class GraphComponent implements OnInit {
       data: {
         labels: ['Male', 'Female'],
         datasets: [{
-          data: Object.values(genderData),
+          data: Object.values(this.genderData),
           backgroundColor: ['rgb(15, 172, 228, 1)', 'pink'],
         }]
       },
@@ -110,3 +118,47 @@ export class GraphComponent implements OnInit {
     this.selectedSecondFilter = '';
   }
 }
+
+//edited out
+
+// ngOnInit(): void {
+    
+  //   // Mock data for departments
+  //   const departmentData = {
+  //     CEAS: 20,
+  //     CCS: 15,
+  //     CHTM: 10,
+  //     CAHS: 25,
+  //     CBA: 30
+  //   };
+  //   //mock data for gender counts
+  //   const genderData = {
+  //     male: 80,
+  //     female: 120
+  //   };
+
+  //   // Pie chart
+  //   const pieCanvas = document.getElementById('pieChart');
+  //   this.pieChart = new Chart('pieChart', {
+  //     type: 'pie',
+  //     data: {
+  //       labels: Object.keys(departmentData),
+  //       datasets: [{
+  //         data: Object.values(departmentData),
+  //         backgroundColor: ['rgb(15, 127, 228, 1)', 'orange', 'pink', 'red', 'yellow'], 
+  //       }]
+  //     },
+  //     options: {
+  //       responsive: true,
+  //       maintainAspectRatio: false,
+  //       plugins: {
+  //         title: {
+  //           display: true,
+  //           text: 'Book Borrowers by Department',
+  //           font: {
+  //             weight: 'bold' // Make the text bold
+  //           }
+  //         }
+  //       }
+  //     }
+  //   });
