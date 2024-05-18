@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReservationPopupComponent } from '../reservation-popup/reservation-popup.component';
 import { DeleteComponent } from '../delete/delete.component';
+import { AuthService } from '../../../../../../../services/auth.service';
+import { ReservationList } from './reserve-list.model';
 
 @Component({
   selector: 'app-reserve',
@@ -21,10 +23,33 @@ export class ReserveComponent {
     CHTM: ['BSHM', 'BSTM'],
     CAHS: ['BSN', 'BSM', 'GM']
   };
+
+  reservationList: any[] = [];
+  elements: any;
+
+  ngOnInit():void{
+    this.fetchReserveList();
+  }
+
+  fetchReserveList(): void {
+    this.authService.getReserveList().subscribe(
+      (data: any) => {
+        console.log('Received data from reservationlist:', data);
+        console.log('Type of data:', typeof data);
+        this.reservationList = data as ReservationList[];
+      },
+      (error) => {
+        console.error('Error fetching users:', error);
+      }
+    );
+  }
+
   onDepartmentChange(): void {
     this.selectedProgram = '';
   }
-  constructor(private dialog : MatDialog) {}
+  constructor(private dialog : MatDialog,
+    private authService: AuthService
+  ) {}
 
   openDialog() {
     this.dialog.open(ReservationPopupComponent, {
