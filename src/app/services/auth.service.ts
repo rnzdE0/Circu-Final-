@@ -64,4 +64,8 @@ export class AuthService {
   public getBorrowersReport(){
     return this.http.get(this.url + 'report', {headers: this.headers.get() })
   }
+
+  public getReturned(){
+    return this.http.get(this.url + 'returned-list', {headers: this.headers.get() })
+  }
 }

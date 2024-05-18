@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { EditComponent } from '../edit/edit.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
+import { AuthService } from '../../../../../services/auth.service';
+import { List } from './list.model';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -19,10 +21,28 @@ export class ListComponent {
     CHTM: ['BSHM', 'BSTM'],
     CAHS: ['BSN', 'BSM', 'GM']
   };
+
+  returned: any[] = [];
+
+  ngOnInit(): void{
+    this.fetchReturned();
+  }
+
+  fetchReturned(): void{
+    this.authService.getReturned().subscribe(
+      (data: any) => {
+        console.log('Recieved data from backend', data);
+        this.returned = data as List[];
+      }
+    )
+  }
+
   onDepartmentChange(): void {
     this.selectedProgram = '';
   }
-  constructor(private dialog : MatDialog) {}
+  constructor(private dialog : MatDialog,
+  private authService: AuthService
+  ) {}
 
   openEdit() {
     this.dialog.open(EditComponent, {

@@ -63,17 +63,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let material of returned">
         <!-- student name -->
-        <td>Student</td>
+        <td>{{material.user.username}}</td>
         <!-- student id -->
-        <td>202110063</td>
+        <td>{{material.user_id}}</td>
         <!-- accession id -->
-        <td>6108</td>
+        <td>{{material.book_id}}</td>
         <!-- date created -->
-        <td >01/24/24</td>
+        <td >{{material.borrow_date}}</td>
         <!-- date returned -->
-        <td >01/30/24</td>
+        <td >{{material.date_returned}}</td>
         <!-- status -->
         <td class="returned">Returned</td>
       </tr>
