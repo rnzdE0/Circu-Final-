@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
-
-
-
+import { AuthService } from '../../../../../services/auth.service';
 
 @Component({
   selector: 'app-top',
@@ -37,55 +35,47 @@ throw new Error('Method not implemented.');
 }
   topChart: any;
 
-  constructor() { }
+  constructor(private authservice: AuthService) { }
 
   ngOnInit(): void {
-    // Mock data for Book Borrowers
-    const topBookBorrowers = [
-      { name: 'Borrower 1', count: 90 },
-      { name: 'Borrower 2', count: 85 },
-      { name: 'Borrower 1', count: 70 },
-      { name: 'Borrower 2', count: 65 },
-      { name: 'Borrower 1', count: 50 },
-      { name: 'Borrower 2', count: 45 },
-      { name: 'Borrower 1', count: 30 },
-      { name: 'Borrower 2', count: 25 },
-      { name: 'Borrower 1', count: 10 },
-      { name: 'Borrower 2', count: 5 },
-      // Add more book borrowers here
-    ];
+    this.authservice.topBorrowers().subscribe(
+      (data: any) => {
+        const labels = data.map((item: any) => '' + item.last_name);
+        const counts = data.map((item: any) => item.borrow_count);
 
-    const labels = topBookBorrowers.map(borrower => borrower.name);
-    const counts = topBookBorrowers.map(borrower => borrower.count);
-
-    const barCanvas = document.getElementById('topChart');
-    this.topChart = new Chart('topChart', {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          data: counts,
-          backgroundColor: this.getColorGradient(topBookBorrowers.length),
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false // Hide the legend
-          }
-      },
-        indexAxis: 'x',
-        scales: {
-          y: {
-            ticks: {
-              stepSize: 1
+        const barCanvas = document.getElementById('topChart');
+        this.topChart = new Chart('topChart', {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              data: counts,
+              backgroundColor: this.getColorGradient(data.length),
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false // Hide the legend
+              }
+            },
+            indexAxis: 'x',
+            scales: {
+              y: {
+                ticks: {
+                  stepSize: 1
+                }
+              }
             }
-          }
-        }
+          },
+        });
+      },
+      (error) => {
+        console.error('Error fetching most borrowed books:', error);
       }
-    });
+    );
   }
 
   getColorGradient(numBars: number): string[] {

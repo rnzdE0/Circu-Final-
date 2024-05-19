@@ -25,6 +25,22 @@ export class PushPopupComponent {
   }
 
   submit(id: number) {
+    const url = 'return-book/'
+
+    // Assuming you use Angular HttpClient to send PUT request to Laravel backend
+    this.ds.put( url+this.material ,{}).subscribe(
+      (response) => {
+        console.log('Book marked as returned:', response);
+        // Optionally handle success response
+        this.updateBookStatus();
+      },
+      (error) => {
+        console.error('Error marking book as returned:', error);
+        // Optionally handle error
+      })
+  }
+
+  updateBookStatus () {
     Swal.fire({
       width: 300,
       title: "Book Returned!",
@@ -35,27 +51,44 @@ export class PushPopupComponent {
         icon: 'my-swal-icon',
         confirmButton: 'my-swal-confirm-button'
       }
-    }).then(() => {
-      // After user confirms the Swal, send AJAX request to update book status
-      this.updateBookStatus();
-    });
-  }
+    })
+  }}
 
-  // `api/return-book/${this.material}`
+
+
+
+  // submit(id: number) {
+  //   Swal.fire({
+  //     width: 300,
+  //     title: "Book Returned!",
+  //     icon: "success",
+  //     confirmButtonColor: '#31A463',
+  //     customClass: {
+  //       popup: 'my-swal-popup',
+  //       icon: 'my-swal-icon',
+  //       confirmButton: 'my-swal-confirm-button'
+  //     }
+  //   }).then(() => {
+  //     // After user confirms the Swal, send AJAX request to update book status
+  //     this.updateBookStatus();
+  //   });
+  // }
+
+  // // `api/return-book/${this.material}`
   
-  updateBookStatus() {
-    const url = 'return-book/'
+  // updateBookStatus() {
+  //   const url = 'return-book/'
 
-    // Assuming you use Angular HttpClient to send PUT request to Laravel backend
-    this.ds.put( url+this.material ,{}).subscribe(
-      (response) => {
-        console.log('Book marked as returned:', response);
-        // Optionally handle success response
-      },
-      (error) => {
-        console.error('Error marking book as returned:', error);
-        // Optionally handle error
-      }
-    );
-  }
-}
+  //   // Assuming you use Angular HttpClient to send PUT request to Laravel backend
+  //   this.ds.put( url+this.material ,{}).subscribe(
+  //     (response) => {
+  //       console.log('Book marked as returned:', response);
+  //       // Optionally handle success response
+  //     },
+  //     (error) => {
+  //       console.error('Error marking book as returned:', error);
+  //       // Optionally handle error
+  //     }
+  //   );
+  // }
+// }

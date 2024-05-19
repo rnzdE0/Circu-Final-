@@ -15,7 +15,9 @@ export class AuthService {
     private headers: HeaderService
   ) { }
   
-  private url:string = 'http://127.0.0.1:8000/api/';
+//  private url:string = 'http://127.0.0.1:8000/api/';
+  private url:string = 'http://192.168.68.124:8000/api/';
+
 
   public login(formData: FormData) {
     return this.http.post(this.url+'login/circulation', formData).pipe(
@@ -32,8 +34,6 @@ export class AuthService {
       })
     );
   }
-
-
 
   // for tables
 
@@ -67,5 +67,13 @@ export class AuthService {
 
   public getReturned(){
     return this.http.get(this.url + 'returned-list', {headers: this.headers.get() })
+  }
+
+  public mostBorrowedBook(){
+    return this.http.get(this.url + 'mostborrowed', {headers: this.headers.get() })
+  }
+
+  public topBorrowers(){
+    return this.http.get(this.url + 'topborrowers', {headers: this.headers.get() })
   }
 }

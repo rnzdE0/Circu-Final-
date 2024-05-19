@@ -42,7 +42,7 @@ export class ResformComponent implements OnInit {
       user_id: ['', Validators.required],
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
-      // fine: ['', Validators.required]
+      fine: ['', Validators.required]
       
     });
   }
@@ -136,12 +136,12 @@ export class ResformComponent implements OnInit {
       console.log(this.requestForm.value)
       Swal.fire({
         title: 'Invalid Form',
-        text: 'Please fill out all required fields correctly.',
+        text: 'Please fill up the form.',
         icon: 'error',
         confirmButtonColor: '#31A463'
       });
     }
-  }
+  };
 
   // reserveSubmit() {
   //   if (this.requestForm.valid) {
@@ -178,11 +178,14 @@ export class ResformComponent implements OnInit {
   //   }
   // }
 
+  
+
+
   queueSubmit() {
     if (this.requestForm.valid) {
       console.log(this.requestForm.value)
       // mababago this if ever ng queue/book
-      this.mainService.post('reserve/book',this.requestForm.value).subscribe(
+      this.mainService.post('queue/book',this.requestForm.value).subscribe(
         response => {
           console.log(response)
           Swal.fire({
@@ -206,7 +209,7 @@ export class ResformComponent implements OnInit {
       console.log(this.requestForm.value)
       Swal.fire({
         title: 'Invalid Form',
-        text: 'Please fill out all required fields correctly.',
+        text: 'Function not yet Available. :)',
         icon: 'error',
         confirmButtonColor: '#31A463'
       });

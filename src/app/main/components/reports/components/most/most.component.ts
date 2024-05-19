@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { AuthService } from '../../../../../services/auth.service';
 
 @Component({
   selector: 'app-most',
@@ -28,57 +29,52 @@ export class MostComponent implements OnInit{
   export(arg0: string) {
   throw new Error('Method not implemented.');
   }
+  print() {
+    throw new Error('Method not implemented.');
+    }
   mostChart: any;
 
-  constructor() { }
+  constructor(private authservice: AuthService) { }
 
   ngOnInit(): void {
-    // Mock data for Book Borrowers
-    const borrowedBooks = [
-      { name: 'Book 1', count: 70 },
-      { name: 'Book 2', count: 60 },
-      { name: 'Book 3', count: 50 },
-      { name: 'Book 4', count: 40 },
-      { name: 'Book 5', count: 30 },
-      { name: 'Book 6', count: 20 },
-      { name: 'Book 7', count: 18 },
-      { name: 'Book 8', count: 17 },
-      { name: 'Book 9', count: 10 },
-      { name: 'Book 10', count: 5 },
-      // Add more book borrowers here
-    ];
+    this.authservice.mostBorrowedBook().subscribe(
+      (data: any) => {
+        const labels = data.map((item: any) => 'Book ' + item.book_id);
+        const counts = data.map((item: any) => item.borrow_count);
 
-    const labels = borrowedBooks.map(book => book.name);
-    const counts = borrowedBooks.map(book => book.count);
-
-    const barCanvas = document.getElementById('mostChart');
-    this.mostChart = new Chart('mostChart', {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          data: counts,
-          backgroundColor: this.getColorGradient(borrowedBooks.length),
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false // Hide the legend
-          }
-      },
-        indexAxis: 'x',
-        scales: {
-          y: {
-            ticks: {
-              stepSize: 1
+        const barCanvas = document.getElementById('mostChart');
+        this.mostChart = new Chart('mostChart', {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              data: counts,
+              backgroundColor: this.getColorGradient(data.length),
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false // Hide the legend
+              }
+            },
+            indexAxis: 'x',
+            scales: {
+              y: {
+                ticks: {
+                  stepSize: 1
+                }
+              }
             }
-          }
-        }
+          },
+        });
       },
-    });
+      (error) => {
+        console.error('Error fetching most borrowed books:', error);
+      }
+    );
   }
 
   getColorGradient(numBars: number): string[] {
@@ -90,7 +86,9 @@ export class MostComponent implements OnInit{
     }
     return gradient;
   }
+
   onDepartmentChange(): void {
     this.selectedSecondFilter = '';
   }
 }
+
