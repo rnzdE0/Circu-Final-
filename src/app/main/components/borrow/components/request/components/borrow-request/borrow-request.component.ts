@@ -179,10 +179,10 @@ export class BorrowRequestComponent implements OnInit {
           });
         },
         error => {
-          console.error('Form submission error', error);
+          console.error('Book is not available', error);
           Swal.fire({
-            title: 'Error',
-            text: 'There was an error submitting the form. Please try again.',
+            title: 'Book is Unavailable',
+            text: 'The book you want to borrow is not available.',
             icon: 'error',
             confirmButtonColor: '#31A463'
           });

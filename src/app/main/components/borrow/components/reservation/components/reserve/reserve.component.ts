@@ -3,7 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ReservationPopupComponent } from '../reservation-popup/reservation-popup.component';
 import { DeleteComponent } from '../delete/delete.component';
 import { AuthService } from '../../../../../../../services/auth.service';
-import { ReservationList } from './reserve-list.model';
+import { OnlineList, ReservationList } from './reserve-list.model';
+import { PushComponent } from '../push/push.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reserve',
@@ -26,6 +28,9 @@ export class ReserveComponent {
 
   reservationList: any[] = [];
   elements: any;
+  material: any;
+  onlineList: any;
+
 
   ngOnInit():void{
     this.fetchReserveList();
@@ -44,12 +49,61 @@ export class ReserveComponent {
     );
   }
 
+  fetchOnlineList(): void {
+    this.authService.getOnlineList().subscribe(
+      (data: any) => {
+        console.log('Received data from reservationlist:', data);
+        console.log('Type of data:', typeof data);
+        this.onlineList = data as OnlineList[];
+      },
+      (error) => {
+        console.error('Error fetching users:', error);
+      }
+    );
+  }
+
   onDepartmentChange(): void {
     this.selectedProgram = '';
   }
   constructor(private dialog : MatDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
+
+  redirectToListPage() {
+    this.router.navigate(['main/borrow/reservation/reserve']); 
+  }
+
+  // push() {
+  //   this.dialog.open(PushComponent, {
+  //     width: '55%',
+  //     height: '760px',
+  //   })
+  // }
+
+  push(data: any) {
+    this.Openpopup(data, 'push', PushComponent);
+  }
+
+  Openpopup(id: number, title: any, component:any) {
+    var _popup = this.dialog.open(component, {
+      width: '400px',
+      height: '250px',
+      enterAnimationDuration: '100ms',
+      exitAnimationDuration: '100ms',
+      data: id
+    });
+    _popup.afterClosed().subscribe(result => {
+      this.redirectToListPage();
+      if(result === 'Changed Data') {
+        this.fetchReserveList()
+      }
+    });
+  }
+  getData() {
+    throw new Error('Method not implemented.');
+  }
+
 
   openDialog() {
     this.dialog.open(ReservationPopupComponent, {

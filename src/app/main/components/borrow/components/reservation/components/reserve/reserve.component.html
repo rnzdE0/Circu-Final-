@@ -100,12 +100,25 @@
                                 <!-- Queue or Pickup -->
                                 <td>1</td>
                                 <td>
-                                  <button class="edit" (click)="openDialog()">
-                                    <i class="bx bxs-edit"></i>
-                                  </button>
-                                  <button class="delete" (click)="deleteDialog()">
-                                    <i class="bx bx-archive" ></i>
+                                    <button class="returned" (click)="push(material.id)">
+                                      <i class="bx bx-check" ></i>
                                     </button>
+                                    <button class="delete" (click)="deleteDialog()">
+                                      <i class="bx bx-archive" ></i>
+                                    </button>
+                                    <button class="edit">
+                                      <i class="bx bxs-edit" (click)="openDialog()"></i>
+                                    </button>
+
+                                    <!-- <button class="returned" (click)="pushDialog(material.id)">
+                                      <i class="bx bx-check" ></i>
+                                    </button>
+                                    <button class="delete" (click)="deleteDialog()">
+                                      <i class="bx bx-archive" ></i>
+                                    </button>
+                                    <button class="edit" (click)="openDialog(material.id)">
+                                      <i class="bx bxs-edit" ></i>
+                                    </button> -->
                                 </td>
                                 
                         
@@ -147,18 +160,29 @@
                             </thead>
                             <tbody>
                               <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <tr  *ngFor="let material of onlineList">
+                                  <!-- student name -->
+                                  <td>{{material.user.role}}</td>
+                                  <!-- student id -->
+                                  <td>{{material.user_id}}</td>
+                                  <!-- department id -->
+                                  <td>{{material.user.program.department}}</td>
+                                  <!-- accession id -->
+                                  <td>{{material.book_id}}</td>
+                                  <!-- category -->
+                                  <td>{{material.user.program.category}}</td>
+
+                                  <td>1</td>
+                                  
                                 <td>
-                                  <button class="edit" (click)="openDialog()">
-                                    <i class="bx bxs-edit"></i>
-                                  </button>
-                                  <button class="delete" (click)="deleteDialog()">
-                                    <i class="bx bx-archive" ></i>
+                                    <button class="returned" (click)="push(material.id)">
+                                      <i class="bx bx-check" ></i>
+                                    </button>
+                                    <button class="delete" (click)="deleteDialog()">
+                                      <i class="bx bx-archive" ></i>
+                                    </button>
+                                    <button class="edit">
+                                      <i class="bx bxs-edit" (click)="openDialog()"></i>
                                     </button>
                                 </td>
                                 

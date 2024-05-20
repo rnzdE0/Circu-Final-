@@ -320,14 +320,14 @@ h1 {
     width: 30px;
     margin-left: -15px;
     margin-right: auto;
-    background-color: #31A463;
+    background-color: #808080;
     border-style: none;
     cursor: pointer;
     border-radius: 10px;
     height: 30px;
     color: white;
     position: relative;
-    margin-left: 1px;
+    margin-left: 10px;
 }
 
 .delete {
@@ -338,9 +338,22 @@ h1 {
     border-style: none;
     cursor: pointer;
     border-radius: 10px;
+    color: white;
     height: 30px;
     margin-left: 10px;
+}
+
+.returned {
+    width: 30px;
+    margin-left: -15px;
+    margin-right: auto;
+    background-color: #31A463;
+    border-style: none;
+    cursor: pointer;
+    border-radius: 10px;
     color: white;
+    height: 30px;
+    margin-left: 1px;
 }
 
 

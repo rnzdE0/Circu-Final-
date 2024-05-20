@@ -143,43 +143,6 @@ export class ResformComponent implements OnInit {
     }
   };
 
-  // reserveSubmit() {
-  //   if (this.requestForm.valid) {
-  //     console.log(this.requestForm.value)
-  //     // 
-  //     this.mainService.post('reserve/book',this.requestForm.value).subscribe(
-  //       response => {
-  //         console.log(response)
-  //         Swal.fire({
-  //           title: 'Success',
-  //           text: 'The borrow request has been submitted successfully.',
-  //           icon: 'success',
-  //           confirmButtonColor: '#31A463'
-  //         });
-  //       },
-  //       error => {
-  //         console.error('Form submission error', error);
-  //         Swal.fire({
-  //           title: 'Error',
-  //           text: 'There was an error submitting the form. Please try again.',
-  //           icon: 'error',
-  //           confirmButtonColor: '#31A463'
-  //         });
-  //       }
-  //     );
-  //   } else {
-  //     console.log(this.requestForm.value)
-  //     Swal.fire({
-  //       title: 'Invalid Form',
-  //       text: 'Please fill out all required fields correctly.',
-  //       icon: 'error',
-  //       confirmButtonColor: '#31A463'
-  //     });
-  //   }
-  // }
-
-  
-
 
   queueSubmit() {
     if (this.requestForm.valid) {

@@ -15,14 +15,15 @@ import { MainService } from '../../../../../../../services/main.service';
 })
 export class PushPopupComponent {
 
+
   constructor(
     @Inject(MAT_DIALOG_DATA) 
     public material: any,
     private http: HttpClient,
     private ds: MainService
     ) {
-    console.log('Data received in dialog:', this.material.id);
-  }
+      console.log('Data received in dialog:', this.material);
+    }
 
   submit(id: number) {
     const url = 'return-book/'

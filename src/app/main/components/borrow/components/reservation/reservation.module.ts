@@ -7,6 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteComponent } from './components/delete/delete.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { PushComponent } from './components/push/push.component';
 
 
 
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
   declarations: [
     ReservationPopupComponent,
     ReserveComponent,
-    DeleteComponent
+    DeleteComponent,
+    PushComponent
   ],
   imports: [
     CommonModule,
