@@ -16,7 +16,8 @@ export class AuthService {
   ) { }
   
 //  private url:string = 'http://127.0.0.1:8000/api/';
-  private url:string = 'http://192.168.68.124:8000/api/';
+//private url:string = 'http://192.168.68.3:8000/api/';
+private url:string = 'http://192.168.10.122:8000/api/';
 
 
   public login(formData: FormData) {
@@ -56,6 +57,10 @@ export class AuthService {
   public getBorrowList(){
     return this.http.get(this.url + 'borrow-list',  {headers: this.headers.get()})
   }
+
+  // public getReserveList(){
+  //   return this.http.get(this.url + 'reservation-list/walk-in', {headers: this.headers.get()})
+  // }
 
   public getReserveList(){
     return this.http.get(this.url + 'reservation-list', {headers: this.headers.get()})

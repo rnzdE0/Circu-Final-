@@ -54,7 +54,7 @@ export class LoginComponent implements AfterViewInit {
           });
           Toast.fire({
             icon: 'success',
-            title: 'Signed in successfully'
+            title: 'Signed in successfully!'
           });
         },
         error: (err: any) => {
