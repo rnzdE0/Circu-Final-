@@ -29,7 +29,7 @@ export class PushPopupComponent {
     const url = 'return-book/'
 
     // Assuming you use Angular HttpClient to send PUT request to Laravel backend
-    this.ds.put( url+this.material ,{}).subscribe(
+    this.ds.put( url+this.material.id ,{}).subscribe(
       (response) => {
         console.log('Book marked as returned:', response);
         // Optionally handle success response

@@ -11,16 +11,16 @@
 
         <form id="edit-form" enctype="multipart/form-data">
         <div class="users">
-            <div class="group1">
+            <div class="group1" *ngIf="borrow">
               <!-- Accession id -->
                 <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input" >
+                  <input required="" type="text" name="text" autocomplete="off" class="input" [value]="material.book_id" >
                   <label class="user-label">Accession Number</label>
                 </div>
 
                 <!-- book title -->
                 <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input" [value]="material.title || ''" disabled>
+                  <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.title" disabled>
                   <label class="user-label">Title</label>
                 </div>
 
@@ -36,13 +36,13 @@
 
               <!-- Book Location -->
                 <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input2" [value]="material.location || ''"   disabled>
+                  <input required="" type="text" name="text" autocomplete="off" class="input2" [value]="book.location"   disabled>
                   <label class="user-label">Location</label>
                 </div>
 
               <!-- book author -->
                 <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input3" [value]="material.author || ''"   disabled>
+                  <input required="" type="text" name="text" autocomplete="off" class="input3" [value]="book.author"   disabled>
                   <label class="user-label">Author</label>
                 </div>
             </div>
@@ -53,17 +53,17 @@
               <div class="group1">
                 <!-- user id -->
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input" >
+                    <input required="" type="text" name="text" autocomplete="off" class="input" [value]="material.user_id"  >
                     <label class="user-label">Id Number</label>
                   </div>
                   <!-- name -->
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input" [value]="material.name || ''"  disabled>
+                    <input required="" type="text" name="text" autocomplete="off" class="input" [value]="user.name"  disabled>
                     <label class="user-label">Name</label>
                   </div>
                   <!-- user gender -->
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input2" [value]="material.gender || ''"  disabled>
+                    <input required="" type="text" name="text" autocomplete="off" class="input2" [value]="user.gender"  disabled>
                     <label class="booklabel2">Gender</label>
                   </div>
                   
@@ -73,12 +73,12 @@
               <div class="group2">
                 <!-- patron type (staff/student/faculty/.etc) -->
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input1" [value]="material.role || ''"  disabled>
+                    <input required="" type="text" name="text" autocomplete="off" class="input1" [value]="user.role"  disabled>
                     <label class="user-label">Patron type</label>
                   </div>
                   <!-- department id -->
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input1" [value]="material.department || ''" disabled>
+                    <input required="" type="text" name="text" autocomplete="off" class="input1" [value]="user.program" disabled>
                     <label class="user-label">Department</label>
                   </div>
                   
@@ -96,7 +96,7 @@
               </div>
               <!-- frontdesk position -->
               <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input1" disabled>
+                <input required="" type="text" name="text" autocomplete="off" class="input1" >
                 <label class="user-label">Position</label>
               </div>
           </div>
@@ -110,16 +110,16 @@
                   document.getElementsByName("date")[0].setAttribute('min', today);
             </script>
               <div class="input-group">
-                <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-04-18" [value]="material.borrow_date || ''">
+                <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-04-18" [value]="material.borrow_date">
                 <label class="userlabel2">Date of Request</label>
               </div>
 
               <div class="input-group">
-                <input required="" type="datetime-local" name="date" autocomplete="off" class="input" min="2024-04-18" [value]="material.borrow_expiration || ''">
+                <input required="" type="datetime-local" name="date" autocomplete="off" class="input" min="2024-04-18" [value]="material.borrow_expiration">
                 <label class="booklabel2">Due</label>
               </div>
               <div class="input-group">
-                <input required="" type="number" name="text" autocomplete="off" class="input2" placeholder="fillable" [value]="material.fine || ''">
+                <input required="" type="number" name="text" autocomplete="off" class="input2" [value]="material.fine">
                 <label class="userlabel">User Fine</label>
               </div>
           </div>
