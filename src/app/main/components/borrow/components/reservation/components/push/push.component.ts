@@ -21,30 +21,39 @@ export class PushComponent {
     console.log('Data received in dialog:', this.material);
   }
 
-  submit(id: number) {
+  submit(id:number) {
 
-    const url = 'borrow/book/';
+    const url = 'fromreserve/book/';
 
-    // Assuming this.material contains the book ID
-    const bookId = this.material; // Assuming 'id' is the property that holds the book ID
-
+    // Assuming this.material contains the necessary data
+    const { user_id, book_id, start_date, end_date} = this.material; 
+    const payload = {
+      user_id: user_id,
+      book_id: book_id, 
+      start_date: start_date,
+      end_date: end_date,
+  
+      // Add any other data you want to send here
+    };
+    console.log(this.material);
     // Use Angular HttpClient (this.ds.post) to send a POST request to your backend
-    this.ds.post(url + bookId, {}).subscribe(
+    this.ds.post(url + id, payload).subscribe(
       (response: any) => {
-        console.log('Book marked as returned:', response);
-        this.updateBookStatus(); // Show success message
+        console.log('Book borrowed successfully:', response);
+        // Optionally handle success here, e.g., show a success message
+        this.updateBookStatus();
       },
       (error: any) => {
-        console.error('Error marking book as returned:', error);
+        console.error('Error borrowing book:', error);
         // Optionally handle error here, e.g., show an error message
       }
-);
+    );
   }
 
   updateBookStatus () {
     Swal.fire({
       width: 300,
-      title: "Book Returned!",
+      title: "Book Borrowed!",
       icon: "success",
       confirmButtonColor: '#31A463',
       customClass: {

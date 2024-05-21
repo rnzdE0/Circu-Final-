@@ -26,8 +26,11 @@ export class BorrowRequestComponent implements OnInit {
     name: '',
     gender: '',
     department: '',
-    count:0
-  }
+    count:0,
+    program: {
+      department: ''
+    }
+  } 
   book = {
     accession: '',
     title: '',
@@ -123,8 +126,9 @@ export class BorrowRequestComponent implements OnInit {
       next: (res: any) => {
         this.user.id=res.id;
         this.user.name=res.first_name+' '+res.last_name;
-        this.user.department=res.program.department;
+        this.user.program=res.program.program;
         this.user.gender=res.gender;
+        this.user.department=res.department;
         console.log(res)
       }
     })

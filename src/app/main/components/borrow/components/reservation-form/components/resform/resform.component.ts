@@ -20,7 +20,10 @@ export class ResformComponent implements OnInit {
     id: '',
     name: '',
     gender: '',
-    department: ''
+    department: '',
+    program: {
+      department: ''
+    }
   }
   book = {
     accession: '',
@@ -60,7 +63,7 @@ export class ResformComponent implements OnInit {
       next: (res: any) => {
         this.user.id=res.id;
         this.user.name=res.first_name+' '+res.last_name;
-        this.user.department=res.program.department;
+        this.user.program=res.program.program;
         this.user.gender=res.gender;
         console.log(res)
       }
