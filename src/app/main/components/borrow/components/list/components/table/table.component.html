@@ -60,8 +60,8 @@
       <tr *ngFor="let material of borrowMaterials">
         <td>{{material.user.role}}</td>
         <td>{{material.user.id}}</td>
-        <td>{{material.user.username}}</td>
-        <td>{{material.user.department}}</td>
+        <td>{{material.user.first_name}} {{material.user.last_name}}</td>
+        <td>{{material.user.program.department.department}}</td>
         <td>{{material.user.program.program}}</td>
         <td>{{material.book_id}}</td>
         <td>{{material.status}}</td>

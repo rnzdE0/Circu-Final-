@@ -126,7 +126,7 @@ export class BorrowRequestComponent implements OnInit {
       next: (res: any) => {
         this.user.id=res.id;
         this.user.name=res.first_name+' '+res.last_name;
-        this.user.program=res.program.program;
+        this.user.program.department=res.program.program;
         this.user.gender=res.gender;
         this.user.department=res.department;
         console.log(res)
