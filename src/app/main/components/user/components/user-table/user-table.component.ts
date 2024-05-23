@@ -27,6 +27,7 @@ export class UserTableComponent implements OnInit{
 
   userList: any;
   user: any;
+  dataSource: any;
   
 
   constructor(private dialog : MatDialog,
@@ -36,6 +37,44 @@ export class UserTableComponent implements OnInit{
   ngOnInit(): void {
     this.fetchUsers();
   }
+  applyFilter(event: Event, type: string): void {
+    const search = (document.getElementById('search') as HTMLInputElement).value;
+
+    const idFilterPredicate = (data: User, search: string): boolean => {
+      return data.id.toString().toLowerCase().trim().includes(search.toLowerCase().trim());
+    };
+
+    const authorFilterPredicate = (data: User, search: string): boolean => {
+      return data.first_name.toLowerCase().trim().includes(search.toLowerCase().trim());
+    };
+
+    const programFilterPredicate = (data: User, selectProgram: string): boolean => {
+      return data.program.program === selectProgram || selectProgram === '';
+    };
+
+    const filterPredicate = (data: User): boolean => {
+      return (idFilterPredicate(data, search) || authorFilterPredicate(data, search)) &&
+        programFilterPredicate(data, this.selectedProgram);
+    };
+
+    this.dataSource.filterPredicate = filterPredicate;
+    this.dataSource.filter = search;  // This will trigger the filtering logic
+    
+  }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
   fetchUsers(): void {
     this.authService.getUsers().subscribe(
@@ -49,6 +88,8 @@ export class UserTableComponent implements OnInit{
       }
     );
   }
+
+
 
   onDepartmentChange(): void {
     this.selectedProgram = '';

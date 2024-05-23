@@ -9,12 +9,12 @@
 
          <!-- Search bar -->
     <div class="search">
-      <input placeholder="Search..." type="text">
-      <button type="submit"><i class="bx bx-search" ></i></button>
+      <input type="text" placeholder="Search..." name="search" id="search" (keyup)="applyFilter($event, 'search')">
+      <button type="submit" disabled><i class="bx bx-search" ></i></button>
     </div>
 
     <!-- <p class="list">User List</p> -->
-    <div class="filter-container">
+    <!-- <div class="filter-container">
       <div class="filter-options">
         <div class="filter-group">
           <label for="department">Department:</label>
@@ -42,7 +42,7 @@
           </select>
         </div>
       </div>
-    </div>
+    </div> -->
       
 
       <!-- table -->

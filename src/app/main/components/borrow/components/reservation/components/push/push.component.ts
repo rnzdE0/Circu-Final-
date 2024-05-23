@@ -26,12 +26,13 @@ export class PushComponent {
     const url = 'fromreserve/book/';
 
     // Assuming this.material contains the necessary data
-    const { user_id, book_id, start_date, end_date} = this.material; 
+    const { user_id, book_id, start_date, end_date, fine} = this.material; 
     const payload = {
       user_id: user_id,
       book_id: book_id, 
       start_date: start_date,
       end_date: end_date,
+      fine: fine
   
       // Add any other data you want to send here
     };

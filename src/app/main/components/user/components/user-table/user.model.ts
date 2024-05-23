@@ -1,4 +1,5 @@
 export interface User {
+    program: any;
     id: number;
     username: string;
     role: string;
