@@ -5,11 +5,16 @@ body{
 }
 .table1, .table2{
     display: flex;
+    font-weight: 400px;
     flex-direction: row;
 }
 .table3{
     padding-bottom: 23px;
     display: inline-block;
+}
+.table span{
+    font-weight: 100px;
+    color: #BE2E2E;
 }
 .table1 p {
     margin-right: 179px; /* Adjust the margin as needed for spacing between elements */
@@ -17,6 +22,7 @@ body{
     margin-top: 20px;
     font-size: 20px;
     font-weight: bold;
+
 }
 
 .table2 p {

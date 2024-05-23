@@ -9,10 +9,11 @@ import { FormsModule } from '@angular/forms';
 
 
 
+
 @NgModule({
   declarations: [
     UserTableComponent,
-    UserPopupComponent
+    UserPopupComponent,
   ],
   imports: [
     CommonModule,

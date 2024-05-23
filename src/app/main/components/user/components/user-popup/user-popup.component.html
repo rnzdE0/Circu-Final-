@@ -1,157 +1,60 @@
 <body>
-  <div class="header">
-    <p class="title">User Details</p>
-  </div>
-      
-  <div class="table1">
-    <p>Name:</p>
-    <p>Department:</p>
-    <p>Books Allowed:</p>
-  </div>
-
-  <div class="table2">
-    <p>Id Number:</p>
-    <p>Patron Type:</p>
-  </div>
-
-      <div class="form">
-        <div class="scrollable-table-container">
-        <table class="content-table">
-          <thead class="table-head">
-            <tr>
-              <th>Date Returned</th>
-              <th>Title</th>
-              <th>Accession Number</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 1</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-              
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 3</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 4</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 5</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 6</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 5</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 5</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 5</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 5</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 5</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 5</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 5</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 5</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 5</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
-
-            <tr>
-              <td>January 1, 2001</td>
-              <td>Title 5</td>
-              <td>1029</td>
-              <td>Pending</td>
-            </tr>
+  
+      <div class="header">
+        <p class="title">User Details</p>
+      </div>
           
-          </tbody>
-        </table>
+      <div class="table1">
+        <p>Name: {{user.first_name}} {{user.last_name}}</p>
+        <p>Department: {{user.program.program}}</p>
+        <p>Books Allowed:</p>
       </div>
+
+      <div class="table2">
+        <p><span class="contento">Id Number:</span> {{user.id}}</p>
+        <p>Patron Type: {{user.position}}</p>
       </div>
-        
-          <!-- <div class="reason">
-            <div class="group1">
-                <div class="input-group">
-                  <input required="" type="time" name="text" autocomplete="off" class="input" >
-                  <textarea class="input-reason" name="text" id="" cols="30" rows="10" placeholder=""></textarea>
-                  <label class="userlabel">Reason</label>
-                </div>
-            </div>
-          </div> -->
-         
-          <div class="table3">
-            <p>Successful Returns:</p>
-            <p>Total Fine:</p>
+
+          <div class="form">
+            <div class="scrollable-table-container">
+            <table class="content-table">
+              <thead class="table-head">
+                <tr>
+                  <th>Date Returned</th>
+                  <th>Title</th>
+                  <th>Accession Number</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>January 1, 2001</td>
+                  <td>Title 1</td>
+                  <td>1029</td>
+                  <td>Pending</td>
+                </tr>
+                
+              </tbody>
+            </table>
           </div>
+          </div>
+            
+              <!-- <div class="reason">
+                <div class="group1">
+                    <div class="input-group">
+                      <input required="" type="time" name="text" autocomplete="off" class="input" >
+                      <textarea class="input-reason" name="text" id="" cols="30" rows="10" placeholder=""></textarea>
+                      <label class="userlabel">Reason</label>
+                    </div>
+                </div>
+              </div> -->
+            
+              <div class="table3">
+                <p>Successful Returns:</p>
+                <p>Total burat:</p>
+              </div>
+
+  
 
           <div class="buttons">
             <a class="close" matDialogClose>Close</a>
@@ -159,7 +62,6 @@
             <!-- <a class="list" routerLink="/sample">List</a> -->            
             <!-- <a class="save" routerLink="">Save</a> -->
             <!-- <a class="reserve">Returned</a> -->
-
-
           </div>
+  
 </body>

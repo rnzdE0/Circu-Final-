@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../../../../services/auth.service';
 import { UserPopupComponent } from '../user-popup/user-popup.component';
+import { Router } from '@angular/router';
 
 import { User } from './user.model';
 
@@ -24,10 +25,13 @@ export class UserTableComponent implements OnInit{
     CAHS: ['BSN', 'BSM', 'GM']
   };
 
-  users: any[] = [];
+  userList: any;
+  user: any;
+  
 
   constructor(private dialog : MatDialog,
-  private authService: AuthService
+  private authService: AuthService,
+  private router: Router
   ) {}
   ngOnInit(): void {
     this.fetchUsers();
@@ -38,7 +42,7 @@ export class UserTableComponent implements OnInit{
       (data: any) => {
         console.log('Received data from backend:', data);
         console.log('Type of data:', typeof data);
-        this.users = data as User[]; // Assign the fetched user data to the users array
+        this.userList = data as User[]; // Assign the fetched user data to the users array
       },
       (error) => {
         console.error('Error fetching users:', error);
@@ -49,12 +53,38 @@ export class UserTableComponent implements OnInit{
   onDepartmentChange(): void {
     this.selectedProgram = '';
   }
-  openUser() {
-    this.dialog.open(UserPopupComponent, {
+
+  redirectToListPage() {
+    this.router.navigate(['main/returned/user/user-table'])
+  }
+
+  openUser(data: any) {
+    this.UserPopup( data, 'user pop', UserPopupComponent)
+  }
+
+  UserPopup(id: number, title: any, component: any) {
+    var _popup = this.dialog.open(component, {
       width: '55%',
-      height: '565px',
-    })
-  };
+      height: '760px',
+      enterAnimationDuration: '100ms',
+      exitAnimationDuration: '100ms',
+      data: id
+    });
+    _popup.afterClosed().subscribe(result => {
+      this.redirectToListPage();
+      if(result === 'Changed Data') {
+        this.fetchUsers()
+      }
+    });
+  }
+ 
+
+  // openUser() {
+  //   this.dialog.open(UserPopupComponent, {
+  //     width: '55%',
+  //     height: '565px',
+  //   })
+  // };
 
   // deleteDialog() {
   //   this.dialog.open(DeletePopupComponent, {
