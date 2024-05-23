@@ -12,7 +12,7 @@ export class DeletePopupComponent {
   submit(){
     Swal.fire({
       width: 300,
-      title: "Archived!",
+      title: "Deleted!",
       icon: "success",
       confirmButtonColor: '#31A463',
       iconColor: 'red',
