@@ -3,16 +3,6 @@ body{
     width: 100%;
 }
 
-.title {
-    color: #444444;
-    font-family: 'montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 60px;
-    margin-top: 20px;
-    margin-left: 25px;
-    margin-bottom: 20px;
-}
-
 .container {
     border-radius: 5px;
     padding: 20px;
@@ -28,144 +18,6 @@ body{
     border: 0.5px solid grey;
 }
 
-
-// filter
-
-
-// dropdown
-.filter {
-    // display: flex;
-    // align-items: center;
-    // justify-content: space-between;
-    // margin-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 25px;
-}
-
-.table-filters {
-    display: inline;
-    align-items: center;
-    gap: 10px;
-    margin-left: -10px;
-    margin-top: 30px;
-    border: black;
-    border-radius: 10px;
-    margin-bottom: -40px;
-    font-family: 'montserrat', sans-serif;
-}
-
-.table-filters2{
-    display: inline;
-    align-items: center;
-    gap: 10px;
-    margin-left: -30px;
-    margin-top: 30px;
-    border: black;
-    border-radius: 10px;
-    margin-bottom: -40px;
-    font-family: 'montserrat', sans-serif;
-}
-
-.table-filters3{
-    // display: inline;
-    align-items: center;
-    gap: 10px;
-    margin-left: 450px;
-    margin-top: -30px;
-    border: black;
-    border-radius: 10px;
-    margin-bottom: -40px;
-    font-family: 'montserrat', sans-serif;
-}
-
-.table-filters4{
-    // display: inline;
-    align-items: center;
-    gap: 10px;
-    margin-left: 472px;
-    padding-top: 40px;
-    border: black;
-    border-radius: 10px;
-    margin-bottom: -100px;
-    font-family: 'montserrat', sans-serif;
-}
-
-
-
-.table-filters, .table-filters2, .table-filters3  a {
-    color: black;
-    font-size: 16px;
-    padding: 12px 16px;
-    font-weight: 500;
-    margin-right: 1em;
-    display: inline-block;
-    
-}
-
-.table-filters a:hover {
-    text-decoration: none;
-}
-
-.table-filters select {
-    background: #fff;
-    font-family: 'montserrat';
-    padding: 5px;
-    font-size: 14px;
-    font-weight: 500;
-    width: 200px;
-    height: 2.5em;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 10px;
-    font-family: 'montserrat', sans-serif;
-}
-
-.table-filters2 select {
-    background: #fff;
-    font-family: 'montserrat';
-    padding: 5px;
-    font-size: 14px;
-    font-weight: 500;
-    width: 200px;
-    height: 2.5em;
-    border: 1px solid black;
-    border-radius: 10px;
-    font-family: 'montserrat', sans-serif;
-}
-
-.table-filters3 input {
-    background: #fff;
-    font-family: 'montserrat';
-    // padding: 1px;
-    font-size: 14px;
-    font-weight: 500;
-    width: 200px;
-    height: 2.5em;
-    border: 1px solid black;
-    border-radius: 10px;
-    font-family: 'montserrat', sans-serif;
-}
-
-.table-filters4 input {
-    background: #fff;
-    font-family: 'montserrat';
-    // padding: 1px;
-    font-size: 14px;
-    font-weight: 500;
-    width: 200px;
-    height: 2.5em;
-    border: 1px solid black;
-    border-radius: 10px;
-    font-family: 'montserrat', sans-serif;
-}
-
-
-.table-filters option {
-    padding: 30px;
-    margin: 30px;
-}
-
-
-
 i{
     color: white;
 }
@@ -174,14 +26,15 @@ i{
     // display: inline-block;
     position: relative;
     float: right;
-    margin-right: 10%;
+    margin-right: 85px;
     margin-bottom: -20px;
-    margin-top: 30px;
+    margin-top: -50px;
     width: 200px;
   }
 
 .search input[type="text"] {
     width: 260px;
+    font-size: 15px;
     padding: 10px;
     border: none;
     border-style: groove;
@@ -200,7 +53,8 @@ i{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
-    top: -41px;
+    top: -43px;
+    font-size: 15px;
     right: -225px;
     transition: .9s ease;
 }
@@ -210,6 +64,16 @@ i{
     transform: scale(1.1);
     color: rgb(255, 255, 255);
     background-color: #31A463;
+    font-size: 15px;
+}
+
+.title {
+    color: #444444;
+    font-family: 'montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 40px;
+    margin-top: 30px;
 }
   
 
@@ -221,6 +85,7 @@ i{
     background-color: #E1E1E1;
     font-family: 'montserrat', sans-serif;
     table-layout: fixed;
+    border-collapse: collapse;
 }
 
 .table-head {

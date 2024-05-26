@@ -62,7 +62,7 @@
       <tbody>
         <tr  *ngFor="let user of userList">
           <td>{{ user.first_name }} {{ user.last_name }}</td>
-          <td>{{ user.role }}</td>
+          <td>{{ user.patron.patron }}</td>
           <td>{{ user.gender }}</td>
           <td>{{ user.id }}</td>
           <td>{{ user.program.department.department }}</td>
@@ -72,9 +72,9 @@
             <button class="edit" (click)="openUser(user)">
               <i class="bx bxs-edit" ></i>
             </button>
-            <button class="delete" >
+            <!-- <button class="delete" >
               <i class="bx bx-archive" ></i>
-            </button>
+            </button> -->
             
             </td>
           </tr>

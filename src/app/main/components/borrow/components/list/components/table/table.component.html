@@ -58,7 +58,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let material of borrowMaterials">
-        <td>{{material.user.role}}</td>
+        <td>{{material.user.patron.patron}}</td>
         <td>{{material.user.id}}</td>
         <td>{{material.user.first_name}} {{material.user.last_name}}</td>
         <td>{{material.user.program.department.department}}</td>

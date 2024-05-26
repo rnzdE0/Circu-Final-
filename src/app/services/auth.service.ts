@@ -16,7 +16,9 @@ export class AuthService {
   ) { }
 
 // ruter ni sir ip
- private url:string = 'http://127.0.0.1:8000/api/';
+//  private url:string = 'http://127.0.0.1:8000/api/';
+
+ private url:string = 'http://192.168.68.124:8000/api/';
 
 // wifi ni brent
 //private url:string = 'http://192.168.68.3:8000/api/';
@@ -32,12 +34,13 @@ export class AuthService {
 
 
   public login(formData: FormData) {
-    return this.http.post(this.url+'login/circulation', formData).pipe(
+    return this.http.post(this.url+'login', formData).pipe(
       tap((res: any) => {
         if(res.token) {
+          console.log(res)
           sessionStorage.setItem('auth-token', res.token);
           sessionStorage.setItem('name', res.displayName);
-          sessionStorage.setItem('role', res.role);
+          sessionStorage.setItem('role', res.position);
 
           let time = new Date();
           time.setMinutes(time.getMinutes() + 55);

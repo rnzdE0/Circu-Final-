@@ -4,13 +4,14 @@ body{
 }
 
 .title {
-    color: #444444;
-    font-family: 'poppins', sans-serif;
-    font-weight: 700;
-    font-size: 100px;
-    margin-top: 80px;
-    margin-left: 67px;
-    margin-bottom: 20px;
+  color: #444444;
+  font-family: 'poppins', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 45px;
+  margin-top: 80px;
+  margin-left: 75px;
+  margin-bottom: 20px;
 }
 .mostChart {
     max-width: 100%; /* Ensure the chart fits within the container */
@@ -330,19 +331,20 @@ th {
     height: 400px; /* Allow the canvas to adjust its height */
   }
   
-//   filter style
-  .filter-container {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-  }
+// //   filter style
+//   .filter-container {
+//     border: 1px solid #ccc;
+//     border-radius: 5px;
+//     padding: 10px;
+//     background-color: #f9f9f9;
+//     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+//     display: inline-block;
+//   }
   
 
   .filter-options {
     display: inline-block;
+    font-size: 16px;
   }
   
   .filter-group {

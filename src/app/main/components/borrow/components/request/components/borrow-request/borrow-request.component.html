@@ -64,7 +64,7 @@
 
                       <!-- Gender -->
                         <div class="input-group">
-                          <input type="text" name="text" autocomplete="off" class="input2" [value]="user.gender || ''"  disabled>
+                          <input type="text" name="text" autocomplete="off" class="input2" [value]=" user.gender == '1' ? 'Male' : user.gender == '0' ? 'Female' : 'N/A' " disabled>
                           <label class="book-label">Gender</label>
                         </div>
                       </div>
@@ -72,11 +72,19 @@
                     <div class="group2">
                       
                       <!-- patron type (student/faculty/staff/.etc) -->
-                      <div class="input-group">
+                      <!-- <div class="input-group">
                         <input required="" type="text" name="text" autocomplete="off" class="input3" [value]=" " >
                         <label class="book-label">Patron</label>
+                      </div> -->
+                      
+                      <div class="input-group">
+                          <select name="text" (change)="changePatron($event)" class="input31">
+                              <option *ngFor="let patron of patrons" [value]="patron.id">{{ patron.patron }}</option>
+                          </select>
+                          <label class="patron-label">Patron</label>
                       </div>
 
+                    
                       <!-- Department id -->
                           <div class="input-group">
                             <input type="text" name="text" autocomplete="off" class="input3" [value]="user.program.department || ''" disabled>
@@ -128,7 +136,7 @@
                     <label class="booklabel">Due for Borrow</label>
                   </div>
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input2"  required formControlName="fine" >
+                    <input required="" type="text" name="text" autocomplete="off" class="input2"  required formControlName="fine" [value]="fine" >
                     <label class="book-label">User Fine</label>
                   </div>
               </div>

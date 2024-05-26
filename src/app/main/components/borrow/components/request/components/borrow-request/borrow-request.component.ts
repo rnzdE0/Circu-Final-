@@ -38,6 +38,8 @@ export class BorrowRequestComponent implements OnInit {
     location: ''
   }
   admin: any;
+  patrons: any;
+  fine = 0;
 
   constructor(
     private dialog : MatDialog,
@@ -58,8 +60,24 @@ export class BorrowRequestComponent implements OnInit {
  
   ngOnInit(): void {
   //  this.bookSubmit();
+
+    this.ds.get('circulation/getpatrons').subscribe({
+      next: (res: any) => {
+        this.patrons = res;
+        this.borrowForm.get('fine')?.setValue(res[0].fine);
+      }
+    })
   }
 
+  changePatron(event: Event) {
+    let value = (event.target as HTMLInputElement).value;
+    for(const patron of this.patrons) {
+      if(patron.id == value) {
+        this.borrowForm.get('fine')?.setValue(patron.fine);
+        break;
+      }
+    }
+  }
 
   openDialog() {
     this.dialog.open(BorrowReserveComponent, {
