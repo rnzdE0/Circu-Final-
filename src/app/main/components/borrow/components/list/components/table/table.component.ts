@@ -7,6 +7,7 @@ import { PushPopupComponent } from '../push-popup/push-popup.component';
 import { AuthService } from '../../../../../../../services/auth.service';
 import { BorrowMaterial } from './borrow-material.model';
 import { Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
@@ -28,9 +29,24 @@ export class TableComponent implements OnInit {
     CAHS: ['BSN', 'BSM', 'GM']
   };
 
+  searchTerm: string = '';
+  filteredMaterials = [];
   borrowMaterials: any;
   dataSource: any=null;
   material: any;
+
+   // Variables for paginator
+   totalLength = 100; // total number of items
+   pageSize = 10; // default page size
+   pageEvent: PageEvent = new PageEvent;
+
+   handlePageEvent(event: PageEvent) {
+    this.pageEvent = event;
+    console.log('Current page index: ', event.pageIndex);
+    console.log('Page size: ', event.pageSize);
+    // You can add more logic here to fetch data based on the current page
+  }
+  
 
   // filter
 
@@ -86,28 +102,10 @@ export class TableComponent implements OnInit {
   //   };
   // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   ngOnInit(): void {
     this.fetchBorrowList();
+    this.filteredMaterials = this.borrowMaterials;
+
   }
 
   fetchBorrowList(): void {
@@ -122,6 +120,38 @@ export class TableComponent implements OnInit {
       }
     );
   }
+  applySearch(): void {
+    const searchTermUpper = this.searchTerm.toUpperCase();
+    console.log('hello')
+
+    this.filteredMaterials = this.borrowMaterials.filter((material: { user: { patron: { patron: string; }; id: string; first_name: any; last_name: any; program: { department: { department: string; }; program: string; }; }; book_id: string; status: string; fine: string; }) => {
+      return (
+        material.user.patron.patron.toUpperCase().includes(searchTermUpper) ||
+        material.user.id.toUpperCase().includes(searchTermUpper) ||
+        `${material.user.first_name} ${material.user.last_name}`.toUpperCase().includes(searchTermUpper) ||
+        material.user.program.department.department.toUpperCase().includes(searchTermUpper) ||
+        material.user.program.program.toUpperCase().includes(searchTermUpper) ||
+        material.book_id.toUpperCase().includes(searchTermUpper) ||
+        material.status.toUpperCase().includes(searchTermUpper) ||
+        material.fine.toUpperCase().includes(searchTermUpper)
+      );
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 elements: any;
    
 
@@ -210,3 +240,7 @@ elements: any;
   //   this.applyfilter();
   // }
 }
+
+// for search
+
+

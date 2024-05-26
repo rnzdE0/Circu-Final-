@@ -119,3 +119,27 @@ export class ReserveComponent {
     })
   };
 }
+
+// for testing book availability
+
+// export class ReservationListComponent implements OnInit {
+//   reservationList: Reservation[] = [];
+
+//   constructor(private reservationService: ReservationService) { }
+
+//   ngOnInit(): void {
+//     this.getReservations();
+//   }
+
+//   getReservations(): void {
+//     this.reservationService.getReservations()
+//       .subscribe(
+//         (reservations: Reservation[]) => {
+//           this.reservationList = reservations;
+//         },
+//         (error) => {
+//           console.error('Error fetching reservations', error);
+//         }
+//       );
+//   }
+// }

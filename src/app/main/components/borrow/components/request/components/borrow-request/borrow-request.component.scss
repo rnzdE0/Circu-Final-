@@ -11,7 +11,7 @@ body {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 45px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 25px;
     margin-bottom: 20px;
 }
@@ -24,13 +24,12 @@ body {
     border-radius: 5px;
     padding: 20px;
     padding-top: 25px;
-    padding-bottom: 25px;
+    // padding-bottom: 50px;
     margin-top: 50px;
     background: white;
     margin-left: 67px;
     width: 90%;
-    height: 770px;
-    margin-bottom: 30px;
+    height: 730px;
     box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
     border: 0.5px solid grey;
 }
@@ -46,21 +45,21 @@ body {
 .materials {
     padding-left: 21px;
     // position: absolute;
-    margin-top: 34px;
+    margin-top: 26px;
     
 }
 
 .staffs {
     padding-left: 21px;
     // position: absolute;
-    margin-top: 44px;
+    margin-top: 31px;
    
 }
 
 .date {
     // position: absolute;
     padding-left: 21px;
-    margin-top: 46px;
+    margin-top: 31px;
 }
 
 .group1, .group3{
@@ -89,7 +88,7 @@ body {
 }
 
 .material {
-    margin-top: 7px;
+    margin-top: 4px;
     // padding-top: 10%;
     padding-left: 30px;
     margin-bottom: -15px;
@@ -101,7 +100,7 @@ body {
 }
 
 .staff {
-    margin-top: 12px;
+    margin-top: 9px;
     // padding-top: 20%;
     padding-left: 30px;
     margin-bottom: -15px;
@@ -113,7 +112,7 @@ body {
 }
 
 .due {
-    margin-top: 13px;
+    margin-top: 8px;
     // padding-top: 26%;
     padding-left: 90px;
     margin-bottom: -15px;
@@ -153,7 +152,7 @@ body {
 }
 
 .buttons {
-    margin-top: 12px;
+    margin-top: 17px;
     padding-left: 42%;
     
 }

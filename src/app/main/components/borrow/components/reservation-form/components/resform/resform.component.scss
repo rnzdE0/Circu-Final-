@@ -11,7 +11,7 @@ body {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 45px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 25px;
     margin-bottom: 20px;
 }
@@ -24,13 +24,12 @@ body {
     border-radius: 5px;
     padding: 20px;
     padding-top: 25px;
-    padding-bottom: 25px;
+    // padding-bottom: 50px;
     margin-top: 50px;
     background: white;
     margin-left: 67px;
     width: 90%;
-    height: 750px;
-    margin-bottom: 30px;
+    height: 730px;
     box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
     border: 0.5px solid grey;
 }
@@ -46,25 +45,30 @@ body {
 .materials {
     padding-left: 21px;
     // position: absolute;
-    margin-top: 34px;
+    margin-top: 26px;
     
 }
 
 .staffs {
     padding-left: 21px;
     // position: absolute;
-    margin-top: 44px;
+    margin-top: 31px;
    
 }
 
 .date {
     // position: absolute;
     padding-left: 21px;
-    margin-top: 46px;
+    margin-top: 31px;
 }
 
-.group1, .group2 , .group3{
+.group1, .group3{
     display: flex;
+}
+
+.group2 {
+    display: flex;
+    justify-content: space-between;
 }
 
 .max {
@@ -84,7 +88,7 @@ body {
 }
 
 .material {
-    margin-top: 7px;
+    margin-top: 4px;
     // padding-top: 10%;
     padding-left: 30px;
     margin-bottom: -15px;
@@ -96,7 +100,7 @@ body {
 }
 
 .staff {
-    margin-top: 12px;
+    margin-top: 9px;
     // padding-top: 20%;
     padding-left: 30px;
     margin-bottom: -15px;
@@ -108,7 +112,7 @@ body {
 }
 
 .due {
-    margin-top: 13px;
+    margin-top: 8px;
     // padding-top: 26%;
     padding-left: 90px;
     margin-bottom: -15px;
@@ -148,7 +152,7 @@ body {
 }
 
 .buttons {
-    margin-top: 12px;
+    margin-top: 17px;
     padding-left: 42%;
     
 }
@@ -168,16 +172,16 @@ body {
     // top: -20px;
     text-decoration: none;
 
-    margin-left: 10px;
-    padding-left: 40px;
-    padding-right: 40px;
+    margin-left: -50px;
+    padding-left: 60px;
+    padding-right: 60px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
 .reserve {
     background-color: #FFA500;
-    margin-left: 30px;
+    // margin-right: 10px;
     // justify-content: center;
     position: relative;
     padding: .1rem;
@@ -190,9 +194,10 @@ body {
     font-size: 22px;
     // top: -20px;
     text-decoration: none;
-
-    padding-left: 40px;
-    padding-right: 40px;
+   
+    margin-left: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -243,7 +248,7 @@ body {
 
 .input-group {
     position: relative;
-    padding-top: -45px;
+     padding-top: -45px;
 }
    
 .input {
@@ -293,6 +298,63 @@ body {
     width: 681px;
     height: 25px;
 }
+
+.input31 {
+    display: flex;
+    border: none;
+    border-bottom: solid 2px black;
+    opacity: 50%;
+    border-radius: 5px;
+    background: #F6F6F6;
+    padding: 1rem;
+    font-size: 1rem;
+    color: black;
+    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+    margin: 10px;
+}
+
+select.input31{
+    width: 681px;
+    height: 60px;
+}
+
+
+select.input31:focus {
+    outline: none;
+    border-bottom: 2px solid #31A463;
+}
+
+// select.input31:focus ~ label, select.input31:valid ~ label {
+//     padding: 0 .2em;
+//     color: #31A463;
+//     font-size: 15px;
+//     font-weight: 500;
+//     left: 22px;
+// }
+
+.patron-label {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    color: black;
+    pointer-events: none;
+    font-family: 'montserrat', sans-serif;
+    font-size: 15px; /* Match the font size of the department label */
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+}
+
+select {
+    appearance: none; /* Remove default arrow */
+  }
+
+/* Style for the label when select is focused */
+select:focus + .patron-label {
+    transform: translateX(.2em  );
+    font-size: 16px; /* Adjust font size as needed */
+    font-weight: 500;
+    color: #31A463;
+  }
 
 .input4 {
     // border: solid 1.5px black;
@@ -352,14 +414,14 @@ body {
 //     font-size: 10px;
 // }
 
-.input:focus, input:valid, .input2:focus, .input2:valid
+.input:focus, .input:valid, .input2:focus, .input2:valid
 , .input3:focus, .input3:valid, .input4:focus, .input4:valid{
     outline: none;
     border-bottom: 2px solid #31A463;
 }
 
-.input:focus ~ label, input:valid ~ label, .input2:focus ~ label, .input2:valid ~ label,
-.input3:focus ~ label, .input3:valid ~ label, .input4:focus ~ label, .input4:valid ~ label{
+.input:focus ~ label, .input:valid ~ label, .input2:focus ~ label, .input2:valid ~ label,
+.input3:focus ~ label, .input3:valid ~ label, .input4:focus ~ label, .input4:valid ~ label {
     // transform: translateY(-50%) scale(0.8);
     // background-color: white;
     // border: solid 1.5px #31A463;
@@ -400,4 +462,12 @@ body {
   }
 
 
+  .input-group {
+    position: relative;
+    margin-bottom: 1rem; /* Adjust as needed */
+  }
+
+
+  
+  
   

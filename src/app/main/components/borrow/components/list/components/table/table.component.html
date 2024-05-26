@@ -5,8 +5,8 @@
   <p class="title">Borrow List</p>
    <!-- Search bar -->
   <div class="search">
-    <input placeholder="Search..." type="text">
-    <button type="submit"><i class="bx bx-search" ></i></button>
+    <input placeholder="Search..." type="text" [(ngModel)]="searchTerm">
+    <button type="submit" (click)="applySearch()"><i class="bx bx-search" ></i></button>
   </div>
 
     <!-- filter -->
@@ -44,19 +44,20 @@
   <table class="content-table">
     <thead class="table-head">
       <tr>
-        <th>Patron Type</th>
-        <th>Id Number</th>
-        <th>Name</th>
-        <th>Department</th>
-        <th>Program</th>
-        <th>Accession Number</th>
-        <th>Status</th>
-        <th>Fine</th>
-        <th>Action</th>
+        <th >Patron Type</th>
+        <th >Id Number</th>
+        <th >Name</th>
+        <th >Department</th>
+        <th >Program</th>
+        <th >Accession Number</th>
+        <th >Status</th>
+        <th >Fine</th>
+        <th >Action</th>
       
       </tr>
     </thead>
     <tbody>
+      <!-- *ngFor="let material of borrowMaterials"  -->
       <tr *ngFor="let material of borrowMaterials">
         <td>{{material.user.patron.patron}}</td>
         <td>{{material.user.id}}</td>
@@ -83,11 +84,11 @@
     </tbody>
   </table>
   <div class="page">
-    <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page">
-    </mat-paginator>
+    <mat-paginator [length]="totalLength"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="[3, 10, 25, 100]"
+               (page)="handlePageEvent($event)">
+</mat-paginator>
 
   </div>
 </div>

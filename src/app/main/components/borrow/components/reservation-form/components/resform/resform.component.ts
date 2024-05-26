@@ -32,6 +32,8 @@ export class ResformComponent implements OnInit {
     location: ''
   }
   admin: any;
+  patrons: any;
+  fine = 0;
 
   constructor(
     private dialog : MatDialog,
@@ -53,6 +55,18 @@ export class ResformComponent implements OnInit {
   ngOnInit(): void {
     //  this.bookSubmit();
     }
+
+    changePatron(event: Event) {
+      let value = (event.target as HTMLInputElement).value;
+      for(const patron of this.patrons) {
+        if(patron.id == value) {
+          this.requestForm.get('fine')?.setValue(patron.fine);
+          break;
+        }
+      }
+    }
+
+    
 
   name = sessionStorage.getItem('name');
   role = sessionStorage.getItem('role');
