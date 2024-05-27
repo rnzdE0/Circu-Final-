@@ -34,12 +34,13 @@ export class ReserveComponent {
 
   ngOnInit():void{
     this.fetchReserveList();
+    this.fetchOnlineList();
   }
 
   fetchReserveList(): void {
     this.authService.getReserveList().subscribe(
       (data: any) => {
-        console.log('Received data from reservationlist:', data);
+        console.log('Received data from Reservelist:', data);
         console.log('Type of data:', typeof data);
         this.reservationList = data as ReservationList[];
       },
@@ -52,7 +53,7 @@ export class ReserveComponent {
   fetchOnlineList(): void {
     this.authService.getOnlineList().subscribe(
       (data: any) => {
-        console.log('Received data from reservationlist:', data);
+        console.log('Received data from onlinelist:', data);
         console.log('Type of data:', typeof data);
         this.onlineList = data as OnlineList[];
       },

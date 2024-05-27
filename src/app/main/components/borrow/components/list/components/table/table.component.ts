@@ -120,6 +120,7 @@ export class TableComponent implements OnInit {
       }
     );
   }
+  
   applySearch(): void {
     const searchTermUpper = this.searchTerm.toUpperCase();
     console.log('hello')

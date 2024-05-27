@@ -28,6 +28,7 @@ export class PushComponent {
     // Assuming this.material contains the necessary data
     const { user_id, book_id, start_date, end_date, fine} = this.material; 
     const payload = {
+      id: id,
       user_id: user_id,
       book_id: book_id, 
       start_date: start_date,
@@ -38,7 +39,7 @@ export class PushComponent {
     };
     console.log(this.material);
     // Use Angular HttpClient (this.ds.post) to send a POST request to your backend
-    this.ds.post(url + id, payload).subscribe(
+    this.ds.post(url + this.material.id, payload).subscribe(
       (response: any) => {
         console.log('Book borrowed successfully:', response);
         // Optionally handle success here, e.g., show a success message

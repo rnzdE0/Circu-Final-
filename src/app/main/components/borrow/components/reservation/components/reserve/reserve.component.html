@@ -80,7 +80,6 @@
                                 <th>Category</th>
                                 <th>Request</th>
                                 <th>Action</th>
-                              
                               </tr>
                             </thead>
                             <tbody>
@@ -90,7 +89,7 @@
                                 <!-- student id -->
                                 <td>{{material.user_id}}</td>
                                 <!-- department id -->
-                                <td>{{material.user.program.department}}</td>
+                                <td>{{material.user.program.department.department}}</td>
                                 <!-- accession id -->
                                 <td>{{material.book_id}}</td>
                                 <!-- category -->
@@ -181,22 +180,22 @@
                             </thead>
                             <tbody>
                               <tr>
-                                <tr  *ngFor="let material of onlineList">
+                                <tr  *ngFor="let online of onlineList">
                                   <!-- student name -->
-                                  <td>{{material.user.role}}</td>
+                                  <td>{{online.user.patron.patron}}</td>
                                   <!-- student id -->
-                                  <td>{{material.user_id}}</td>
+                                  <td>{{online.user_id}}</td>
                                   <!-- department id -->
-                                  <td>{{material.user.program.department}}</td>
+                                  <td>{{online.user.program.department.department}}</td>
                                   <!-- accession id -->
-                                  <td>{{material.book_id}}</td>
+                                  <td>{{online.book_id}}</td>
                                   <!-- category -->
-                                  <td>{{material.user.program.category}}</td>
+                                  <td>{{online.user.program.category}}</td>
 
                                   <td>1</td>
                                   
                                 <td>
-                                    <button class="returned" (click)="push(material.id)">
+                                    <button class="returned" (click)="push(material)">
                                       <i class="bx bx-check" ></i>
                                     </button>
                                     <button class="delete" (click)="deleteDialog()">
