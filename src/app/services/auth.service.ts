@@ -95,4 +95,8 @@ private url:string = 'http://192.168.18.185:8000/api/';
   public topBorrowers(){
     return this.http.get(this.url + 'topborrowers', {headers: this.headers.get() })
   }
+
+  public getqueue(){
+    return this.http.get(this.url + 'queue', {headers: this.headers.get() })
+  }
 }

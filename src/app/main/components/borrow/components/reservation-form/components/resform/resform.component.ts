@@ -54,7 +54,13 @@ export class ResformComponent implements OnInit {
 
   ngOnInit(): void {
     //  this.bookSubmit();
-    }
+    this.ds.get('circulation/getpatrons').subscribe({
+      next: (res: any) => {
+        this.patrons = res;
+        this.requestForm.get('fine')?.setValue(res[0].fine);
+      }
+    })
+  }
 
     changePatron(event: Event) {
       let value = (event.target as HTMLInputElement).value;

@@ -12,6 +12,8 @@ import { MainService } from '../../../../../../../services/main.service';
   styleUrl: './push.component.scss'
 })
 export class PushComponent {
+[x: string]: any;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) 
     public material: any,
@@ -21,14 +23,15 @@ export class PushComponent {
     console.log('Data received in dialog:', this.material);
   }
 
-  submit(id:number) {
+  online: any;
+
+  submit(material: any, online: any) {
 
     const url = 'fromreserve/book/';
 
     // Assuming this.material contains the necessary data
     const { user_id, book_id, start_date, end_date, fine} = this.material; 
     const payload = {
-      id: id,
       user_id: user_id,
       book_id: book_id, 
       start_date: start_date,

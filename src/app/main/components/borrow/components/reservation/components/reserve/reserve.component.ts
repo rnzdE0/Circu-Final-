@@ -29,7 +29,7 @@ export class ReserveComponent {
   reservationList: any[] = [];
   elements: any;
   material: any;
-  onlineList: any;
+  onlineList: any[] = [];
 
 
   ngOnInit():void{
@@ -98,6 +98,7 @@ export class ReserveComponent {
       this.redirectToListPage();
       if(result === 'Changed Data') {
         this.fetchReserveList()
+        this.fetchOnlineList()
       }
     });
   }
