@@ -78,7 +78,7 @@
                                 <th>Department</th>
                                 <th>Accession Number</th>
                                 <th>Category</th>
-                                <th>Request</th>
+                                <th>Queue Position</th>
                                 <th>Action</th>
                               </tr>
                             </thead>
@@ -98,15 +98,16 @@
 
                                 <!-- Queue or Pickup -->
                                 <td>1</td>
+
                                 <td>
                                   <button class="returned" (click)="push(material)">
                                       <i class="bx bx-check" ></i>
                                     </button>
-                                    <button class="delete" (click)="deleteDialog()">
+                                    <button class="delete" (click)="deleteDialog(material)">
                                       <i class="bx bx-archive" ></i>
                                     </button>
                                     <button class="edit">
-                                      <i class="bx bxs-edit" (click)="openDialog()"></i>
+                                      <i class="bx bxs-edit" (click)="openDialog(material)"></i>
                                     </button>
 
                                     <!-- <button class="returned" (click)="pushDialog(material.id)">
@@ -173,7 +174,7 @@
                                 <th>Department</th>
                                 <th>Accession Number</th>
                                 <th>Category</th>
-                                <th>Request</th>
+                                <th>Queue Position</th>
                                 <th>Action</th>
                               
                               </tr>
@@ -198,11 +199,11 @@
                                     <button class="returned" (click)="push(online)">
                                       <i class="bx bx-check" ></i>
                                     </button>
-                                    <button class="delete" (click)="deleteDialog()">
+                                    <button class="delete" (click)="deleteDialog(material)">
                                       <i class="bx bx-archive" ></i>
                                     </button>
                                     <button class="edit">
-                                      <i class="bx bxs-edit" (click)="openDialog()"></i>
+                                      <i class="bx bxs-edit" (click)="openDialog(material)"></i>
                                     </button>
                                 </td>
                                 

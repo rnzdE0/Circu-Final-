@@ -28,7 +28,7 @@
                 <div class="input-group">
                   <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" disabled>
                   <label class="userlabel2" for="NumOfMat">No. of Materials</label>
-                  <label for="NumOfMat" class="max">/3</label>
+                  <label for="NumOfMat" class="max">/ {{user.patron.materials_allowed}}</label>
                 </div>
             </div>
 
@@ -63,7 +63,7 @@
                   </div>
                   <!-- user gender -->
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input2" [value]="user.gender"  disabled>
+                    <input required="" type="text" name="text" autocomplete="off" class="input2" [value]="user.gender == '1' ? 'Male' : user.gender == '0' ? 'Female' : 'N/A'"  disabled>
                     <label class="booklabel2">Gender</label>
                   </div>
                   
@@ -73,7 +73,7 @@
               <div class="group2">
                 <!-- patron type (staff/student/faculty/.etc) -->
                   <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input1" [value]="user.role"  disabled>
+                    <input required="" type="text" name="text" autocomplete="off" class="input1" [value]="user.patron.patron"  disabled>
                     <label class="user-label">Patron type</label>
                   </div>
                   <!-- department id -->
