@@ -1,97 +1,39 @@
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<div class="container">
+  <p class="title">Users</p>
 
-<body>
-
-  
-  <div class="container">
-
-    <p class="title">Users</p>
-
-         <!-- Search bar -->
-    <div class="search">
-      <input type="text" placeholder="Search..." name="search" id="search" (keyup)="applyFilter($event, 'search')">
-      <button type="submit" disabled><i class="bx bx-search" ></i></button>
-    </div>
-
-    <!-- <p class="list">User List</p> -->
-    <!-- <div class="filter-container">
-      <div class="filter-options">
-        <div class="filter-group">
-          <label for="department">Department:</label>
-          <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
-            <option value="">All Departments</option>
-            <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
-          </select>
-        </div>
-        <div class="filter-group" *ngIf="selectedDepartment">
-          <label for="secondFilter">Program:</label>
-          <select id="secondFilter" [(ngModel)]="selectedProgram">
-            <option value="">All Options</option>
-            <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="patronType">Patron Type:</label>
-          <select id="patronType" [(ngModel)]="selectedPatronType">
-            <option value="">All Patron Types</option>
-            <option value="Admin">Admin</option>
-            <option value="Faculty">Faculty</option>
-            <option value="Student">Student</option>
-            <option value="Staff">Staff</option>
-            <option value="Visitor">Visitor</option>
-          </select>
-        </div>
-      </div>
-    </div> -->
-      
-
-      <!-- table -->
-    <table class="content-table">
-      <thead class="table-head">
-        <tr>
-          <th>Name</th>
-          <th>Patron Type</th>
-          <th>Gender</th>
-          <th>Id Number</th>
-          <th>Department</th>
-          <th>Program</th>
-          <th>Action</th>
-
-        </tr>
-      </thead>
-      <tbody>
-        <tr  *ngFor="let user of userList">
-          <td>{{ user.first_name }} {{ user.last_name }}</td>
-          <td>{{ user.patron.patron }}</td>
-          <td>{{ user.gender }}</td>
-          <td>{{ user.id }}</td>
-          <td>{{ user.program.department.department }}</td>
-          <td>{{ user.program.program }}</td>
-
-          <td>
-            <button class="edit" (click)="openUser(user)">
-              <i class="bx bxs-edit" ></i>
-            </button>
-            <!-- <button class="delete" >
-              <i class="bx bx-archive" ></i>
-            </button> -->
-            
-            </td>
-          </tr>
-  
-  
-          
-
-      </tbody>
-    </table>
-    <div class="page">
-      <mat-paginator [length]="100"
-                [pageSize]="10"
-                [pageSizeOptions]="[5, 10, 25, 100]"
-                aria-label="Select page">
-      </mat-paginator>
+  <!-- Search bar -->
+  <div class="search">
+    <input type="text" placeholder="Search..." name="search" id="search" (input)="applyFilter($event)">
+    <button type="submit" (click)="applyFilter($event)"><i class="bx bx-search"></i></button>
   </div>
-  </div>
-  </body>
-  
-  
+
+  <!-- table -->
+  <table class="content-table">
+    <thead class="table-head">
+      <tr>
+        <th>Name</th>
+        <th>Patron Type</th>
+        <th>Gender</th>
+        <th>Id Number</th>
+        <th>Department</th>
+        <th>Program</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of filteredUserList">
+        <td>{{ user.first_name }} {{ user.last_name }}</td>
+        <td>{{ user.patron.patron }}</td>
+        <td>{{ user.gender }}</td>
+        <td>{{ user.id }}</td>
+        <td>{{ user.program.department.department }}</td>
+        <td>{{ user.program.program }}</td>
+        <td>
+          <button class="edit" (click)="openUser(user)">
+            <i class="bx bxs-edit"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

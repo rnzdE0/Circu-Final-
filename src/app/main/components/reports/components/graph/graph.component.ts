@@ -25,18 +25,51 @@ export class GraphComponent implements OnInit {
   pieChart: any;
   barChart: any;
   isProgramChartVisible: any;
-  downloadPDF() {
-  throw new Error('Method not implemented.');
-  }
-  downloadFile(arg0: string) {
-  throw new Error('Method not implemented.');
-  }
-  export(arg0: string) {
-  throw new Error('Method not implemented.');
-  }
+  // downloadPDF() {
+  // throw new Error('Method not implemented.');
+  // }
+  // downloadFile(arg0: string) {
+  // throw new Error('Method not implemented.');
+  // }
+  // export(arg0: string) {
+  // throw new Error('Method not implemented.');
+  // }
 
   constructor(private authService: AuthService) { }
 
+  async downloadPNG(): Promise<void> {
+    const pieCanvas = document.getElementById('pieChart') as HTMLCanvasElement;
+    const barCanvas = document.getElementById('barChart') as HTMLCanvasElement;
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+  
+    await new Promise(resolve => setTimeout(resolve, 100));
+  
+    if (!context) {
+      console.error('Failed to get 2D context');
+      return;
+    }
+  
+    // Set canvas dimensions
+    canvas.width = pieCanvas.width + barCanvas.width;
+    canvas.height = Math.max(pieCanvas.height, barCanvas.height);
+  
+    // Fill canvas with white background
+    context.fillStyle = 'white';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+  
+    // Draw pie chart on canvas
+    context.drawImage(pieCanvas, 0, 0);
+  
+    // Draw bar chart on canvas next to pie chart
+    context.drawImage(barCanvas, pieCanvas.width, 0);
+  
+    // Trigger download
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'borrowers_report.png';
+    a.click();
+  }
   departmentData: { [key: string]: number } = {};
   genderData: { [key: string]: number } = {};
 

@@ -46,15 +46,15 @@
             <span class="download-text">Print</span>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="downloadFile('png')">
+            <button mat-menu-item (click)="downloadPNG()">
               <mat-icon>get_app</mat-icon> Download PNG
             </button>
-            <button mat-menu-item (click)="downloadFile('svg')">
+            <!-- <button mat-menu-item (click)="downloadFile('svg')">
               <mat-icon>image</mat-icon> Download SVG
             </button>
             <button mat-menu-item [disabled]="isProgramChartVisible" (click)="downloadPDF()">
               <mat-icon>picture_as_pdf</mat-icon> Download PDF
-            </button>
+            </button> -->
           </mat-menu>
         </div>
       </div>

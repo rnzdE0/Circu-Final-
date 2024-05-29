@@ -42,15 +42,15 @@
            <span class="download-text">Print</span>
          </button>
          <mat-menu #menu="matMenu">
-           <button mat-menu-item (click)="downloadFile('png')">
+           <button mat-menu-item (click)="downloadPNG()">
              <mat-icon>image</mat-icon> Download PNG
            </button>
-           <button mat-menu-item (click)="downloadFile('svg')">
+           <!-- <button mat-menu-item (click)="downloadFile('svg')">
              <mat-icon>image</mat-icon> Download SVG
            </button>
            <button mat-menu-item [disabled]="isProgramChartVisible" (click)="downloadPDF()">
              <mat-icon>picture_as_pdf</mat-icon> Download PDF
-           </button>
+           </button> -->
          </mat-menu>
        </div>
      </div>
@@ -66,7 +66,7 @@
  
   
    <table class="content-table">
-     <thead class="table-head">
+     <!-- <thead class="table-head">
        <tr>
          <th>Patron</th>
          <th>Name</th>
@@ -84,16 +84,16 @@
          <td>CSS</td>
          <td>BSIT</td>
          <td>17</td>
-     </tbody>
+     </tbody> -->
    </table>
  
  
    <div class="page">
-     <mat-paginator [length]="100"
+     <!-- <mat-paginator [length]="100"
                [pageSize]="10"
                [pageSizeOptions]="[5, 10, 25, 100]"
                aria-label="Select page">
-     </mat-paginator>
+     </mat-paginator> -->
    </div>
  </div>
  </body>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { AuthService } from '../../../../../services/auth.service';
 
+import html2canvas from 'html2canvas';
+
 @Component({
   selector: 'app-most',
   templateUrl: './most.component.html',
@@ -20,21 +22,47 @@ export class MostComponent implements OnInit{
   };
   
   isProgramChartVisible: any;
-  downloadPDF() {
-  throw new Error('Method not implemented.');
-  }
-  downloadFile(arg0: string) {
-  throw new Error('Method not implemented.');
-  }
-  export(arg0: string) {
-  throw new Error('Method not implemented.');
-  }
-  print() {
-    throw new Error('Method not implemented.');
-    }
+  // downloadPDF() {
+  // throw new Error('Method not implemented.');
+  // }
+  // downloadFile(arg0: string) {
+  // throw new Error('Method not implemented.');
+  // }
+  // export(arg0: string) {
+  // throw new Error('Method not implemented.');
+  // }
+  // print() {
+  //   throw new Error('Method not implemented.');
+  //   }
   mostChart: any;
 
   constructor(private authservice: AuthService) { }
+
+  downloadPNG(): void {
+    const chartCanvas = document.getElementById('mostChart') as HTMLCanvasElement;
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    if (!context) {
+      console.error('Failed to get 2D context');
+      return;
+    }
+
+    canvas.width = chartCanvas.width;
+    canvas.height = chartCanvas.height;
+
+    // Draw a white background
+    context.fillStyle = 'white';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the chart on top of the white background
+    context.drawImage(chartCanvas, 0, 0);
+
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'most_borrowed_books_chart.png';
+    a.click();
+  }
 
   ngOnInit(): void {
     this.authservice.mostBorrowedBook().subscribe(
