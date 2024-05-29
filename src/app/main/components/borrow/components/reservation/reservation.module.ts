@@ -24,6 +24,7 @@ import { PushComponent } from './components/push/push.component';
     MatDialogModule,
     MatPaginator,
     FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ReservationModule { }

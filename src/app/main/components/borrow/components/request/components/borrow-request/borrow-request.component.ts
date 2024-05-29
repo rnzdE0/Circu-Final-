@@ -29,6 +29,10 @@ export class BorrowRequestComponent implements OnInit {
     count:0,
     program: {
       department: ''
+    },
+    patron: {
+      hours_allowed: '',
+      patron: ''
     }
   } 
   book = {
@@ -37,7 +41,12 @@ export class BorrowRequestComponent implements OnInit {
     author: '',
     location: ''
   }
-  admin: any;
+  admin = {
+    id: '',
+    position: ''
+  }
+
+
   patrons: any;
   fine = 0;
 
@@ -147,6 +156,8 @@ export class BorrowRequestComponent implements OnInit {
         this.user.program.department=res.program.program;
         this.user.gender=res.gender;
         this.user.department=res.department;
+        this.user.patron.hours_allowed=res.patron.hours_allowed;
+        this.user.patron.patron=res.patron.patron;
         console.log(res)
       }
     })
@@ -157,6 +168,26 @@ export class BorrowRequestComponent implements OnInit {
       }
     })
   }
+
+  getAdmin(event: Event) {
+    let target = event.target as HTMLInputElement;
+    this.ds.get('circulation/get-admin/' + target.value).subscribe({
+      next: (res: any) => {
+        this.admin.id=res.id;
+        this.admin.position=res.position; 
+        console.log(res)
+      }
+    })
+    this.ds.get('circulation/get-user/'+target.value).subscribe({
+      next: (res: any) => {
+        this.user.count=res.count;
+        console.log(res)
+      }
+    })
+  }
+
+    // this.admin.id=res.id;
+    // this.admin.position=res.position; 
 
   getBook(event: Event) {
     let target = event.target as HTMLInputElement;
@@ -178,15 +209,6 @@ export class BorrowRequestComponent implements OnInit {
     })
   }
 
-  getAdmin(event: Event) {
-    let target = event.target as HTMLInputElement;
-    this.ds.get('circulation/get-user/' + target.value).subscribe({
-      next: (res: any) => {
-        this.user = res;
-        console.log(this.user)
-      }
-    })
-  }
 
   bookSubmit() {
     if (this.borrowForm.valid) {

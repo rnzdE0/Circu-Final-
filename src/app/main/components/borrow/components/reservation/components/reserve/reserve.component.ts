@@ -70,7 +70,7 @@ export class ReserveComponent {
     private authService: AuthService,
     private router: Router
   ) {}
-
+  
   redirectToListPage() {
     this.router.navigate(['main/borrow/reservation/reserve']); 
   }
@@ -107,19 +107,46 @@ export class ReserveComponent {
   }
 
 
-  openDialog() {
-    this.dialog.open(ReservationPopupComponent, {
+  openDialog(data: any) {
+    this.Editpopup(data, 'edit Popup', ReservationPopupComponent);
+  };
+  
+  Editpopup(id: number, title: any, component:any) {
+    var _popup = this.dialog.open(component, {
       width: '55%',
       height: '760px',
-    })
+      enterAnimationDuration: '100ms',
+      exitAnimationDuration: '100ms',
+      data: id
+    });
+    _popup.afterClosed().subscribe(result => {
+      this.redirectToListPage();
+      if(result === 'Changed Data') {
+        this.fetchReserveList()
+      }
+    });
+  }
+
+
+  deleteDialog(data: any) {
+    this.Deletepopup(data, 'delete', DeleteComponent)
   };
 
-  deleteDialog() {
-    this.dialog.open(DeleteComponent, {
+  Deletepopup(id: number, title: any, component:any) {
+    var _popup = this.dialog.open(component, {
       width: '400px',
       height: '250px',
-    })
-  };
+      enterAnimationDuration: '100ms',
+      exitAnimationDuration: '100ms',
+      data: id
+    });
+    _popup.afterClosed().subscribe(result => {
+      this.redirectToListPage();
+      if(result === 'Changed Data') {
+        this.fetchReserveList()
+      }
+    });
+}
 }
 
 // for testing book availability

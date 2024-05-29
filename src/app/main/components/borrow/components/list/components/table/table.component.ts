@@ -8,6 +8,8 @@ import { AuthService } from '../../../../../../../services/auth.service';
 import { BorrowMaterial } from './borrow-material.model';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
+import { MainService } from '../../../../../../../services/main.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -104,8 +106,6 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchBorrowList();
-    this.filteredMaterials = this.borrowMaterials;
-
   }
 
   fetchBorrowList(): void {
@@ -140,26 +140,18 @@ export class TableComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 elements: any;
    
 
   constructor(private dialog: MatDialog,
   private authService: AuthService,
-  private router: Router
+  private router: Router,
+  private ds: MainService
   ) {}
+
+  redirectToListPage() {
+    this.router.navigate(['main/borrow/list/table']); 
+  }
 
   openDialog(data: any) {
     this.Editpopup(data, 'edit Popup', EditPopupComponent);
@@ -181,12 +173,26 @@ elements: any;
     });
   }
 
-  deleteDialog() {
-    this.dialog.open(DeletePopupComponent, {
+  deleteDialog(data: any) {
+    this.Deletepopup(data, 'Delete Pop' , DeletePopupComponent)
+  }
+
+  Deletepopup(id: number, title: any, component:any) {
+    var _popup = this.dialog.open(component, {
       width: '400px',
       height: '250px',
+      enterAnimationDuration: '100ms',
+      exitAnimationDuration: '100ms',
+      data: id
+    });
+    _popup.afterClosed().subscribe(result => {
+      this.redirectToListPage();
+      if(result === 'Changed Data') {
+        this.fetchBorrowList()
+      }
     });
   }
+  
 
   // pushDialog(id: number) {
   //   this.dialog.open(PushPopupComponent, {
@@ -196,14 +202,11 @@ elements: any;
   //   });
   // }
 
-  redirectToListPage() {
-    this.router.navigate(['main/borrow/list/table']); 
-  }
 
   pushDialog(data: any) {
     this.Openpopup(data, 'Push Popup', PushPopupComponent);
   }
-
+    
   Openpopup(id: number, title: any, component:any) {
     var _popup = this.dialog.open(component, {
       width: '400px',

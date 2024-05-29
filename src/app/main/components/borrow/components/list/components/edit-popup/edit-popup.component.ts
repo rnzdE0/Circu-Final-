@@ -59,6 +59,10 @@ export class EditPopupComponent implements OnInit{
     department: '',
     count:0,
     role: '',
+    patron: {
+      patron:'',
+      materials_allowed:''
+    },
     program: {
       department: ''
     }
@@ -70,6 +74,7 @@ export class EditPopupComponent implements OnInit{
     location: ''
   }
   
+ 
   admin: any;
 
   getUser() {
@@ -82,6 +87,8 @@ export class EditPopupComponent implements OnInit{
         this.user.gender=res.gender;
         this.user.department=res.department;
         this.user.role=res.role;
+        this.user.patron.patron=res.patron.patron;
+        this.user.patron.materials_allowed=res.patron.materials_allowed;
         console.log(res)
       }
     })

@@ -78,10 +78,12 @@
                       </div> -->
                       
                       <div class="input-group">
-                          <select name="text" (change)="changePatron($event)" class="input31">
+                          <!-- <select name="text" (change)="changePatron($event)" class="input31">
                               <option *ngFor="let patron of patrons" [value]="patron.id">{{ patron.patron }}</option>
                           </select>
-                          <label class="patron-label">Patron</label>
+                          <label class="patron-label">Patron</label> -->
+                          <input type="text" name="text" autocomplete="off" class="input3" [value]="user.patron.patron || ''" disabled>
+                            <label class="book-label">Patron</label>
                       </div>
 
                     
@@ -100,13 +102,13 @@
 
                       <!-- frontdesk admin id -->
                         <div class="input-group">
-                          <input type="text" name="text" autocomplete="off" class="input3" disabled placeholder="{{name}}">
+                          <input type="text" name="text" autocomplete="off" class="input3" disabled placeholder="{{name}}" [value]="admin.id || ''">
                           <label class="book-label">Name of Staff</label>
                         </div>
 
                       <!-- frontdesk position -->
                         <div class="input-group">
-                          <input type="text" name="text" autocomplete="off" class="input3" disabled placeholder="{{role}}">
+                          <input type="text" name="text" autocomplete="off" class="input3" disabled placeholder="{{role}}" [value]="admin.position || ''">
                           <label class="book-label">Position</label>
                         </div>
                     </div>
@@ -129,12 +131,22 @@
                   <div class="input-group">
                     <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-01-01" required formControlName="borrow_date">
                     <label class="booklabel">Date of Request</label>
+                      <!-- <input type="text" name="text" autocomplete="off" class="input" [value]="user.patron.hours_allowed || ''" disabled>
+                      <label class="book-label">Days Allowed</label> -->
                   </div>
 
                   <div class="input-group">
-                    <input required="" id="dueforborrow" type="datetime-local" name="datetime" autocomplete="off" class="input" min="2024-01-01" required formControlName="borrow_expiration">
-                    <label class="booklabel">Due for Borrow</label>
+                    <input required="" id="dueforborrow" type="datetime-local" name="datetime" autocomplete="off" class="input2" min="2024-01-01" required formControlName="borrow_expiration">
+                    <label class="booklabel">Due</label>
+                      <!-- <input type="text" name="text" autocomplete="off" class="input2" [value]="user.patron.hours_allowed || ''" disabled>
+                      <label class="book-label">Hours Allowed</label> -->
                   </div>
+
+                  <div class="input-group">
+                      <input type="text" name="text" autocomplete="off" class="input2" [value]="user.patron.hours_allowed || ''" disabled>
+                      <label class="book-label">Hours / Days Allowed</label>
+                  </div>
+
                   <div class="input-group">
                     <input required="" type="text" name="text" autocomplete="off" class="input2"  required formControlName="fine" [value]="fine" >
                     <label class="book-label">User Fine</label>
