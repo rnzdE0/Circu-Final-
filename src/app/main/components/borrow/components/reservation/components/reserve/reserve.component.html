@@ -6,50 +6,10 @@
   <p class="title">Reservation List</p>
    <!-- Search bar -->
    <div class="search">
-    <input placeholder="Search..." type="text">
-    <button type="submit"><i class="bx bx-search" ></i></button>
+    <input placeholder="Search..." name="search" id="search" type="text" (input)="applyFilter($event)">
+    <button type="submit" (click)="applyFilter($event)"><i class="bx bx-search"></i></button>
+
   </div>
-  
-  <!-- filter -->
-
-  <!-- <div class="filter-container">
-    <div class="filter-options">
-      <div class="filter-group">
-        <label for="department">Department:</label>
-        <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
-          <option value="">All Departments</option>
-          <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
-        </select>
-      </div>
-      <div class="filter-group" *ngIf="selectedDepartment">
-        <label for="secondFilter">Program:</label>
-        <select id="secondFilter" [(ngModel)]="selectedProgram">
-          <option value="">All Options</option>
-          <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="patronType">Patron Type:</label>
-        <select id="patronType" [(ngModel)]="selectedPatronType">
-          <option value="">All Patron Types</option>
-          <option value="Admin">Admin</option>
-          <option value="Faculty">Faculty</option>
-          <option value="Student">Student</option>
-          <option value="Staff">Staff</option>
-          <option value="Visitor">Visitor</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="allType">All Type:</label>
-        <select id="allType" [(ngModel)]="selectedAllType">
-          <option value="">All Types</option>
-          <option value="Pick-up">Pick-up</option>
-          <option value="Queue">Queue</option>
-        </select>
-      </div>
-    </div>
-  </div> -->
-
 
     <div class="content">
     <div class="tabbed">
@@ -83,7 +43,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr  *ngFor="let material of reservationList">
+                              <tr  *ngFor="let material of filteredreservationList">
                                 <!-- student name -->
                                 <td>{{material.user.patron.patron}}</td>
                                 <!-- student id -->
@@ -97,7 +57,7 @@
                                 
 
                                 <!-- Queue or Pickup -->
-                                <td>1</td>
+                                <td></td>
 
                                 <td>
                                   <button class="returned" (click)="push(material)">
@@ -110,39 +70,7 @@
                                       <i class="bx bxs-edit" (click)="openDialog(material)"></i>
                                     </button>
 
-                                    <!-- <button class="returned" (click)="pushDialog(material.id)">
-                                      <i class="bx bx-check" ></i>
-                                    </button>
-                                    <button class="delete" (click)="deleteDialog()">
-                                      <i class="bx bx-archive" ></i>
-                                    </button>
-                                    <button class="edit" (click)="openDialog(material.id)">
-                                      <i class="bx bxs-edit" ></i>
-                                    </button> -->
                                 </td>
-
-                                <!-- pwede gamitin for book availability -->
-
-                                <!-- <tbody>
-                                  <tr *ngFor="let material of reservationList" [ngClass]="{'available': material.book.isAvailable}">
-                                      
-                                      <td>{{material.user.patron.patron}}</td>
-                                     
-                                      <td>{{material.user_id}}</td>
-                                      
-                                      <td>{{material.user.program.department}}</td>
-                                      
-                                      <td>{{material.book_id}}</td>
-                                     
-                                      <td>{{material.user.program.category}}</td>
-                                      
-                                      <td>{{material.request}}</td>
-                                      
-                                      <td>{{material.action}}</td>
-                                  </tr>
-                              </tbody> -->
-                                
-                        
                             </tbody>
                           </table>
                     </section>
@@ -153,16 +81,7 @@
         <!-- Online  -->
         <div class="tab-content">
 
-          
-
             <div class="table">
-
-                <!-- <div class="search">
-                    <input placeholder="Search..." type="text">
-                    <button type="submit"><i class="bx bx-search" ></i></button>
-                </div> -->
-
-                <!-- <h1>Online</h1> -->
                 
                 <div class="card">
                     <section class="material-table">
@@ -181,7 +100,7 @@
                             </thead>
                             <tbody>
                               <tr>
-                                <tr  *ngFor="let online of onlineList">
+                                <tr  *ngFor="let online of filteredonlineList">
                                   <!-- student name -->
                                   <td>{{online.user.patron.patron}}</td>
                                   <!-- student id -->
@@ -192,8 +111,7 @@
                                   <td>{{online.book_id}}</td>
                                   <!-- category -->
                                   <td>{{online.user.program.category}}</td>
-
-                                  <td>1</td>
+                                  
                                   
                                 <td>
                                     <button class="returned" (click)="push(online)">

@@ -13,23 +13,12 @@ import { Router } from '@angular/router';
   styleUrl: './reserve.component.scss'
 })
 export class ReserveComponent {
-  selectedDepartment: string = '';
-  selectedProgram: string = '';
-  selectedPatronType: string = '';
-  selectedAllType: string = '';
-  departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
-  secondFilterOptions: { [key: string]: string[] } = {
-    CBA: ['BSA', 'BSCA', 'BSBA-FM', 'BSBA-HRM', 'BSBA-MKT'],
-    CEAS: ['BEEd', 'BECEd', 'BSEd-E', 'BSEd-FIL', 'BSEd-M', 'BSEd-SCI', 'BSEd-SOC', 'BPEd', 'BCAEd', 'BACOM', 'TCP'],
-    CCS: ['BSIT', 'BSCS', 'EMC', 'ACT'],
-    CHTM: ['BSHM', 'BSTM'],
-    CAHS: ['BSN', 'BSM', 'GM']
-  };
-
-  reservationList: any[] = [];
+  reservationList: ReservationList[] = [];
+  filteredreservationList: ReservationList[] = [];
   elements: any;
   material: any;
-  onlineList: any[] = [];
+  onlineList: OnlineList[] = [];
+  filteredonlineList: OnlineList[] = [];
 
 
   ngOnInit():void{
@@ -43,6 +32,7 @@ export class ReserveComponent {
         console.log('Received data from Reservelist:', data);
         console.log('Type of data:', typeof data);
         this.reservationList = data as ReservationList[];
+        this.filteredreservationList = this.reservationList.slice();
       },
       (error) => {
         console.error('Error fetching users:', error);
@@ -56,15 +46,12 @@ export class ReserveComponent {
         console.log('Received data from onlinelist:', data);
         console.log('Type of data:', typeof data);
         this.onlineList = data as OnlineList[];
+        this.filteredonlineList = this.onlineList.slice();
       },
       (error) => {
         console.error('Error fetching users:', error);
       }
     );
-  }
-
-  onDepartmentChange(): void {
-    this.selectedProgram = '';
   }
   constructor(private dialog : MatDialog,
     private authService: AuthService,
@@ -75,12 +62,6 @@ export class ReserveComponent {
     this.router.navigate(['main/borrow/reservation/reserve']); 
   }
 
-  // push() {
-  //   this.dialog.open(PushComponent, {
-  //     width: '55%',
-  //     height: '760px',
-  //   })
-  // }
 
   push(data: any) {
     this.Openpopup(data, 'push', PushComponent);
@@ -147,28 +128,38 @@ export class ReserveComponent {
       }
     });
 }
+
+applyFilter(event: Event): void {
+  console.log('Filtering...');
+  const searchValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+  console.log('Search value:', searchValue);
+  if (!searchValue) {
+    this.filteredreservationList = this.reservationList.slice(); // Reset filter
+    return;
+  }
+  this.filteredreservationList = this.reservationList.filter(material =>
+    material.user.patron.patron.toLowerCase().includes(searchValue) ||
+    material.user.id.toString().toLowerCase().includes(searchValue) ||
+    material.user.program.department.department.toLowerCase().includes(searchValue) ||
+    material.book_id.toString().toLowerCase().includes(searchValue) ||
+    material.user.program.category.toLowerCase().includes(searchValue)
+  );
+
+  console.log('Filtered result:', this.filteredreservationList);
+
+  if (!searchValue) {
+    this.filteredonlineList = this.onlineList.slice(); // Reset filter
+    return;
+  }
+  this.filteredonlineList = this.onlineList.filter(material =>
+    material.user.patron.patron.toLowerCase().includes(searchValue) ||
+    material.user.id.toString().toLowerCase().includes(searchValue) ||
+    material.user.program.department.department.toLowerCase().includes(searchValue) ||
+    material.book_id.toString().toLowerCase().includes(searchValue) ||
+    material.user.program.category.toLowerCase().includes(searchValue)
+  );
+
+  console.log('Filtered result:', this.filteredreservationList);
 }
 
-// for testing book availability
-
-// export class ReservationListComponent implements OnInit {
-//   reservationList: Reservation[] = [];
-
-//   constructor(private reservationService: ReservationService) { }
-
-//   ngOnInit(): void {
-//     this.getReservations();
-//   }
-
-//   getReservations(): void {
-//     this.reservationService.getReservations()
-//       .subscribe(
-//         (reservations: Reservation[]) => {
-//           this.reservationList = reservations;
-//         },
-//         (error) => {
-//           console.error('Error fetching reservations', error);
-//         }
-//       );
-//   }
-// }
+}
