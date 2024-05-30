@@ -52,6 +52,10 @@ export class UserTableComponent implements OnInit {
     );
   }
 
+  getGenderString(gender: number): string {
+    return gender === 1 ? 'Male' : 'Female';
+  }
+
   redirectToListPage() {
     this.router.navigate(['main/returned/user/user-table'])
   }

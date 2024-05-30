@@ -44,6 +44,14 @@ export class MainService {
   clearCache(): void {
     this.cache.clear();
   }
+
+  public getReturnListById(userId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}returned-list/${userId}`);
+  }
+
+  public getcirculationuser(userId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}circulation/get-user/${userId}`);
+  }
 }
 
 //  nasa auth.service yung para sa mga tables

@@ -7,7 +7,7 @@ export interface User {
     first_name: string;
     middle_name: string | null;
     last_name: string;
-    gender: string;
+    gender: number;
     ext_name: string | null;
     program_id: number;
     course_id: number | null;

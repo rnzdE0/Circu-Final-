@@ -7,12 +7,12 @@
       <div class="table1">
         <p>Name: {{user.first_name}} {{user.last_name}}</p>
         <p>Department: {{user.program.program}}</p>
-        <p>Books Allowed:</p>
+        <!-- <p>Books Allowed:</p> -->
       </div>
 
       <div class="table2">
         <p><span class="contento">Id Number:</span> {{user.id}}</p>
-        <p>Patron Type: {{user.position}}</p>
+        <!-- <p>Patron Type: {{user.patron.patron}}</p> -->
       </div>
 
           <div class="form">
@@ -27,11 +27,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{{user.created_at}}</td>
-                  <td></td>
-                  <td>1029</td>
-                  <td>Pending</td>
+                <tr *ngFor="let book of borrowedBooks">
+                  <td>{{ book.borrow_date }}</td>
+                  <td>{{ book.book.title }}</td> 
+                  <td>{{ book.id }}</td>
+                  <td>{{ getstatusString(book.status) }}</td>
                 </tr>
                 
               </tbody>
@@ -39,18 +39,9 @@
           </div>
           </div>
             
-              <!-- <div class="reason">
-                <div class="group1">
-                    <div class="input-group">
-                      <input required="" type="time" name="text" autocomplete="off" class="input" >
-                      <textarea class="input-reason" name="text" id="" cols="30" rows="10" placeholder=""></textarea>
-                      <label class="userlabel">Reason</label>
-                    </div>
-                </div>
-              </div> -->
             
               <div class="table3">
-                <p>Successful Returns:</p>
+                <p>Total Returned Books: {{ totalReturnedBooks }}</p>
                 <p>Total Fine:</p>
               </div>
 
@@ -58,10 +49,6 @@
 
           <div class="buttons">
             <a class="close" matDialogClose>Close</a>
-            <!-- <button class="reserve" (click)="openDialog()">Reserve</button> -->
-            <!-- <a class="list" routerLink="/sample">List</a> -->            
-            <!-- <a class="save" routerLink="">Save</a> -->
-            <!-- <a class="reserve">Returned</a> -->
           </div>
   
 </body>

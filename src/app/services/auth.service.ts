@@ -99,4 +99,5 @@ export class AuthService {
   public getqueue(){
     return this.http.get(this.url + 'queue', {headers: this.headers.get() })
   }
+
 }

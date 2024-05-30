@@ -12,30 +12,16 @@ import { MainService } from '../../../../../../../services/main.service';
 import Swal from 'sweetalert2';
 
 
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  selectedDepartment: string = '';
-  selectedProgram: string = '';
-  selectedPatronType: string = '';
-  selectedAllType: string = '';
-  departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
-  secondFilterOptions: { [key: string]: string[] } = {
-    CBA: ['BSA', 'BSCA', 'BSBA-FM', 'BSBA-HRM', 'BSBA-MKT'],
-    CEAS: ['BEEd', 'BECEd', 'BSEd-E', 'BSEd-FIL', 'BSEd-M', 'BSEd-SCI', 'BSEd-SOC', 'BPEd', 'BCAEd', 'BACOM', 'TCP'],
-    CCS: ['BSIT', 'BSCS', 'EMC', 'ACT'],
-    CHTM: ['BSHM', 'BSTM'],
-    CAHS: ['BSN', 'BSM', 'GM']
-  };
-
-  searchTerm: string = '';
-  filteredMaterials = [];
-  borrowMaterials: any;
-  dataSource: any=null;
-  material: any;
+  filteredMaterials: BorrowMaterial[] = [];
+  borrowMaterials: BorrowMaterial [] = [];
+  
 
    // Variables for paginator
    totalLength = 100; // total number of items
@@ -50,63 +36,28 @@ export class TableComponent implements OnInit {
   }
   
 
-  // filter
-
-  // applyFilter(event: Event, type: string) {
-
-  //   // get elements
-  //   const selectDepartment = (document.getElementById('filter-department') as HTMLSelectElement).value;
-  //   let selectProgram = (document.getElementById('filter-program') as HTMLSelectElement).value;
-  //   const selectCategory = (document.getElementById('filter-category') as HTMLSelectElement).value;
-  //   const search = (document.getElementById('search') as HTMLInputElement).value;
-    
-  //   // reset program filter upon department filter search
-  //   if(type == 'department'){
-  //     this.departmentFilter = selectDepartment;
-  //     selectProgram = '';
-  //   }
-
-  //   const titleFilterPredicate = (data: Project, search: string): boolean => {
-  //     return data.title.toLowerCase().trim().includes(search.toLowerCase().trim());
-  //   } 
-
-  //   const authorFilterPredicate = (data: Project, search: string): boolean => {
-  //     return data.authors.some((x: any) => {
-  //       return x.toLowerCase().trim().includes(search.toLowerCase().trim());
-  //     });
-  //   } 
-    
-  //   const departmentFilterPredicate = (data: Project, selectDepartment: string): boolean => {
-  //     return data.program.department === selectDepartment || selectDepartment === '';
-  //   }
-
-  //   const programFilterPredicate = (data: Project, selectProgram: string): boolean => {
-  //     return data.program.program === selectProgram || selectProgram === '';
-  //   }
-
-  //   const categoryFilterPredicate = (data: Project, selectCategory: string): boolean => {
-  //     return data.category === selectCategory || selectCategory === '';
-  //   }
-
-  //   const filterPredicate = (data: Project): boolean => {
-  //     return (titleFilterPredicate(data, search) || authorFilterPredicate(data, search)) &&
-  //             departmentFilterPredicate(data, selectDepartment) &&
-  //             programFilterPredicate(data, selectProgram) &&
-  //             categoryFilterPredicate(data, selectCategory);
-  //   };
-
-  //   this.dataSource.filterPredicate = filterPredicate;
-  //   this.dataSource.filter = {
-  //     search, 
-  //     selectDepartment, 
-  //     selectProgram, 
-  //     selectCategory
-  //   };
-  // }
-
   ngOnInit(): void {
     this.fetchBorrowList();
+    
   }
+
+  applyFilter(event: Event): void {
+    console.log('Filtering...');
+    const searchValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    console.log('Search value:', searchValue);
+    if (!searchValue) {
+      this.filteredMaterials = this.borrowMaterials.slice(); // Reset filter
+      return;
+    }
+    this.filteredMaterials = this.borrowMaterials.filter(material =>
+      material.user.first_name.toLowerCase().includes(searchValue) ||
+      material.user.last_name.toLowerCase().includes(searchValue) ||
+      material.user.patron.patron.toLowerCase().includes(searchValue) ||
+      material.user.program.department.department.toLowerCase().includes(searchValue) ||
+      material.user.program.program.toLowerCase().includes(searchValue)
+    );
+  }
+  
 
   fetchBorrowList(): void {
     this.authService.getBorrowList().subscribe(
@@ -114,32 +65,19 @@ export class TableComponent implements OnInit {
         console.log('Received data from backend:', data);
         console.log('Type of data:', typeof data);
         this.borrowMaterials = data as BorrowMaterial[]; // Assign the fetched user data to the users array
+        this.filteredMaterials = this.borrowMaterials.slice();
       },
       (error) => {
         console.error('Error fetching users:', error);
       }
     );
   }
-  
-  applySearch(): void {
-    const searchTermUpper = this.searchTerm.toUpperCase();
-    console.log('hello')
 
-    this.filteredMaterials = this.borrowMaterials.filter((material: { user: { patron: { patron: string; }; id: string; first_name: any; last_name: any; program: { department: { department: string; }; program: string; }; }; book_id: string; status: string; fine: string; }) => {
-      return (
-        material.user.patron.patron.toUpperCase().includes(searchTermUpper) ||
-        material.user.id.toUpperCase().includes(searchTermUpper) ||
-        `${material.user.first_name} ${material.user.last_name}`.toUpperCase().includes(searchTermUpper) ||
-        material.user.program.department.department.toUpperCase().includes(searchTermUpper) ||
-        material.user.program.program.toUpperCase().includes(searchTermUpper) ||
-        material.book_id.toUpperCase().includes(searchTermUpper) ||
-        material.status.toUpperCase().includes(searchTermUpper) ||
-        material.fine.toUpperCase().includes(searchTermUpper)
-      );
-    });
+  getStatusString(status: number): string {
+    return status === 1 ? 'Borrowed' : 'Returned';
   }
-
-
+  
+  
 elements: any;
    
 

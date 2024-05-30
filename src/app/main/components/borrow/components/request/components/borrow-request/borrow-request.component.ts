@@ -46,9 +46,10 @@ export class BorrowRequestComponent implements OnInit {
     position: ''
   }
 
-
+  currentDate: string = '';
   patrons: any;
   fine = 0;
+  hours_allowed: number = 0;
 
   constructor(
     private dialog : MatDialog,
@@ -69,22 +70,58 @@ export class BorrowRequestComponent implements OnInit {
  
   ngOnInit(): void {
   //  this.bookSubmit();
+  this.setCurrentDate();
+  console.log('User patron type:', this.user.patron.patron);
+
+  // Initialize borrow_date with the current date
+  this.borrowForm.controls['borrow_date'].setValue(this.currentDate);
 
     this.ds.get('circulation/getpatrons').subscribe({
       next: (res: any) => {
+        console.log('Response from backend:', res);
         this.patrons = res;
         this.borrowForm.get('fine')?.setValue(res[0].fine);
+
+
+        this.setHoursAllowed(this.user.patron.patron);
+        console.log('hours_allowed set in component:', this.hours_allowed);
       }
-    })
+    }) 
   }
 
+
+
+  setHoursAllowed(patronType: string): void {
+    const foundPatron = this.patrons.find((patron: any) => patron.patron === patronType);
+    console.log('Found patron:', foundPatron); // Log the found patron object
+    if (foundPatron) {
+      this.hours_allowed = foundPatron.hours_allowed;
+      console.log('hours_allowed set to:', this.hours_allowed); // Log the hours_allowed value being set
+    } else {
+      console.log('Patron not found for type:', patronType); // Log if patron not found
+    }
+  }
+  setCurrentDate(): void {
+    const today = new Date();
+    this.currentDate = today.toISOString().substring(0, 10);
+  }
+
+  
+
   changePatron(event: Event) {
-    let value = (event.target as HTMLInputElement).value;
-    for(const patron of this.patrons) {
-      if(patron.id == value) {
-        this.borrowForm.get('fine')?.setValue(patron.fine);
-        break;
-      }
+    let selectedPatronId = (event.target as HTMLInputElement).value;
+    console.log('Selected patron ID:', selectedPatronId);
+  
+    // Find the selected patron from the patrons array
+    const selectedPatron = this.patrons.find((patron: any) => patron.id == selectedPatronId);
+  
+    if (selectedPatron) {
+      // Update the form values based on the selected patron
+      this.borrowForm.get('fine')?.setValue(selectedPatron.fine);
+      // Call setHoursAllowed with the patron type
+      this.setHoursAllowed(selectedPatron.patron);
+    } else {
+      console.log('Patron not found for ID:', selectedPatronId);
     }
   }
 

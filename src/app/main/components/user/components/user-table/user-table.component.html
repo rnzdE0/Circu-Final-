@@ -24,7 +24,7 @@
       <tr *ngFor="let user of filteredUserList">
         <td>{{ user.first_name }} {{ user.last_name }}</td>
         <td>{{ user.patron.patron }}</td>
-        <td>{{ user.gender }}</td>
+        <td>{{ getGenderString(user.gender) }}</td>
         <td>{{ user.id }}</td>
         <td>{{ user.program.department.department }}</td>
         <td>{{ user.program.program }}</td>

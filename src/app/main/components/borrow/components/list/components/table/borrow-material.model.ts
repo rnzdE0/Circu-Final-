@@ -6,11 +6,18 @@ fine: any;
     user_id: number;
     username: string;
     user: {
-role: any;
-program: any;
-      id: number;
-      username: string;
-      // Add other user properties here
-    };
-    // Add other BorrowMaterial properties here
-  }
+            role: any;
+            program: any;
+            id: number;
+            username: string;
+            first_name: string;
+            last_name: string;
+            patron:{
+              patron: string;
+            }
+            
+          };
+    
+
+
+}

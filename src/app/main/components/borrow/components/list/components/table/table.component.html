@@ -4,42 +4,11 @@
 
   <p class="title">Borrow List</p>
    <!-- Search bar -->
-  <div class="search">
-    <input placeholder="Search..." type="text" [(ngModel)]="searchTerm">
-    <button type="submit" (click)="applySearch()"><i class="bx bx-search" ></i></button>
+   <div class="search">
+    <input placeholder="Search..." name="search" id="search" type="text" (input)="applyFilter($event)">
+    <button type="submit" (click)="applyFilter($event)"><i class="bx bx-search"></i></button>
+
   </div>
-
-    <!-- filter -->
-
-    <!-- <div class="filter-container">
-      <div class="filter-options">
-        <div class="filter-group">
-          <label for="department">Department:</label>
-          <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
-            <option value="">All Departments</option>
-            <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
-          </select>
-        </div>
-        <div class="filter-group" *ngIf="selectedDepartment">
-          <label for="secondFilter">Program:</label>
-          <select id="secondFilter" [(ngModel)]="selectedProgram">
-            <option value="">All Options</option>
-            <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="patronType">Patron Type:</label>
-          <select id="patronType" [(ngModel)]="selectedPatronType">
-            <option value="">All Patron Types</option>
-            <option value="Admin">Admin</option>
-            <option value="Faculty">Faculty</option>
-            <option value="Student">Student</option>
-            <option value="Staff">Staff</option>
-            <option value="Visitor">Visitor</option>
-          </select>
-        </div>
-      </div>
-    </div> -->
 
   <table class="content-table">
     <thead class="table-head">
@@ -58,14 +27,14 @@
     </thead>
     <tbody>
       <!-- *ngFor="let material of borrowMaterials"  -->
-      <tr *ngFor="let material of borrowMaterials">
+      <tr *ngFor="let material of filteredMaterials">
         <td>{{material.user.patron.patron}}</td>
         <td>{{material.user.id}}</td>
         <td>{{material.user.first_name}} {{material.user.last_name}}</td>
         <td>{{material.user.program.department.department}}</td>
         <td>{{material.user.program.program}}</td>
         <td>{{material.book_id}}</td>
-        <td>{{material.status}}</td>
+        <td>{{ getStatusString(material.status) }}</td>
         <td>{{material.fine}}</td>
         <td>
           <button class="returned" (click)="pushDialog(material)">
