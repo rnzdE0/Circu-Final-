@@ -54,10 +54,9 @@
                                 <td>{{material.book_id}}</td>
                                 <!-- category -->
                                 <td>{{material.user.program.category}}</td>
-                                
+                                <td>{{material.queue_position}}</td>
 
-                                <!-- Queue or Pickup -->
-                                <td></td>
+              
 
                                 <td>
                                   <button class="returned" (click)="push(material)">
@@ -111,7 +110,7 @@
                                   <td>{{online.book_id}}</td>
                                   <!-- category -->
                                   <td>{{online.user.program.category}}</td>
-                                  
+                                  <td>{{material.queue_position}}</td>
                                   
                                 <td>
                                     <button class="returned" (click)="push(online)">

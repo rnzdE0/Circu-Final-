@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ReservationPopupComponent } from '../reservation-popup/reservation-popup.component';
 import { DeleteComponent } from '../delete/delete.component';
 import { AuthService } from '../../../../../../../services/auth.service';
-import { OnlineList, ReservationList } from './reserve-list.model';
+import { OnlineList, ReservationList, queueData } from './reserve-list.model';
 import { PushComponent } from '../push/push.component';
 import { Router } from '@angular/router';
 
@@ -19,11 +19,14 @@ export class ReserveComponent {
   material: any;
   onlineList: OnlineList[] = [];
   filteredonlineList: OnlineList[] = [];
+  queueData: queueData[] = [];
+  filterqueue: queueData[]=[];
 
 
   ngOnInit():void{
     this.fetchReserveList();
     this.fetchOnlineList();
+    this.fetchQueue();
   }
 
   fetchReserveList(): void {
@@ -39,6 +42,21 @@ export class ReserveComponent {
       }
     );
   }
+
+  fetchQueue(): void {
+    this.authService.getqueue().subscribe(
+      (queueData: any) => {
+        console.log('Received data from queue:', queueData);
+        this.queueData = queueData as queueData[];
+        // Once both reservation list and queue data are fetched, combine them
+        this.filterqueue = this.queueData.slice();
+      },
+      (error) => {
+        console.error('Error fetching queue:', error);
+      }
+    );
+  }
+
 
   fetchOnlineList(): void {
     this.authService.getOnlineList().subscribe(
@@ -133,33 +151,38 @@ applyFilter(event: Event): void {
   console.log('Filtering...');
   const searchValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
   console.log('Search value:', searchValue);
+
+  // Filter reservation list
   if (!searchValue) {
     this.filteredreservationList = this.reservationList.slice(); // Reset filter
-    return;
+  } else {
+    this.filteredreservationList = this.reservationList.filter(material =>
+      material.user.patron.patron.toLowerCase().includes(searchValue) ||
+      material.user.id.toString().toLowerCase().includes(searchValue) ||
+      material.user.program.department.department.toLowerCase().includes(searchValue) ||
+      material.book_id.toString().toLowerCase().includes(searchValue) ||
+      material.user.program.category.toLowerCase().includes(searchValue)||
+      material.queue_position.toString().toLowerCase().includes(searchValue)
+    );
   }
-  this.filteredreservationList = this.reservationList.filter(material =>
-    material.user.patron.patron.toLowerCase().includes(searchValue) ||
-    material.user.id.toString().toLowerCase().includes(searchValue) ||
-    material.user.program.department.department.toLowerCase().includes(searchValue) ||
-    material.book_id.toString().toLowerCase().includes(searchValue) ||
-    material.user.program.category.toLowerCase().includes(searchValue)
-  );
 
-  console.log('Filtered result:', this.filteredreservationList);
+  console.log('Filtered reservation result:', this.filteredreservationList);
 
+  // Filter online list
   if (!searchValue) {
     this.filteredonlineList = this.onlineList.slice(); // Reset filter
-    return;
+  } else {
+    this.filteredonlineList = this.onlineList.filter(material =>
+      material.user.patron.patron.toLowerCase().includes(searchValue) ||
+      material.user.id.toString().toLowerCase().includes(searchValue) ||
+      material.user.program.department.department.toLowerCase().includes(searchValue) ||
+      material.book_id.toString().toLowerCase().includes(searchValue) ||
+      material.user.program.category.toLowerCase().includes(searchValue)||
+      material.queue_position.toString().toLowerCase().includes(searchValue)
+    );
   }
-  this.filteredonlineList = this.onlineList.filter(material =>
-    material.user.patron.patron.toLowerCase().includes(searchValue) ||
-    material.user.id.toString().toLowerCase().includes(searchValue) ||
-    material.user.program.department.department.toLowerCase().includes(searchValue) ||
-    material.book_id.toString().toLowerCase().includes(searchValue) ||
-    material.user.program.category.toLowerCase().includes(searchValue)
-  );
 
-  console.log('Filtered result:', this.filteredreservationList);
+  console.log('Filtered online result:', this.filteredonlineList);
 }
 
 }

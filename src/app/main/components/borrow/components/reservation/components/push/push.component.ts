@@ -30,8 +30,10 @@ export class PushComponent {
     const url = 'fromreserve/book/';
 
     // Assuming this.material contains the necessary data
-    const { user_id, book_id, start_date, end_date, fine} = this.material; 
+    const {id, user_id, book_id, start_date, end_date, fine} = this.material; 
+    console.log('Extracted ID:', id);
     const payload = {
+      id: material.id,
       user_id: user_id,
       book_id: book_id, 
       start_date: start_date,
