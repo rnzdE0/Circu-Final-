@@ -125,6 +125,7 @@ elements: any;
     });
     _popup.afterClosed().subscribe(result => {
       this.redirectToListPage();
+      console.log(result)
       if(result === 'Changed Data') {
         this.fetchBorrowList()
       }

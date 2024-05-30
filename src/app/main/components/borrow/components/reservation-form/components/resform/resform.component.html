@@ -79,10 +79,12 @@
                   </div> -->
                   
                   <div class="input-group">
-                      <select name="text" (change)="changePatron($event)" class="input31">
+                      <!-- <select name="text" (change)="changePatron($event)" class="input31">
                           <option *ngFor="let patron of patrons" [value]="patron.id">{{ patron.patron }}</option>
                       </select>
-                      <label class="patron-label">Patron</label>
+                      <label class="patron-label">Patron</label> -->
+                      <input type="text" name="text" autocomplete="off" class="input3" disabled [value]="user.patron.patron || ''">
+                          <label class="book-label">Patron</label>
                   </div>
 
                 
@@ -137,7 +139,7 @@
                 <label class="booklabel">Due for Borrow</label>
               </div>
               <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input2"  required formControlName="fine" [value]="fine" >
+                <input required="" type="text" name="text" autocomplete="off" class="input2"  required formControlName="fine" [value]="user.patron.fine" >
                 <label class="book-label">User Fine</label>
               </div>
           </div>

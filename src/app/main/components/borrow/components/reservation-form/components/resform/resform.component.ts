@@ -23,6 +23,11 @@ export class ResformComponent implements OnInit {
     department: '',
     program: {
       department: ''
+    },
+    patron: {
+      hours_allowed: '',
+      patron: '',
+      fine: ''
     }
   }
   book = {
@@ -62,15 +67,22 @@ export class ResformComponent implements OnInit {
     })
   }
 
-    changePatron(event: Event) {
-      let value = (event.target as HTMLInputElement).value;
-      for(const patron of this.patrons) {
-        if(patron.id == value) {
-          this.requestForm.get('fine')?.setValue(patron.fine);
-          break;
-        }
-      }
+  changePatron(event: Event) {
+    let selectedPatronId = (event.target as HTMLInputElement).value;
+    console.log('Selected patron ID:', selectedPatronId);
+  
+    // Find the selected patron from the patrons array
+    const selectedPatron = this.patrons.find((patron: any) => patron.id == selectedPatronId);
+  
+    if (selectedPatron) {
+      // Update the form values based on the selected patron
+      this.requestForm.get('fine')?.setValue(selectedPatron.fine);
+      // Call setHoursAllowed with the patron type
+      // this.setHoursAllowed(selectedPatron.patron);
+    } else {
+      console.log('Patron not found for ID:', selectedPatronId);
     }
+  }
 
     
 
@@ -85,6 +97,8 @@ export class ResformComponent implements OnInit {
         this.user.name=res.first_name+' '+res.last_name;
         this.user.program.department=res.program.program;
         this.user.gender=res.gender;
+        this.user.patron.fine=res.patron.fine;
+        this.user.patron.patron=res.patron.patron
         console.log(res)
       }
     })
