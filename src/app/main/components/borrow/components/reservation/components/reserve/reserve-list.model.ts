@@ -1,21 +1,22 @@
 export interface ReservationList {
     id: number;
-    user_id: number;
-    book_id: number;
-    username: string;
-    user: {
-      id: number;
+      user_id: number;
+      book_id: number;
       username: string;
-      role: string;
-      patron:{
-        patron: string;
-      }
-      program:{
-        department:{
-          department:string;
+      queue_position:number;
+      user: {
+        id: number;
+        username: string;
+        role: string;
+        patron:{
+          patron: string;
         }
-        category:string;
-      }
+        program:{
+          department:{
+            department:string;
+          }
+          category:string;
+        }
     };
     
   }
@@ -25,6 +26,7 @@ export interface OnlineList {
     user_id: number;
     book_id: number;
     username: string;
+    queue_position:number;
     user: {
       id: number;
       username: string;
@@ -39,5 +41,11 @@ export interface OnlineList {
         category:string;
       }
     };
- 
+}
+
+export interface queueData{
+  user_id: number;
+  book_id: number;
+  status: number;
+  queue_position: number;
 }
