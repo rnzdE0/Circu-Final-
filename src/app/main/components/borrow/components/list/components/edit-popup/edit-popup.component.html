@@ -110,12 +110,12 @@
                   document.getElementsByName("date")[0].setAttribute('min', today);
             </script>
               <div class="input-group">
-                <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-04-18" [value]="material.borrow_date">
+                <input required="" type="text" name="date" autocomplete="off" class="input" min="2024-04-18" [value]="material.borrow_date" disabled>
                 <label class="userlabel2">Date of Request</label>
               </div>
 
               <div class="input-group">
-                <input required="" type="datetime-local" name="date" autocomplete="off" class="input" min="2024-04-18" [value]="material.borrow_expiration">
+                <input required="" type="text" name="date" autocomplete="off" class="input" min="2024-04-18" [value]="material.borrow_expiration" disabled>
                 <label class="booklabel2">Due</label>
               </div>
               <div class="input-group">

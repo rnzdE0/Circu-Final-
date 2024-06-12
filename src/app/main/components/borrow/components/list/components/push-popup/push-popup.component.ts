@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -20,7 +20,8 @@ export class PushPopupComponent {
     @Inject(MAT_DIALOG_DATA) 
     public material: any,
     private http: HttpClient,
-    private ds: MainService
+    private ds: MainService,
+    private ref: MatDialogRef <PushPopupComponent>,
     ) {
       console.log('Data received in dialog:', this.material);
     }
@@ -31,6 +32,7 @@ export class PushPopupComponent {
     // Assuming you use Angular HttpClient to send PUT request to Laravel backend
     this.ds.put( url+this.material.id ,{}).subscribe(
       (response) => {
+        this.ref.close('Changed Data')
         console.log('Book marked as returned:', response);
         // Optionally handle success response
         this.updateBookStatus();

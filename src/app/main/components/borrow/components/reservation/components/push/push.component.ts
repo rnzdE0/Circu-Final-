@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { MainService } from '../../../../../../../services/main.service';
 
@@ -18,7 +18,8 @@ export class PushComponent {
     @Inject(MAT_DIALOG_DATA) 
     public material: any,
     private http: HttpClient,
-    private ds: MainService
+    private ds: MainService,
+    private ref: MatDialogRef <PushComponent>,
     ) {
     console.log('Data received in dialog:', this.material);
   }
@@ -46,6 +47,7 @@ export class PushComponent {
     // Use Angular HttpClient (this.ds.post) to send a POST request to your backend
     this.ds.post(url + this.material.id, payload).subscribe(
       (response: any) => {
+        
         console.log('Book borrowed successfully:', response);
         // Optionally handle success here, e.g., show a success message
         this.updateBookStatus();

@@ -32,7 +32,8 @@ export class BorrowRequestComponent implements OnInit {
     },
     patron: {
       hours_allowed: '',
-      patron: ''
+      patron: '',
+      fine:''
     }
   } 
   book = {
@@ -103,7 +104,9 @@ export class BorrowRequestComponent implements OnInit {
   }
   setCurrentDate(): void {
     const today = new Date();
-    this.currentDate = today.toISOString().substring(0, 10);
+    // this.currentDate = today.toISOString().substring(0, 10);
+    const formattedDate = today.toISOString().replace('T', ' ').substring(0, 19);
+    this.currentDate = formattedDate;
   }
 
   
@@ -195,6 +198,7 @@ export class BorrowRequestComponent implements OnInit {
         this.user.department=res.department;
         this.user.patron.hours_allowed=res.patron.hours_allowed;
         this.user.patron.patron=res.patron.patron;
+        this.user.patron.fine=res.patron.fine;
         console.log(res)
       }
     })

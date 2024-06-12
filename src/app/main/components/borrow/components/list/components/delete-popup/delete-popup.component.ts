@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import Swal from 'sweetalert2'
 import { MainService } from '../../../../../../../services/main.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-delete-popup',
@@ -12,12 +12,13 @@ export class DeletePopupComponent {
   getData: any;
 
   constructor (
+    private ref: MatDialogRef <DeletePopupComponent>,
     private ds: MainService,
     @Inject(MAT_DIALOG_DATA)
     public material: any 
-  ) {
-    console.log('Data received in dialog:', this.material);
-   }
+  ) { 
+    console.log(this.material)
+  }
 
 
   //  submit(id: number){
@@ -62,9 +63,10 @@ export class DeletePopupComponent {
   // }
   
 
-  submit(id: number){
+  submit(){
         this.ds.delete('delete-borrowlist/' + this.material.id).subscribe({
           next: () => {
+            this.ref.close('Changed Data');
             Swal.fire({
               title: "Archiving complete!",
               text: "Journal has been successfully archived.",
