@@ -8,6 +8,8 @@ export interface ReservationList {
         id: number;
         username: string;
         role: string;
+        first_name: string;
+        last_name: string;
         patron:{
           patron: string;
         }
@@ -18,6 +20,9 @@ export interface ReservationList {
           category:string;
         }
     };
+    book: {
+      title: string;
+    }
     
   }
 
@@ -30,6 +35,8 @@ export interface OnlineList {
     user: {
       id: number;
       username: string;
+      first_name: string;
+      last_name: string;
       role: string;
       patron:{
         patron: string;
@@ -41,6 +48,9 @@ export interface OnlineList {
         category:string;
       }
     };
+    book: {
+      title: string;
+    }
 }
 
 export interface queueData{

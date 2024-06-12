@@ -36,7 +36,6 @@ hr {
     margin-bottom: 20px;
 }
 
-
 // dropdown
 .filters {
     padding-left: 30px;
@@ -47,7 +46,7 @@ hr {
     appearance: none;
     width: 100%;
     color: black;
-    background-color: #31A463;
+    background-color: #4F6F52;
     border-radius: 10px;
     font-family: 'montserrat', sans-serif;
 }
@@ -164,11 +163,11 @@ hr {
 }
 
 .search button[type="submit"] {
-    background-color: #31A463;
+    background-color: #4F6F52;
     border: none;
     border-style: groove;
     color: #fff;
-    border-color: #31A463;
+    border-color: #4F6F52;
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 10px;
@@ -184,7 +183,7 @@ hr {
 .search button[type="submit"]:hover {
     transform: scale(1.1);
     color: rgb(255, 255, 255);
-    background-color: #31A463;
+    background-color: #4F6F52;
     font-size: 15px;
 }
 
@@ -210,7 +209,7 @@ hr {
 }
 
 .table-head {
-    background-color: #31A463;
+    background-color: #4F6F52;
     font-size: 15px;
     border: 0;
 }
@@ -233,7 +232,7 @@ hr {
     width: 30px;
     margin-left: -15px;
     margin-right: auto;
-    background-color: #31A463;
+    background-color: #4F6F52;
     border-style: none;
     cursor: pointer;
     border-radius: 10px;

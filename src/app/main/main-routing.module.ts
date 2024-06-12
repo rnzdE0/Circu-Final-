@@ -16,6 +16,7 @@ import { MostComponent } from './components/reports/components/most/most.compone
 import { ReservationComponent } from './components/borrow/components/reservation/reservation.component';
 import { ReservationFormComponent } from './components/borrow/components/reservation-form/reservation-form.component';
 import { ResformComponent } from './components/borrow/components/reservation-form/components/resform/resform.component';
+import { LogsComponent } from './components/logs/logs.component';
 
 const routes: Routes = [
 
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'reserve', component: ReserveComponent},
   { path: 'top', component: TopComponent},
   { path: 'most', component: MostComponent},
+  { path: 'log', component: LogsComponent},
 
   // parent
   { 

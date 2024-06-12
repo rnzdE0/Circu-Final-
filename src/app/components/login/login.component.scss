@@ -16,8 +16,8 @@ body {
 
 .vector {
     position: absolute;
-    top: 20px;
-    left: 60px;
+    top: 50px;
+    left: 80px;
     z-index: 1;
     width: 1000px;
     height: 1000px;
@@ -35,11 +35,11 @@ body {
 .circle-1 {
     height: 0%;
     width: 0%;
-    border: 450px solid #7CC644;
+    border: 450px solid #376448;
     border-radius: 5000px;
     position: absolute;
     top: -300px;
-    left: -20px;
+    left: 50px;
     display: flex;
     justify-content: center;
 
@@ -47,11 +47,11 @@ body {
 .circle-2 {
     height: 0%;
     width: 0%;
-    border: 450px solid #31A463;
+    border: 450px solid #4F6F52;
     border-radius: 5000px;
     position: absolute;
     top: -250px;
-    left: -100px;
+    left: -50px;
 
 }
 
@@ -174,7 +174,7 @@ body {
     position: relative;
     padding: 0.5rem;
     width: 30%;
-    background-color: #31A463;
+    background-color: #4F6F52;
     border: none;
     border-radius: 40px;
     font-family: 'montserrat',sans-serif;
@@ -195,7 +195,7 @@ body {
     box-shadow: 0px 8px 15px -10px rgb(61, 61, 61);
     transform: translate(0px, -2px);
     background: white;
-    color: #31A463;
+    color: #4F6F52;
     cursor: pointer;
     text-decoration: none;
 }

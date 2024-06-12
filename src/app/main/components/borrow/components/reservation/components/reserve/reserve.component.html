@@ -33,28 +33,28 @@
                         <table class="content-table">
                             <thead class="table-head">
                               <tr>
-                                <th>Patron Type</th>
-                                <th>Id Number</th>
+                                <th>Mode of Reservation</th>
+                                <th>Borrower Name</th>
+                                <th>Book Title</th>
                                 <th>Department</th>
-                                <th>Accession Number</th>
-                                <th>Category</th>
                                 <th>Queue Position</th>
                                 <th>Action</th>
+                                
                               </tr>
                             </thead>
                             <tbody>
                               <tr  *ngFor="let material of filteredreservationList">
                                 <!-- student name -->
                                 <td>{{material.user.patron.patron}}</td>
+                                <!-- Borrower -->
+                                <td>{{material.user.first_name}} {{material.user.last_name}}</td>
                                 <!-- student id -->
-                                <td>{{material.user_id}}</td>
+                                <td>{{material.book.title}}</td>
                                 <!-- department id -->
                                 <td>{{material.user.program.department.department}}</td>
-                                <!-- accession id -->
-                                <td>{{material.book_id}}</td>
-                                <!-- category -->
-                                <td>{{material.user.program.category}}</td>
+                                <!-- position -->
                                 <td>{{material.queue_position}}</td>
+                             
 
               
 
@@ -87,10 +87,11 @@
                         <table class="content-table">
                             <thead class="table-head">
                               <tr>
-                                <th>Patron Type</th>
+                                <th>Mode of Reservation</th>
+                                <th>Borrower</th>
                                 <th>Id Number</th>
                                 <th>Department</th>
-                                <th>Accession Number</th>
+                                <th>Book Title</th>
                                 <th>Category</th>
                                 <th>Queue Position</th>
                                 <th>Action</th>
@@ -102,12 +103,14 @@
                                 <tr  *ngFor="let online of filteredonlineList">
                                   <!-- student name -->
                                   <td>{{online.user.patron.patron}}</td>
+
+                                  <td>{{online.user.first_name}} {{online.user.last_name}}</td>
                                   <!-- student id -->
                                   <td>{{online.user_id}}</td>
                                   <!-- department id -->
                                   <td>{{online.user.program.department.department}}</td>
                                   <!-- accession id -->
-                                  <td>{{online.book_id}}</td>
+                                  <td>{{online.book.title}}</td>
                                   <!-- category -->
                                   <td>{{online.user.program.category}}</td>
                                   <td>{{material.queue_position}}</td>

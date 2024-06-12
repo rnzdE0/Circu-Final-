@@ -55,6 +55,8 @@
       <tr>
         <th>Patron Type</th>
         <th>Id Number</th>
+        <th>Department</th>
+        <th>Program</th>
         <th>Accession Number</th>
         <th>Date Created</th>
         <th>Date Returned</th>
@@ -68,6 +70,10 @@
         <td>{{material.user.patron.patron }}</td>
         <!-- student id -->
         <td>{{material.user_id}}</td>
+        <!-- department -->
+        <td>{{material.user.department.department}}</td>
+        <!-- program -->
+        <td>{{material.user.program.program}}</td>
         <!-- accession id -->
         <td>{{material.book_id}}</td>
         <!-- date created -->

@@ -14,6 +14,7 @@ import { MaterialModule } from "../modules/material/material.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { GraphComponent } from './components/reports/components/graph/graph.component';
+import { LogsComponent } from './components/logs/logs.component';
 
 
 
@@ -23,7 +24,8 @@ import { GraphComponent } from './components/reports/components/graph/graph.comp
     ReturnedComponent,
     ReportsComponent,
     UserComponent,
-    GraphComponent
+    GraphComponent,
+    LogsComponent
   ],
   imports: [
     CommonModule,

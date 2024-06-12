@@ -22,10 +22,10 @@ body {
     font-size: 45px;
     font-weight: 700;
     letter-spacing: 1px;
-    color:#31A463 ;
+    color: white ;
     z-index: 1;
     left: 30px;
-    background-color: white;
+    background-color: #376448;
     font-family: 'montserrat', sans-serif;
 }
 
@@ -44,8 +44,9 @@ body {
     font-size: 25px;
     font-weight: 400;
     margin-bottom: -10px;
-    opacity: 50%;
+    opacity: 100%;
     font-family: 'montserrat', sans-serif;
+    color: #F4F4F4;
 }
 
 .systemname h2 {
@@ -58,6 +59,7 @@ body {
     margin-bottom: -20px;
     font-family: 'montserrat', sans-serif;
     font-weight: 300;
+    color: #F4F4F4;
 }
 
 .logo-title {
@@ -65,10 +67,14 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
+hr{
+    color: #376448;
+}
+
 
 .sidebar-content {
     position: relative;
-    background-color: white;
+    background-color: #4F6F52;
     width: 220px;
     position: fixed;
     top: 0;
@@ -76,7 +82,7 @@ body {
     height: 100%;
     padding: 30px 15px;
     z-index: 100;
-    border-right: 2px solid #C5C5C5;
+    border-right: 2px solid #376448;    
     transition: all 0.3s ease;
 }
 
@@ -102,7 +108,7 @@ body {
 }
 
 .sidebar-content a {
-    color: var(--black);
+    color: #F4F4F4;
 }
 
 .sidebar-content-tabs {
@@ -122,16 +128,22 @@ body {
     text-decoration: none;
     margin-bottom: 3px;
     margin-top: 5px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #f4f4f4;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .admin-tab a:hover {
-    color: #31A463;
+    color: #F4F4F4;
+    background-color: #376448;
 }
 
 .admin-tab a.active-link {
     font-weight: 300;
-    color: #31A463;
+    color: #F4F4F4;
+    background-color: #376448;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .tab-link .tab-link-name {
@@ -179,18 +191,19 @@ ul ul {
     cursor: pointer;
     outline: none;
     display: flex;
-    color: #333; 
+    color: #f4f4f4; 
     font-size: 16px;
     margin-left: 180px;
-    margin-top: -25px;
+    margin-top: -32px;
+    margin-bottom: 13px;
     transform: translateY(-9px);
+    border-bottom: none;
 }
 
 .gc-library {
     flex-grow: 1;
     cursor: pointer;
 }
-
 
 
 .dropdown-icon {
@@ -211,16 +224,20 @@ ul ul {
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: #333; 
+    color: #F4F4F4; 
     padding: 12px 16px; 
     text-decoration: none; 
     display: block; 
     transition: background-color 0.3s; 
+    padding-top: 15px;
+    padding-bottom: 15px;
+    // border-bottom: 1px solid #31A463;
+    border-bottom: none;
 }
 
 /* Change color of links on hover */
 .dropdown-content a:hover {
-    background-color: #f2f2f2; 
+    background-color: #376448; 
 }
 
 /* Show the dropdown menu on hover */
@@ -245,10 +262,11 @@ ul ul {
     justify-content: center;
     font-size: 25px;
     padding: 10px 10px 20px 40px;
+    color: #f4f4f4;
 }
 
 .logoutbtn .logout:hover {
-    color: #31A463;
+    color: #376448;
 }
 
 .logoutbtn {

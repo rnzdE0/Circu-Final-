@@ -32,8 +32,6 @@
             </div>
         </div>
 
-        <hr>
-
         <!-- SIDEBAR TABS -->
         <div class="sidebar-tabs">
             <ul class="admin-tabs">
@@ -67,7 +65,7 @@
                     </div>
                 </li>
 
-                <hr>
+          
 
                 <li class="admin-tab">
                     <a class="tab-link" routerLink="returned" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
@@ -76,7 +74,6 @@
                     </a>
                 </li>
 
-                <hr>
 
                 <li class="admin-tab">
                     <a class="tab-link" routerLink="user" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
@@ -85,8 +82,13 @@
                     </a>
                 </li>
 
-                <hr>
-
+                <li class="admin-tab">
+                    <a class="tab-link" routerLink="log" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
+                    <span class="tab-link-icon"> <i class='bx bx-user' ></i> </span>
+                    <span class="tab-link-name"> Activity Log </span>
+                    </a>
+                </li>
+          
                 <li class="admin-tab">
                     <div class="dropdown" >
                         <span class="gc-library" (click)="toggleUserDropdown()">

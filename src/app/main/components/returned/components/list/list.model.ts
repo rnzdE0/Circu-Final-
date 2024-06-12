@@ -5,7 +5,13 @@ export interface List {
     user: {
       id: number;
       username: string;
-      // Add other user properties here
+
+      program: {
+        program: string;
+      }
+      department: {
+        department: string;
+      }
     };
     // Add other BorrowMaterial properties here
   }

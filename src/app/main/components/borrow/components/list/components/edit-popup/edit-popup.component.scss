@@ -16,7 +16,7 @@ body {
 }
 
 .header{ 
-    background-color: #31A463;
+    background-color: #4F6F52;
     padding-top: 35px;
     padding-bottom: 20px;
     // border-bottom: 2.5px solid black;
@@ -147,7 +147,7 @@ body {
 }
 
 .save {
-    background-color: #31A463;
+    background-color: #4F6F52;
     margin-right: 10px;
     justify-content: center;
     position: relative;
@@ -209,7 +209,7 @@ body {
     box-shadow: 0px 8px 15px -10px rgb(61, 61, 61);
     transform: translate(0px, -2px);
     background: white;
-    color:#31A463;
+    color:#4F6F52;
     cursor: pointer;
     text-decoration: none;
 }
@@ -313,7 +313,7 @@ body {
 
 .input:focus, input:valid, .input2:focus, .input2:valid{
     outline: none;
-    border-bottom: 2px solid #31A463;
+    border-bottom: 2px solid #4F6F52;
 }
 
 .input:focus ~ label, input:valid ~ label, .input2:focus ~ label, .input2:valid ~ label .group2:focus ~ label, .group2:valid ~ label{
@@ -322,7 +322,7 @@ body {
     // border: solid 1.5px #31A463;
     // border-radius: 5px;
     padding: 0 .2em;
-    color: #31A463;
+    color: #4F6F52;
     font-size: 15px;
     font-weight: 600;
     left: 15px;
