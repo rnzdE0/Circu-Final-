@@ -9,9 +9,9 @@ import { UserModule } from './components/user/user.module';
 import { ReturnedModule } from './components/returned/returned.module';
 import { ReportsModule } from './components/reports/reports.module';
 import { BorrowModule } from './components/borrow/borrow.module';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MaterialModule } from "../modules/material/material.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { GraphComponent } from './components/reports/components/graph/graph.component';
 import { LogsComponent } from './components/logs/logs.component';
@@ -25,7 +25,7 @@ import { LogsComponent } from './components/logs/logs.component';
     ReportsComponent,
     UserComponent,
     GraphComponent,
-    LogsComponent
+    LogsComponent,
   ],
   imports: [
     CommonModule,

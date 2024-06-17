@@ -1,5 +1,10 @@
 export interface User {
-    program: any;
+    program: {
+      program: string,
+      department: {
+        department: string
+      }
+    },
     id: number;
     username: string;
     role: string;

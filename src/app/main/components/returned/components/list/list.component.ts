@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { EditComponent } from '../edit/edit.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { AuthService } from '../../../../../services/auth.service';
 import { List } from './list.model';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListComponent {
+export class ListComponent implements AfterViewInit{
   selectedDepartment: string = '';
   selectedProgram: string = '';
   selectedPatronType: string = '';
@@ -22,9 +25,24 @@ export class ListComponent {
     CAHS: ['BSN', 'BSM', 'GM']
   };
 
+  displayedColumns: string[] = ['Borrower', 'Email', 'Department', 'Program', 'Book Title', 'Date Created', 'Date Returned', 'Status'];
+  dataSource = new MatTableDataSource<List>();
+
+
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null; // Type safety
+
+  constructor(private dialog: MatDialog,
+    private authService: AuthService,
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private paginatorIntl :MatPaginatorIntl
+  ) {
+    this.paginator = new MatPaginator(this.paginatorIntl, this.cdr);
+  }
+
   returned: any[] = [];
 
-  ngOnInit(): void{
+  ngAfterViewInit(): void {
     this.fetchReturned();
   }
 
@@ -33,6 +51,7 @@ export class ListComponent {
       (data: any) => {
         console.log('Recieved data from backend', data);
         this.returned = data as List[];
+        this.dataSource.data = this.returned;
       }
     )
   }
@@ -40,9 +59,10 @@ export class ListComponent {
   onDepartmentChange(): void {
     this.selectedProgram = '';
   }
-  constructor(private dialog : MatDialog,
-  private authService: AuthService
-  ) {}
+
+  // constructor(private dialog : MatDialog,
+  // private authService: AuthService
+  // ) {}
 
   openEdit() {
     this.dialog.open(EditComponent, {

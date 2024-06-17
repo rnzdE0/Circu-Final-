@@ -50,14 +50,15 @@
   </div> -->
 
   <!-- <p class="title">Returned</p> -->
-  <table class="content-table">
+  <!-- <table class="content-table">
+
     <thead class="table-head">
       <tr>
-        <th>Patron Type</th>
-        <th>Id Number</th>
+        <th>Borrower</th>
+        <th>Email</th>
         <th>Department</th>
         <th>Program</th>
-        <th>Accession Number</th>
+        <th>Book Title</th>
         <th>Date Created</th>
         <th>Date Returned</th>
         <th>Status</th>
@@ -66,21 +67,21 @@
     </thead>
     <tbody>
       <tr *ngFor="let material of returned">
-        <!-- student name -->
-        <td>{{material.user.patron.patron }}</td>
-        <!-- student id -->
+
+        <td>{{material.user.first_name}} {{material.user.last_name}}</td>
+
         <td>{{material.user_id}}</td>
-        <!-- department -->
+
         <td>{{material.user.department.department}}</td>
-        <!-- program -->
+
         <td>{{material.user.program.program}}</td>
-        <!-- accession id -->
-        <td>{{material.book_id}}</td>
-        <!-- date created -->
+
+        <td>{{material.book.title}}</td>
+
         <td >{{material.borrow_date}}</td>
-        <!-- date returned -->
+
         <td >{{material.date_returned}}</td>
-        <!-- status -->
+
         <td class="returned">Returned</td>
       </tr>
     </tbody>
@@ -92,7 +93,67 @@
                   [pageSizeOptions]="[5, 10, 25, 100]"
                   aria-label="Select page">
         </mat-paginator>
-    </div>
+    </div> -->
+
+  <!-- new table for returned -->
+
+  <div class="table">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="Borrower">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Borrower</th>
+        <td mat-cell *matCellDef="let element"> {{ element.user.first_name }} {{ element.user.last_name }} </td>
+      </ng-container>
+  
+      <!-- Gender Column -->
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.id}} </td>
+      </ng-container>
+  
+      <!-- Email Column -->
+      <ng-container matColumnDef="Department">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Department </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.department.department}} </td>
+      </ng-container>
+  
+      <!-- Department Column -->
+      <ng-container matColumnDef="Program">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Program </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.program.program}} </td>
+      </ng-container>
+
+      <!-- Program Column -->
+      <ng-container matColumnDef="Book Title">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Book Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.book.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Date Created">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Date Created </th>
+        <td mat-cell *matCellDef="let element"> {{element.borrow_date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Date Returned">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Date Returned </th>
+        <td mat-cell *matCellDef="let element"> {{element.date_returned}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Status </th>
+        <td mat-cell class="returned" *matCellDef="let element"> Returned </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of users">
+    </mat-paginator>
+  </div>
   
 </div>
 

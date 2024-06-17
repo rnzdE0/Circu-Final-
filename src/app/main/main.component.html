@@ -8,136 +8,142 @@
 
 <link href="https://fonts.googleapis.com/css2?family=montserrat:wght@700&display=swap" rel="stylesheet">
 
-<div class="content">
-    <!-- HEADER -->
-    <div class="header">
-        <!-- <strong> <h1 class="circulation">GCLMS - Circulation System</h1> </strong> -->
-        <strong> <h1 class="circulation">CIRCULATION</h1> </strong>
-    </div> 
+<div class="container" [ngClass]="{'overlay-active': isOverlayActive}">
+    <div class="content" [ngClass]="{'collapsed': isSidebarCollapsed}">
+        <!-- HEADER -->
+        <div class="header">
+            <!-- <strong> <h1 class="circulation">GCLMS - Circulation System</h1> </strong> -->
+            <strong> <h1 class="circulation">CIRCULATION</h1> </strong>
+        </div> 
 
-    <!-- BODY CONTENT -->
-    <div class="body-content">
-        <div class="admin-container"> <router-outlet></router-outlet> </div>
-    </div>
-
-    <nav class="sidebar-content">
-        <!-- LOGO AND SUBSYSTEM TITLE -->
-        <div class="logo-title">
-            <div class="logo">
-                <img src="assets/img/logo.png">
-            </div>
-            <div class="systemname">
-                <h1> {{name}} </h1>
-                <h2> ADMIN </h2>
-            </div>
+        <!-- BODY CONTENT -->
+        <div class="body-content">
+            <div class="admin-container"> <router-outlet></router-outlet> </div>
         </div>
 
-        <!-- SIDEBAR TABS -->
-        <div class="sidebar-tabs">
-            <ul class="admin-tabs">
-                <li class="admin-tab">
-                    <div class="dropdown" >
-                        <span class="gc-library" (click)="toggleDropdown()">
-                            <a class="tab-link" routerLink="borrow" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
-                                <span class="tab-link-icon"> <i class='bx bx-book-alt'></i> </span>
-                                <span class="tab-link-name"> Borrow/Request </span>
-                            </a>
-                        </span>
-                        <button class="dropbtn" (click)="toggleDropdown()"> 
-                            <span class="dropdown-icon" [ngClass]="{'active': dropdownOpen}"> 
-                                <i class="bx" [ngClass]="{'bx-caret-left': true}"></i>
-                            </span>
-                        </button>
-                        <div class="dropdown-content" *ngIf="dropdownOpen">
-                            <a routerLink="request" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
-                                <span class="tab-link-name1"> Borrow Form </span>
-                            </a>
-                            <a routerLink="form" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
-                                <span class="tab-link-name1"> Reservation Form </span>
-                            </a>
-                            <a routerLink="list" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
-                                <span class="tab-link-name1"> Borrow List </span>
-                            </a>
-                            <a routerLink="reserve" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
-                                <span class="tab-link-name1"> Reservation List </span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-
-          
-
-                <li class="admin-tab">
-                    <a class="tab-link" routerLink="returned" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
-                    <span class="tab-link-icon"> <i class='bx bx-subdirectory-left'></i> </span>
-                    <span class="tab-link-name"> Returned </span>
-                    </a>
-                </li>
-
-
-                <li class="admin-tab">
-                    <a class="tab-link" routerLink="user" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
-                    <span class="tab-link-icon"> <i class='bx bx-list-ul' ></i> </span>
-                    <span class="tab-link-name"> Users </span>
-                    </a>
-                </li>
-
-                <li class="admin-tab">
-                    <a class="tab-link" routerLink="log" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
-                    <span class="tab-link-icon"> <i class='bx bx-user' ></i> </span>
-                    <span class="tab-link-name"> Activity Log </span>
-                    </a>
-                </li>
-          
-                <li class="admin-tab">
-                    <div class="dropdown" >
-                        <span class="gc-library" (click)="toggleUserDropdown()">
-                            <a class="tab-link" routerLink="reports" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
-                                <span class="tab-link-icon"> <i class='bx bx-task'></i> </span>
-                                <span class="tab-link-name"> Report </span>
-                            </a>
-                        </span>
-                        <button class="dropbtn" (click)="toggleUserDropdown()"> 
-                            <span class="dropdown-icon" [ngClass]="{'active': projectDropdownOpen}"> 
-                                <i class="bx" [ngClass]="{'bx-caret-left': true}"></i>
-                            </span>
-                        </button>
-                        <div class="dropdown-content" *ngIf="projectDropdownOpen">
-                            <a routerLink="top" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
-                                <span class="tab-link-name1"> Top 10 Borrowers </span>
-                            </a>
-                            <a routerLink="most" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
-                                <span class="tab-link-name2"> Most Borrowed </span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-
-
-            </ul>
-
-            
-            <!-- LOGOUT BUTTON -->
-            <div class="logoutbtn">
-                <!-- <div class="logout" (click)="togglePopup()" >
-                    <span> <i class='bx bx-log-out bx-rotate-180' ></i> 
-                        <app-logout-pop *ngIf="showPopup" (closedPopup)="closePopup()" (leaveClicked)="redirectToLoginPage()"></app-logout-pop>
-                    </span>
-                </div> -->
-
-                <div class="logoutbtn">
-                    <div class="logout" (click)="logoutAlert()">
-                        <span> <i class='bx bx-log-out bx-rotate-180' ></i> </span>
-                    </div>
+        <nav class="sidebar-content" [ngClass]="{'collapsed': isSidebarCollapsed}">
+            <!-- LOGO AND SUBSYSTEM TITLE -->
+            <div class="logo-title">
+                <div class="logo">
+                    <img src="assets/img/logo.png">
+                </div>
+                <div class="systemname">
+                    <h1> {{name}} </h1>
+                    <h2> ADMIN </h2>
                 </div>
 
+                <button class="menu-icon-button" (click)="toggleSidebar()">
+                    <i class='bx bx-menu' ></i>
+                </button>
             </div>
 
-                <!-- <div class="logoutbtn">
-                    <div class="logout" routerLink="/login">
-                        <span> <i class='bx bx-log-out bx-rotate-180' ></i> </span>
+            <!-- SIDEBAR TABS -->
+            <div class="sidebar-tabs">
+                <ul class="admin-tabs">
+                    <li class="admin-tab">
+                        <div class="dropdown" >
+                            <span class="gc-library" (click)="toggleDropdown(); toggleSidebar()">
+                                <a class="tab-link" routerLink="borrow" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
+                                    <span class="tab-link-icon"> <i class='bx bx-book-alt'></i> </span>
+                                    <span class="tab-link-name"> Borrow/Request </span>
+                                </a>
+                            </span>
+                            <button class="dropbtn" (click)="toggleDropdown()"> 
+                                <span class="dropdown-icon" [ngClass]="{'active': dropdownOpen}"> 
+                                    <i class="bx" [ngClass]="{'bx-caret-left': true}"></i>
+                                </span>
+                            </button>
+                            <div class="dropdown-content" *ngIf="dropdownOpen">
+                                <a routerLink="request" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                                    <span class="tab-link-name1"> Borrow Form </span>
+                                </a>
+                                <a routerLink="form" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                                    <span class="tab-link-name1"> Reservation Form </span>
+                                </a>
+                                <a routerLink="list" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                                    <span class="tab-link-name1"> Borrow List </span>
+                                </a>
+                                <a routerLink="reserve" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                                    <span class="tab-link-name1"> Reservation List </span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+            
+
+                    <li class="admin-tab">
+                        <a class="tab-link" routerLink="returned" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
+                        <span class="tab-link-icon"> <i class='bx bx-subdirectory-left'></i> </span>
+                        <span class="tab-link-name"> Returned </span>
+                        </a>
+                    </li>
+
+
+                    <li class="admin-tab">
+                        <a class="tab-link" routerLink="user" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
+                        <span class="tab-link-icon"> <i class='bx bx-list-ul' ></i> </span>
+                        <span class="tab-link-name"> Users </span>
+                        </a>
+                    </li>
+
+                    <li class="admin-tab">
+                        <a class="tab-link" routerLink="log" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
+                        <span class="tab-link-icon"> <i class='bx bx-user' ></i> </span>
+                        <span class="tab-link-name"> Activity Log </span>
+                        </a>
+                    </li>
+            
+                    <li class="admin-tab">
+                        <div class="dropdown" >
+                            <span class="gc-library" (click)="toggleUserDropdown()">
+                                <a class="tab-link" routerLink="reports" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:false}">
+                                    <span class="tab-link-icon"> <i class='bx bx-task'></i> </span>
+                                    <span class="tab-link-name"> Report </span>
+                                </a>
+                            </span>
+                            <button class="dropbtn" (click)="toggleUserDropdown()"> 
+                                <span class="dropdown-icon" [ngClass]="{'active': projectDropdownOpen}"> 
+                                    <i class="bx" [ngClass]="{'bx-caret-left': true}"></i>
+                                </span>
+                            </button>
+                            <div class="dropdown-content" *ngIf="projectDropdownOpen">
+                                <a routerLink="top" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                                    <span class="tab-link-name1"> Top 10 Borrowers </span>
+                                </a>
+                                <a routerLink="most" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                                    <span class="tab-link-name2"> Most Borrowed </span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+
+                </ul>
+
+                
+                <!-- LOGOUT BUTTON -->
+                <div class="logoutbtn">
+                    <!-- <div class="logout" (click)="togglePopup()" >
+                        <span> <i class='bx bx-log-out bx-rotate-180' ></i> 
+                            <app-logout-pop *ngIf="showPopup" (closedPopup)="closePopup()" (leaveClicked)="redirectToLoginPage()"></app-logout-pop>
+                        </span>
+                    </div> -->
+
+                    <div class="logoutbtn">
+                        <div class="logout" (click)="logoutAlert()">
+                            <span> <i class='bx bx-log-out bx-rotate-180' ></i> </span>
+                        </div>
                     </div>
-                </div> -->
-        </div>
-    </nav>
+
+                </div>
+
+                    <!-- <div class="logoutbtn">
+                        <div class="logout" routerLink="/login">
+                            <span> <i class='bx bx-log-out bx-rotate-180' ></i> </span>
+                        </div>
+                    </div> -->
+            </div>
+        </nav>
+    </div>
 </div>

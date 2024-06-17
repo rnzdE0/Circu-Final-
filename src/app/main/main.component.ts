@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2'
@@ -8,28 +8,22 @@ import Swal from 'sweetalert2'
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
-export class MainComponent {
-  // showPopup: boolean = false;
+export class MainComponent implements OnDestroy {
+ 
   dropdownOpen: boolean | undefined;
   projectDropdownOpen: boolean | undefined;
 
-  // togglePopup() {
-  //   this.showPopup = !this.showPopup;
-  // }
-
-  // closePopup() {
-  //   this.showPopup = this.showPopup;
-  // }
-
+  
   timer: any;
   name = sessionStorage.getItem('name');
   role = sessionStorage.getItem('role');
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router
+  ) {
+    this.checkScreenWidth();
+  }
 
-  // redirectToLoginPage() {
-  //   this.router.navigate(['login']); 
-  // }
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
@@ -74,4 +68,35 @@ export class MainComponent {
     });
 
   }
+
+  ngOnDestroy(): void {
+    clearInterval(this.timer)
+}
+
+isSidebarCollapsed = false;
+isOverlayActive = false;
+
+toggleSidebar() {
+  if (window.innerWidth <= 1320) {
+    this.isOverlayActive = !this.isOverlayActive;
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  } else {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
+}
+
+@HostListener('window:resize', ['$event'])
+onResize(event: Event) {
+  this.checkScreenWidth();
+}
+
+checkScreenWidth() {
+  const screenWidth = window.innerWidth;
+  if (screenWidth <= 1320) {
+    this.isSidebarCollapsed = true;
+  } else {
+    this.isSidebarCollapsed = false;
+    this.isOverlayActive = false;
+  }
+}
 }
