@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './logs.component.scss'
 })
 export class LogsComponent implements AfterViewInit{
-  displayedColumns: string[] = ['create_date', 'logtime', 'name', 'title', 'material'];
+  displayedColumns: string[] = ['create_date', 'logtime', 'name', 'action', 'book'];
   protected dataSource: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
