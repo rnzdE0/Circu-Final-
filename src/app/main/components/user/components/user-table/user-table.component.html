@@ -1,47 +1,13 @@
-<div class="container">
+<body>
+  <div class="container">
   <p class="title">Users</p>
 
   <!-- Search bar -->
   <div class="search">
-    <input type="text" placeholder="Search..." name="search" id="search" (input)="applyFilter($event)">
+    <input placeholder="Search..." name="search" id="search" type="text" (input)="applyFilter($event)">
     <button type="submit" (click)="applyFilter($event)"><i class="bx bx-search"></i></button>
+
   </div>
-
-  <!-- test table -->
-   
-  <!-- table -->
-  <!-- <table class="content-table">
-    <thead class="table-head">
-      <tr>
-        <th>Name</th>
-        <th>Gender</th>
-        <th>Email</th>
-        <th>Department</th>
-        <th>Program</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of filteredUserList">
-        <td>{{ user.first_name }} {{ user.last_name }}</td>
-        <td>{{ getGenderString(user.gender) }}</td>
-        <td>{{ user.id }}</td>
-        <td>{{ user.program.department.department }}</td>
-        <td>{{ user.program.program }}</td>
-        <td>
-          <button class="edit" (click)="openUser(user)">
-            <i class="bx bxs-edit"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-    <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page">
-    </mat-paginator> -->
 
     <div class="table">
       <table mat-table [dataSource]="dataSource">
@@ -92,9 +58,11 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     
-      <mat-paginator [pageSizeOptions]="[10, 15]"
+      <mat-paginator class="page" [pageSizeOptions]="[10, 15]"
                      showFirstLastButtons
                      aria-label="Select page of users">
       </mat-paginator>
     </div>
 </div>
+</body>
+

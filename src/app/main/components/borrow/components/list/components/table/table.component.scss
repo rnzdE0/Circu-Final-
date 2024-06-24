@@ -252,6 +252,7 @@ body {
 table {
     border-radius: 5px;
     border: 1px solid grey;
+    background: rgb(242, 242, 242);
   }
   
   table,
@@ -274,6 +275,15 @@ table {
     letter-spacing: 0.8px;
     justify-content: center;
     height: 60px;
+  }
+
+  .tbl-head {
+    justify-content: center;
+    border-bottom: 2px solid grey;
+  }
+
+  .page {
+    background: rgb(242, 242, 242);
   }
 
 

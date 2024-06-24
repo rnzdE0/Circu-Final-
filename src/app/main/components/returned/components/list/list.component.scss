@@ -6,8 +6,9 @@
 body {
     padding-top: 10px;
     background: #F5EFE6;
-    padding-bottom: 26%;
+    overflow: hidden;
 }   
+
 
 .container {
     border-radius: 5px;
@@ -114,6 +115,7 @@ i{
 table {
     border-radius: 5px;
     border: 1px solid grey;
+    background: rgb(242, 242, 242);
   }
   
   table,
@@ -127,8 +129,11 @@ table {
       justify-content: center;
       transition: all 0.3s ease-in;
   }
-  
-  
+
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+
   th {
     background-color: #4F6F52 !important;
     color: white;
@@ -136,6 +141,15 @@ table {
     letter-spacing: 0.8px;
     justify-content: center;
     height: 60px;
+  }
+
+  .tbl-head {
+    justify-content: center;
+    border-bottom: 2px solid grey;
+  }
+
+  .page {
+    background: rgb(242, 242, 242);
   }
 
 

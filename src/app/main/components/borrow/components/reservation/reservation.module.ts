@@ -8,6 +8,7 @@ import { DeleteComponent } from './components/delete/delete.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PushComponent } from './components/push/push.component';
+import { MaterialModule } from '../../../../../modules/material/material.module';
 
 
 
@@ -24,7 +25,8 @@ import { PushComponent } from './components/push/push.component';
     MatDialogModule,
     MatPaginator,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class ReservationModule { }

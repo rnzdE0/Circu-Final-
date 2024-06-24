@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReservationPopupComponent } from '../reservation-popup/reservation-popup.component';
 import { DeleteComponent } from '../delete/delete.component';
@@ -6,15 +6,20 @@ import { AuthService } from '../../../../../../../services/auth.service';
 import { OnlineList, ReservationList, queueData } from './reserve-list.model';
 import { PushComponent } from '../push/push.component';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-reserve',
   templateUrl: './reserve.component.html',
   styleUrl: './reserve.component.scss'
 })
-export class ReserveComponent {
+export class ReserveComponent implements AfterViewInit{
+  displayedColumns: string[] = ['mode', 'borrowerName', 'BookTitle', 'Department', 'Queue', 'Actions'];
+  dataSource = new MatTableDataSource<ReservationList>();
+
   reservationList: ReservationList[] = [];
   filteredreservationList: ReservationList[] = [];
+
   elements: any;
   material: any;
   onlineList: OnlineList[] = [];
@@ -23,7 +28,7 @@ export class ReserveComponent {
   filterqueue: queueData[]=[];
 
 
-  ngOnInit():void{
+  ngAfterViewInit():void{
     this.fetchReserveList();
     this.fetchOnlineList();
     this.fetchQueue();
@@ -36,6 +41,13 @@ export class ReserveComponent {
         console.log('Type of data:', typeof data);
         this.reservationList = data as ReservationList[];
         this.filteredreservationList = this.reservationList.slice();
+        this.dataSource.data = this.reservationList;
+        this.dataSource.filterPredicate = (data: ReservationList, filter: string) => {
+          const user = data.user;
+          const book = data.book;
+          return user.first_name.toLowerCase().includes(filter)
+                 
+        };
       },
       (error) => {
         console.error('Error fetching users:', error);
@@ -148,41 +160,46 @@ export class ReserveComponent {
 }
 
 applyFilter(event: Event): void {
-  console.log('Filtering...');
   const searchValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-  console.log('Search value:', searchValue);
-
-  // Filter reservation list
-  if (!searchValue) {
-    this.filteredreservationList = this.reservationList.slice(); // Reset filter
-  } else {
-    this.filteredreservationList = this.reservationList.filter(material =>
-      material.user.patron.patron.toLowerCase().includes(searchValue) ||
-      material.user.id.toString().toLowerCase().includes(searchValue) ||
-      material.user.program.department.department.toLowerCase().includes(searchValue) ||
-      material.book_id.toString().toLowerCase().includes(searchValue) ||
-      material.user.program.category.toLowerCase().includes(searchValue)||
-      material.queue_position.toString().toLowerCase().includes(searchValue)
-    );
-  }
-
-  console.log('Filtered reservation result:', this.filteredreservationList);
-
-  // Filter online list
-  if (!searchValue) {
-    this.filteredonlineList = this.onlineList.slice(); // Reset filter
-  } else {
-    this.filteredonlineList = this.onlineList.filter(material =>
-      material.user.patron.patron.toLowerCase().includes(searchValue) ||
-      material.user.id.toString().toLowerCase().includes(searchValue) ||
-      material.user.program.department.department.toLowerCase().includes(searchValue) ||
-      material.book_id.toString().toLowerCase().includes(searchValue) ||
-      material.user.program.category.toLowerCase().includes(searchValue)||
-      material.queue_position.toString().toLowerCase().includes(searchValue)
-    );
-  }
-
-  console.log('Filtered online result:', this.filteredonlineList);
+  this.dataSource.filter = searchValue;
 }
+
+// applyFilter(event: Event): void {
+//   console.log('Filtering...');
+//   const searchValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+//   console.log('Search value:', searchValue);
+
+//   // Filter reservation list
+//   if (!searchValue) {
+//     this.filteredreservationList = this.reservationList.slice(); // Reset filter
+//   } else {
+//     this.filteredreservationList = this.reservationList.filter(material =>
+//       material.user.patron.patron.toLowerCase().includes(searchValue) ||
+//       material.user.id.toString().toLowerCase().includes(searchValue) ||
+//       material.user.program.department.department.toLowerCase().includes(searchValue) ||
+//       material.book_id.toString().toLowerCase().includes(searchValue) ||
+//       material.user.program.category.toLowerCase().includes(searchValue)||
+//       material.queue_position.toString().toLowerCase().includes(searchValue)
+//     );
+//   }
+
+//   console.log('Filtered reservation result:', this.filteredreservationList);
+
+//   // Filter online list
+//   if (!searchValue) {
+//     this.filteredonlineList = this.onlineList.slice(); // Reset filter
+//   } else {
+//     this.filteredonlineList = this.onlineList.filter(material =>
+//       material.user.patron.patron.toLowerCase().includes(searchValue) ||
+//       material.user.id.toString().toLowerCase().includes(searchValue) ||
+//       material.user.program.department.department.toLowerCase().includes(searchValue) ||
+//       material.book_id.toString().toLowerCase().includes(searchValue) ||
+//       material.user.program.category.toLowerCase().includes(searchValue)||
+//       material.queue_position.toString().toLowerCase().includes(searchValue)
+//     );
+//   }
+
+//   console.log('Filtered online result:', this.filteredonlineList);
+// }
 
 }

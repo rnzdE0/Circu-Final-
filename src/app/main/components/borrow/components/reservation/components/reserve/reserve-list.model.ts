@@ -1,24 +1,24 @@
 export interface ReservationList {
     id: number;
-      user_id: number;
-      book_id: number;
+    user_id: number;
+    book_id: number;
+    username: string;
+    queue_position:number;
+    user: {
+      id: number;
       username: string;
-      queue_position:number;
-      user: {
-        id: number;
-        username: string;
-        role: string;
-        first_name: string;
-        last_name: string;
-        patron:{
-          patron: string;
+      role: string;
+      first_name: string;
+      last_name: string;
+      patron:{
+        patron: string;
+      }
+      program:{
+        department:{
+          department:string;
         }
-        program:{
-          department:{
-            department:string;
-          }
-          category:string;
-        }
+        category:string;
+      }
     };
     book: {
       title: string;
