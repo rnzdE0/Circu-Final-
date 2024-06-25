@@ -1,13 +1,12 @@
 <div class="body">
 
-  <div class="container">
     
     <p class="title">Reservation Form</p>
 
-
+    <div class="container">
     <div class="form">
 
-      <p class="book">Book</p>
+      <p class="book">Books</p>
 
       <form class="test" [formGroup]="requestForm" id="request-form" (ngSubmit)="reserveSubmit()">
       <!-- books -->
@@ -26,22 +25,22 @@
                 <!-- Title -->
                   <div class="input-group">
                     <input type="text" name="text" autocomplete="off" class="input" [value]="book.title || ''" disabled>
-                    <label class="book-label">Title</label>
+                    <label class="book-label">Book Title</label>
                   </div>
                 
               </div>
               
-              <div class="group2">
+              <div class="group1">
 
                 <!-- Location (fil or foreign) -->
                   <div class="input-group">
-                    <input type="text" name="text" autocomplete="off" class="input2" [value]="book.location || ''"   disabled>
+                    <input type="text" name="text" autocomplete="off" class="input" [value]="book.location || ''"   disabled>
                     <label class="book-label">Location</label>
                   </div>
 
                 <!-- Author of the book -->
                   <div class="input-group">
-                    <input type="text" name="text" autocomplete="off" class="input5" [value]="book.author || ''"   disabled>
+                    <input type="text" name="text" autocomplete="off" class="input" [value]="book.author || ''"   disabled>
                     <label class="book-label">Author</label>
                   </div>
               </div>
@@ -70,7 +69,7 @@
                     </div>
                   </div>
 
-                <div class="group2">
+                <div class="group1">
                   
                   <!-- patron type (student/faculty/staff/.etc) -->
                   <!-- <div class="input-group">
@@ -83,14 +82,14 @@
                           <option *ngFor="let patron of patrons" [value]="patron.id">{{ patron.patron }}</option>
                       </select>
                       <label class="patron-label">Patron</label> -->
-                      <input type="text" name="text" autocomplete="off" class="input3" disabled [value]="user.patron.patron || ''">
+                      <input type="text" name="text" autocomplete="off" class="input" disabled [value]="user.patron.patron || ''">
                           <label class="book-label">Patron</label>
                   </div>
 
                 
                   <!-- Department id -->
                       <div class="input-group">
-                        <input type="text" name="text" autocomplete="off" class="input3" [value]="user.program.department || ''" disabled>
+                        <input type="text" name="text" autocomplete="off" class="input" [value]="user.program.department || ''" disabled>
                         <label class="book-label">Department</label>
                       </div>
                 </div>
@@ -103,13 +102,13 @@
 
                   <!-- frontdesk admin id -->
                     <div class="input-group">
-                      <input type="text" name="text" autocomplete="off" class="input3" disabled placeholder="{{name}}">
+                      <input type="text" name="text" autocomplete="off" class="input" disabled placeholder="{{name}}">
                       <label class="book-label">Name of Staff</label>
                     </div>
 
                   <!-- frontdesk position -->
                     <div class="input-group">
-                      <input type="text" name="text" autocomplete="off" class="input3" disabled placeholder="{{role}}">
+                      <input type="text" name="text" autocomplete="off" class="input" disabled placeholder="{{role}}">
                       <label class="book-label">Position</label>
                     </div>
                 </div>
