@@ -1,7 +1,5 @@
 main {
-    padding-top: 10px;
     background: #F5EFE6;
-    padding-bottom: 26%;
 }   
 
 .search {
@@ -232,9 +230,9 @@ main {
 }
 
 .content {
-    margin-top: 50px; 
+    margin-top: 5px; 
     padding: 20px; 
-    background-color: #E1E1E1; 
+    // background-color: #E1E1E1; 
 }
 .tab {
     flex: 1; /* Adjust tab width */
@@ -323,6 +321,45 @@ h1 {
 .content-table td {
     padding: 12px 15px;
 }
+
+// new table
+
+table {
+    border-radius: 5px;
+    border: 1px solid grey;
+    background: rgb(242, 242, 242);
+  }
+  
+  table,
+  th,
+  td {
+      font-family: 'Montserrat';
+      font-size: 14px;
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1.5px solid grey;
+      justify-content: center;
+      transition: all 0.3s ease-in;
+  }
+  
+  
+  th {
+    background-color: #4F6F52 !important;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    justify-content: center;
+    height: 60px;
+  }
+
+  .tbl-head {
+    justify-content: center;
+    border-bottom: 2px solid grey;
+  }
+
+  .page {
+    background: rgb(242, 242, 242);
+  }
 
 .edit {
     width: 30px;

@@ -7,6 +7,8 @@ import { List } from './list.model';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { MatSort } from '@angular/material/sort';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -30,13 +32,12 @@ export class ListComponent implements AfterViewInit{
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null; // Type safety
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private dialog: MatDialog,
     private authService: AuthService,
-    private router: Router,
     private cdr: ChangeDetectorRef,
-    private paginatorIntl :MatPaginatorIntl
-  ) {
+    private paginatorIntl :MatPaginatorIntl  ) {
     this.paginator = new MatPaginator(this.paginatorIntl, this.cdr);
   }
 
@@ -44,6 +45,12 @@ export class ListComponent implements AfterViewInit{
 
   ngAfterViewInit(): void {
     this.fetchReturned();
+    this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter(event: Event): void {
+    const searchValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = searchValue;
   }
 
   fetchReturned(): void{
@@ -52,8 +59,20 @@ export class ListComponent implements AfterViewInit{
         console.log('Recieved data from backend', data);
         this.returned = data as List[];
         this.dataSource.data = this.returned;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.filterPredicate = ( data: List, filter: string) => {
+          const user = data.user;
+          const book = data.book;
+          return user.first_name.toLowerCase().includes(filter) ||
+          user.last_name.toLowerCase().includes(filter) ||
+          user.department.department.toLowerCase().includes(filter) ||
+          user.id.toString().includes(filter) ||
+          book.title.toLowerCase().includes(filter);
+        };
+        this.cdr.detectChanges();
       }
-    )
+    );
   }
 
   onDepartmentChange(): void {

@@ -14,11 +14,11 @@
     <div class="content">
     <div class="tabbed">
         <input type="radio" id="tab1" name="css-tabs" checked="checked">
-		    <input type="radio" id="tab2" name="css-tabs" checked="checked">
+		    <!-- <input type="radio" id="tab2" name="css-tabs" checked="checked"> -->
 
     <ul class="tabs">
-			<li class="tab"><label for="tab1">Walk-in</label></li>
-			<li class="tab"><label for="tab2">Online</label></li>
+			<li class="tab"><label for="tab1">Approval of Reservation</label></li>
+			<!-- <li class="tab"><label for="tab2">Online</label></li> -->
 		</ul>
 
         <!-- Walk-In -->
@@ -30,7 +30,7 @@
 
                 <div class="card">
                     <section class="material-table">
-                        <table class="content-table">
+                        <!-- <table class="content-table">
                             <thead class="table-head">
                               <tr>
                                 <th>Mode of Reservation</th>
@@ -44,20 +44,17 @@
                             </thead>
                             <tbody>
                               <tr  *ngFor="let material of filteredreservationList">
-                                <!-- student name -->
+                               
                                 <td>{{material.user.patron.patron}}</td>
-                                <!-- Borrower -->
+                              
                                 <td>{{material.user.first_name}} {{material.user.last_name}}</td>
-                                <!-- student id -->
+                           
                                 <td>{{material.book.title}}</td>
-                                <!-- department id -->
+                               
                                 <td>{{material.user.program.department.department}}</td>
-                                <!-- position -->
+                                
                                 <td>{{material.queue_position}}</td>
-                             
-
-              
-
+                            
                                 <td>
                                   <button class="returned" (click)="push(material)">
                                       <i class="bx bx-check" ></i>
@@ -71,14 +68,76 @@
 
                                 </td>
                             </tbody>
-                          </table>
+                          </table> -->
+
+                          <!-- new table -->
+                          <div class="table">
+                            <table mat-table [dataSource]="dataSource">
+                          
+                              <!-- Name Column -->
+                              <ng-container matColumnDef="mode">
+                                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Mode of Reservation</th>
+                                <td mat-cell *matCellDef="let element "> {{element.user.id}} </td>
+                              </ng-container>
+                          
+                              <!-- Gender Column -->
+                              <ng-container matColumnDef="borrowerName">
+                                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Borrower Name </th>
+                                <td mat-cell *matCellDef="let element "> {{ element.user.first_name }} {{ element.user.last_name }} </td>
+                              </ng-container>
+                          
+                              <!-- Email Column -->
+                              <ng-container matColumnDef="BookTitle">
+                                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Book Title </th>
+                                <td mat-cell *matCellDef="let element "> {{element.book.title}} </td>
+                              </ng-container>
+                          
+                              <!-- Department Column -->
+                              <ng-container matColumnDef="Department">
+                                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Department </th>
+                                <td mat-cell *matCellDef="let element "> {{element.user.program.department.department}} </td>
+                              </ng-container>
+                        
+                              <!-- Program Column -->
+                              <ng-container matColumnDef="Queue">
+                                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Queue Position </th>
+                                <td mat-cell *matCellDef="let element "> {{element.queue_position}} </td>
+                              </ng-container>
+                        
+                              <ng-container matColumnDef="Actions">
+                                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Actions </th>
+                                <td mat-cell *matCellDef="let element">
+                                  <button class="returned" (click)="push(material)">
+                                    <i class="bx bx-check" ></i>
+                                  </button>
+                                  <button class="delete" (click)="deleteDialog(material)">
+                                    <i class="bx bx-archive" ></i>
+                                  </button>
+                                  <button class="edit">
+                                    <i class="bx bxs-edit" (click)="openDialog(material)"></i>
+                                  </button>
+
+                                </td>
+                              </ng-container>
+                          
+                              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                          
+                            <mat-paginator class="page" [pageSizeOptions]="[10, 20]"
+                                           showFirstLastButtons
+                                           aria-label="Select page of users">
+                            </mat-paginator>
+                          </div>
+
+
                     </section>
                 </div>           
             </div>  
         </div>
 
         <!-- Online  -->
-        <div class="tab-content">
+        <!-- <div class="tab-content">
 
             <div class="table">
                 
@@ -101,17 +160,17 @@
                             <tbody>
                               <tr>
                                 <tr  *ngFor="let online of filteredonlineList">
-                                  <!-- student name -->
+                                
                                   <td>{{online.user.patron.patron}}</td>
 
                                   <td>{{online.user.first_name}} {{online.user.last_name}}</td>
-                                  <!-- student id -->
+                                 
                                   <td>{{online.user_id}}</td>
-                                  <!-- department id -->
+                                 
                                   <td>{{online.user.program.department.department}}</td>
-                                  <!-- accession id -->
+                               
                                   <td>{{online.book.title}}</td>
-                                  <!-- category -->
+                              
                                   <td>{{online.user.program.category}}</td>
 
                                   <td>{{online.queue_position}}</td>
@@ -134,19 +193,12 @@
                     </section>
                 </div>           
             </div>  
-        </div>
+        </div> -->
 
 
 
         </div>
   
-    </div>
-    <div class="page">
-      <mat-paginator [length]="100"
-                [pageSize]="10"
-                [pageSizeOptions]="[5, 10, 25, 100]"
-                aria-label="Select page">
-      </mat-paginator>
     </div>
   </div>
   

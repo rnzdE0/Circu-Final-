@@ -36,17 +36,7 @@ export class UserTableComponent implements AfterViewInit {
 
   applyFilter(event: Event): void {
     const searchValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    if (!searchValue) {
-      this.filteredUserList = this.userList.slice(); // Reset filter
-      return;
-    }
-    this.filteredUserList = this.userList.filter(user =>
-      user.first_name.toLowerCase().includes(searchValue) ||
-      user.last_name.toLowerCase().includes(searchValue) ||
-      user.patron.patron.toLowerCase().includes(searchValue) ||
-      user.program.department.department.toLowerCase().includes(searchValue) ||
-      user.program.program.toLowerCase().includes(searchValue)
-    );
+    this.dataSource.filter = searchValue;
   }
 
   fetchUsers(): void {
@@ -56,11 +46,16 @@ export class UserTableComponent implements AfterViewInit {
         console.log('Type of data:', typeof data);
         this.userList = data as User[]; // Assign the fetched user data to the users array
         this.dataSource.data = this.userList; // Initialize filteredUserList with all users
-      },
-      (error) => {
-        console.error('Error fetching users:', error);
+        this.dataSource.filterPredicate = ( data: User, filter: string ) => {
+          const user = data;
+          return user.first_name.toLowerCase().includes(filter) ||
+          user.last_name.toLowerCase().includes(filter) ||
+          user.program.department.department.toLowerCase().includes(filter) ||
+          user.program.program.toLowerCase().includes(filter) ||
+          user.id.toString().includes(filter) 
+        }
       }
-    );
+    )
   }
 
   getGenderString(gender: number): string {

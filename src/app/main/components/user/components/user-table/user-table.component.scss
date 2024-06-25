@@ -1,7 +1,4 @@
-body{
-    height: 100%;
-    width: 100%;
-}
+
 
 .container {
     border-radius: 5px;
@@ -16,11 +13,6 @@ body{
     margin-bottom: 30px;
     box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
     border: 0.5px solid grey;
-}
-
-hr {
-    margin-top: 30px;
-    width:1500px;
 }
 
 // filter
@@ -103,7 +95,7 @@ hr {
 
 .table-filters select {
     background: #ffffff;
-    font-family: 'Poppins';
+    font-family: 'Montserrat';
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -111,7 +103,7 @@ hr {
     height: 2.5em;
     border: 1px solid black;
     border-radius: 10px;
-    font-family: 'poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .program select {
@@ -235,6 +227,7 @@ hr {
 table {
     border-radius: 5px;
     border: 1px solid grey;
+    background: rgb(242, 242, 242);
   }
   
   table,
@@ -257,6 +250,15 @@ table {
     letter-spacing: 0.8px;
     justify-content: center;
     height: 60px;
+  }
+
+  .tbl-head {
+    justify-content: center;
+    border-bottom: 2px solid grey;
+  }
+
+  .page {
+    background: rgb(242, 242, 242);
   }
 
 .edit {

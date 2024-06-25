@@ -28,12 +28,11 @@ body {
 /* HEADER */
 .header h1 {
     position: fixed;
-    // background-color: var(--primary-color);
     height: 70px;
     width: 100%;
     border-bottom: 2px solid #C5C5C5;
-    // margin-left: 230px;
     padding-top: 40px;
+    top: 0;
     padding-left: 250px;
     padding-bottom: 0px;
     font-size: 45px;
@@ -42,7 +41,7 @@ body {
     color: white ;
     z-index: 1;
     left: 30px;
-    background-color: #376448;
+    background-color: #294B37;
     font-family: 'montserrat', sans-serif;
 }
 
@@ -58,8 +57,8 @@ body {
 
 .systemname h1 {
     text-align: center;
-    font-size: 25px;
-    font-weight: 400;
+    font-size: 18px;
+    font-weight: 600;
     margin-bottom: -10px;
     opacity: 100%;
     font-family: 'montserrat', sans-serif;
@@ -97,10 +96,11 @@ hr{
     top: 0;
     left: 0;
     height: 100%;
-    padding: 30px 15px;
+    padding: 30px 0px;
     z-index: 100;
-    border-right: 2px solid #376448;    
-    transition: all 0.3s ease;
+    border-right: 2px solid #376448;   
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); 
+    transition: transform 0.3s ease, width 0.3s ease;
 }
 
 .sub-menu {
@@ -126,6 +126,7 @@ hr{
 
 .sidebar-content a {
     color: #F4F4F4;
+    transition: all 0.3s ease;
 }
 
 .sidebar-content-tabs {
@@ -139,9 +140,9 @@ hr{
 
 .admin-tab a {
     display: flex;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 14px;
-    padding: 10px 10px 10px 10px;
+    padding: 15px 15px;
     text-decoration: none;
     margin-bottom: 3px;
     margin-top: 5px;
@@ -152,20 +153,26 @@ hr{
 
 .admin-tab a:hover {
     color: #F4F4F4;
-    background-color: #376448;
+    background-color: #294B37;
+    border-right: 3px solid #4F6F52;
 }
 
 .admin-tab a.active-link {
     font-weight: 300;
     color: #F4F4F4;
-    background-color: #376448;
+    background-color: #294B37;
     padding-top: 15px;
     padding-bottom: 15px;
+    border-right: 3px solid #4F6F52;
 }
 
 .tab-link .tab-link-name {
     padding-left: 10px;
     padding-top: 2px;
+}
+
+.admin-tabs .tab-link-icon {
+    font-size: 20px;
 }
 
 .tab-link-name {
@@ -278,13 +285,20 @@ ul ul {
     align-items: center;
     justify-content: center;
     font-size: 25px;
-    padding: 10px 10px 20px 40px;
+    padding: 10px 10px 10px 10px;
     color: #f4f4f4;
 }
 
-.logoutbtn .logout:hover {
-    color: #376448;
+.logout i {
+    padding: 10px 10px 10px 10px;
+    transition: all 0.3s ease;
 }
+
+.logout i:hover {
+    border-radius: 5px;
+    background-color: #294B37;
+}
+
 
 .logoutbtn {
     position: fixed;
