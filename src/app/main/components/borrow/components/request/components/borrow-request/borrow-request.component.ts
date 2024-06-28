@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MainService } from '../../../../../../../services/main.service';
+import { PoliciesComponent } from '../policies/policies.component';
 
 @Component({
   selector: 'app-borrow-request',
@@ -15,6 +16,7 @@ export class BorrowRequestComponent implements OnInit {
  
   borrowForm: FormGroup;
   [x: string]: any;
+  data: any
   // router: any;
   // navigateTo() {
   //   // Programmatically navigate to another route
@@ -56,7 +58,8 @@ export class BorrowRequestComponent implements OnInit {
     private dialog : MatDialog,
     private ds: MainService,
     private fb: FormBuilder, 
-    private mainService: MainService 
+    private mainService: MainService ,
+    private router: Router
   
   ) {
     this.borrowForm = this.fb.group({
@@ -90,7 +93,21 @@ export class BorrowRequestComponent implements OnInit {
     }) 
   }
 
+  redirectToBorrowForm() {
+    this.router.navigate(['main/borrow/request/borrowrequest']); 
+  }
 
+  policyDialog(): void{
+    const diaref = this.dialog.open(PoliciesComponent, {
+      width: '900px',
+      height: '650px',
+      maxWidth: '900px',
+      maxHeight: '650px',
+    });
+    diaref.afterClosed().subscribe(result => {
+      this.redirectToBorrowForm();
+    });
+  }
 
   setHoursAllowed(patronType: string): void {
     const foundPatron = this.patrons.find((patron: any) => patron.patron === patronType);
@@ -135,52 +152,6 @@ export class BorrowRequestComponent implements OnInit {
     })
   };
 
-  // submit() {
-  //   console.log("hello renz")
-  //   Swal.fire({
-  //     width: 400,
-  //     title: "Do you want to save this request?",
-  //     showDenyButton: true,
-  //     // showCancelButton: true,
-  //     confirmButtonText: "Add",
-  //     confirmButtonColor: '#31A463',
-  //     denyButtonText: `Cancel Request`,
-  //     customClass: {
-  //       container: 'my-swal-container',
-  //       title: 'my-swal-title',
-  //       confirmButton: 'my-swal-confirm-button',
-  //       denyButton: 'my-swal-deny-button',
-  //       cancelButton: 'my-swal-cancel-button'
-  //     }
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       Swal.fire({
-  //         width: 300,
-  //         title: "Added to list.",
-  //         icon: "success",
-  //         confirmButtonColor: '#31A463',
-  //         customClass: {
-  //           popup: 'my-swal-popup',
-  //           icon: 'my-swal-icon',
-  //           confirmButton: 'my-swal-confirm-button'
-  //         }
-  //       });
-  //     } else if (result.isDenied) {
-  //       Swal.fire({
-  //         width: 300,
-  //         title: "Request is cancelled.",
-  //         icon: "success",
-  //         iconColor: 'red',
-  //         confirmButtonColor: 'grey',
-  //         customClass: {
-  //           popup: 'my-swal-popup',
-  //           icon: 'my-swal-icon',
-  //           confirmButton: 'my-swal-confirm-button'
-  //         }
-  //       });
-  //     }
-  //   });
-  // }
 
   // for back
 

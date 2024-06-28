@@ -9,6 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PushComponent } from './components/push/push.component';
 import { MaterialModule } from '../../../../../modules/material/material.module';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -26,7 +27,8 @@ import { MaterialModule } from '../../../../../modules/material/material.module'
     MatPaginator,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    MatSortModule
   ]
 })
 export class ReservationModule { }

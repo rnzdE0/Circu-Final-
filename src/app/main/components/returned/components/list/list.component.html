@@ -3,6 +3,7 @@
 <div class="container">
 
   <p class="title">Returned</p>
+      <p class="desc">List of Returned Books</p>
 
   <!-- Search bar -->
   <div class="search">
@@ -10,91 +11,6 @@
     <button type="submit" (click)="applyFilter($event)"><i class="bx bx-search"></i></button>
 
   </div>
-  
-  <!-- filter -->
-  <!-- <div class="filter-container">
-    <div class="filter-options">
-      <div class="filter-group">
-        <label for="department">Department:</label>
-        <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
-          <option value="">All Departments</option>
-          <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
-        </select>
-      </div>
-      <div class="filter-group" *ngIf="selectedDepartment">
-        <label for="secondFilter">Program:</label>
-        <select id="secondFilter" [(ngModel)]="selectedProgram">
-          <option value="">All Options</option>
-          <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="patronType">Patron Type:</label>
-        <select id="patronType" [(ngModel)]="selectedPatronType">
-          <option value="">All Patron Types</option>
-          <option value="Admin">Admin</option>
-          <option value="Faculty">Faculty</option>
-          <option value="Student">Student</option>
-          <option value="Staff">Staff</option>
-          <option value="Visitor">Visitor</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="startDate">From:</label>
-        <input type="date" id="startDate" min="2024-01-01">
-      </div>
-      <div class="filter-group">
-        <label for="endDate">To:</label>
-        <input type="date" id="endDate" min="2024-01-01">
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <p class="title">Returned</p> -->
-  <!-- <table class="content-table">
-
-    <thead class="table-head">
-      <tr>
-        <th>Borrower</th>
-        <th>Email</th>
-        <th>Department</th>
-        <th>Program</th>
-        <th>Book Title</th>
-        <th>Date Created</th>
-        <th>Date Returned</th>
-        <th>Status</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let material of returned">
-
-        <td>{{material.user.first_name}} {{material.user.last_name}}</td>
-
-        <td>{{material.user_id}}</td>
-
-        <td>{{material.user.department.department}}</td>
-
-        <td>{{material.user.program.program}}</td>
-
-        <td>{{material.book.title}}</td>
-
-        <td >{{material.borrow_date}}</td>
-
-        <td >{{material.date_returned}}</td>
-
-        <td class="returned">Returned</td>
-      </tr>
-    </tbody>
-  </table>
-  
-    <div class="page">
-        <mat-paginator [length]="100"
-                  [pageSize]="10"
-                  [pageSizeOptions]="[5, 10, 25, 100]"
-                  aria-label="Select page">
-        </mat-paginator>
-    </div> -->
 
   <!-- new table for returned -->
 
