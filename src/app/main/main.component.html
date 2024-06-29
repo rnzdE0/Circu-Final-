@@ -130,9 +130,16 @@
                         </span>
                     </div> -->
 
-                    <div class="logoutbtn">
+                    <!-- <div class="logoutbtn">
                         <div class="logout" (click)="logoutAlert()">
                             <span> <i class='bx bx-log-out bx-rotate-180' ></i> </span>
+                        </div>
+                    </div> -->
+
+                    <div class="logoutbtn">
+                        <div class="logout" (click)="togglePopup">
+                            <span> <i class='bx bx-log-out bx-rotate-180' ></i> </span>
+                            <app-logout-pop *ngIf="showPopup" (closedPopup)="closePopup()" (leaveClicked)="logout()"></app-logout-pop>
                         </div>
                     </div>
 
@@ -141,6 +148,7 @@
                     <!-- <div class="logoutbtn">
                         <div class="logout" routerLink="/login">
                             <span> <i class='bx bx-log-out bx-rotate-180' ></i> </span>
+                            <app-logout-popup *ngIf="showPopup" (closedPopup)="closePopup()" (leaveClicked)="logout()"></app-logout-popup>
                         </div>
                     </div> -->
             </div>

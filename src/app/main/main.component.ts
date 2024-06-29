@@ -2,6 +2,7 @@ import { Component, HostListener, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2'
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -19,11 +20,21 @@ export class MainComponent implements OnDestroy {
   role = sessionStorage.getItem('role');
 
   constructor(
-    private router: Router
+    private router: Router,
+    private as: AuthService
   ) {
     this.checkScreenWidth();
   }
 
+  showPopup: boolean = false;
+
+  togglePopup() {
+    this.showPopup = !this.showPopup;
+  }
+
+  closePopup() {
+    this.showPopup = this.showPopup;
+  }
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
@@ -97,4 +108,29 @@ checkScreenWidth() {
     this.isOverlayActive = false;
   }
 }
+
+protected logout() {
+  this.as.logout().subscribe({
+    next: (res: any) => {
+      sessionStorage.clear();
+      this.router.navigate(['login']); 
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Logged out successfully"
+      });
+    }
+  });
+} 
+
 }
