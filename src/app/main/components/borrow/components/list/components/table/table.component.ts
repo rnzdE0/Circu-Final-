@@ -33,23 +33,6 @@ export class TableComponent implements AfterViewInit {
     this.fetchBorrowList();
   } 
 
-  // applyFilter(event: Event): void {
-  //   console.log('Filtering...');
-  //   const searchValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-  //   console.log('Search value:', searchValue);
-  //   if (!searchValue) {
-  //     this.filteredMaterials = this.borrowMaterials.slice(); 
-  //     return;
-  //   }
-  //   this.filteredMaterials = this.borrowMaterials.filter(element =>
-  //     element.user.first_name.toLowerCase().includes(searchValue) ||
-  //     element.user.last_name.toLowerCase().includes(searchValue) ||
-  //     element.user.patron.patron.toLowerCase().includes(searchValue) ||
-  //     element.user.program.department.department.toLowerCase().includes(searchValue) ||
-  //     element.user.program.program.toLowerCase().includes(searchValue)
-  //   );
-  // }
-
   applyFilter(event: Event): void {
     const searchValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
     this.dataSource.filter = searchValue;
@@ -100,7 +83,8 @@ elements: any;
   }
 
   redirectToListPage() {
-    this.router.navigate(['main/borrow/list/table']); 
+    // this.router.navigate(['main/borrow/list/table']); 
+    this.router.navigate(['main/borrow/list/table/table.component']); 
   }
 
   openDialog(data: any) {
@@ -143,16 +127,6 @@ elements: any;
       }
     });
   }
-  
-
-  // pushDialog(id: number) {
-  //   this.dialog.open(PushPopupComponent, {
-  //     width: '400px',
-  //     height: '250px',
-  //     data: id
-  //   });
-  // }
-
 
   pushDialog(data: any) {
     this.Openpopup(data, 'Push Popup', PushPopupComponent);
@@ -182,20 +156,7 @@ elements: any;
     // Add your logic here
   }
 
-
-  // onProgramChange(): void {
-  //   this.applyfilter();
-  // }
-
-  // onPatronTypeChange(): void {
-  //   this.applyfilter();
-  // }
-
-  // onAllTypeChange(): void {
-  //   this.applyfilter();
-  // }
 }
 
-// for search
 
 

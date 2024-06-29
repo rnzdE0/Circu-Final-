@@ -31,7 +31,7 @@
     background: white;
     margin-left: 180px;
     width: 78%;
-    height: 800px;
+    height: 815px;
     box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
     border: 0.5px solid rgb(206, 206, 206);
 }
@@ -180,6 +180,26 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.parent-container {
+    text-align: center;
+    margin-left: -24px;
+  }
+  
+  .policy {
+    display: inline-block; 
+  }
+  
+  .policy span {
+    cursor: pointer;
+    font-family: 'montserrat', sans-serif;
+    font-size: 17px;
+  }
+
+  .info span {
+    cursor: pointer;
+    
+  }
 
 .reserve {
     background-color: #FFA500;

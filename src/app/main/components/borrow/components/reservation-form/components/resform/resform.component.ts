@@ -6,6 +6,8 @@ import { QueueComponent } from '../queue/queue.component';
 import Swal from 'sweetalert2'
 import { MainService } from '../../../../../../../services/main.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { PoliciesComponent } from '../../../request/components/policies/policies.component';
 
 @Component({
   selector: 'app-resform',
@@ -44,7 +46,8 @@ export class ResformComponent implements OnInit {
     private dialog : MatDialog,
     private ds: MainService,
     private fb: FormBuilder, 
-    private mainService: MainService 
+    private mainService: MainService,
+    private router: Router
   
   ) {
     this.requestForm = this.fb.group({
@@ -82,6 +85,22 @@ export class ResformComponent implements OnInit {
     } else {
       console.log('Patron not found for ID:', selectedPatronId);
     }
+  }
+
+  redirectToReserveForm() {
+    this.router.navigate(['main/borrow/request/borrowrequest']); 
+  }
+
+  policyDialog(): void{
+    const diaref = this.dialog.open(PoliciesComponent, {
+      width: '900px',
+      height: '650px',
+      maxWidth: '900px',
+      maxHeight: '650px',
+    });
+    diaref.afterClosed().subscribe(result => {
+      this.redirectToReserveForm();
+    });
   }
 
     

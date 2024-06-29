@@ -38,13 +38,11 @@ export class MainComponent implements OnDestroy {
   logoutAlert(){
     Swal.fire({
       width: 400,
-      title: "Confirm Logout",
-      text: "Are you sure you want to exit Circulation?",
-      icon: "question",
+      text: "  Are you sure you want to exit Circulation?", 
       showCancelButton: true,
-      confirmButtonColor: "#31A463",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, Log me out"
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#808080",
+      confirmButtonText: "Yes"
       
     }).then((result) => {
       if (result.isConfirmed) {

@@ -157,7 +157,7 @@
             <div class="parent-container">
 
             <label class="policy"> 
-              <input type="checkbox">
+              <input type="checkbox" formControlName="isChecked">
               <span class="checkmark"></span>
               <span>Borrowing Policy. </span>
             </label>
@@ -168,9 +168,10 @@
 
            </div>
 
+
             <div class="buttons">
             <!-- <button class="add" type="submit">Add</button> -->
-            <button class="add" type="submit">Add</button>
+            <button class="add" type="submit" [disabled]="!borrowForm.get('isChecked')?.value">Add</button>
             </div>
           </form>
 

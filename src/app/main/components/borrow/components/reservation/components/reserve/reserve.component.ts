@@ -97,7 +97,8 @@ export class ReserveComponent implements AfterViewInit{
   }
   
   redirectToListPage() {
-    this.router.navigate(['main/borrow/reservation/reserve']); 
+    // this.router.navigate(['main/borrow/reservation/reserve']); 
+    this.router.navigate(['main/borrow/reservation/reserve/reservation.component']); 
   }
 
 

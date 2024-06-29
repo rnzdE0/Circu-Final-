@@ -30,7 +30,7 @@ export class BorrowRequestComponent implements OnInit {
     department: '',
     count:0,
     program: {
-      department: ''
+    department: ''
     },
     patron: {
       hours_allowed: '',
@@ -67,8 +67,8 @@ export class BorrowRequestComponent implements OnInit {
       user_id: ['', Validators.required],
       borrow_date: ['', Validators.required],
       borrow_expiration: ['', Validators.required],
-      fine: ['', Validators.required]
-      
+      fine: ['', Validators.required],
+      isChecked: [false, Validators.requiredTrue]
     });
   }
  
@@ -163,7 +163,7 @@ export class BorrowRequestComponent implements OnInit {
     this.ds.get('circulation/get-user/' + target.value).subscribe({
       next: (res: any) => {
         this.user.id=res.id;
-        this.user.name=res.first_name+' '+res.last_name;
+        this.user.name=res.first_name+' '+res.last_name+' ';
         this.user.program.department=res.program.program;
         this.user.gender=res.gender;
         this.user.department=res.department;
@@ -214,7 +214,7 @@ export class BorrowRequestComponent implements OnInit {
             this.book.author = this.book.author+', ';
         }));
         this.book.title=res.title;
-        this.book.location=res.location.location;
+        this.book.location=res.location;
         
       },
       error:(err:any)=>console.log(err)
@@ -254,6 +254,11 @@ export class BorrowRequestComponent implements OnInit {
       });
     }
   }
+
+
+
+
+
   //   var form = document.getElementById('request-form') as HTMLFormElement;
 
   //   form.addEventListener('submit', (event) => {

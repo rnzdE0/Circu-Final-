@@ -34,7 +34,7 @@
 
                 <!-- Location (fil or foreign) -->
                   <div class="input-group">
-                    <input type="text" name="text" autocomplete="off" class="input" [value]="book.location || ''"   disabled>
+                    <input type="text" name="text" autocomplete="off" class="input" [value]="book.location || 'none'"   disabled>
                     <label class="book-label">Location</label>
                   </div>
 
@@ -143,6 +143,20 @@
               </div>
           </div>
         </div>
+
+        <div class="parent-container">
+
+          <label class="policy"> 
+            <input type="checkbox">
+            <span class="checkmark"></span>
+            <span>Borrowing Policy. </span>
+          </label>
+
+          <span class="info" (click)="policyDialog()">
+            <i class='bx bx-info-circle'></i>
+          </span>
+
+         </div>
 
         <div class="buttons">
           <button class="add" type="submit">Submit</button>
