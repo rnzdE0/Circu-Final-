@@ -16,18 +16,25 @@ body{
     font-weight: 100px;
     color: #BE2E2E;
 }
+.table1 span {
+    font-size: 20px;
+    font-weight: bold;
+
+}
 .table1 p {
     margin-right: 179px; /* Adjust the margin as needed for spacing between elements */
     margin-left: 50px;
     margin-top: 20px;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 18px;
 
 }
 
 .table2 p {
     margin-right: 137px; /* Adjust the margin as needed for spacing between elements */
     margin-left: 50px;
+    font-size: 18px;
+}
+.table2 span {
     font-size: 20px;
     font-weight: bold;
 }
@@ -60,30 +67,28 @@ body{
 // }
 
 .buttons {
-    display: inline-block;
+    text-align: right; /* Aligns inline-block content to the right */
     padding-bottom: 23px;
 }
 
 .close {
+    float: right; /* Float the button to the right */
     background-color: #BE2E2E;
-    margin-right: 10px;
-    width: 50%;
+    width: auto; /* Adjust width as needed */
     border: none;
-    border-radius: 15px;
-    font-family: 'Montserrat',sans-serif;
+    border-radius: 9px;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-style: normal;
     color: #fff;
-    font-size: 22px;
-    top: -20px;
+    font-size: 18px;
     text-decoration: none;
-    border-radius: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 5px;
-    padding-top: 5px;
+    padding: 10px 20px; /* Adjust padding as needed */
     cursor: pointer;
+    margin-right: 50px; /* Adjust margin-right to move button slightly to the left */
 }
+
+
 
 
 .close:hover {

@@ -5,14 +5,14 @@
       </div>
           
       <div class="table1">
-        <p>Name: {{user.first_name}} {{user.last_name}}</p>
-        <p>Department: {{user.program.program}}</p>
-        <!-- <p>Books Allowed:</p> -->
+        <p><span class="contento">Name:</span> {{user.first_name}} {{user.last_name}}</p>
+        <p><span class="contento">Department:</span>  {{user.program.program}}</p>
+        <p><span class="contento"><p>Books Allowed:</span></p>
       </div>
 
       <div class="table2">
         <p><span class="contento">Id Number:</span> {{user.id}}</p>
-        <!-- <p>Patron Type: {{user.patron.patron}}</p> -->
+        <p><span class="contento">Patron Type: </span>{{user.patron.patron}}</p>
       </div>
 
           <div class="form">
@@ -41,7 +41,7 @@
             
             
               <div class="table3">
-                <p>Total Returned Books: {{ totalReturnedBooks }}</p>
+                <p>Total Returned Books:</p>
                 <p>Total Fine:</p>
               </div>
 
