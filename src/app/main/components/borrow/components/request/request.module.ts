@@ -7,6 +7,8 @@ import { ListModule } from '../list/list.module';
 import { TableComponent } from '../list/components/table/table.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PoliciesComponent } from './components/policies/policies.component';
+import { MaterialModule } from '../../../../../modules/material/material.module';
 
 
 
@@ -14,12 +16,14 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     BorrowRequestComponent,
     BorrowReserveComponent,
+    PoliciesComponent,
   ],
   imports: [
     CommonModule,
     RequestRoutingModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class RequestModule { }

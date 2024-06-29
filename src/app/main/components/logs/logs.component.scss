@@ -14,13 +14,40 @@ main {
     justify-content: space-between;
     padding-bottom: 10px;
   }
+
+  .title {
+    color: #444444;
+    font-family: 'montserrat', sans-serif;
+    // text-transform: uppercase;
+    font-weight: 700;
+    font-size: 40px;
+    margin-top: 15px;
+}
   
   .head h1 {
     margin-top: 10px;
     font-weight: 700;
     font-size: 25px;
   }
+
+  .container {
+    border-radius: 5px;
+    padding: 20px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-top: 50px;
+    background: rgb(242, 242, 242);
+    margin-left: 67px;
+    width: 90%;
+    height: auto;
+    margin-bottom: 30px;
+    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
+    border: 0.5px solid grey;
+}
   
+
+
+
   // DATE FILTER
   .input-row {
     display: flex;
@@ -47,7 +74,7 @@ main {
   color: black;
   border: 1px solid #BFBFBF;
     background-color: #FFFFFF;
-  padding: 0.5rem 0.75rem;
+  padding: 0rem 0.75rem;
   border-radius: 5px;
     display: flex;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
@@ -63,7 +90,7 @@ main {
     left: 0;
     margin-left: -0px;
     width: 80px;
-    height: 2.4rem;
+    height: 2.5rem;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -119,7 +146,7 @@ main {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border: 0.5px solid  #BFBFBF;
-    background-color:  #F4F4F4;
+    background-color:  #E1E1E1;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
   }
   
@@ -174,7 +201,7 @@ main {
   }
   
   mat-paginator {
-    background-color:  #F4F4F4;
+    background-color:  #E1E1E1;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     font-size: 16px;

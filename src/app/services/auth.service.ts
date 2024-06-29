@@ -34,7 +34,8 @@ export class AuthService {
 
 
   public login(formData: FormData) {
-    return this.http.post(this.url+'login/circulation', formData).pipe(
+    return this.http.post(this.url+'login', formData).pipe(
+      // return this.http.post(this.url+'login/circulation', formData).pipe(
       tap((res: any) => {
         if(res.token) {
           console.log(res)

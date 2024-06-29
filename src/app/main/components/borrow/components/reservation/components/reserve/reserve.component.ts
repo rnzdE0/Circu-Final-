@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, viewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReservationPopupComponent } from '../reservation-popup/reservation-popup.component';
 import { DeleteComponent } from '../delete/delete.component';
@@ -7,6 +7,8 @@ import { OnlineList, ReservationList, queueData } from './reserve-list.model';
 import { PushComponent } from '../push/push.component';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-reserve',
@@ -16,6 +18,8 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ReserveComponent implements AfterViewInit{
   displayedColumns: string[] = ['mode', 'borrowerName', 'BookTitle', 'Department', 'Queue', 'Actions'];
   dataSource = new MatTableDataSource<ReservationList>();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   reservationList: ReservationList[] = [];
   filteredreservationList: ReservationList[] = [];
@@ -45,7 +49,9 @@ export class ReserveComponent implements AfterViewInit{
         this.dataSource.filterPredicate = (data: ReservationList, filter: string) => {
           const user = data.user;
           const book = data.book;
-          return user.first_name.toLowerCase().includes(filter)
+          return user.first_name.toLowerCase().includes(filter) || 
+          user.first_name.toLowerCase().includes(filter) || 
+          book.title.toLowerCase().includes(filter)
                  
         };
       },
@@ -86,7 +92,9 @@ export class ReserveComponent implements AfterViewInit{
   constructor(private dialog : MatDialog,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    
+  }
   
   redirectToListPage() {
     this.router.navigate(['main/borrow/reservation/reserve']); 
@@ -164,42 +172,6 @@ applyFilter(event: Event): void {
   this.dataSource.filter = searchValue;
 }
 
-// applyFilter(event: Event): void {
-//   console.log('Filtering...');
-//   const searchValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-//   console.log('Search value:', searchValue);
 
-//   // Filter reservation list
-//   if (!searchValue) {
-//     this.filteredreservationList = this.reservationList.slice(); // Reset filter
-//   } else {
-//     this.filteredreservationList = this.reservationList.filter(material =>
-//       material.user.patron.patron.toLowerCase().includes(searchValue) ||
-//       material.user.id.toString().toLowerCase().includes(searchValue) ||
-//       material.user.program.department.department.toLowerCase().includes(searchValue) ||
-//       material.book_id.toString().toLowerCase().includes(searchValue) ||
-//       material.user.program.category.toLowerCase().includes(searchValue)||
-//       material.queue_position.toString().toLowerCase().includes(searchValue)
-//     );
-//   }
-
-//   console.log('Filtered reservation result:', this.filteredreservationList);
-
-//   // Filter online list
-//   if (!searchValue) {
-//     this.filteredonlineList = this.onlineList.slice(); // Reset filter
-//   } else {
-//     this.filteredonlineList = this.onlineList.filter(material =>
-//       material.user.patron.patron.toLowerCase().includes(searchValue) ||
-//       material.user.id.toString().toLowerCase().includes(searchValue) ||
-//       material.user.program.department.department.toLowerCase().includes(searchValue) ||
-//       material.book_id.toString().toLowerCase().includes(searchValue) ||
-//       material.user.program.category.toLowerCase().includes(searchValue)||
-//       material.queue_position.toString().toLowerCase().includes(searchValue)
-//     );
-//   }
-
-//   console.log('Filtered online result:', this.filteredonlineList);
-// }
 
 }
