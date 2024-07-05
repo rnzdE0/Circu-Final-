@@ -1,6 +1,6 @@
 <body>
 
-  <p class="title">Users</p>
+  
 
     <div class="container">
       <!-- Search bar -->
@@ -9,10 +9,11 @@
         <button type="submit" (click)="applyFilter($event)"><i class="bx bx-search"></i></button>
 
       </div>
-
+        <p class="title">Users</p>
         <div class="table">
+          
           <table mat-table [dataSource]="dataSource">
-        
+            
             <!-- Name Column -->
             <ng-container matColumnDef="Name">
               <th mat-header-cell *matHeaderCellDef class="tbl-head"> Name </th>
