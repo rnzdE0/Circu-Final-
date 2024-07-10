@@ -50,8 +50,10 @@ export class UserTableComponent implements AfterViewInit {
           const user = data;
           return user.first_name.toLowerCase().includes(filter) ||
           user.last_name.toLowerCase().includes(filter) ||
-          user.program.department.department.toLowerCase().includes(filter) ||
-          user.program.program.toLowerCase().includes(filter) ||
+          // user.program.department.department.toLowerCase().includes(filter) ||
+          // user.program.program.toLowerCase().includes(filter) ||
+          // user.program.department_short.toLowerCase().includes(filter) ||
+          // user.program.program_short.toLowerCase().includes(filter) ||
           user.id.toString().includes(filter) 
         }
       }
