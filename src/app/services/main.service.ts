@@ -32,7 +32,7 @@ export class MainService {
   }
 
   public post(url: string, payload: any) {
-    return this.http.post(this.baseUrl+url, {payload:JSON.stringify(payload)}, { headers: this.headers.get() });
+    return this.http.post(this.baseUrl+url, payload, { headers: this.headers.get() });
   }
 
   public delete(url: string) {
