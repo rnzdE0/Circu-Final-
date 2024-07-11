@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import Chart from 'chart.js/auto';
 import { AuthService } from '../../../../../services/auth.service';
-
 
 @Component({
   selector: 'app-graph',
@@ -37,6 +38,7 @@ export class GraphComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
+  //png download
   async downloadPNG(): Promise<void> {
     const pieCanvas = document.getElementById('pieChart') as HTMLCanvasElement;
     const barCanvas = document.getElementById('barChart') as HTMLCanvasElement;
@@ -70,6 +72,68 @@ export class GraphComponent implements OnInit {
     a.download = 'borrowers_report.png';
     a.click();
   }
+
+  async downloadPDF(): Promise<void> {
+    const pieCanvas = document.getElementById('pieChart') as HTMLCanvasElement;
+    const barCanvas = document.getElementById('barChart') as HTMLCanvasElement;
+
+    const pdf = new jsPDF('portrait', 'px', 'a4'); // Set PDF orientation and size to A4
+
+    // Header Design
+    const logoLeft = await this.getLogoLeft(); 
+    const logoRight = await this.getLogoRight();
+
+    // Orange background rectangle
+    // pdf.setFillColor(255, 165, 0); // Orange color
+    // pdf.rect(0, 0, pdf.internal.pageSize.getWidth(), 50, 'F'); // Orange rectangle for header
+
+    //Add logos
+    pdf.addImage(logoLeft, 'PNG', 70, 40, 50, 40); // Adjust coordinates and dimensions as needed
+    pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 120, 40, 50, 40); // Adjust coordinates and dimensions as needed
+
+    // Text in the middle
+    pdf.setTextColor(0); // Black text color
+    pdf.setFontSize(8); // Font size for header text
+    pdf.text('Republic of the Philippines', pdf.internal.pageSize.getWidth() / 2, 25, { align: 'center' });
+    pdf.text('City of Olongapo', pdf.internal.pageSize.getWidth() / 2, 35, { align: 'center' });
+    pdf.setFontSize(12); // Larger font size for institution name
+    pdf.text('Gordon College', pdf.internal.pageSize.getWidth() / 2, 45, { align: 'center' });
+    pdf.setFontSize(8);
+    pdf.text('Olongapo City Sports Complex, Donor St, East Tapinac, Olongapo City', pdf.internal.pageSize.getWidth() / 2, 55, { align: 'center' });
+    pdf.text('Tel. No:(047) 224-2089 loc. 401', pdf.internal.pageSize.getWidth() / 2, 65, { align: 'center' });
+    pdf.text('Book Borrowers By Department And Gender', pdf.internal.pageSize.getWidth() / 2, 75, { align: 'center' });
+
+    // Calculate center position for charts on A4 page
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    
+    const chartWidth = 200;
+    const chartHeight = 200; 
+    const chartMarginX = (pdfWidth - chartWidth * 2) / 2; // Center horizontally
+    const chartMarginY = (pdfHeight - chartHeight) / 2 + 10; // Start below header, adjust vertical position
+
+    // Position for pie chart
+    const pieCanvasImg = await html2canvas(pieCanvas);
+    const pieImgData = pieCanvasImg.toDataURL('image/png');
+    pdf.addImage(pieImgData, 'PNG', chartMarginX, chartMarginY, chartWidth, chartHeight);
+
+    // Position for bar chart
+    const barCanvasImg = await html2canvas(barCanvas);
+    const barImgData = barCanvasImg.toDataURL('image/png');
+    pdf.addImage(barImgData, 'PNG', chartMarginX + chartWidth, chartMarginY, chartWidth, chartHeight);
+
+    // Save PDF with specified filename
+    pdf.save('TopBorrowers-Department-Gender.pdf');
+  }
+
+  private async getLogoLeft(): Promise<string> {
+    return '../assets/img/gc.png'; 
+  }
+
+  private async getLogoRight(): Promise<string> {
+    return '../assets/img/gclibrary.png'; 
+  }
+
   departmentData: { [key: string]: number } = {};
   genderData: { [key: string]: number } = {};
 

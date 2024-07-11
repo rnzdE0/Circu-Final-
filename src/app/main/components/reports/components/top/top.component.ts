@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
+import jsPDF from 'jspdf';
 import { AuthService } from '../../../../../services/auth.service';
 import html2canvas from 'html2canvas';
 
@@ -63,6 +64,61 @@ isProgramChartVisible: any;
     a.download = 'most_borrowed_books_chart.png';
     a.click();
   }
+
+  async downloadPDF(): Promise<void> {
+    const chartCanvas = document.getElementById('topChart') as HTMLCanvasElement;
+    const pdf = new jsPDF('landscape', 'px', 'a4');
+
+    // Add logos and header
+    const logoLeft = await this.getLogoLeft();
+    const logoRight = await this.getLogoRight();
+    pdf.addImage(logoLeft, 'PNG', 10, 10, 50, 30);
+    pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 60, 10, 50, 30);
+    pdf.setTextColor(0);
+    pdf.setFontSize(8);
+    pdf.text('Republic of the Philippines', pdf.internal.pageSize.getWidth() / 2, 25, { align: 'center' });
+    pdf.text('City of Olongapo', pdf.internal.pageSize.getWidth() / 2, 35, { align: 'center' });
+    pdf.setFontSize(12);
+    pdf.text('Gordon College', pdf.internal.pageSize.getWidth() / 2, 45, { align: 'center' });
+    pdf.setFontSize(8);
+    pdf.text('Olongapo City Sports Complex, Donor St, East Tapinac, Olongapo City', pdf.internal.pageSize.getWidth() / 2, 55, { align: 'center' });
+    pdf.text('Tel. No:(047) 224-2089 loc. 401', pdf.internal.pageSize.getWidth() / 2, 65, { align: 'center' });
+    pdf.text('Top Borrowed Books Chart', pdf.internal.pageSize.getWidth() / 2, 75, { align: 'center' });
+
+    // Calculate dimensions and margins for the chart
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    const chartWidth = chartCanvas.width;
+    const chartHeight = chartCanvas.height;
+
+    // Determine scale to fit chart within A4 page
+    const scaleFactor = Math.min((pdfWidth - 40) / chartWidth, (pdfHeight - 100) / chartHeight);
+
+    // Adjust dimensions based on scale factor
+    const targetWidth = chartWidth * scaleFactor;
+    const targetHeight = chartHeight * scaleFactor;
+    const chartMarginX = (pdfWidth - targetWidth) / 2;
+    const chartMarginY = (pdfHeight - targetHeight) / 2 + 10;
+
+    // Capture chart canvas as image
+    const chartImgData = await html2canvas(chartCanvas, { scale: scaleFactor }).then(canvas => canvas.toDataURL('image/png'));
+
+    // Add chart image to PDF
+    pdf.addImage(chartImgData, 'PNG', chartMarginX, chartMarginY, targetWidth, targetHeight);
+
+    // Save PDF
+    pdf.save('top_borrowed_books_chart.pdf');
+  }
+
+  private async getLogoLeft(): Promise<string> {
+    return '../assets/img/gc.png';
+  }
+
+  private async getLogoRight(): Promise<string> {
+    return '../assets/img/gclibrary.png';
+  }
+ 
+
 
   ngOnInit(): void {
     this.authservice.topBorrowers().subscribe(
