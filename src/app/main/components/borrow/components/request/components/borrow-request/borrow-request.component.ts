@@ -58,11 +58,11 @@ export class BorrowRequestComponent implements OnInit {
   
   ) {
     this.borrowForm = this.fb.group({
-      book_id: ['', Validators.required],
-      user_id: ['', Validators.required],
-      borrow_date: ['', Validators.required],
-      borrow_expiration: ['', Validators.required],
-      fine: ['', Validators.required],
+      book_id: ["", Validators.required],
+      user_id: ["", Validators.required],
+      borrow_date: ["", Validators.required],
+      borrow_expiration: ["", Validators.required],
+      fine: ["", Validators.required],
       isChecked: [false, Validators.requiredTrue]
     });
   }
@@ -219,8 +219,24 @@ export class BorrowRequestComponent implements OnInit {
 
   bookSubmit() {
     if (this.borrowForm.valid) {
-      console.log(this.borrowForm.value)
-      this.mainService.post('borrow/book',this.borrowForm.value).subscribe(
+      const payload = {
+      book_id: this.borrowForm.value.book_id,
+      user_id: this.borrowForm.value.user_id,
+      borrow_date: this.borrowForm.value.borrow_date,
+      borrow_expiration: this.borrowForm.value.borrow_expiration,
+      fine: this.borrowForm.value.fine,
+      isChecked: this.borrowForm.value.isChecked
+    };
+    console.log("Sending borrow request sadsdasd:", payload)
+
+    const httpOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    
+      this.mainService.post('circulation/borrow/book',payload).subscribe(
         response => {
           Swal.fire({
             title: 'Success',
@@ -230,6 +246,7 @@ export class BorrowRequestComponent implements OnInit {
           });
         },
         error => {
+          console.log('Sending borrow request with payload:', payload);
           console.error('Book is not available', error);
           Swal.fire({
             title: 'Book is Unavailable',
