@@ -225,7 +225,7 @@ export class BorrowRequestComponent implements OnInit {
   bookSubmit() {
     if (this.borrowForm.valid) {
       console.log(this.borrowForm.value)
-      this.mainService.post('borrow/book',this.borrowForm.value).subscribe(
+      this.mainService.post('circulation/borrow/book',this.borrowForm.value).subscribe(
         response => {
           Swal.fire({
             title: 'Success',
@@ -235,6 +235,7 @@ export class BorrowRequestComponent implements OnInit {
           });
         },
         error => {
+          console.log('Sending borrow request with payload:', this.borrowForm.value);
           console.error('Book is not available', error);
           Swal.fire({
             title: 'Book is Unavailable',
