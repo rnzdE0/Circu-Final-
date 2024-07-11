@@ -8,6 +8,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../../../modules/material/material.module';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
 
 
 
@@ -23,6 +25,8 @@ import { MaterialModule } from '../../../modules/material/material.module';
     MatDialogModule,
     MatPaginator,
     FormsModule,
+    MatSortModule,
+    MatTable,
     MaterialModule
   ]
 })

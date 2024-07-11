@@ -30,11 +30,12 @@ export class AuthService {
 //private url:string = 'http://192.168.18.185:8000/api/';
 
 // vpn ip
-//private url:string = 'http://26.68.32.39:8000/api/'; 
+//// private url:string = 'http://26.68.32.39:8000/api/'; 
 
 
   public login(formData: FormData) {
     return this.http.post(this.url+'login', formData).pipe(
+      // return this.http.post(this.url+'login/circulation', formData).pipe(
       tap((res: any) => {
         if(res.token) {
           console.log(res)
@@ -99,5 +100,6 @@ export class AuthService {
   public getqueue(){
     return this.http.get(this.url + 'queue', {headers: this.headers.get() })
   }
+
 
 }

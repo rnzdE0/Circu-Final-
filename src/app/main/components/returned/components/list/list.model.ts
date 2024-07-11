@@ -2,10 +2,13 @@ export interface List {
     id: number;
     user_id: number;
     username: string;
+    borrow_date: Date;
+    date_returned: Date;
     user: {
       id: number;
       username: string;
-
+      first_name: string;
+      last_name: string;
       program: {
         program: string;
       }
@@ -13,5 +16,7 @@ export interface List {
         department: string;
       }
     };
-    // Add other BorrowMaterial properties here
+    book: {
+      title: string;
+    };
   }

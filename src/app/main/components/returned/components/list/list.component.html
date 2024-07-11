@@ -3,96 +3,74 @@
 <div class="container">
 
   <p class="title">Returned</p>
+      <p class="desc">List of Returned Books</p>
 
   <!-- Search bar -->
   <div class="search">
-    <input placeholder="Search..." type="text">
-    <button type="submit"><i class="bx bx-search" ></i></button>
-  </div>
-  
-  <!-- filter -->
-  <!-- <div class="filter-container">
-    <div class="filter-options">
-      <div class="filter-group">
-        <label for="department">Department:</label>
-        <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
-          <option value="">All Departments</option>
-          <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
-        </select>
-      </div>
-      <div class="filter-group" *ngIf="selectedDepartment">
-        <label for="secondFilter">Program:</label>
-        <select id="secondFilter" [(ngModel)]="selectedProgram">
-          <option value="">All Options</option>
-          <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="patronType">Patron Type:</label>
-        <select id="patronType" [(ngModel)]="selectedPatronType">
-          <option value="">All Patron Types</option>
-          <option value="Admin">Admin</option>
-          <option value="Faculty">Faculty</option>
-          <option value="Student">Student</option>
-          <option value="Staff">Staff</option>
-          <option value="Visitor">Visitor</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="startDate">From:</label>
-        <input type="date" id="startDate" min="2024-01-01">
-      </div>
-      <div class="filter-group">
-        <label for="endDate">To:</label>
-        <input type="date" id="endDate" min="2024-01-01">
-      </div>
-    </div>
-  </div> -->
+    <input placeholder="Search..." name="search" id="search" type="text" (input)="applyFilter($event)">
+    <button type="submit" (click)="applyFilter($event)"><i class="bx bx-search"></i></button>
 
-  <!-- <p class="title">Returned</p> -->
-  <table class="content-table">
-    <thead class="table-head">
-      <tr>
-        <th>Patron Type</th>
-        <th>Id Number</th>
-        <th>Department</th>
-        <th>Program</th>
-        <th>Accession Number</th>
-        <th>Date Created</th>
-        <th>Date Returned</th>
-        <th>Status</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let material of returned">
-        <!-- student name -->
-        <td>{{material.user.patron.patron }}</td>
-        <!-- student id -->
-        <td>{{material.user_id}}</td>
-        <!-- department -->
-        <td>{{material.user.department.department}}</td>
-        <!-- program -->
-        <td>{{material.user.program.program}}</td>
-        <!-- accession id -->
-        <td>{{material.book_id}}</td>
-        <!-- date created -->
-        <td >{{material.borrow_date}}</td>
-        <!-- date returned -->
-        <td >{{material.date_returned}}</td>
-        <!-- status -->
-        <td class="returned">Returned</td>
-      </tr>
-    </tbody>
-  </table>
+  </div>
+
+  <!-- new table for returned -->
+
+  <div class="table">
+    <table mat-table [dataSource]="dataSource" matSort>
   
-    <div class="page">
-        <mat-paginator [length]="100"
-                  [pageSize]="10"
-                  [pageSizeOptions]="[5, 10, 25, 100]"
-                  aria-label="Select page">
-        </mat-paginator>
-    </div>
+      <!-- Name Column -->
+      <ng-container matColumnDef="Borrower">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Borrower</th>
+        <td mat-cell *matCellDef="let element"> {{ element.user.first_name }} {{ element.user.last_name }} </td>
+      </ng-container>
+  
+      <!-- Gender Column -->
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.id}} </td>
+      </ng-container>
+  
+      <!-- Email Column -->
+      <ng-container matColumnDef="Department">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Department </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.department.department}} </td>
+      </ng-container>
+  
+      <!-- Department Column -->
+      <ng-container matColumnDef="Program">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Program </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.program.program}} </td>
+      </ng-container>
+
+      <!-- Program Column -->
+      <ng-container matColumnDef="Book Title">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Book Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.book.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Date Created">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head" > Date Created </th>
+        <td mat-cell *matCellDef="let element"> {{element.borrow_date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Date Returned">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head" > Date Returned </th>
+        <td mat-cell *matCellDef="let element"> {{element.date_returned}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Status </th>
+        <td mat-cell class="returned" *matCellDef="let element"> Returned </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator class="page" [pageSizeOptions]="[10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of users">
+    </mat-paginator>
+  </div>
   
 </div>
 

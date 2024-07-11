@@ -1,39 +1,70 @@
-<div class="container">
-  <p class="title">Users</p>
+<body>
 
-  <!-- Search bar -->
-  <div class="search">
-    <input type="text" placeholder="Search..." name="search" id="search" (input)="applyFilter($event)">
-    <button type="submit" (click)="applyFilter($event)"><i class="bx bx-search"></i></button>
-  </div>
+  
 
-  <!-- table -->
-  <table class="content-table">
-    <thead class="table-head">
-      <tr>
-        <th>Name</th>
-        <th>Patron Type</th>
-        <th>Gender</th>
-        <th>Id Number</th>
-        <th>Department</th>
-        <th>Program</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of filteredUserList">
-        <td>{{ user.first_name }} {{ user.last_name }}</td>
-        <td>{{ user.patron.patron }}</td>
-        <td>{{ getGenderString(user.gender) }}</td>
-        <td>{{ user.id }}</td>
-        <td>{{ user.program.department.department }}</td>
-        <td>{{ user.program.program }}</td>
-        <td>
-          <button class="edit" (click)="openUser(user)">
-            <i class="bx bxs-edit"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+    <div class="container">
+      <!-- Search bar -->
+      <div class="search">
+        <input placeholder="Search..." name="search" id="search" type="text" (input)="applyFilter($event)">
+        <button type="submit" (click)="applyFilter($event)"><i class="bx bx-search"></i></button>
+
+      </div>
+        <p class="title">Users</p>
+        <div class="table">
+          
+          <table mat-table [dataSource]="dataSource">
+            
+            <!-- Name Column -->
+            <ng-container matColumnDef="Name">
+              <th mat-header-cell *matHeaderCellDef class="tbl-head"> Name </th>
+              <td mat-cell *matCellDef="let element"> {{ element.first_name }} {{ element.last_name }} </td>
+            </ng-container>
+        
+            <!-- Gender Column -->
+            <ng-container matColumnDef="Gender">
+              <th mat-header-cell *matHeaderCellDef class="tbl-head"> Gender </th>
+              <td mat-cell *matCellDef="let element"> {{ getGenderString(element.gender)}} </td>
+            </ng-container>
+        
+            <!-- Email Column -->
+            <ng-container matColumnDef="Email">
+              <th mat-header-cell *matHeaderCellDef class="tbl-head"> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+        
+            <!-- Department Column -->
+            <ng-container matColumnDef="Department">
+              <th mat-header-cell *matHeaderCellDef class="tbl-head"> Department </th>
+              <td mat-cell *matCellDef="let element"> {{element.deparment_short}} </td>
+            </ng-container>
+
+            <!-- Program Column -->
+            <ng-container matColumnDef="Program">
+              <th mat-header-cell *matHeaderCellDef class="tbl-head"> Program </th>
+              <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="Action">
+              <th mat-header-cell *matHeaderCellDef class="tbl-head"> Action </th>
+              <td mat-cell *matCellDef="let element"> 
+                
+                <button class="edit" (click)="openUser(element)">
+                  <i class="bx bxs-edit"></i>
+                </button>
+
+              </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        
+          <mat-paginator class="page" [pageSizeOptions]="[10, 15]"
+                        showFirstLastButtons
+                        aria-label="Select page of users">
+          </mat-paginator>
+        </div>
+    </div>
+</body>
+

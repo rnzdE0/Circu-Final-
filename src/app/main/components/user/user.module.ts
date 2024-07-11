@@ -6,6 +6,8 @@ import { UserRoutingModule } from './user-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
+import { MatTable } from '@angular/material/table';
+import { MaterialModule } from '../../../modules/material/material.module';
 
 
 
@@ -20,7 +22,9 @@ import { FormsModule } from '@angular/forms';
     UserRoutingModule,
     MatDialogModule,
     MatPaginator,
-    FormsModule 
+    FormsModule ,
+    MatTable,
+    MaterialModule
   ]
 })
 export class UserModule { }

@@ -1,35 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2'
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
-export class MainComponent {
-  // showPopup: boolean = false;
+export class MainComponent implements OnDestroy {
+ 
   dropdownOpen: boolean | undefined;
   projectDropdownOpen: boolean | undefined;
 
-  // togglePopup() {
-  //   this.showPopup = !this.showPopup;
-  // }
-
-  // closePopup() {
-  //   this.showPopup = this.showPopup;
-  // }
-
+  
   timer: any;
   name = sessionStorage.getItem('name');
   role = sessionStorage.getItem('role');
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private as: AuthService
+  ) {
+    this.checkScreenWidth();
+  }
 
-  // redirectToLoginPage() {
-  //   this.router.navigate(['login']); 
-  // }
+  showPopup: boolean = false;
+
+  togglePopup() {
+    this.showPopup = !this.showPopup;
+  }
+
+  closePopup() {
+    this.showPopup = this.showPopup;
+  }
 
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
@@ -44,13 +49,11 @@ export class MainComponent {
   logoutAlert(){
     Swal.fire({
       width: 400,
-      title: "Confirm Logout",
-      text: "Are you sure you want to exit Circulation?",
-      icon: "question",
+      text: "  Are you sure you want to exit Circulation?", 
       showCancelButton: true,
-      confirmButtonColor: "#31A463",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, Log me out"
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#808080",
+      confirmButtonText: "Yes"
       
     }).then((result) => {
       if (result.isConfirmed) {
@@ -74,4 +77,60 @@ export class MainComponent {
     });
 
   }
+
+  ngOnDestroy(): void {
+    clearInterval(this.timer)
+}
+
+isSidebarCollapsed = false;
+isOverlayActive = false;
+
+toggleSidebar() {
+  if (window.innerWidth <= 1320) {
+    this.isOverlayActive = !this.isOverlayActive;
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  } else {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
+}
+
+@HostListener('window:resize', ['$event'])
+onResize(event: Event) {
+  this.checkScreenWidth();
+}
+
+checkScreenWidth() {
+  const screenWidth = window.innerWidth;
+  if (screenWidth <= 1320) {
+    this.isSidebarCollapsed = true;
+  } else {
+    this.isSidebarCollapsed = false;
+    this.isOverlayActive = false;
+  }
+}
+
+protected logout() {
+  this.as.logout().subscribe({
+    next: (res: any) => {
+      sessionStorage.clear();
+      this.router.navigate(['login']); 
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Logged out successfully"
+      });
+    }
+  });
+} 
+
 }

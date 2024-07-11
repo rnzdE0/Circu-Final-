@@ -1,41 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../../../../services/auth.service';
 import { UserPopupComponent } from '../user-popup/user-popup.component';
 import { Router } from '@angular/router';
 import { User } from './user.model';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss']
 })
-export class UserTableComponent implements OnInit {
+export class UserTableComponent implements AfterViewInit {
+  displayedColumns: string[] = ['Name', 'Gender', 'Email', 'Department', 'Program', 'Action'];
+  dataSource = new MatTableDataSource<User>();
   userList: User[] = [];
   filteredUserList: User[] = [];
 
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null; // Type safety
+
   constructor(private dialog: MatDialog,
     private authService: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) { 
+    
+  }
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
     this.fetchUsers();
+    this.cdr.detectChanges();
   }
 
   applyFilter(event: Event): void {
     const searchValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    if (!searchValue) {
-      this.filteredUserList = this.userList.slice(); // Reset filter
-      return;
-    }
-    this.filteredUserList = this.userList.filter(user =>
-      user.first_name.toLowerCase().includes(searchValue) ||
-      user.last_name.toLowerCase().includes(searchValue) ||
-      user.patron.patron.toLowerCase().includes(searchValue) ||
-      user.program.department.department.toLowerCase().includes(searchValue) ||
-      user.program.program.toLowerCase().includes(searchValue)
-    );
+    this.dataSource.filter = searchValue;
   }
 
   fetchUsers(): void {
@@ -44,12 +45,19 @@ export class UserTableComponent implements OnInit {
         console.log('Received data from backend:', data);
         console.log('Type of data:', typeof data);
         this.userList = data as User[]; // Assign the fetched user data to the users array
-        this.filteredUserList = this.userList.slice(); // Initialize filteredUserList with all users
-      },
-      (error) => {
-        console.error('Error fetching users:', error);
+        this.dataSource.data = this.userList; // Initialize filteredUserList with all users
+        this.dataSource.filterPredicate = ( data: User, filter: string ) => {
+          const user = data;
+          return user.first_name.toLowerCase().includes(filter) ||
+          user.last_name.toLowerCase().includes(filter) ||
+          // user.program.department.department.toLowerCase().includes(filter) ||
+          // user.program.program.toLowerCase().includes(filter) ||
+          // user.program.department_short.toLowerCase().includes(filter) ||
+          // user.program.program_short.toLowerCase().includes(filter) ||
+          user.id.toString().includes(filter) 
+        }
       }
-    );
+    )
   }
 
   getGenderString(gender: number): string {

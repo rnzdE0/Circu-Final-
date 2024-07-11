@@ -1,5 +1,11 @@
 export interface User {
-    program: any;
+    // program: {
+    //   program: string,
+    //   department: {
+    //     department: string
+    //   }
+    // },
+    
     id: number;
     username: string;
     role: string;
@@ -21,6 +27,12 @@ export interface User {
     deleted_at: string | null;
     patron:{
       patron: string;
+    },
+
+    program: {
+       department_short: string;
+       category: string;
     }
+   
   }
   
