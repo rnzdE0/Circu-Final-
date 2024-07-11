@@ -32,9 +32,9 @@
                     <h2> ADMIN </h2>
                 </div>
 
-                <!-- <button class="menu-icon-button" (click)="toggleSidebar()">
+                <button class="menu-icon-button" (click)="toggleSidebar()">
                     <i class='bx bx-menu' ></i>
-                </button> -->
+                </button>
             </div>
 
             <!-- SIDEBAR TABS -->
@@ -55,15 +55,19 @@
                             </button>
                             <div class="dropdown-content" *ngIf="dropdownOpen">
                                 <a routerLink="request" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                                    <span class="tab-link-icon1"> <i class='bx bx-book-add'></i> </span>
                                     <span class="tab-link-name1"> Borrow Form </span>
                                 </a>
                                 <a routerLink="form" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                                    <span class="tab-link-icon1"> <i class='bx bx-book'></i> </span>
                                     <span class="tab-link-name1"> Reservation Form </span>
                                 </a>
                                 <a routerLink="list" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                                    <span class="tab-link-icon1"> <i class='bx bx-receipt'></i> </span>
                                     <span class="tab-link-name1"> Borrow List </span>
                                 </a>
                                 <a routerLink="reserve" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                                    <span class="tab-link-icon1"> <i class='bx bxs-receipt'></i> </span>
                                     <span class="tab-link-name1"> Reservation List </span>
                                 </a>
                             </div>

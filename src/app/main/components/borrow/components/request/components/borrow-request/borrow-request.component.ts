@@ -17,11 +17,6 @@ export class BorrowRequestComponent implements OnInit {
   borrowForm: FormGroup;
   [x: string]: any;
   data: any
-  // router: any;
-  // navigateTo() {
-  //   // Programmatically navigate to another route
-  //   this.router.navigate(BorrowReserveComponent);
-  // }
 
   user = {
     id: '',
@@ -30,7 +25,7 @@ export class BorrowRequestComponent implements OnInit {
     department: '',
     count:0,
     program: {
-    department: ''
+    department_short: ''
     },
     patron: {
       hours_allowed: '',
@@ -164,9 +159,9 @@ export class BorrowRequestComponent implements OnInit {
       next: (res: any) => {
         this.user.id=res.id;
         this.user.name=res.first_name+' '+res.last_name+' ';
-        this.user.program.department=res.program.program;
+        // this.user.program.department=res.program.program;
         this.user.gender=res.gender;
-        this.user.department=res.department;
+        this.user.program.department_short=res.program.department_short;
         this.user.patron.hours_allowed=res.patron.hours_allowed;
         this.user.patron.patron=res.patron.patron;
         this.user.patron.fine=res.patron.fine;

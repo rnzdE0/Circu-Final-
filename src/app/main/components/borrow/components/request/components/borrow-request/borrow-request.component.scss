@@ -13,7 +13,7 @@
     text-transform: uppercase;
     font-weight: 700;
     font-size: 45px;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-left: 11%;
     // margin-bottom: 20px;
 }
@@ -202,9 +202,14 @@
     font-size: 17px;
   }
 
-  .info span {
+  .policytext {
     cursor: pointer;
-    
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+  }
+
+  .info i {
+    cursor: pointer;
   }
 
 .add:hover{
@@ -252,7 +257,7 @@
     transition: border 150ms cubic-bezier(0.4,0,0.2,1);
     margin: 10px;
     width: 450px;
-    height: 25px;
+    height: 55px;
 }
 
 .input2 {
@@ -268,7 +273,7 @@
     transition: border 150ms cubic-bezier(0.4,0,0.2,1);
     margin: 10px;
     width: 165px;
-    height: 25px;
+    height: 55px;
 }
 
 .input3 {

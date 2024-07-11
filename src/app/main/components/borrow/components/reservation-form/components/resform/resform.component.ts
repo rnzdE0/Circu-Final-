@@ -24,7 +24,7 @@ export class ResformComponent implements OnInit {
     gender: '',
     department: '',
     program: {
-      department: ''
+      department_short: ''
     },
     patron: {
       hours_allowed: '',
@@ -114,7 +114,7 @@ export class ResformComponent implements OnInit {
       next: (res: any) => {
         this.user.id=res.id;
         this.user.name=res.first_name+' '+res.last_name;
-        this.user.program.department=res.program.program;
+        this.user.program.department_short=res.program.department_short;
         this.user.gender=res.gender;
         this.user.patron.fine=res.patron.fine;
         this.user.patron.patron=res.patron.patron
@@ -136,7 +136,7 @@ export class ResformComponent implements OnInit {
             this.book.author = this.book.author+', ';
         }));
         this.book.title=res.title;
-        this.book.location=res.location.location;
+        this.book.location=res.location;
         
       },
       error:(err:any)=>console.log(err)
