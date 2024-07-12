@@ -15,6 +15,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { GraphComponent } from './components/reports/components/graph/graph.component';
 import { LogsComponent } from './components/logs/logs.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 
@@ -26,6 +27,7 @@ import { LogsComponent } from './components/logs/logs.component';
     UserComponent,
     GraphComponent,
     LogsComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,9 @@ import { LogsComponent } from './components/logs/logs.component';
     MaterialModule,
     FormsModule,
     HttpClientModule
+  ],
+  exports: [
+    LoadingComponent
   ]
 })
 export class MainModule { }

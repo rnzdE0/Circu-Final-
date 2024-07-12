@@ -17,6 +17,7 @@ import { ReservationComponent } from './components/borrow/components/reservation
 import { ReservationFormComponent } from './components/borrow/components/reservation-form/reservation-form.component';
 import { ResformComponent } from './components/borrow/components/reservation-form/components/resform/resform.component';
 import { LogsComponent } from './components/logs/logs.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const routes: Routes = [
 
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'top', component: TopComponent},
   { path: 'most', component: MostComponent},
   { path: 'log', component: LogsComponent},
+  { path: 'loading', component: LoadingComponent},
 
   // parent
   { 

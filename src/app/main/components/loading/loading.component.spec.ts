@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BorrowReserveComponent } from './borrow-reserve.component';
+import { LoadingComponent } from './loading.component';
 
-describe('BorrowReserveComponent', () => {
-  let component: BorrowReserveComponent;
-  let fixture: ComponentFixture<BorrowReserveComponent>;
+describe('LoadingComponent', () => {
+  let component: LoadingComponent;
+  let fixture: ComponentFixture<LoadingComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BorrowReserveComponent]
+      declarations: [LoadingComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(BorrowReserveComponent);
+    fixture = TestBed.createComponent(LoadingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
