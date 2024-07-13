@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GraphComponent } from './components/reports/components/graph/graph.component';
 import { LogsComponent } from './components/logs/logs.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { LoadingsComponent } from './components/loadings/loadings.component';
 
 
 
@@ -26,8 +27,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     ReportsComponent,
     UserComponent,
     GraphComponent,
-    LogsComponent,
-    LoadingComponent,
+    LogsComponent
   ],
   imports: [
     CommonModule,
@@ -39,10 +39,11 @@ import { LoadingComponent } from './components/loading/loading.component';
     MatDialogModule,
     MaterialModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    LoadingsComponent
   ],
   exports: [
-    LoadingComponent
+    LoadingsComponent
   ]
 })
 export class MainModule { }

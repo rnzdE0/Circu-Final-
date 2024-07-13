@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { BorrowReserveComponent } from '../borrow-reserve/borrow-reserve.component';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -24,8 +23,8 @@ export class BorrowRequestComponent implements OnInit {
     gender: '',
     department: '',
     count:0,
-    program: {
-    department_short: ''
+    student_program: {
+      department_short: ''
     },
     patron: {
       hours_allowed: '',
@@ -140,13 +139,6 @@ export class BorrowRequestComponent implements OnInit {
     }
   }
 
-  openDialog() {
-    this.dialog.open(BorrowReserveComponent, {
-      width: '400px',
-      height: '250px',
-    })
-  };
-
 
   // for back
 
@@ -161,7 +153,7 @@ export class BorrowRequestComponent implements OnInit {
         this.user.name=res.first_name+' '+res.last_name+' ';
         // this.user.program.department=res.program.program;
         this.user.gender=res.gender;
-        this.user.program.department_short=res.program.department_short;
+        this.user.student_program.department_short=res.student_program.department_short;
         this.user.patron.hours_allowed=res.patron.hours_allowed;
         this.user.patron.patron=res.patron.patron;
         this.user.patron.fine=res.patron.fine;

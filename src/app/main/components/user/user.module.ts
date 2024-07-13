@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
 import { MaterialModule } from '../../../modules/material/material.module';
 import { MainModule } from "../../main.module";
+import { LoadingComponent } from '../loading/loading.component';
+import { LoadingsComponent } from '../loadings/loadings.component';
 
 
 
@@ -16,7 +18,7 @@ import { MainModule } from "../../main.module";
 @NgModule({
   declarations: [
     UserTableComponent,
-    UserPopupComponent,
+    UserPopupComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,7 @@ import { MainModule } from "../../main.module";
     FormsModule,
     MatTable,
     MaterialModule,
-    MainModule
+    LoadingsComponent
 ]
 })
 export class UserModule { }

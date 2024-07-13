@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PushComponent } from './components/push/push.component';
 import { MaterialModule } from '../../../../../modules/material/material.module';
 import { MatSortModule } from '@angular/material/sort';
+import { LoadingsComponent } from '../../../loadings/loadings.component';
 
 
 
@@ -28,7 +29,8 @@ import { MatSortModule } from '@angular/material/sort';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    MatSortModule
+    MatSortModule,
+    LoadingsComponent
   ]
 })
 export class ReservationModule { }

@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PushPopupComponent } from './components/push-popup/push-popup.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MaterialModule } from '../../../../../modules/material/material.module';
+import { LoadingsComponent } from '../../../loadings/loadings.component';
 
 
 
@@ -19,6 +20,7 @@ import { MaterialModule } from '../../../../../modules/material/material.module'
     EditPopupComponent,
     TableComponent,
     PushPopupComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { MaterialModule } from '../../../../../modules/material/material.module'
     MatDialogModule,
     MatPaginator,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    LoadingsComponent
   ]
 })
 export class ListModule { }

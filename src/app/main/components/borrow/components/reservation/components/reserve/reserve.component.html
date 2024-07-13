@@ -22,6 +22,9 @@
 
         <!-- Walk-In -->
         <div class="tab-content">
+
+          <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+
             <div class="table">
 
                
@@ -70,8 +73,9 @@
                           </table> -->
 
                           <!-- new table -->
+
                           <div class="table">
-                            <table mat-table [dataSource]="dataSource" matSort>
+                            <table mat-table [dataSource]="dataSource" matSort *ngIf="!isLoading">
                           
                               <!-- Name Column -->
                               <ng-container matColumnDef="mode">

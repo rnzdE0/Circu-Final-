@@ -59,6 +59,7 @@ export class UserTableComponent implements AfterViewInit {
           // user.program.program_short.toLowerCase().includes(filter) ||
           user.id.toString().includes(filter) 
         }
+        this.isLoading = false;
       }
     )
   }
