@@ -48,14 +48,11 @@ export class TableComponent implements AfterViewInit {
         this.filteredMaterials = this.borrowMaterials.slice();
         this.dataSource.data = this.borrowMaterials;
         this.dataSource.filterPredicate = (data: BorrowMaterial, filter: string) => {
-          const user = data.user;
-          const book = data.book;
-          return user.first_name.toLowerCase().includes(filter) ||
-                 user.last_name.toLowerCase().includes(filter) ||
-                 user.patron.patron.toLowerCase().includes(filter) ||
-                 user.program.department.department.toLowerCase().includes(filter) ||
-                 user.program.program.toLowerCase().includes(filter) ||
-                 book.title.toLowerCase().includes(filter);
+          return data.name.toLowerCase().includes(filter) ||
+                 data.email.toLowerCase().includes(filter) ||
+                 data.department.toLowerCase().includes(filter) ||
+                 data.status.toLowerCase().includes(filter) ||
+                 data.fine.toLowerCase().includes(filter);
         };
       },
       (error) => {

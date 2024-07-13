@@ -28,7 +28,7 @@ export class PushComponent {
 
   submit(material: any, online: any) {
 
-    const url = 'fromreserve/book/';
+    const url = 'circulation/fromreserve/book/';
 
     // Assuming this.material contains the necessary data
     const {id, user_id, book_id, start_date, end_date, fine} = this.material; 
@@ -37,8 +37,8 @@ export class PushComponent {
       id: material.id,
       user_id: user_id,
       book_id: book_id, 
-      start_date: start_date,
-      end_date: end_date,
+      borrow_date: start_date,
+      borrow_expiration: end_date,
       fine: fine
   
       // Add any other data you want to send here

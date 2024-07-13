@@ -62,13 +62,10 @@ export class ListComponent implements AfterViewInit{
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.dataSource.filterPredicate = ( data: List, filter: string) => {
-          const user = data.user;
-          const book = data.book;
-          return user.first_name.toLowerCase().includes(filter) ||
-          user.last_name.toLowerCase().includes(filter) ||
-          user.department.department.toLowerCase().includes(filter) ||
-          user.id.toString().includes(filter) ||
-          book.title.toLowerCase().includes(filter);
+          return data.fname.toLowerCase().includes(filter) ||
+          data.lname.toLowerCase().includes(filter) ||
+          data.department.toLowerCase().includes(filter) ||
+          data.title.toLowerCase().includes(filter);
         };
         this.cdr.detectChanges();
       }

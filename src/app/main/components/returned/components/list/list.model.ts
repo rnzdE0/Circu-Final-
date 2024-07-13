@@ -1,22 +1,12 @@
 export interface List {
-    id: number;
-    user_id: number;
-    username: string;
-    borrow_date: Date;
-    date_returned: Date;
-    user: {
-      id: number;
-      username: string;
-      first_name: string;
-      last_name: string;
-      program: {
-        program: string;
-      }
-      department: {
-        department: string;
-      }
-    };
-    book: {
-      title: string;
-    };
+   id:number;
+   fname:string;
+   lname:string;
+   email:string;
+   department:string;
+   date_borrowed:string;
+   date_retuened:string;
+   title:string;
+   status:number;
+   fine:number;
   }

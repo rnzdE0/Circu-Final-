@@ -47,14 +47,8 @@ export class UserTableComponent implements AfterViewInit {
         this.userList = data as User[]; // Assign the fetched user data to the users array
         this.dataSource.data = this.userList; // Initialize filteredUserList with all users
         this.dataSource.filterPredicate = ( data: User, filter: string ) => {
-          const user = data;
-          return user.first_name.toLowerCase().includes(filter) ||
-          user.last_name.toLowerCase().includes(filter) ||
-          // user.program.department.department.toLowerCase().includes(filter) ||
-          // user.program.program.toLowerCase().includes(filter) ||
-          // user.program.department_short.toLowerCase().includes(filter) ||
-          // user.program.program_short.toLowerCase().includes(filter) ||
-          user.id.toString().includes(filter) 
+          return data.fname.toLowerCase().includes(filter) ||
+          data.lname.toLowerCase().includes(filter) 
         }
       }
     )

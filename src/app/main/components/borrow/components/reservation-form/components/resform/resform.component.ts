@@ -158,8 +158,8 @@ export class ResformComponent implements OnInit {
       const payloadData = {
         book_id: this.requestForm.value.book_id,
         user_id: this.requestForm.value.user_id,
-        start_date: this.requestForm.value.start_date,
-        end_date: this.requestForm.value.end_date,
+        reserve_date: this.requestForm.value.start_date, 
+        reserve_expiration: this.requestForm.value.end_date,
         fine: this.requestForm.value.fine // Include fine if it's required
       };
       const requestData = {
@@ -167,8 +167,9 @@ export class ResformComponent implements OnInit {
       };
 
       console.log(this.requestForm.value)
+      console.log('Payload Data:', payloadData);
       // 
-      this.mainService.post('reserve/book',this.requestForm.value).subscribe(
+      this.mainService.post('circulation/reserve/book',payloadData).subscribe(
         response => {
           console.log(response)
           Swal.fire({

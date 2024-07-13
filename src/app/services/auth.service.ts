@@ -66,15 +66,15 @@ export class AuthService {
   }
 
   public getUsers() {
-    return this.http.get(this.url + 'users', { headers: this.headers.get() });
+    return this.http.get(this.url + 'circulation/userlist', { headers: this.headers.get() });
   }
 
   public getBorrowList(){
-    return this.http.get(this.url + 'borrow-list',  {headers: this.headers.get()})
+    return this.http.get(this.url + 'circulation/borrow-list',  {headers: this.headers.get()})
   }
 
   public getReserveList(){
-    return this.http.get(this.url + 'reservation-list/walk-in', {headers: this.headers.get()})
+    return this.http.get(this.url + 'circulation/reservelist', {headers: this.headers.get()})
   }
 
   public getOnlineList(){
@@ -86,7 +86,7 @@ export class AuthService {
   }
 
   public getReturned(){
-    return this.http.get(this.url + 'returned-list', {headers: this.headers.get() })
+    return this.http.get(this.url + 'circulation/returned-list', {headers: this.headers.get() })
   }
 
   public mostBorrowedBook(){

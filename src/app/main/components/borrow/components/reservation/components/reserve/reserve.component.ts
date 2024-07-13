@@ -34,8 +34,8 @@ export class ReserveComponent implements AfterViewInit{
 
   ngAfterViewInit():void{
     this.fetchReserveList();
-    this.fetchOnlineList();
-    this.fetchQueue();
+    // this.fetchOnlineList();
+    // this.fetchQueue();
   }
 
   fetchReserveList(): void {
@@ -47,12 +47,9 @@ export class ReserveComponent implements AfterViewInit{
         this.filteredreservationList = this.reservationList.slice();
         this.dataSource.data = this.reservationList;
         this.dataSource.filterPredicate = (data: ReservationList, filter: string) => {
-          const user = data.user;
-          const book = data.book;
-          return user.first_name.toLowerCase().includes(filter) || 
-          user.first_name.toLowerCase().includes(filter) || 
-          book.title.toLowerCase().includes(filter)
-                 
+          return data.first_name.toLowerCase().includes(filter) || 
+          data.title.toLowerCase().includes(filter) || 
+          data.department.toLowerCase().includes(filter);  
         };
       },
       (error) => {
@@ -61,34 +58,7 @@ export class ReserveComponent implements AfterViewInit{
     );
   }
 
-  fetchQueue(): void {
-    this.authService.getqueue().subscribe(
-      (queueData: any) => {
-        console.log('Received data from queue:', queueData);
-        this.queueData = queueData as queueData[];
-        // Once both reservation list and queue data are fetched, combine them
-        this.filterqueue = this.queueData.slice();
-      },
-      (error) => {
-        console.error('Error fetching queue:', error);
-      }
-    );
-  }
-
-
-  fetchOnlineList(): void {
-    this.authService.getOnlineList().subscribe(
-      (data: any) => {
-        console.log('Received data from onlinelist:', data);
-        console.log('Type of data:', typeof data);
-        this.onlineList = data as OnlineList[];
-        this.filteredonlineList = this.onlineList.slice();
-      },
-      (error) => {
-        console.error('Error fetching users:', error);
-      }
-    );
-  }
+ 
   constructor(private dialog : MatDialog,
     private authService: AuthService,
     private router: Router
@@ -118,7 +88,7 @@ export class ReserveComponent implements AfterViewInit{
       this.redirectToListPage();
       if(result === 'Changed Data') {
         this.fetchReserveList()
-        this.fetchOnlineList()
+        // this.fetchOnlineList()
       }
     });
   }
@@ -173,6 +143,35 @@ applyFilter(event: Event): void {
   this.dataSource.filter = searchValue;
 }
 
-
-
 }
+
+
+
+ // fetchQueue(): void {
+  //   this.authService.getqueue().subscribe(
+  //     (queueData: any) => {
+  //       console.log('Received data from queue:', queueData);
+  //       this.queueData = queueData as queueData[];
+  //       // Once both reservation list and queue data are fetched, combine them
+  //       this.filterqueue = this.queueData.slice();
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching queue:', error);
+  //     }
+  //   );
+  // }
+
+
+  // fetchOnlineList(): void {
+  //   this.authService.getOnlineList().subscribe(
+  //     (data: any) => {
+  //       console.log('Received data from onlinelist:', data);
+  //       console.log('Type of data:', typeof data);
+  //       this.onlineList = data as OnlineList[];
+  //       this.filteredonlineList = this.onlineList.slice();
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching users:', error);
+  //     }
+  //   );
+  // }

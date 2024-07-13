@@ -27,7 +27,7 @@ export class PushPopupComponent {
     }
 
   submit(id: number) {
-    const url = 'return-book/'
+    const url = 'circulation/return-book/'
 
     // Assuming you use Angular HttpClient to send PUT request to Laravel backend
     this.ds.put( url+this.material.id ,{}).subscribe(
