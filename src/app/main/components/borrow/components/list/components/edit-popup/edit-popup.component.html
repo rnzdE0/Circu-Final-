@@ -7,81 +7,92 @@
 
       <div class="form">
         
-        <p class="user">Book</p>
+        <p class="user">User</p>
 
         <form id="edit-form" enctype="multipart/form-data">
         <div class="users">
             <div class="group1" *ngIf="borrow">
-              <!-- Accession id -->
-                <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input" [value]="material.book_id" >
-                  <label class="user-label">Accession Number</label>
-                </div>
-
-                <!-- book title -->
-                <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.title" disabled>
-                  <label class="user-label">Title</label>
-                </div>
-
-                <!-- Number of materials -->
-                <div class="input-group">
-                  <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" disabled>
-                  <label class="userlabel2" for="NumOfMat">No. of Materials</label>
-                  <label for="NumOfMat" class="max">/ {{user.patron.materials_allowed}}</label>
-                </div>
-            </div>
-
+              
+              </div>
             <div class="group2">
 
-              <!-- Book Location -->
-                <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input2" [value]="book.location"   disabled>
-                  <label class="user-label">Location</label>
-                </div>
 
-              <!-- book author -->
                 <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input3" [value]="book.author"   disabled>
-                  <label class="user-label">Author</label>
-                </div>
+                <input required="" type="text" name="text" autocomplete="off" class="input" [value]="material.user_id"  >
+                <label class="user-label">Id Number</label>
+              </div>
+              <!-- name -->
+              <div class="input-group">
+                <input required="" type="text" name="text" autocomplete="off" class="input" [value]="user.name"  disabled>
+                <label class="user-label">Name</label>
+              </div>
+              <!-- user gender -->
+              <div class="input-group">
+                <input required="" type="text" name="text" autocomplete="off" class="input2" [value]="user.gender == '1' ? 'Male' : user.gender == '0' ? 'Female' : 'N/A'"  disabled>
+                <label class="booklabel2">Gender</label>
+              </div>
+
             </div>
+
+            <div class="group3">
+
+
+            <!-- patron type (staff/student/faculty/.etc) -->
+            <div class="input-group">
+              <input required="" type="text" name="text" autocomplete="off" class="input" [value]="user.patron.patron"  disabled>
+              <label class="user-label">Patron type</label>
+            </div>
+            <!-- department id -->
+            <div class="input-group">
+              <input required="" type="text" name="text" autocomplete="off" class="input" [value]="user.program" disabled>
+              <label class="user-label">Department</label>
+            </div>
+
+          </div>
         </div>
 
-        <p class="material">User</p>
+        <p class="material">Book</p>
         <div class="materials">
               <div class="group1">
-                <!-- user id -->
-                  <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input" [value]="material.user_id"  >
-                    <label class="user-label">Id Number</label>
-                  </div>
-                  <!-- name -->
-                  <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input" [value]="user.name"  disabled>
-                    <label class="user-label">Name</label>
-                  </div>
-                  <!-- user gender -->
-                  <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input2" [value]="user.gender == '1' ? 'Male' : user.gender == '0' ? 'Female' : 'N/A'"  disabled>
-                    <label class="booklabel2">Gender</label>
-                  </div>
+                <!-- Accession id -->
+              <div class="input-group">
+                <input required="" type="text" name="text" autocomplete="off" class="input" [value]="material.book_id" >
+                <label class="user-label">Accession Number</label>
+              </div> 
+                
+              <!-- book title -->
+              <div class="input-group">
+                <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.title" disabled>
+                <label class="user-label">Title</label>
+              </div>
+              <!-- Number of materials -->
+              <div class="input-group">
+                <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" disabled>
+                <label class="userlabel2" for="NumOfMat">No. of Materials</label>
+                <label for="NumOfMat" class="max">/ {{user.patron.materials_allowed}}</label>
+              </div>
+              
+
+                
+
+
                   
                   
               </div>
 
               <div class="group2">
-                <!-- patron type (staff/student/faculty/.etc) -->
-                  <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input1" [value]="user.patron.patron"  disabled>
-                    <label class="user-label">Patron type</label>
-                  </div>
-                  <!-- department id -->
-                  <div class="input-group">
-                    <input required="" type="text" name="text" autocomplete="off" class="input1" [value]="user.program" disabled>
-                    <label class="user-label">Department</label>
-                  </div>
+              <!-- Book Location -->
+                <div class="input-group">
+                  <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.location"   disabled>
+                  <label class="user-label">Location</label>
+                </div> 
                   
+              <!-- book author -->
+                <div class="input-group">
+                  <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.author"   disabled>
+                  <label class="user-label">Author</label>
+                </div>
+
                   
               </div>
           </div>
@@ -91,12 +102,12 @@
           <div class="group1">
             <!-- frontdesk name -->
               <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input1" >
+                <input required="" type="text" name="text" autocomplete="off" class="input" >
                 <label class="user-label">Name of Staff</label>
               </div>
               <!-- frontdesk position -->
               <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input1" >
+                <input required="" type="text" name="text" autocomplete="off" class="input" >
                 <label class="user-label">Position</label>
               </div>
           </div>
@@ -132,8 +143,9 @@
            
             <!-- <button class="reserve" (click)="openDialog()">Reserve</button> -->
             <!-- <a class="list" routerLink="/sample">List</a> -->            
-            <a class="save" (click)="saveAlert()">Save</a>
-            <a class="close" matDialogClose>Close</a>
+            
+            <a class="close" matDialogClose>Close</a>'
+            <a class="save" (click)="saveAlert()">Save</a>'
             <!-- <a class="reserve">Returned</a> -->
 
 
