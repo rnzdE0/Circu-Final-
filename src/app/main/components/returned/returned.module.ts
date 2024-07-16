@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../../../modules/material/material.module';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { LoadingsComponent } from '../loadings/loadings.component';
 
 
 
@@ -27,7 +28,8 @@ import { MatTable } from '@angular/material/table';
     FormsModule,
     MatSortModule,
     MatTable,
-    MaterialModule
+    MaterialModule,
+    LoadingsComponent
   ]
 })
 export class ReturnedModule { }

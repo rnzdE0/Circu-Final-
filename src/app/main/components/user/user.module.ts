@@ -8,6 +8,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
 import { MaterialModule } from '../../../modules/material/material.module';
+import { MainModule } from "../../main.module";
+import { LoadingComponent } from '../loading/loading.component';
+import { LoadingsComponent } from '../loadings/loadings.component';
 
 
 
@@ -15,16 +18,17 @@ import { MaterialModule } from '../../../modules/material/material.module';
 @NgModule({
   declarations: [
     UserTableComponent,
-    UserPopupComponent,
+    UserPopupComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     MatDialogModule,
     MatPaginator,
-    FormsModule ,
+    FormsModule,
     MatTable,
-    MaterialModule
-  ]
+    MaterialModule,
+    LoadingsComponent
+]
 })
 export class UserModule { }

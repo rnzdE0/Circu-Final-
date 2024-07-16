@@ -42,6 +42,7 @@ export class ListComponent implements AfterViewInit{
   }
 
   returned: any[] = [];
+  isLoading = true;
 
   ngAfterViewInit(): void {
     this.fetchReturned();
@@ -54,6 +55,7 @@ export class ListComponent implements AfterViewInit{
   }
 
   fetchReturned(): void{
+    this.isLoading = true;
     this.authService.getReturned().subscribe(
       (data: any) => {
         console.log('Recieved data from backend', data);
@@ -68,6 +70,7 @@ export class ListComponent implements AfterViewInit{
           data.title.toLowerCase().includes(filter);
         };
         this.cdr.detectChanges();
+        this.isLoading = false;
       }
     );
   }

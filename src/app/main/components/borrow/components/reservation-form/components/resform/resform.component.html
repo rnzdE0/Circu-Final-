@@ -27,6 +27,11 @@
                     <input type="text" name="text" autocomplete="off" class="input" [value]="book.title || ''" disabled>
                     <label class="book-label">Book Title</label>
                   </div>
+
+                  <div class="input-group">
+                    <input type="text" name="text" autocomplete="off" class="input2" [value]=" 'N/A' " disabled>
+                    <label class="book-label">Number of Materials</label>
+                  </div>
                 
               </div>
               
@@ -34,7 +39,7 @@
 
                 <!-- Location (fil or foreign) -->
                   <div class="input-group">
-                    <input type="text" name="text" autocomplete="off" class="input" [value]="book.location || 'none'"   disabled>
+                    <input type="text" name="text" autocomplete="off" class="input" [value]="book.location || ''"   disabled>
                     <label class="book-label">Location</label>
                   </div>
 
@@ -89,7 +94,7 @@
                 
                   <!-- Department id -->
                       <div class="input-group">
-                        <input type="text" name="text" autocomplete="off" class="input" [value]="user.program.department || ''" disabled>
+                        <input type="text" name="text" autocomplete="off" class="input" [value]="user.student_program.department_short || ''" disabled>
                         <label class="book-label">Department</label>
                       </div>
                 </div>
@@ -149,8 +154,9 @@
           <label class="policy"> 
             <input type="checkbox">
             <span class="checkmark"></span>
-            <span>Borrowing Policy. </span>
           </label>
+
+          <span class="policytext" (click)="policyDialog()">Borrowing Policy. </span>
 
           <span class="info" (click)="policyDialog()">
             <i class='bx bx-info-circle'></i>

@@ -10,9 +10,12 @@
 
       </div>
         <p class="title">Users</p>
+
+      <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+
         <div class="table">
           
-          <table mat-table [dataSource]="dataSource">
+          <table mat-table [dataSource]="dataSource" *ngIf="!isLoading">
             
             <!-- Name Column -->
             <ng-container matColumnDef="Name">

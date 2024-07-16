@@ -27,6 +27,8 @@ export class TableComponent implements AfterViewInit {
   filteredMaterials: BorrowMaterial [] = [];
   borrowMaterials: BorrowMaterial [] = [];
 
+  isLoading = true;
+
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
   
   ngAfterViewInit(): void {
@@ -40,6 +42,7 @@ export class TableComponent implements AfterViewInit {
   
 
   fetchBorrowList(): void {
+    this.isLoading = true;
     this.authService.getBorrowList().subscribe(
       (data: any) => {
         console.log('Received data from backend:', data);
@@ -54,6 +57,7 @@ export class TableComponent implements AfterViewInit {
                  data.status.toLowerCase().includes(filter) ||
                  data.fine.toLowerCase().includes(filter);
         };
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error fetching users:', error);

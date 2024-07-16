@@ -30,6 +30,7 @@ export class ReserveComponent implements AfterViewInit{
   filteredonlineList: OnlineList[] = [];
   queueData: queueData[] = [];
   filterqueue: queueData[]=[];
+  isLoading = true;
 
 
   ngAfterViewInit():void{
@@ -39,6 +40,7 @@ export class ReserveComponent implements AfterViewInit{
   }
 
   fetchReserveList(): void {
+    this.isLoading = true;
     this.authService.getReserveList().subscribe(
       (data: any) => {
         console.log('Received data from Reservelist:', data);
@@ -51,6 +53,7 @@ export class ReserveComponent implements AfterViewInit{
           data.title.toLowerCase().includes(filter) || 
           data.department.toLowerCase().includes(filter);  
         };
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error fetching users:', error);

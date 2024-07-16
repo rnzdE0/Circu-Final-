@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { User } from './user.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { LoadingComponent } from '../../../loading/loading.component';
 
 @Component({
   selector: 'app-user-table',
@@ -17,6 +18,7 @@ export class UserTableComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<User>();
   userList: User[] = [];
   filteredUserList: User[] = [];
+  isLoading = true;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null; // Type safety
 
@@ -40,6 +42,7 @@ export class UserTableComponent implements AfterViewInit {
   }
 
   fetchUsers(): void {
+    this.isLoading = true;
     this.authService.getUsers().subscribe(
       (data: any) => {
         console.log('Received data from backend:', data);
@@ -50,6 +53,7 @@ export class UserTableComponent implements AfterViewInit {
           return data.fname.toLowerCase().includes(filter) ||
           data.lname.toLowerCase().includes(filter) 
         }
+        this.isLoading = false;
       }
     )
   }

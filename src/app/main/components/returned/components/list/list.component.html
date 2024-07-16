@@ -15,7 +15,10 @@
   <!-- new table for returned -->
 
   <div class="table">
-    <table mat-table [dataSource]="dataSource" matSort>
+
+    <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+
+    <table mat-table [dataSource]="dataSource" matSort *ngIf="!isLoading">
   
       <!-- Name Column -->
       <ng-container matColumnDef="Borrower">

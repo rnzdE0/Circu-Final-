@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { BorrowReserveComponent } from '../borrow-reserve/borrow-reserve.component';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,11 +16,6 @@ export class BorrowRequestComponent implements OnInit {
   borrowForm: FormGroup;
   [x: string]: any;
   data: any
-  // router: any;
-  // navigateTo() {
-  //   // Programmatically navigate to another route
-  //   this.router.navigate(BorrowReserveComponent);
-  // }
 
   user = {
     id: '',
@@ -29,8 +23,8 @@ export class BorrowRequestComponent implements OnInit {
     gender: '',
     department: '',
     count:0,
-    program: {
-    department: ''
+    student_program: {
+      department_short: ''
     },
     patron: {
       hours_allowed: '',
@@ -145,13 +139,6 @@ export class BorrowRequestComponent implements OnInit {
     }
   }
 
-  openDialog() {
-    this.dialog.open(BorrowReserveComponent, {
-      width: '400px',
-      height: '250px',
-    })
-  };
-
 
   // for back
 
@@ -164,9 +151,9 @@ export class BorrowRequestComponent implements OnInit {
       next: (res: any) => {
         this.user.id=res.id;
         this.user.name=res.first_name+' '+res.last_name+' ';
-        this.user.program.department=res.program.program;
+        // this.user.program.department=res.program.program;
         this.user.gender=res.gender;
-        this.user.department=res.department;
+        this.user.student_program.department_short=res.student_program.department_short;
         this.user.patron.hours_allowed=res.patron.hours_allowed;
         this.user.patron.patron=res.patron.patron;
         this.user.patron.fine=res.patron.fine;
