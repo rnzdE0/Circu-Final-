@@ -285,6 +285,11 @@ th {
 }
 
 // Style for Print Button
+.download-text1{
+  color: #4F6F52;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
 .parent-container {
     position: relative; /* Maaaring kailanganin ito depende sa ibang styles ng mga elements */
   }
@@ -297,7 +302,15 @@ th {
     z-index: 1000; /* Siguruhing mataas ang z-index para hindi matakpan ng ibang elements */
   }
   .menu-button {
-    font-size: 12px;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: 600;
+    background-color:#4F6F52;
+    color: white;
+    padding: 8px 12px;
+    font-family: 'Montserrat', sans-serif;
+    padding-right:30%;
+    padding-left: 25%;
    }
   
   

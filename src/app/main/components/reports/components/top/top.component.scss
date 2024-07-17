@@ -80,8 +80,14 @@ hr {
 }
 
 // Style for Print Button
+.download-text1{
+  color: #4F6F52;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
 .parent-container {
     position: relative; /* Maaaring kailanganin ito depende sa ibang styles ng mga elements */
+    
   }
   .menu-container {
     position: absolute;
@@ -90,9 +96,18 @@ hr {
     display: flex;
     align-items: center;
     z-index: 1000; /* Siguruhing mataas ang z-index para hindi matakpan ng ibang elements */
+
   }
   .menu-button {
-    font-size: 12px;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: 600;
+    background-color:#4F6F52;
+    color: white;
+    padding: 8px 12px;
+    font-family: 'Montserrat', sans-serif;
+    padding-right:30%;
+    padding-left: 25%;
    }
   
   #content {
@@ -103,8 +118,9 @@ hr {
   
       .button {
         margin: 0 10px;
-        padding: 10px 20px;
-        background-color: #31A463; /* Change to your desired color */
+        padding: 20px 20px;
+       
+        background-color: #4F6F52; /* Change to your desired color */
         color: #fff;
         border: none;
         border-radius: 5px;
@@ -112,7 +128,7 @@ hr {
         transition: background-color 0.3s ease;
   
         &:hover {
-          background-color: #31A463; /* Change to your desired hover color */
+          background-color: #4F6F52; /* Change to your desired hover color */
         }
       }
     }
@@ -140,7 +156,7 @@ hr {
     display: block;
     width: 0;
     height: 2px; 
-    background: #31A463; 
+    background: #4F6F52; 
     position: absolute;
     bottom: -5px; 
     left: 0;
@@ -214,6 +230,7 @@ hr {
 }
 
 .table-head {
+    font-weight: 100;
     background-color: #4F6F52;
     font-size: 15px;
 }
@@ -227,7 +244,7 @@ hr {
     width: 100px;
     margin-left: -30px;
     margin-right: -30px;
-    background-color: #31A463;
+    background-color: #4F6F52;
     border-style: none;
     cursor: pointer;
     border-radius: 10px;
