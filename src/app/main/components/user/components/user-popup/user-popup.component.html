@@ -1,10 +1,11 @@
+
 <body>
   
       <div class="header">
         <p class="title">User Details</p>
       </div>
           
-      <div class="table1">
+      <!-- <div class="table1">
         <p><span class="contento">Name:</span> {{user.first_name}} {{user.last_name}}</p>
         <p><span class="contento">Department:</span>  {{user.program.program}}</p>
         <p><span class="contento"><p>Books Allowed:</span></p>
@@ -49,6 +50,93 @@
 
           <div class="buttons">
             <a class="close" matDialogClose>Close</a>
-          </div>
+          </div> -->
+        
+
+        <div class="container">
+        <table class="user-table">
+          <tr>
+            <th>ID Number</th>
+            <td>{{user.id}}</td>
+          </tr>
+          <tr>
+            <th>Full Name</th>
+            <td>{{user.first_name}} {{user.last_name}}</td>
+          </tr>
+          <tr>
+            <th>College/Program</th>
+            <td>{{user.program.department_short}} / {{user.program.program_short}}</td>
+          </tr>
+          <tr>
+            <th>Patron Type</th>
+            <td>{{user.patron.patron}}</td>
+          </tr>
+          <tr>
+            <th>Books Allowed</th>
+            <td></td>
+          </tr>
+        </table>
+        </div> 
+
+
+        <div class="container2">
+
+          <div class="table">
+          
+            <table mat-table [dataSource]="dataSource">
+              
+              <!-- Name Column -->
+              <ng-container matColumnDef="Date">
+                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Date Returned </th>
+                <td mat-cell *matCellDef="let element">{{ element.borrow_date }}</td>
+              </ng-container>
+          
+              <!-- Email Column -->
+              <ng-container matColumnDef="Book">
+                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Book Title </th>
+                <td mat-cell *matCellDef="let element">{{ element.book.title }}</td>
+              </ng-container>
+          
+              <!-- Department Column -->
+              <ng-container matColumnDef="Accession">
+                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Accession Number </th>
+                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+              </ng-container>
   
+              <!-- Program Column -->
+              <ng-container matColumnDef="Status">
+                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Status </th>
+                <td mat-cell *matCellDef="let element">{{ getstatusString(element.status) }}</td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator class="page" pageSize="6"
+                        showFirstLastButtons
+                        aria-label="Select page of users">
+            </mat-paginator>
+
+          </div>
+
+        </div>
+
+        <div class="container3">
+          <table class="user-table1">
+            <tr>
+              <th>Total Returned Books</th>
+              <td>4</td>
+            </tr>
+            <tr>
+              <th>Total Fine</th>
+              <td>₱{{user.patron.fine}}</td>
+            </tr>
+          </table>
+          </div> 
+
+          <div class="buttons">
+            <a class="close" matDialogClose>Close</a>
+          </div>
+       
 </body>
