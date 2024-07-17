@@ -36,14 +36,19 @@
      <div class="parent-container">
        <div class="menu-container">
          <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
-           <mat-icon>cloud_download</mat-icon>
-           <span class="download-text">Print</span>
+           <span class="download-text">Download</span>
          </button>
          <mat-menu #menu="matMenu">
            <button mat-menu-item (click)="downloadPNG()">
-             <mat-icon>image</mat-icon> Download PNG
+            <span class="download-text1">Save as PNG</span>
            </button>
-           <button (click)="downloadPDF()">Download PDF</button>
+           <button mat-menu-item (click)="downloadPDF()">
+            <span class="download-text1">Save as PDF</span>
+           </button>
+           <button mat-menu-item (click)="downloadPDF()">
+            <span class="download-text1">Save as XSLX</span>
+           </button>
+
            <!-- <button mat-menu-item (click)="downloadFile('svg')">
              <mat-icon>image</mat-icon> Download SVG
            </button>
@@ -88,11 +93,11 @@
  
  
    <div class="page">
-     <!-- <mat-paginator [length]="100"
+     <mat-paginator [length]="100"
                [pageSize]="10"
                [pageSizeOptions]="[5, 10, 25, 100]"
                aria-label="Select page">
-     </mat-paginator> -->
+     </mat-paginator>
    </div>
  </div>
  </body>
