@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingsComponent } from '../loadings/loadings.component';
+import { MaterialModule } from '../../../modules/material/material.module';
 
 
 
@@ -27,7 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatMenuModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    LoadingsComponent,
+    MaterialModule
     
   ]
 })

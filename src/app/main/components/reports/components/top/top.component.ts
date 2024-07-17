@@ -3,6 +3,7 @@ import Chart from 'chart.js/auto';
 import jsPDF from 'jspdf';
 import { AuthService } from '../../../../../services/auth.service';
 import html2canvas from 'html2canvas';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-top',
@@ -10,6 +11,7 @@ import html2canvas from 'html2canvas';
   styleUrl: './top.component.scss'
 })
 export class TopComponent implements OnInit{
+  displayedColumns: string[] = ['Patron', 'Name', 'ID', 'Department', 'Program', 'Borrow Count']
   selectedDepartment: string = '';
   selectedSecondFilter: string = '';
   departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
@@ -36,6 +38,9 @@ isProgramChartVisible: any;
 // throw new Error('Method not implemented.');
 // }
   topChart: any;
+  isLoading= true;
+  dataSource= new MatTableDataSource;
+
 
   constructor(private authservice: AuthService) { }
 
