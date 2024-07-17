@@ -296,12 +296,15 @@ th {
   .menu-container {
     position: absolute;
     bottom: -8px;
-    right: 46px;
+    right: 0px;
     display: flex;
     align-items: center;
     z-index: 1000; /* Siguruhing mataas ang z-index para hindi matakpan ng ibang elements */
+
   }
   .menu-button {
+    width: 130px;
+    height: 39px;
     border-radius: 3px;
     font-size: 15px;
     font-weight: 600;
@@ -309,8 +312,6 @@ th {
     color: white;
     padding: 8px 12px;
     font-family: 'Montserrat', sans-serif;
-    padding-right:30%;
-    padding-left: 25%;
    }
   
   

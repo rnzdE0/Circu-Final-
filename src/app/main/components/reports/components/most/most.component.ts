@@ -3,6 +3,7 @@ import Chart from 'chart.js/auto';
 import jsPDF from 'jspdf';
 import { AuthService } from '../../../../../services/auth.service';
 import html2canvas from 'html2canvas';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-most',
@@ -10,6 +11,7 @@ import html2canvas from 'html2canvas';
   styleUrl: './most.component.scss'
 })
 export class MostComponent implements OnInit{
+  displayedColumns: string[] = ['Accession Number', 'Location', 'Published', 'Date Published', 'Borrow Count'];
   selectedDepartment: string = '';
   selectedSecondFilter: string = '';
   departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
@@ -22,6 +24,9 @@ export class MostComponent implements OnInit{
   };
   
   isProgramChartVisible: any;
+  isLoading= true;
+  dataSource= new MatTableDataSource;
+
   // downloadPDF() {
   // throw new Error('Method not implemented.');
   // }
