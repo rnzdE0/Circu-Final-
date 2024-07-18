@@ -89,7 +89,7 @@ export class GraphComponent implements OnInit {
 
     //Add logos
     pdf.addImage(logoLeft, 'PNG', 50, 15, 60, 60); // Adjust coordinates and dimensions as needed
-    pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 105, 15.7, 60, 60); // Adjust coordinates and dimensions as needed
+    pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 105, 15.7, 59, 59); // Adjust coordinates and dimensions as needed
 
     // Text in the middle
     pdf.setTextColor(0); // Black text color
