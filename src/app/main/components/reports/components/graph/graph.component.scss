@@ -383,16 +383,22 @@ th {
     
   }
   .menu-button {
-    border-radius: 3px;
     width: 130px;
     height: 39px;
+    border-radius: 3px;
     font-size: 15px;
     font-weight: 600;
     background-color:#4F6F52;
     color: white;
-    padding: 8px 12px;
     font-family: 'Montserrat', sans-serif;
-   
+    padding-top: 0px; /* Adjust the top padding to move the text down */
+    padding-bottom: 5px;
+   }
+   .tab-link-icon1 {
+    font-size: 25px;
+    position: relative;
+    top: 5px; /* Adjust this value to move the icon up or down */
+    right: 3px;
    }
    
 //    .hamburger-menu-container {

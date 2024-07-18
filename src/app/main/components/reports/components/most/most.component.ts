@@ -73,23 +73,26 @@ export class MostComponent implements OnInit{
   // Function to download chart as PDF
   async downloadPDF(): Promise<void> {
     const chartCanvas = document.getElementById('mostChart') as HTMLCanvasElement;
-    const pdf = new jsPDF('landscape', 'px', 'a4');
+    const pdf = new jsPDF('portrait', 'px', 'a4');
   
     // Add logos and header
     const logoLeft = await this.getLogoLeft();
     const logoRight = await this.getLogoRight();
-    pdf.addImage(logoLeft, 'PNG', 10, 10, 50, 30);
-    pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 60, 10, 50, 30);
+    pdf.addImage(logoLeft, 'PNG', 50, 15, 60, 60);
+    pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 105, 15.7, 60, 60);
     pdf.setTextColor(0);
     pdf.setFontSize(8);
     pdf.text('Republic of the Philippines', pdf.internal.pageSize.getWidth() / 2, 25, { align: 'center' });
     pdf.text('City of Olongapo', pdf.internal.pageSize.getWidth() / 2, 35, { align: 'center' });
-    pdf.setFontSize(12);
+    pdf.setFontSize(10);
     pdf.text('Gordon College', pdf.internal.pageSize.getWidth() / 2, 45, { align: 'center' });
     pdf.setFontSize(8);
     pdf.text('Olongapo City Sports Complex, Donor St, East Tapinac, Olongapo City', pdf.internal.pageSize.getWidth() / 2, 55, { align: 'center' });
     pdf.text('Tel. No:(047) 224-2089 loc. 401', pdf.internal.pageSize.getWidth() / 2, 65, { align: 'center' });
-    pdf.text('Most Borrowed Books Chart', pdf.internal.pageSize.getWidth() / 2, 75, { align: 'center' });
+    pdf.setFontSize(10);
+    pdf.text('MOST BORROWED BOOKS', pdf.internal.pageSize.getWidth() / 2, 100, { align: 'center' });
+    pdf.setFontSize(8);
+    pdf.text('As of: MM/DD/YY 00:00:00 AM', pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
   
     // Calculate dimensions and margins for the chart
     const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -113,7 +116,7 @@ export class MostComponent implements OnInit{
     pdf.addImage(chartImgData, 'PNG', chartMarginX, chartMarginY, targetWidth, targetHeight);
   
     // Save PDF
-    pdf.save('most_borrowed_books_chart.pdf');
+    pdf.save('Most-Borrowed-Books.pdf');
   }
   
 
