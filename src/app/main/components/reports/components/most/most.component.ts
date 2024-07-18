@@ -79,7 +79,7 @@ export class MostComponent implements OnInit{
     const logoLeft = await this.getLogoLeft();
     const logoRight = await this.getLogoRight();
     pdf.addImage(logoLeft, 'PNG', 50, 15, 60, 60);
-    pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 105, 15.7, 60, 60);
+    pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 105, 15.7, 59, 59);
     pdf.setTextColor(0);
     pdf.setFontSize(8);
     pdf.text('Republic of the Philippines', pdf.internal.pageSize.getWidth() / 2, 25, { align: 'center' });

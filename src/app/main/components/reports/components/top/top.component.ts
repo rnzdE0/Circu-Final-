@@ -78,7 +78,7 @@ isProgramChartVisible: any;
     const logoLeft = await this.getLogoLeft();
   const logoRight = await this.getLogoRight();
   pdf.addImage(logoLeft, 'PNG', 50, 15, 60, 60); // Adjusted positions for portrait mode
-  pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 105, 15.7, 60, 60); // Adjusted positions for portrait mode
+  pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 105, 15.7, 59, 59); // Adjusted positions for portrait mode
   pdf.setTextColor(0);
   pdf.setFontSize(8);
   pdf.text('Republic of the Philippines', pdf.internal.pageSize.getWidth() / 2, 25, { align: 'center' });
