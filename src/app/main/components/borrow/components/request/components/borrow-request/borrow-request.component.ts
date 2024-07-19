@@ -23,7 +23,7 @@ export class BorrowRequestComponent implements OnInit {
     gender: '',
     department: '',
     count:0,
-    student_program: {
+    program: {
       department_short: ''
     },
     patron: {
@@ -153,7 +153,7 @@ export class BorrowRequestComponent implements OnInit {
         this.user.name=res.first_name+' '+res.last_name+' ';
         // this.user.program.department=res.program.program;
         this.user.gender=res.gender;
-        this.user.student_program.department_short=res.student_program.department_short;
+        this.user.program.department_short=res.program.department_short;
         this.user.patron.hours_allowed=res.patron.hours_allowed;
         this.user.patron.patron=res.patron.patron;
         this.user.patron.fine=res.patron.fine;

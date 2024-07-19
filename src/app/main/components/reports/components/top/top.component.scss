@@ -80,21 +80,42 @@ hr {
 }
 
 // Style for Print Button
+.download-text1{
+  color: #4F6F52;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
 .parent-container {
     position: relative; /* Maaaring kailanganin ito depende sa ibang styles ng mga elements */
+    
   }
   .menu-container {
     position: absolute;
     bottom: -8px;
-    right: 46px;
+    right: 0px;
     display: flex;
     align-items: center;
     z-index: 1000; /* Siguruhing mataas ang z-index para hindi matakpan ng ibang elements */
+
   }
   .menu-button {
-    font-size: 12px;
+    width: 130px;
+    height: 39px;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: 600;
+    background-color:#4F6F52;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 0px; /* Adjust the top padding to move the text down */
+    padding-bottom: 5px;
    }
-  
+   .tab-link-icon1 {
+    font-size: 25px;
+    position: relative;
+    top: 5px; /* Adjust this value to move the icon up or down */
+    right: 3px;
+   }
   #content {
     .button-container {
       display: flex;
@@ -103,8 +124,9 @@ hr {
   
       .button {
         margin: 0 10px;
-        padding: 10px 20px;
-        background-color: #31A463; /* Change to your desired color */
+        padding: 20px 20px;
+       
+        background-color: #4F6F52; /* Change to your desired color */
         color: #fff;
         border: none;
         border-radius: 5px;
@@ -112,7 +134,7 @@ hr {
         transition: background-color 0.3s ease;
   
         &:hover {
-          background-color: #31A463; /* Change to your desired hover color */
+          background-color: #4F6F52; /* Change to your desired hover color */
         }
       }
     }
@@ -140,7 +162,7 @@ hr {
     display: block;
     width: 0;
     height: 2px; 
-    background: #31A463; 
+    background: #4F6F52; 
     position: absolute;
     bottom: -5px; 
     left: 0;
@@ -214,7 +236,8 @@ hr {
 }
 
 .table-head {
-    background-color: #31A463;
+    font-weight: 100;
+    background-color: #4F6F52;
     font-size: 15px;
 }
 
@@ -227,7 +250,7 @@ hr {
     width: 100px;
     margin-left: -30px;
     margin-right: -30px;
-    background-color: #31A463;
+    background-color: #4F6F52;
     border-style: none;
     cursor: pointer;
     border-radius: 10px;

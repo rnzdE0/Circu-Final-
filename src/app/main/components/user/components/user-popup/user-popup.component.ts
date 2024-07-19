@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MainService } from '../../../../../services/main.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-user-popup',
@@ -11,13 +12,44 @@ import { MainService } from '../../../../../services/main.service';
   styleUrl: './user-popup.component.scss'
 })
 export class UserPopupComponent implements OnInit{
+
+  displayedColumns: string[] = [ 'Date', 'Book', 'Accession', 'Status']
+  dataSource = new MatTableDataSource();
+
   totalReturnedBooks: number = 0;
-   users: any;
    id: any;
    borrowedBooks: any;
+   users: any
+
+  //  user = {
+  //   id: '',
+  //   name: '',
+  //   gender: '',
+  //   department: '',
+  //   count:0,
+  //   program: {
+  //     department_short: ''
+  //   },
+  //   patron: {
+  //     hours_allowed: '',
+  //     patron: '',
+  //     fine:''
+  //   }
+  // } 
+  // book = {
+  //   accession: '',
+  //   title: '',
+  //   author: '',
+  //   location: ''
+  // }
+  // admin = {
+  //   id: '',
+  //   position: ''
+  // }
 
    constructor (
-    @Inject(MAT_DIALOG_DATA) public user: any,
+    @Inject(MAT_DIALOG_DATA)
+    public user: any,
     private http: HttpClient,
     private ds: MainService,
     private router: Router
@@ -33,10 +65,10 @@ export class UserPopupComponent implements OnInit{
   fetchUserDetails(userId: any): void {
     this.ds.get('circulation/get-user/' + userId).subscribe(
       (userDetails: any) => {
-        // Log the user details received from the backend
+     
         console.log('User details:', userDetails);
-        // Assign the received user details to a separate property
-        this.users = userDetails;
+      
+        this.user = userDetails;
       },
       (error) => {
         console.error('Error fetching user details:', error);
@@ -44,7 +76,7 @@ export class UserPopupComponent implements OnInit{
     );
   }
 
- 
+  
   fetchBorrowedBooks(userId: any): void {
     this.ds.get('returned-list/' + userId).subscribe(
       (response: any) => {

@@ -41,14 +41,20 @@
     <div class="parent-container">
       <div class="menu-container">
         <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
-          <mat-icon>cloud_download</mat-icon>
-          <span class="download-text">Print</span>
+          <span class="tab-link-icon1"> <i class='bx bx-printer'></i> </span>
+          <span class="download-text">Download</span>
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="downloadPNG()">
-            <mat-icon>image/</mat-icon> Download PNG
+           <span class="download-text1">Save as PNG</span>
           </button>
-          <button (click)="downloadPDF()">Download PDF</button>
+          <button mat-menu-item (click)="downloadPDF()">
+           <span class="download-text1">Save as PDF</span>
+          </button>
+          <button mat-menu-item (click)="downloadPDF()">
+           <span class="download-text1">Save as XSLX</span>
+          </button>
+
           <!-- <button mat-menu-item (click)="downloadFile('svg')">
             <mat-icon>image</mat-icon> Download SVG
           </button>
@@ -61,7 +67,7 @@
 <hr>
   
   <!-- chart for most borrowed books -->
-
+<app-loadings class="loading" *ngIf="isLoading"></app-loadings>
   
   <div style="display: flex; justify-content: space-around;">
     <div style="width: 60%;">
@@ -71,34 +77,55 @@
  
 
  
-  <table class="content-table">
-    <!-- <thead class="table-head">
-      <tr>
-        <th>Accession Number</th>
-        <th>Location</th>
-        <th>Book Title</th>
-        <th>Publisher</th>
-        <th>Date Published</th>
-        <th>Borrow Count</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>4208</td>
-            <td>Local</td>
-            <td>Sample Book Title</td>
-            <td>Sample Publisher</td>
-            <td>Sample Date</td>
-            <td>60</td>
-        </tr>
-    </tbody> -->
-  </table>
-  <div class="page">
-    <!-- <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page">
-    </mat-paginator> -->
+  <div class="table">
+          
+    <table mat-table [dataSource]="dataSource" *ngIf="!isLoading">
+      
+      <!-- Name Column -->
+      <ng-container matColumnDef="Accession Number">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Accession Number </th>
+        <td mat-cell *matCellDef="let element"></td>
+      </ng-container>
+  
+      <!-- Gender Column -->
+      <ng-container matColumnDef="Location">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Location </th>
+        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+      </ng-container>
+  
+      <!-- Email Column -->
+      <ng-container matColumnDef="Book Title">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Book Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+  
+      <!-- Department Column -->
+      <ng-container matColumnDef="Publisher">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Publisher </th>
+        <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+      </ng-container>
+
+      <!-- Program Column -->
+      <ng-container matColumnDef="Date Published">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Date Published </th>
+        <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="Borrow Count">
+        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Borrow Count </th>
+        <td mat-cell *matCellDef="let element"> 
+
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator class="page" [pageSizeOptions]="[10, 15]"
+                        showFirstLastButtons
+                        aria-label="Select page of users">
+          </mat-paginator>
 
   </div>
 </div>

@@ -70,7 +70,8 @@ body{
 
 .buttons {
     text-align: right; /* Aligns inline-block content to the right */
-    padding-bottom: 70px;
+    padding-bottom: 60px;
+    margin-top: 60px;
 }
 
 .close {
@@ -138,7 +139,7 @@ body{
     
 }
 tbody{
-    background-color: #E1E1E1;
+    background-color: #F5EFE6;
 }
 .content-table th,
 .content-table td {
@@ -171,4 +172,150 @@ td {
   .content-table th{
     border-right: none; /* Hide right border */
     border-bottom: none;
+  }
+
+
+//   USER TABLE OF CONTAINER 1
+
+  .user-table{
+    width: 100%;
+    text-align: justify;
+    border: #000000 1px solid;
+    background-color: #fff;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  th {
+    width: 30px;
+    border: #000000 1px solid;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  td {
+    text-align: justify;
+    border: #000000 1px solid;
+    padding-left: 10px;
+  }
+
+//   CONTAINER 1
+
+  .container {
+    border-radius: 5px;
+    padding: 20px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-top: 5px;
+    margin-left: 28px;
+    width: 95%;
+    height: auto;
+    margin-bottom: 30px;
+
+  }
+
+// CONTAINER 2
+
+  .container2 {
+    border-radius: 5px;
+    padding: 20px;
+    padding-top: 5px;
+    padding-bottom: 25px;
+    margin-top: -30px;
+    margin-left: 28px;
+    width: 95%;
+    height: auto;
+    margin-bottom: 30px;
+  }
+
+//   new table for user
+
+.table th {
+    letter-spacing: 1px;
+    color: white;
+    border-bottom: 2px solid black;
+}
+
+.table table {
+    border-radius: 5px;
+    border: 1px solid grey;
+    background: rgb(242, 242, 242);
+  }
+  
+  .table table,
+  .table th,
+  .table td {
+      font-family: 'Montserrat';
+      font-size: 14px;
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1.5px solid grey;
+      justify-content: center;
+      transition: all 0.3s ease-in;
+  }
+  
+  
+  .table th {
+    background-color: #4F6F52 !important;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    justify-content: center;
+    height: 60px;
+  }
+
+  .tbl-head {
+    justify-content: center;
+    border-bottom: 2px solid grey;
+  }
+
+  .page {
+    background: rgb(242, 242, 242);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: #000000 1px solid;
+  }
+
+//   CONTAINER 3
+
+.container3 {
+    padding: 20px;
+    padding-top: 5px;
+    padding-bottom: 25px;
+    margin-top: 15%;
+    margin-left: 28px;
+    width: 95%;
+    height: auto;
+    margin-bottom: 30px;
+  }
+
+.user-table1{
+    width: 30%;
+    text-align: justify;
+    border: #000000 1px solid;
+    background-color: #fff;
+    float: right;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  .user-table1 th {
+    width: auto;
+    border: #000000 1px solid;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  td {
+    text-align: justify;
+    border: #000000 1px solid;
+    padding-left: 10px;
   }

@@ -4,7 +4,7 @@
 .body {
     padding-top: 10px;
     background: #F5EFE6;
-    padding-bottom: 60px;
+    // padding-bottom: 60px;
 }   
 
 .title {
@@ -13,10 +13,15 @@
     text-transform: uppercase;
     font-weight: 700;
     font-size: 45px;
-    margin-top: 10px;
-    margin-left: 11%;
-    // margin-bottom: 20px;
+    margin-top: -5px;
+    margin-left: 180px;
+    margin-bottom: -10px;
 }
+
+.icon {
+    font-size: 38px;
+  }
+
 
 // input[type=date]:invalid::-webkit-datetime-edit {
 //     color: #999;
@@ -24,14 +29,11 @@
 
 .container {
     border-radius: 5px;
-    // padding: 20px;
-    // padding-top: 25px;
-    // padding-bottom: 50px;
     margin-top: 40px;
     background: white;
     margin-left: 180px;
     width: 78%;
-    height: 815px;
+    height: 800px;
     box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
     border: 0.5px solid rgb(206, 206, 206);
 }
@@ -39,7 +41,6 @@
 
 .books {
     padding-left: 21px;
-    // position: absolute;
     margin-top: 15px;
     
 }
@@ -156,13 +157,10 @@
 .buttons {
     margin-top: 17px;
     padding-left: 42%;
-    
 }
 
 .add {
     background-color: #4F6F52;
-    // margin-right: -30px;
-    // justify-content: center;
     position: relative;
     border: none;
     border-radius: 10px;
@@ -171,7 +169,6 @@
     font-style: normal;
     color: #fff;
     font-size: 22px;
-    // top: -20px;
     text-decoration: none;
 
     margin-left: 10px;
@@ -190,6 +187,7 @@
 .parent-container {
     text-align: center;
     margin-left: -24px;
+    margin-top: -14px;
   }
   
   .policy {
@@ -256,7 +254,7 @@
     color: black;
     transition: border 150ms cubic-bezier(0.4,0,0.2,1);
     margin: 10px;
-    width: 450px;
+    width: 470px;
     height: 55px;
 }
 
@@ -458,6 +456,145 @@ select:focus + .patron-label {
   .input-group {
     position: relative;
     margin-bottom: 1rem; /* Adjust as needed */
+  }
+
+//   responsiveness
+
+@media (max-width: 1800px) {
+    .title {
+        margin-left: 170px;
+        font-size: 30px;
+        margin-top: -5px;
+        margin-bottom: -10px;
+    }
+
+    .icon {
+        font-size: 25px;
+    }
+
+    .book {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+
+    .material {
+        font-size: 25px;
+        margin-top: -9px;
+    }
+
+    .staff {
+        font-size: 25px;
+        margin-top: -5px;
+    }
+
+    .due {
+        font-size: 25px;
+        margin-top: -5px;
+    }
+
+    .input {
+        width: 425px;
+        height: 50px;
+    }
+
+    .input2 {
+        height: 50px;
+    }
+
+    .container {
+        margin-left: 170px;
+        height: 730px;
+    }
+  }
+
+@media (max-width: 1600px) {
+    .title {
+        margin-left: 130px;
+    }
+
+    .group1 {
+        margin-bottom: -17px;
+    }
+
+    .book-label {
+        font-size: 10px;
+    }
+
+    .input:focus ~ label, .input:valid ~ label, .input2:focus ~ label, .input2:valid ~ label,
+    .input3:focus ~ label, .input3:valid ~ label, .input4:focus ~ label, .input4:valid ~ label {
+        font-size: 11px;
+    }
+
+    .book {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+
+    .material {
+        font-size: 25px;
+        margin-top: 9px;
+    }
+
+    .staff {
+        font-size: 25px;
+        margin-top: 11px;
+    }
+
+    .due {
+        font-size: 25px;
+        margin-top: 11px;
+    }
+
+    .input {
+        width: 340px;
+        height: 45px;
+    }
+
+    .input2 {
+        height: 45px;
+    }
+
+    .policy {
+        margin-top: 1px;
+        margin-bottom: 15px;
+    }
+
+    .buttons {
+        margin-top: -7px;
+    }
+
+    .add {
+        margin-left: 10px;
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    .container {
+        margin-left: 130px;
+        height: 600px;
+    }
+  }
+
+
+@media (max-width: 1366px) {
+    .title {
+        margin-left: 90px;
+    }
+
+    .input {
+        width: 240px;
+        height: 55px;
+    }
+
+    .input2 {
+        height: 55px;
+    }
+
+    .container {
+        margin-left: 90px;
+    }
   }
 
 
