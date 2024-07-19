@@ -28,7 +28,7 @@ export class MainService {
   }
 
   public put(url: string, payload: any) {
-    return this.http.put(this.baseUrl+url, {payload:JSON.stringify(payload)}, { headers: this.headers.get() });
+    return this.http.put(this.baseUrl+url, payload, { headers: this.headers.get() });
   }
 
   public post(url: string, payload: any) {

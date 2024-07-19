@@ -26,15 +26,6 @@ export class GraphComponent implements OnInit {
   pieChart: any;
   barChart: any;
   isProgramChartVisible: any;
-  // downloadPDF() {
-  // throw new Error('Method not implemented.');
-  // }
-  // downloadFile(arg0: string) {
-  // throw new Error('Method not implemented.');
-  // }
-  // export(arg0: string) {
-  // throw new Error('Method not implemented.');
-  // }
 
   constructor(private authService: AuthService) { }
 
@@ -145,8 +136,8 @@ export class GraphComponent implements OnInit {
     this.authService.getBorrowersReport().subscribe(
       (data: any) => {
         console.log('Received data from backend:', data);
-        this.departmentData = data.borrowersByDepartment;
-        this.genderData = data.borrowersByGender;
+        this.departmentData = data.programsCount;
+        this.genderData = data.genderCount;
         this.renderCharts();
       },
       (error) => {
@@ -156,7 +147,7 @@ export class GraphComponent implements OnInit {
   }
 
   renderCharts(): void {
-    // Pie chart
+    // Pie chart || department borrowers count
     const pieCanvas = document.getElementById('pieChart');
     this.pieChart = new Chart('pieChart', {
       type: 'pie',
@@ -182,7 +173,7 @@ export class GraphComponent implements OnInit {
       }
     });
 
-    // Bar chart
+    // Bar chart || Gender Borrow Count
     const barCanvas = document.getElementById('barChart');
     this.barChart = new Chart('barChart', {
       type: 'bar',
