@@ -45,7 +45,7 @@ export class PushComponent {
     };
     console.log(this.material);
     // Use Angular HttpClient (this.ds.post) to send a POST request to your backend
-    this.ds.post(url + this.material.id, payload).subscribe(
+    this.ds.put(url + this.material.id, payload).subscribe(
       (response: any) => {
         
         console.log('Book borrowed successfully:', response);

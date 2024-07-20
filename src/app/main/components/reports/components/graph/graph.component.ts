@@ -26,15 +26,6 @@ export class GraphComponent implements OnInit {
   pieChart: any;
   barChart: any;
   isProgramChartVisible: any;
-  // downloadPDF() {
-  // throw new Error('Method not implemented.');
-  // }
-  // downloadFile(arg0: string) {
-  // throw new Error('Method not implemented.');
-  // }
-  // export(arg0: string) {
-  // throw new Error('Method not implemented.');
-  // }
 
   constructor(private authService: AuthService) { }
 
@@ -88,20 +79,23 @@ export class GraphComponent implements OnInit {
     // pdf.rect(0, 0, pdf.internal.pageSize.getWidth(), 50, 'F'); // Orange rectangle for header
 
     //Add logos
-    pdf.addImage(logoLeft, 'PNG', 70, 40, 50, 40); // Adjust coordinates and dimensions as needed
-    pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 120, 40, 50, 40); // Adjust coordinates and dimensions as needed
+    pdf.addImage(logoLeft, 'PNG', 50, 15, 60, 60); // Adjust coordinates and dimensions as needed
+    pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 105, 15.7, 60, 60); // Adjust coordinates and dimensions as needed
 
     // Text in the middle
     pdf.setTextColor(0); // Black text color
     pdf.setFontSize(8); // Font size for header text
     pdf.text('Republic of the Philippines', pdf.internal.pageSize.getWidth() / 2, 25, { align: 'center' });
     pdf.text('City of Olongapo', pdf.internal.pageSize.getWidth() / 2, 35, { align: 'center' });
-    pdf.setFontSize(12); // Larger font size for institution name
+    pdf.setFontSize(10); // Larger font size for institution name
     pdf.text('Gordon College', pdf.internal.pageSize.getWidth() / 2, 45, { align: 'center' });
     pdf.setFontSize(8);
     pdf.text('Olongapo City Sports Complex, Donor St, East Tapinac, Olongapo City', pdf.internal.pageSize.getWidth() / 2, 55, { align: 'center' });
     pdf.text('Tel. No:(047) 224-2089 loc. 401', pdf.internal.pageSize.getWidth() / 2, 65, { align: 'center' });
-    pdf.text('Book Borrowers By Department And Gender', pdf.internal.pageSize.getWidth() / 2, 75, { align: 'center' });
+    pdf.setFontSize(10);
+    pdf.text('TOP BOOK BORROWERS BY DEPARTMENT AND GENDER', pdf.internal.pageSize.getWidth() / 2, 100, { align: 'center' });
+    pdf.setFontSize(8);
+    pdf.text('As of: MM/DD/YY 00:00:00 AM', pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
 
     // Calculate center position for charts on A4 page
     const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -145,8 +139,8 @@ export class GraphComponent implements OnInit {
     this.authService.getBorrowersReport().subscribe(
       (data: any) => {
         console.log('Received data from backend:', data);
-        this.departmentData = data.borrowersByDepartment;
-        this.genderData = data.borrowersByGender;
+        this.departmentData = data.programsCount;
+        this.genderData = data.genderCount;
         this.renderCharts();
       },
       (error) => {
@@ -156,7 +150,7 @@ export class GraphComponent implements OnInit {
   }
 
   renderCharts(): void {
-    // Pie chart
+    // Pie chart || department borrowers count
     const pieCanvas = document.getElementById('pieChart');
     this.pieChart = new Chart('pieChart', {
       type: 'pie',
@@ -182,7 +176,7 @@ export class GraphComponent implements OnInit {
       }
     });
 
-    // Bar chart
+    // Bar chart || Gender Borrow Count
     const barCanvas = document.getElementById('barChart');
     this.barChart = new Chart('barChart', {
       type: 'bar',

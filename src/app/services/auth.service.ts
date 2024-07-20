@@ -82,7 +82,7 @@ export class AuthService {
   }
 
   public getBorrowersReport(){
-    return this.http.get(this.url + 'report', {headers: this.headers.get() })
+    return this.http.get(this.url + 'circulation/report', {headers: this.headers.get() })
   }
 
   public getReturned(){
