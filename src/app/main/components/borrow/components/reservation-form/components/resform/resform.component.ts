@@ -182,8 +182,8 @@ export class ResformComponent implements OnInit {
         error => {
           console.error('Form submission error', error);
           Swal.fire({
-            title: 'Error',
-            text: 'There was an error submitting the form. Please try again.',
+            title: 'Reminder',
+            text: 'Make Sure to read the Terms and Conditions before Submitting',
             icon: 'error',
             confirmButtonColor: '#31A463'
           });
