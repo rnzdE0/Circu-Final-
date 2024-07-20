@@ -102,7 +102,7 @@ export class GraphComponent implements OnInit {
     const pdfHeight = pdf.internal.pageSize.getHeight();
     
     const chartWidth = 200;
-    const chartHeight = 200; 
+    const chartHeight = 170; 
     const chartMarginX = (pdfWidth - chartWidth * 2) / 2; // Center horizontally
     const chartMarginY = (pdfHeight - chartHeight) / 2 + 10; // Start below header, adjust vertical position
 

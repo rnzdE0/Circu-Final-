@@ -78,7 +78,7 @@ export class UserPopupComponent implements OnInit{
 
   
   fetchBorrowedBooks(userId: any): void {
-    this.ds.get('returned-list/' + userId).subscribe(
+    this.ds.get('circulation/returned-list/' + userId).subscribe(
       (response: any) => {
         if (response && response.returnedItems && Array.isArray(response.returnedItems)) {
           this.borrowedBooks = response.returnedItems;

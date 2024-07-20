@@ -24,7 +24,7 @@ export class ReservationPopupComponent {
   }
 
   ngOnInit(): void {
-    this.ds.get('borrow-list').subscribe((res: any) => {
+    this.ds.get('circulation/reservelist').subscribe((res: any) => {
       this.reserve = res;
       console.log(this.reserve); // Check if data is retrieved correctly
       // this.mapDataToMaterials(); // This line correctly invokes the function

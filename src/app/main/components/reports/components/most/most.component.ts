@@ -97,8 +97,10 @@ export class MostComponent implements OnInit{
     // Calculate dimensions and margins for the chart
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
-    const chartWidth = chartCanvas.width;
-    const chartHeight = chartCanvas.height;
+    // const chartWidth = chartCanvas.width;
+    // const chartHeight = chartCanvas.height;
+    const chartWidth = 300;
+    const chartHeight = 150; 
   
     // Determine scale to fit chart within A4 page
     const scaleFactor = Math.min((pdfWidth - 40) / chartWidth, (pdfHeight - 100) / chartHeight);

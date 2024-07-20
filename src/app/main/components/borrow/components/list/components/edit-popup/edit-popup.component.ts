@@ -26,7 +26,7 @@ export class EditPopupComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.ds.get('borrow-list').subscribe((res: any) => {
+    this.ds.get('circulation/borrow-list').subscribe((res: any) => {
       this.borrow = res;
       console.log(this.borrow); // Check if data is retrieved correctly
       // this.mapDataToMaterials(); // This line correctly invokes the function
@@ -35,22 +35,6 @@ export class EditPopupComponent implements OnInit{
     this.getUser();
     this.getBook();
   }
-  
-
-// materials = {
-//     id: '',
-//     name: '',
-//     gender: '',
-//     role:'',
-//     department: '',
-//     borrow_date:'',
-//     borrow_expiration: '',
-//     // fine: '',
-//     accession: '',
-//     title: '',
-//     author: '',
-//     location: '',
-//   }
 
   user = {
     id: '',
@@ -61,12 +45,13 @@ export class EditPopupComponent implements OnInit{
     role: '',
     patron: {
       patron:'',
-      materials_allowed:''
+      materials_allowed:'',
+      fine: ''
     },
     program: {
       department: ''
     }
-  } 
+  }
   book = {
     accession: '',
     title: '',
@@ -78,8 +63,8 @@ export class EditPopupComponent implements OnInit{
   admin: any;
 
   getUser() {
-    console.log(this.material.id)
-    this.ds.get('circulation/get-user/' + this.material.user_id).subscribe({
+    console.log(this.user.id)
+    this.ds.get('circulation/get-user/' + this.user.id).subscribe({
       next: (res: any) => {
         this.user.id=res.id;
         this.user.name=res.first_name+' '+res.last_name;
@@ -89,35 +74,29 @@ export class EditPopupComponent implements OnInit{
         this.user.role=res.role;
         this.user.patron.patron=res.patron.patron;
         this.user.patron.materials_allowed=res.patron.materials_allowed;
+        this.user.patron.fine=res.patron.fine;
         console.log(res)
       }
     })
-    // this.ds.get('circulation/get-user/'+ this.user.id).subscribe({
-    //   next: (res: any) => {
-    //     this.user.count=res.count;
-    //     console.log(res)
-    //   }
-    // })
   }
-
-  getBook() {console.log(this.material.book_id);
-    this.ds.get('circulation/get-book/' + this.material.book_id ).subscribe({   
-      next: (res: any) => {
-        console.log(res)
-        let authors = JSON.parse(res.authors);
-        authors.forEach(((x:any,index:any) => {
-
-          this.book.author=this.book.author+x;
-          if(index != authors.length - 1)
-            this.book.author = this.book.author+', ';
-        }));
-        this.book.title=res.title;
-        this.book.location=res.location.location;
-        
-      },
-      error:(err:any)=>console.log(err)
-    })
-  }
+    getBook() {console.log(this.material.book_id);
+      this.ds.get('circulation/get-book/' + this.material.book_id ).subscribe({   
+        next: (res: any) => {
+          console.log(res)
+          let authors = JSON.parse(res.authors);
+          authors.forEach(((x:any,index:any) => {
+  
+            this.book.author=this.book.author+x;
+            if(index != authors.length - 1)
+              this.book.author = this.book.author+', ';
+          }));
+          this.book.title=res.title;
+          this.book.location=res.location.location;
+          
+        },
+        error:(err:any)=>console.log(err)
+      })
+    }
 
   getAdmin(event: Event) {
     let target = event.target as HTMLInputElement;
