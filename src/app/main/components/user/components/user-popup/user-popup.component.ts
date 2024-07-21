@@ -5,6 +5,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MainService } from '../../../../../services/main.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { User } from '../user-table/user.model';
+
 
 @Component({
   selector: 'app-user-popup',
@@ -14,7 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class UserPopupComponent implements OnInit{
 
   displayedColumns: string[] = [ 'Date', 'Book', 'Accession', 'Status']
-  dataSource = new MatTableDataSource();
+  dataSource = new MatTableDataSource<User>();
 
   totalReturnedBooks: number = 0;
    id: any;

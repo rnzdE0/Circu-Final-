@@ -158,7 +158,7 @@
         <div class="parent-container">
 
           <label class="policy"> 
-            <input type="checkbox">
+            <input type="checkbox" [checked]="checkbox" (change)="logCheckboxState($event)">
             <span class="checkmark"></span>
           </label>
 
@@ -171,8 +171,9 @@
          </div>
 
         <div class="buttons">
-          <button class="add" type="submit">Add</button>
+          <!-- <button class="add" type="submit" [disabled]="!requestForm.get('isChecked')?.value">Add</button> -->
           <!-- <button class="reserve" type="button" (click)="queueSubmit()">Queue</button> -->
+          <button class="add" type="submit">Add</button>
         </div>
       </form>
 

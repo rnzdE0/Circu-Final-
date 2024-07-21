@@ -47,7 +47,7 @@ export class TableComponent implements AfterViewInit {
       (data: any) => {
         console.log('Received data from backend:', data);
         console.log('Type of data:', typeof data);
-        this.borrowMaterials = data as BorrowMaterial[]; // Assign the fetched user data to the users array
+        this.borrowMaterials = data as BorrowMaterial[];
         this.filteredMaterials = this.borrowMaterials.slice();
         this.dataSource.data = this.borrowMaterials;
         this.dataSource.filterPredicate = (data: BorrowMaterial, filter: string) => {
@@ -121,7 +121,7 @@ elements: any;
       data: id
     });
     _popup.afterClosed().subscribe(result => {
-      this.redirectToListPage();
+      // this.redirectToListPage();
       console.log(result)
       if(result === 'Changed Data') {
         this.fetchBorrowList()
@@ -142,7 +142,7 @@ elements: any;
       data: id
     });
     _popup.afterClosed().subscribe(result => {
-      this.redirectToListPage();
+      // this.redirectToListPage();
       if(result === 'Changed Data') {
         this.fetchBorrowList()
       }

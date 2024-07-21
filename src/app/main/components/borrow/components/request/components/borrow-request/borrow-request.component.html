@@ -168,7 +168,7 @@
           <div class="parent-container">
 
             <label class="policy"> 
-              <input type="checkbox" formControlName="isChecked">
+              <input type="checkbox" [checked]="checkbox" (change)="logCheckboxState($event)">
               <span class="checkmark"></span>
             </label>
 
@@ -182,8 +182,8 @@
 
 
             <div class="buttons">
-            <!-- <button class="add" type="submit">Add</button> -->
-            <button class="add" type="submit" [disabled]="!borrowForm.get('isChecked')?.value">Add</button>
+              <button class="add" type="submit">Add</button>
+                <!-- <button class="add" type="submit" [disabled]="!borrowForm.get('isChecked')?.value">Add</button> -->
             </div>
           </form>
 

@@ -45,7 +45,7 @@ export class PushComponent {
     };
     console.log(this.material);
     // Use Angular HttpClient (this.ds.post) to send a POST request to your backend
-    this.ds.put(url + this.material.id, payload).subscribe(
+    this.ds.post(url + this.material.id, payload).subscribe(
       (response: any) => {
         
         console.log('Book borrowed successfully:', response);
@@ -64,7 +64,8 @@ export class PushComponent {
       width: 300,
       title: "Book Borrowed!",
       icon: "success",
-      confirmButtonColor: '#31A463',
+      iconColor: '#4F6F52',
+      confirmButtonColor: '#4F6F52',
       customClass: {
         popup: 'my-swal-popup',
         icon: 'my-swal-icon',
