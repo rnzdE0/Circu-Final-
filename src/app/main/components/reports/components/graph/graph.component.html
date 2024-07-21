@@ -67,11 +67,14 @@
       <!-- Pie chart and bar graph -->
       
       <div class="chartsBx">
-        <div class="chart" style="margin-left: 60px;">
-          <canvas #chart1 class="chart-canvas" id="pieChart"></canvas>
-        </div>
-        <div class="chart">
-          <canvas #chart2 class="chart-canvas" id="barChart"></canvas>
+        <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+          <div class="chart" style="margin-left: 60px;" *ngIf="!isLoading">
+            <canvas #chart1 class="chart-canvas" id="pieChart"></canvas>
+          </div>
+
+          <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+          <div class="chart" *ngIf="!isLoading">
+            <canvas #chart2 class="chart-canvas" id="barChart"></canvas>
         </div>
       </div>
 

@@ -115,7 +115,7 @@ export class ReservationPopupComponent {
       // showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Yes",
-      confirmButtonColor: '#31A463',
+      confirmButtonColor: '#4F6F52',
       denyButtonText: `Cancel Request`,
       customClass: {
         container: 'my-swal-container',
@@ -130,7 +130,8 @@ export class ReservationPopupComponent {
           width: 300,
           title: "Details Updated!",
           icon: "success",
-          confirmButtonColor: '#31A463',
+          iconColor: '#4F6F52',
+          confirmButtonColor: '#4F6F52',
           customClass: {
             popup: 'my-swal-popup',
             icon: 'my-swal-icon',

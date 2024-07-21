@@ -1,7 +1,7 @@
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/boxicons/2.0.7/css/boxicons.min.css">
 
-<body>
+<main>
  <!-- <p class="title">Most Borrowed Books</p> -->
 
  
@@ -70,7 +70,7 @@
 <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
   
   <div style="display: flex; justify-content: space-around;">
-    <div style="width: 60%;">
+    <div style="width: 80%;">
       <canvas id="mostChart" ></canvas>
     </div>
   </div>
@@ -79,7 +79,7 @@
  
   <div class="table">
           
-    <table mat-table [dataSource]="dataSource" *ngIf="!isLoading">
+    <table mat-table [dataSource]="dataSource" >
       
       <!-- Name Column -->
       <ng-container matColumnDef="Accession Number">
@@ -129,4 +129,4 @@
 
   </div>
 </div>
-</body>
+</main>

@@ -27,6 +27,8 @@ export class GraphComponent implements OnInit {
   barChart: any;
   isProgramChartVisible: any;
 
+  isLoading = true;
+
   constructor(private authService: AuthService) { }
 
   //png download
@@ -136,12 +138,15 @@ export class GraphComponent implements OnInit {
   }
 
   fetchDataAndRenderCharts(): void {
+    this.isLoading = true;
     this.authService.getBorrowersReport().subscribe(
       (data: any) => {
         console.log('Received data from backend:', data);
         this.departmentData = data.programsCount;
         this.genderData = data.genderCount;
         this.renderCharts();
+
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error fetching data:', error);

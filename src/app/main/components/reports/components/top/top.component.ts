@@ -138,6 +138,7 @@ isProgramChartVisible: any;
         const counts = data.map((item: any) => item.borrow_count);
 
         const barCanvas = document.getElementById('topChart');
+        this.isLoading = false;
         this.topChart = new Chart('topChart', {
           type: 'bar',
           data: {
@@ -179,6 +180,7 @@ isProgramChartVisible: any;
         this.user.id=res.id;
         this.user.borrow_count=res.borrow_count;
         this.user.name=res.first_name+' '+res.last_name;
+
       }
     })
   }

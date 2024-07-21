@@ -1,4 +1,4 @@
-<body>
+<main>
   
   <div class="container">
     <p class="title">Top 10 Borrowers</p>
@@ -61,14 +61,17 @@
      </div>
  
      <hr>
-       <!-- chart for most top 10 book borrower -->
- <div style="display: flex; justify-content: space-around;">
-   <div style="width: 60%;">
-     <canvas id="topChart" ></canvas>
-   </div>
- </div>
 
- <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+     <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+
+       <!-- chart for most top 10 book borrower -->
+    <div style="display: flex; justify-content: space-around;">
+      <div style="width: 80%;" >
+        <canvas id="topChart" ></canvas>
+      </div>
+    </div>
+
+ <!-- <app-loadings class="loading" *ngIf="isLoading"></app-loadings> -->
   
  <div class="table">
           
@@ -97,11 +100,11 @@
       </table>
     
     
-      <mat-paginator class="page" [pageSizeOptions]="[10, 15]"
+      <!-- <mat-paginator class="page" [pageSizeOptions]="[10, 15]"
       showFirstLastButtons
       aria-label="Select page of users">
-      </mat-paginator>
+      </mat-paginator> -->
    </div>
  </div>
- </body>
+ </main>
  

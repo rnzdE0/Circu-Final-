@@ -138,6 +138,7 @@ export class MostComponent implements OnInit{
         const counts = data.map((item: any) => item.borrow_count);
 
         const barCanvas = document.getElementById('mostChart');
+        this.isLoading = false;
         this.mostChart = new Chart('mostChart', {
           type: 'bar',
           data: {

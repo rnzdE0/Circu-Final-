@@ -147,7 +147,8 @@ export class EditPopupComponent implements OnInit{
           width: 300,
           title: "Details Updated!",
           icon: "success",
-          confirmButtonColor: '#31A463',
+          iconColor: '#4F6F52',
+          confirmButtonColor: '#4F6F52',
           customClass: {
             popup: 'my-swal-popup',
             icon: 'my-swal-icon',

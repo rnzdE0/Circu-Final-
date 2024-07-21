@@ -210,10 +210,11 @@ export class ResformComponent implements OnInit {
           });
         },
         error => {
-          console.error('Form submission error', error);
+          console.log('Sending borrow request with payload:', payloadData);
+          console.error('Book is not available', error);
           Swal.fire({
-            title: 'Reminder',
-            text: 'Make sure to read the Terms and Conditions before submitting.',
+            title: 'Book is Unavailable',
+            text: 'The book you want to borrow is not available.',
             icon: 'error',
             confirmButtonColor: '#4F6F52'
           });
