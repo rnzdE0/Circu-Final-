@@ -33,6 +33,8 @@ export class TableComponent implements AfterViewInit {
   
   ngAfterViewInit(): void {
     this.fetchBorrowList();
+    this.dataSource.paginator = this.paginator;
+    this.cdr.detectChanges();
   } 
 
   applyFilter(event: Event): void {
@@ -78,9 +80,9 @@ elements: any;
   private router: Router,
   private ds: MainService,
   private cdr: ChangeDetectorRef,
-    private paginatorIntl :MatPaginatorIntl
+    // private paginatorIntl :MatPaginatorIntl
   ) {
-    this.paginator = new MatPaginator(this.paginatorIntl, this.cdr);
+    // this.paginator = new MatPaginator(this.paginatorIntl, this.cdr);
   }
 
   redirectToListPage() {

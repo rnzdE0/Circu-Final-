@@ -32,47 +32,6 @@
 
                 <div class="card">
                     <section class="material-table">
-                        <!-- <table class="content-table">
-                            <thead class="table-head">
-                              <tr>
-                                <th>Mode of Reservation</th>
-                                <th>Borrower Name</th>
-                                <th>Book Title</th>
-                                <th>Department</th>
-                                <th>Queue Position</th>
-                                <th>Action</th>
-                                
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr  *ngFor="let material of filteredreservationList">
-                               
-                                <td>{{material.user.patron.patron}}</td>
-                              
-                                <td>{{material.user.first_name}} {{material.user.last_name}}</td>
-                           
-                                <td>{{material.book.title}}</td>
-                               
-                                <td>{{material.user.program.department.department}}</td>
-                                
-                                <td>{{material.queue_position}}</td>
-                            
-                                <td>
-                                  <button class="returned" (click)="push(material)">
-                                      <i class="bx bx-check" ></i>
-                                    </button>
-                                    <button class="delete" (click)="deleteDialog(material)">
-                                      <i class="bx bx-archive" ></i>
-                                    </button>
-                                    <button class="edit">
-                                      <i class="bx bxs-edit" (click)="openDialog(material)"></i>
-                                    </button>
-
-                                </td>
-                            </tbody>
-                          </table> -->
-
-                          <!-- new table -->
 
                           <div class="table">
                             <table mat-table [dataSource]="dataSource" matSort *ngIf="!isLoading">
@@ -114,7 +73,7 @@
                                     <i class="bx bx-check" ></i>
                                   </button>
                                   <button class="delete" (click)="deleteDialog(material)">
-                                    <i class="bx bx-archive" ></i>
+                                    <i class="bx bx-x" ></i>
                                   </button>
                                   <button class="edit">
                                     <i class="bx bxs-edit" (click)="openDialog(element)"></i>
@@ -138,67 +97,6 @@
                 </div>           
             </div>  
         </div>
-
-        <!-- Online  -->
-        <!-- <div class="tab-content">
-
-            <div class="table">
-                
-                <div class="card">
-                    <section class="material-table">
-                        <table class="content-table">
-                            <thead class="table-head">
-                              <tr>
-                                <th>Mode of Reservation</th>
-                                <th>Borrower</th>
-                                <th>Id Number</th>
-                                <th>Department</th>
-                                <th>Book Title</th>
-                                <th>Category</th>
-                                <th>Queue Position</th>
-                                <th>Action</th>
-                              
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <tr  *ngFor="let online of filteredonlineList">
-                                
-                                  <td>{{online.user.patron.patron}}</td>
-
-                                  <td>{{online.user.first_name}} {{online.user.last_name}}</td>
-                                 
-                                  <td>{{online.user_id}}</td>
-                                 
-                                  <td>{{online.user.program.department.department}}</td>
-                               
-                                  <td>{{online.book.title}}</td>
-                              
-                                  <td>{{online.user.program.category}}</td>
-
-                                  <td>{{online.queue_position}}</td>
-                                  
-                                <td>
-                                    <button class="returned" (click)="push(online)">
-                                      <i class="bx bx-check" ></i>
-                                    </button>
-                                    <button class="delete" (click)="deleteDialog(material)">
-                                      <i class="bx bx-archive" ></i>
-                                    </button>
-                                    <button class="edit">
-                                      <i class="bx bxs-edit" (click)="openDialog(material)"></i>
-                                    </button>
-                                </td>
-                                
-                        
-                            </tbody>
-                          </table>
-                    </section>
-                </div>           
-            </div>  
-        </div> -->
-
-
 
         </div>
   
