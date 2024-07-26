@@ -144,6 +144,10 @@ export class MostComponent implements OnInit {
         this.isLoading = false;
       },
       (error) => {
+        // const maxEntries = 10;
+        // const limitedLabels = labels.slice(0, maxEntries);
+        // const limitedCounts = counts.slice(0, maxEntries);
+
         console.error('Error fetching most borrowed books:', error);
         this.isLoading = false;
       }

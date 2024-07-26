@@ -50,8 +50,9 @@ export class ReserveComponent implements AfterViewInit{
         this.dataSource.data = this.reservationList;
         this.dataSource.filterPredicate = (data: ReservationList, filter: string) => {
           return data.first_name.toLowerCase().includes(filter) || 
-          data.title.toLowerCase().includes(filter) || 
-          data.department.toLowerCase().includes(filter);  
+          data.title.toLowerCase().includes(filter) 
+          // || 
+          // data.department.toLowerCase().includes(filter);  
         };
         this.isLoading = false;
       },

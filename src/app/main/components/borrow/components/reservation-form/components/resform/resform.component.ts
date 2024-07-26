@@ -16,6 +16,7 @@ import { PoliciesComponent } from '../../../request/components/policies/policies
 })
 export class ResformComponent implements OnInit {
   requestForm: FormGroup;
+  currentDate: string = '';
   [x: string]: any;
 
   // user = {
@@ -87,7 +88,12 @@ export class ResformComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //  this.bookSubmit();
+    this.setCurrentDate();
+
+    const now = new Date();
+    this.currentDate = now.toLocaleString('sv-SE');
+    this.requestForm.controls['start_date'].setValue(this.currentDate);
+
     this.ds.get('circulation/getpatrons').subscribe({
       next: (res: any) => {
         this.patrons = res;
@@ -215,6 +221,26 @@ export class ResformComponent implements OnInit {
       }
     })
   }
+
+  setCurrentDate(): void {
+    const today = new Date();
+    // this.currentDate = today.toISOString().substring(0, 10);
+    const formattedDate = today.toISOString().replace('T', ' ').substring(0, 16);
+    this.currentDate = formattedDate;
+  }
+
+  // setHoursAllowed(patronType: string): void {
+  //   const foundPatron = this.patrons.find((patron: any) => patron.patron === patronType);
+  //   console.log('Found patron:', foundPatron); 
+  //   if (foundPatron) {
+  //     this.hours_allowed = foundPatron.hours_allowed;
+  //     console.log('hours_allowed set to:', this.hours_allowed); 
+  //   } else {
+  //     console.log('Patron not found for type:', patronType);
+  //   }
+  // }
+
+ 
 
   reserveSubmit():void {
     if (this.requestForm.valid) {

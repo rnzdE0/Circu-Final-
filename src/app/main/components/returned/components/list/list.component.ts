@@ -41,12 +41,14 @@ export class ListComponent implements AfterViewInit{
     this.paginator = new MatPaginator(this.paginatorIntl, this.cdr);
   }
 
-  returned: any[] = [];
+  // returned: any[] = [];
+  returned: List[] = [];
   isLoading = true;
 
   ngAfterViewInit(): void {
     this.fetchReturned();
     this.dataSource.paginator = this.paginator;
+    this.cdr.detectChanges();
   }
 
   applyFilter(event: Event): void {
@@ -66,7 +68,8 @@ export class ListComponent implements AfterViewInit{
         this.dataSource.filterPredicate = ( data: List, filter: string) => {
           return data.fname.toLowerCase().includes(filter) ||
           data.lname.toLowerCase().includes(filter) ||
-          data.department.toLowerCase().includes(filter) ||
+          // data.department.department_short.toLowerCase().includes(filter) ||
+          // data.department.program_short.toLowerCase().includes(filter) ||
           data.title.toLowerCase().includes(filter);
         };
         this.cdr.detectChanges();

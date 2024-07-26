@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
 import jsPDF from 'jspdf';
 import { HttpParams } from '@angular/common/http';
 import { AuthService } from '../../../../../services/auth.service';
 import html2canvas from 'html2canvas';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-top',
@@ -31,6 +32,7 @@ export class TopComponent implements OnInit {
   isLoading: boolean = true;
   dataSource = new MatTableDataSource();
 
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   constructor(private authservice: AuthService) { }
 

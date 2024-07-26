@@ -23,7 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     MainComponent,
     LoginComponent,
-    LogoutPopComponent,
+    LogoutPopComponent
 
   ],
   imports: [
