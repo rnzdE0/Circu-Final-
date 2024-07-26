@@ -16,6 +16,7 @@ import { PoliciesComponent } from '../../../request/components/policies/policies
 })
 export class ResformComponent implements OnInit {
   requestForm: FormGroup;
+  currentDate: string = '';
   [x: string]: any;
 
   user = {
@@ -62,7 +63,12 @@ export class ResformComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //  this.bookSubmit();
+    this.setCurrentDate();
+
+    const now = new Date();
+    this.currentDate = now.toLocaleString('sv-SE');
+    this.requestForm.controls['start_date'].setValue(this.currentDate);
+
     this.ds.get('circulation/getpatrons').subscribe({
       next: (res: any) => {
         this.patrons = res;
@@ -154,6 +160,24 @@ export class ResformComponent implements OnInit {
     })
   }
 
+  // setHoursAllowed(patronType: string): void {
+  //   const foundPatron = this.patrons.find((patron: any) => patron.patron === patronType);
+  //   console.log('Found patron:', foundPatron); 
+  //   if (foundPatron) {
+  //     this.hours_allowed = foundPatron.hours_allowed;
+  //     console.log('hours_allowed set to:', this.hours_allowed); 
+  //   } else {
+  //     console.log('Patron not found for type:', patronType);
+  //   }
+  // }
+
+  setCurrentDate(): void {
+    const today = new Date();
+    // this.currentDate = today.toISOString().substring(0, 10);
+    const formattedDate = today.toISOString().replace('T', ' ').substring(0, 16);
+    this.currentDate = formattedDate;
+  }
+
   logCheckboxState(event: Event) {
     console.log('Checkbox state:', this.checkbox);
     const inputElement = event.target as HTMLInputElement;
@@ -224,40 +248,4 @@ export class ResformComponent implements OnInit {
   }
 
 
-//   queueSubmit() {
-//     if (this.requestForm.valid) {
-//       console.log(this.requestForm.value)
-//       // mababago this if ever ng queue/book
-//       this.mainService.post('queue/book',this.requestForm.value).subscribe(
-//         response => {
-//           console.log(response)
-//           Swal.fire({
-//             title: 'Success',
-//             text: 'The borrow request has been submitted successfully.',
-//             icon: 'success',
-//             iconColor: '#4F6F52',
-//             confirmButtonColor: '#4F6F52'
-//           });
-//         },
-//         error => {
-//           console.error('Form submission error', error);
-//           Swal.fire({
-//             title: 'Error',
-//             text: 'There was an error submitting the form. Please try again.',
-//             icon: 'error',
-//             confirmButtonColor: '#31A463'
-//           });
-//         }
-//       );
-//     } else {
-//       console.log(this.requestForm.value)
-//       Swal.fire({
-//         title: 'Invalid Form',
-//         text: 'Function not yet Available. :)',
-//         icon: 'error',
-//         confirmButtonColor: '#31A463'
-//       });
-//     }
-//   }
-// }
 

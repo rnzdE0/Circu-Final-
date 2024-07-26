@@ -55,9 +55,11 @@ export class TableComponent implements AfterViewInit {
         this.dataSource.filterPredicate = (data: BorrowMaterial, filter: string) => {
           return data.name.toLowerCase().includes(filter) ||
                  data.email.toLowerCase().includes(filter) ||
-                 data.department.toLowerCase().includes(filter) ||
-                 data.status.toLowerCase().includes(filter) ||
-                 data.fine.toLowerCase().includes(filter);
+                 data.title.toLowerCase().includes(filter);
+                //  ||
+                //  data.department.toLowerCase().includes(filter) ||
+                //  data.status.toLowerCase().includes(filter) ||
+                //  data.fine.toLowerCase().includes(filter);
         };
         this.isLoading = false;
       },

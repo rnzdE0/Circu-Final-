@@ -24,7 +24,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     AppComponent,
     MainComponent,
     LoginComponent,
-    LogoutPopComponent,
+    LogoutPopComponent
 
   ],
   imports: [

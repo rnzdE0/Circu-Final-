@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
 import jsPDF from 'jspdf';
 import { AuthService } from '../../../../../services/auth.service';
 import html2canvas from 'html2canvas';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-top',
   templateUrl: './top.component.html',
   styleUrl: './top.component.scss'
 })
-export class TopComponent implements OnInit{
-  displayedColumns: string[] = ['Name', 'ID', 'Borrow Count']
+export class TopComponent implements AfterViewInit{
+  displayedColumns: string[] = ['Name', 'ID', 'department', 'program', 'Borrow Count']
   selectedDepartment: string = '';
   selectedSecondFilter: string = '';
   departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
@@ -23,25 +24,13 @@ export class TopComponent implements OnInit{
     CAHS: ['BSN', 'BSM', 'GM']
   };
   
-isProgramChartVisible: any;
-// downloadPDF() {
-// throw new Error('Method not implemented.');
-// }
-// downloadFile(arg0: string) {
-// throw new Error('Method not implemented.');
-// }
-// export(arg0: string) {
-// throw new Error('Method not implemented.');
-// }
-//   // for printing
-// print() {
-// throw new Error('Method not implemented.');
-// }
+  isProgramChartVisible: any;
   topChart: any;
   isLoading= true;
-  dataSource= new MatTableDataSource;
-  user: any;
+  dataSource= new MatTableDataSource<any>();
+  user: any = {};
 
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   constructor(private authservice: AuthService) { }
 
@@ -131,7 +120,9 @@ isProgramChartVisible: any;
  
 
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.topBorrowers();
+    this.dataSource.paginator = this.paginator;
     this.authservice.topBorrowers().subscribe(
       (data: any) => {
         const labels = data.map((item: any) => '' + item.last_name);
@@ -173,17 +164,32 @@ isProgramChartVisible: any;
     );
   }
 
-  topBorrowers (): void {
-    console.log()
-    this.authservice.topBorrowers().subscribe ({
-      next: (res:any) => {
-        this.user.id=res.id;
-        this.user.borrow_count=res.borrow_count;
-        this.user.name=res.first_name+' '+res.last_name;
+  // topBorrowers (): void {
+  //   this.authservice.topBorrowers().subscribe ({
+  //     next: (res:any) => {
+  //       this.user.user_id=res.user_id;
+  //       this.user.borrow_count=res.borrow_count;
+  //       this.user.name=res.first_name+' '+res.last_name;
+  //     };
+  //     console.log('here is your data: ', res);
+  //   })
+  // }
 
-      }
-    })
-  }
+  topBorrowers(): void {
+    this.authservice.topBorrowers().subscribe({
+        next: (res: any) => {
+            this.dataSource.data = res;
+            this.user.user_id = res.user_id;
+            this.user.borrow_count = res.borrow_count;
+            this.user.user_name = res.first_name + ' ' + res.last_name;
+            console.log('here is your data: ', res);
+        },
+        error: (err: any) => {
+            console.error('Error fetching top borrowers: ', err);
+        }
+    });
+}
+
 
   getColorGradient(numBars: number): string[] {
     // Generate a gradient of colors based on the number of bars

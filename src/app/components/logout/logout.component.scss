@@ -42,21 +42,20 @@ button {
 }
 
 .cancel-btn {
-    background: grey;
-    color: white;
+    background: var(--cancel-btn);
+    color: var(--white);
 }
 
 .cancel-btn:hover {
-    background-color: green;
+    background-color: var(--cancel-hover);
 }
 
 .leave-btn {
-    background: #BE2E2E;
-    color: white;
+    background: var(--red);
+    color: var(--white);
 }
 
 .leave-btn:hover {
-    background-color: rgb(206, 132, 132);
-    color: white;
+    background-color: var(--red-hover);
 }
 

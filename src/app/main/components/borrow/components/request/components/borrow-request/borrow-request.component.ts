@@ -65,17 +65,18 @@ export class BorrowRequestComponent implements OnInit {
       borrow_date: ["", Validators.required],
       borrow_expiration: ["", Validators.required],
       fine: ["", Validators.required],
-      // isChecked: [false, Validators.requiredTrue]
     });
   }
  
   ngOnInit(): void {
-  //  this.bookSubmit();
-  this.setCurrentDate();
-  console.log('User patron type:', this.user.patron.patron);
+    this.setCurrentDate();
+    console.log('User patron type:', this.user.patron.patron);
 
-  // Initialize borrow_date with the current date
-  this.borrowForm.controls['borrow_date'].setValue(this.currentDate);
+    this.borrowForm.controls['borrow_date'].setValue(this.currentDate);
+
+    const now = new Date();
+    this.currentDate = now.toLocaleString('sv-SE');
+
 
     this.ds.get('circulation/getpatrons').subscribe({
       next: (res: any) => {
@@ -118,8 +119,7 @@ export class BorrowRequestComponent implements OnInit {
   }
   setCurrentDate(): void {
     const today = new Date();
-    // this.currentDate = today.toISOString().substring(0, 10);
-    const formattedDate = today.toISOString().replace('T', ' ').substring(0, 19);
+    const formattedDate = today.toISOString().replace('T', ' ').substring(0, 16);
     this.currentDate = formattedDate;
   }
 

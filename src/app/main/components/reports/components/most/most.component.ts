@@ -11,7 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrl: './most.component.scss'
 })
 export class MostComponent implements OnInit{
-  displayedColumns: string[] = ['Accession Number', 'Location', 'Published', 'Date Published', 'Borrow Count'];
+  displayedColumns: string[] = ['Accession Number', 'Location', 'Book Title', 'Publisher', 'Date Published', 'Borrow Count'];
   selectedDepartment: string = '';
   selectedSecondFilter: string = '';
   departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
@@ -137,18 +137,22 @@ export class MostComponent implements OnInit{
         const labels = data.map((item: any) => 'Book ' + item.book_id);
         const counts = data.map((item: any) => item.borrow_count);
 
+        const maxEntries = 10;
+        const limitedLabels = labels.slice(0, maxEntries);
+        const limitedCounts = counts.slice(0, maxEntries);
+
         const barCanvas = document.getElementById('mostChart');
         this.isLoading = false;
         this.mostChart = new Chart('mostChart', {
           type: 'bar',
-          data: {
-            labels: labels,
+           data: {
+            labels: limitedLabels, // Use limited labels here
             datasets: [{
-              data: counts,
-              backgroundColor: this.getColorGradient(data.length),
-              borderWidth: 1
+                data: limitedCounts, // Use limited counts here
+                backgroundColor: this.getColorGradient(limitedCounts.length), // Adjust based on limited data
+                borderWidth: 1
             }]
-          },
+        },
           options: {
             responsive: true,
             plugins: {

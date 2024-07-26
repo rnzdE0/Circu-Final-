@@ -140,17 +140,13 @@
                 </script>
 
                   <div class="input-group">
-                    <input required="" type="datetime-local" name="datetime" autocomplete="off" class="input" min="2024-01-01" required formControlName="borrow_date" [(ngModel)]="currentDate">
+                    <input required="" type="datetime-local" name="datetime" autocomplete="off" class="input" [min]="currentDate" required formControlName="borrow_date" [(ngModel)]="currentDate">
                     <label class="booklabel">Date of Request</label>
-                      <!-- <input type="text" name="text" autocomplete="off" class="input" [value]="user.patron.hours_allowed || ''" disabled>
-                      <label class="book-label">Days Allowed</label> -->
                   </div>
 
                   <div class="input-group">
                     <input required="" id="dueforborrow" type="datetime-local" name="datetime" autocomplete="off" class="input" [min]="currentDate" required formControlName="borrow_expiration">
                     <label class="booklabel">Due</label>
-                      <!-- <input type="text" name="text" autocomplete="off" class="input2" [value]="user.patron.hours_allowed || ''" disabled>
-                      <label class="book-label">Hours Allowed</label> -->
                   </div>
 
                   <!-- <div class="input-group">
