@@ -132,20 +132,20 @@
               var today = new Date().toISOString().split('T')[0];
               var today = new Date().toISOString().slice(0, 16);
 
-                  // for date
+                 
                   document.getElementsByName("date")[0].setAttribute('min', today);
-                  // for datetimelocal
+                  
                 document.getElementsByName("datetime")[0].setAttribute('min', today);
       
             </script>
 
               <div class="input-group">
-                <input required="" type="date" name="date" autocomplete="off" class="input" min="2024-01-01" required formControlName="start_date">
+                <input required type="datetime-local" name="date" autocomplete="off" class="input" [min]="currentDate"  required formControlName="start_date" [(ngModel)]="currentDate" >
                 <label class="booklabel">Date of Request</label>
               </div>
 
               <div class="input-group">
-                <input required="" id="dueforborrow" type="datetime-local" name="datetime" autocomplete="off" class="input" min="2024-01-01" required formControlName="end_date">
+                <input required="" id="dueforborrow" type="datetime-local" name="datetime" autocomplete="off" class="input" [min]="currentDate" required formControlName="end_date" >
                 <label class="booklabel">Due for Borrow</label>
               </div>
               <div class="input-group">
@@ -158,11 +158,11 @@
         <div class="parent-container">
 
           <label class="policy"> 
-            <input type="checkbox">
+            <input type="checkbox" [checked]="checkbox" (change)="logCheckboxState($event)">
             <span class="checkmark"></span>
           </label>
 
-          <span class="policytext" (click)="policyDialog()">Borrowing Policy. </span>
+          <span class="policytext" (click)="policyDialog()">I Accept the Terms and Conditions </span>
 
           <span class="info" (click)="policyDialog()">
             <i class='bx bx-info-circle'></i>
@@ -171,8 +171,9 @@
          </div>
 
         <div class="buttons">
-          <button class="add" type="submit">Submit</button>
+          <!-- <button class="add" type="submit" [disabled]="!requestForm.get('isChecked')?.value">Add</button> -->
           <!-- <button class="reserve" type="button" (click)="queueSubmit()">Queue</button> -->
+          <button class="add" type="submit">Add</button>
         </div>
       </form>
 

@@ -71,6 +71,7 @@ export class DeletePopupComponent {
               title: "Archiving complete!",
               text: "Journal has been successfully archived.",
               icon: "success",
+              iconColor: '#4F6F52',
               confirmButtonText: 'Close',
               confirmButtonColor: "#777777",
               scrollbarPadding: false,
@@ -79,7 +80,7 @@ export class DeletePopupComponent {
           error: (err: any) => {
             console.log(err)
             Swal.fire({
-              title: "Archive Error!",
+              title: "Delete Error!",
               text: "Please try again later.",
               icon: "error",
               confirmButtonText: 'Close',

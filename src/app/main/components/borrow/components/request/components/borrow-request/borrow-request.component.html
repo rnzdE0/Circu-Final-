@@ -140,17 +140,13 @@
                 </script>
 
                   <div class="input-group">
-                    <input required="" type="datetime-local" name="datetime" autocomplete="off" class="input" min="2024-01-01" required formControlName="borrow_date" [(ngModel)]="currentDate">
+                    <input required="" type="datetime-local" name="datetime" autocomplete="off" class="input" [min]="currentDate" required formControlName="borrow_date" [(ngModel)]="currentDate">
                     <label class="booklabel">Date of Request</label>
-                      <!-- <input type="text" name="text" autocomplete="off" class="input" [value]="user.patron.hours_allowed || ''" disabled>
-                      <label class="book-label">Days Allowed</label> -->
                   </div>
 
                   <div class="input-group">
                     <input required="" id="dueforborrow" type="datetime-local" name="datetime" autocomplete="off" class="input" [min]="currentDate" required formControlName="borrow_expiration">
                     <label class="booklabel">Due</label>
-                      <!-- <input type="text" name="text" autocomplete="off" class="input2" [value]="user.patron.hours_allowed || ''" disabled>
-                      <label class="book-label">Hours Allowed</label> -->
                   </div>
 
                   <!-- <div class="input-group">
@@ -168,11 +164,11 @@
           <div class="parent-container">
 
             <label class="policy"> 
-              <input type="checkbox" formControlName="isChecked">
+              <input type="checkbox" [checked]="checkbox" (change)="logCheckboxState($event)">
               <span class="checkmark"></span>
             </label>
 
-            <span class="policytext" (click)="policyDialog()">Borrowing Policy. </span>
+            <span class="policytext" (click)="policyDialog()">I Accept the Terms and Conditions </span>
 
             <span class="info" (click)="policyDialog()">
               <i class='bx bx-info-circle'></i>
@@ -182,8 +178,8 @@
 
 
             <div class="buttons">
-            <!-- <button class="add" type="submit">Add</button> -->
-            <button class="add" type="submit" [disabled]="!borrowForm.get('isChecked')?.value">Add</button>
+              <button class="add" type="submit">Add</button>
+                <!-- <button class="add" type="submit" [disabled]="!borrowForm.get('isChecked')?.value">Add</button> -->
             </div>
           </form>
 

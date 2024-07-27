@@ -1,142 +1,118 @@
-
-<body>
-  
-      <div class="header">
-        <p class="title">User Details</p>
-      </div>
+<main>
+        <body>
           
-      <!-- <div class="table1">
-        <p><span class="contento">Name:</span> {{user.first_name}} {{user.last_name}}</p>
-        <p><span class="contento">Department:</span>  {{user.program.program}}</p>
-        <p><span class="contento"><p>Books Allowed:</span></p>
-      </div>
-
-      <div class="table2">
-        <p><span class="contento">Id Number:</span> {{user.id}}</p>
-        <p><span class="contento">Patron Type: </span>{{user.patron.patron}}</p>
-      </div>
-
-          <div class="form">
-            <div class="scrollable-table-container">
-            <table class="content-table">
-              <thead class="table-head">
-                <tr>
-                  <th>Date Returned</th>
-                  <th>Title</th>
-                  <th>Accession Number</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let book of borrowedBooks">
-                  <td>{{ book.borrow_date }}</td>
-                  <td>{{ book.book.title }}</td> 
-                  <td>{{ book.id }}</td>
-                  <td>{{ getstatusString(book.status) }}</td>
-                </tr>
-                
-              </tbody>
-            </table>
-          </div>
-          </div>
-            
-            
-              <div class="table3">
-                <p>Total Returned Books:</p>
-                <p>Total Fine:</p>
+              <div class="header">
+                <p class="title">User Details</p>
               </div>
-
-  
-
-          <div class="buttons">
-            <a class="close" matDialogClose>Close</a>
-          </div> -->
-        
-
-        <div class="container">
-        <table class="user-table">
-          <tr>
-            <th>ID Number</th>
-            <td>{{user.id}}</td>
-          </tr>
-          <tr>
-            <th>Full Name</th>
-            <td>{{user.first_name}} {{user.last_name}}</td>
-          </tr>
-          <tr>
-            <th>College/Program</th>
-            <td>{{user.program.department_short}} / {{user.program.program_short}}</td>
-          </tr>
-          <tr>
-            <th>Patron Type</th>
-            <td>{{user.patron.patron}}</td>
-          </tr>
-          <tr>
-            <th>Books Allowed</th>
-            <td></td>
-          </tr>
-        </table>
-        </div> 
-
-
-        <div class="container2">
-
-          <div class="table">
           
-            <table mat-table [dataSource]="dataSource">
+                <div class="container">
+                <table class="user-table">
+                  <tr>
+                    <th>ID Number</th>
+                    <td>{{user.id}}</td>
+                  </tr>
+                  <tr>
+                    <th>Full Name</th>
+                    <td>{{user.first_name}} {{user.last_name}}</td>
+                  </tr>
+                  <tr>
+                    <th>College/Program</th>
+                    <td>{{user.program.department_short}} / {{user.program.program_short}}</td>
+                  </tr>
+                  <tr>
+                    <th>Patron Type</th>
+                    <td>{{user.patron.patron}}</td>
+                  </tr>
+                  <tr>
+                    <th>Books Allowed</th>
+                    <td></td>
+                  </tr>
+                </table>
+                </div> 
+
+
+                <div class="container2">
+
+                  <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+
+                  <div class="table">
+                  
+                    <table mat-table [dataSource]="dataSource" *ngIf="!isLoading">
+                      
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="Date">
+                        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Date Returned </th>
+                        <td mat-cell *matCellDef="let book">{{ book.borrow_date }}</td>
+                      </ng-container>
+                  
+                      <!-- Email Column -->
+                      <ng-container matColumnDef="Book">
+                        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Book Title </th>
+                        <td mat-cell *matCellDef="let book">{{ book.title }}</td>
+                      </ng-container>
+                  
+                      <!-- Department Column -->
+                      <ng-container matColumnDef="Accession">
+                        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Accession Number </th>
+                        <td mat-cell *matCellDef="let book">{{ book.id }}</td>
+                      </ng-container>
+          
+                      <!-- Program Column -->
+                      <ng-container matColumnDef="Status">
+                        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Status </th>
+                        <td mat-cell *matCellDef="let book">{{ getstatusString(book.status) }}</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="Remarks">
+                        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Remarks </th>
+                        <td mat-cell *matCellDef="let book">
+
+                          <div class="remarks">
+
+                          <label class="checkbox"> 
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                          </label>
+
+                          <label class="remarks-input"> 
+                            <label class="rem-input">₱</label>
+                            <input type="text" class="input">
+                          </label>
+
+                          </div>
+
+                        </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+
+                    <mat-paginator class="page" pageSize="5"
+                                showFirstLastButtons
+                                aria-label="Select page of users">
+                    </mat-paginator>
+
+                  </div>
+
+                </div>
+
+                <div class="container3">
+                  <table class="user-table1">
+                    <tr>
+                      <th>Total Returned Books</th>
+                      <td>4</td>
+                    </tr>
+                    <tr>
+                      <th>Total Fine</th>
+                      <td>₱{{user.patron.fine}}</td>
+                    </tr>
+                  </table>
+                  </div> 
+
+                  <div class="buttons">
+                    <a class="close" matDialogClose>Close</a>
+                  </div>
               
-              <!-- Name Column -->
-              <ng-container matColumnDef="Date">
-                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Date Returned </th>
-                <td mat-cell *matCellDef="let element">{{ element.borrow_date }}</td>
-              </ng-container>
-          
-              <!-- Email Column -->
-              <ng-container matColumnDef="Book">
-                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Book Title </th>
-                <td mat-cell *matCellDef="let element">{{ element.book.title }}</td>
-              </ng-container>
-          
-              <!-- Department Column -->
-              <ng-container matColumnDef="Accession">
-                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Accession Number </th>
-                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-              </ng-container>
-  
-              <!-- Program Column -->
-              <ng-container matColumnDef="Status">
-                <th mat-header-cell *matHeaderCellDef class="tbl-head"> Status </th>
-                <td mat-cell *matCellDef="let element">{{ getstatusString(element.status) }}</td>
-              </ng-container>
-
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-
-            <mat-paginator class="page" pageSize="6"
-                        showFirstLastButtons
-                        aria-label="Select page of users">
-            </mat-paginator>
-
-          </div>
-
-        </div>
-
-        <div class="container3">
-          <table class="user-table1">
-            <tr>
-              <th>Total Returned Books</th>
-              <td>4</td>
-            </tr>
-            <tr>
-              <th>Total Fine</th>
-              <td>₱{{user.patron.fine}}</td>
-            </tr>
-          </table>
-          </div> 
-
-          <div class="buttons">
-            <a class="close" matDialogClose>Close</a>
-          </div>
-       
-</body>
+        </body>
+</main>

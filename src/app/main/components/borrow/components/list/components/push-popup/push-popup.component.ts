@@ -48,7 +48,8 @@ export class PushPopupComponent {
       width: 300,
       title: "Book Returned!",
       icon: "success",
-      confirmButtonColor: '#31A463',
+      iconColor: '#4F6F52',
+      confirmButtonColor: '#4F6F52',
       customClass: {
         popup: 'my-swal-popup',
         icon: 'my-swal-icon',

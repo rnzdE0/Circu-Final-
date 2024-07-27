@@ -16,6 +16,7 @@ import { PoliciesComponent } from '../../../request/components/policies/policies
 })
 export class ResformComponent implements OnInit {
   requestForm: FormGroup;
+  currentDate: string = '';
   [x: string]: any;
 
   // user = {
@@ -67,6 +68,8 @@ export class ResformComponent implements OnInit {
   }
 
   patrons: any;
+  fine = 0;
+  checkbox: boolean = false;
 
   constructor(
     private dialog : MatDialog,
@@ -81,13 +84,18 @@ export class ResformComponent implements OnInit {
       user_id: ['', Validators.required],
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
-      fine: ['', Validators.required]
-      
+      fine: ['', Validators.required],
+      // isChecked: [false, Validators.requiredTrue] 
     });
   }
 
   ngOnInit(): void {
-    //  this.bookSubmit();
+    this.setCurrentDate();
+
+    const now = new Date();
+    this.currentDate = now.toLocaleString('sv-SE');
+    this.requestForm.controls['start_date'].setValue(this.currentDate);
+
     this.ds.get('circulation/getpatrons').subscribe({
       next: (res: any) => {
         this.patrons = res;
@@ -216,219 +224,92 @@ export class ResformComponent implements OnInit {
     })
   }
 
-  reserveSubmit():void {
-    if (this.requestForm.valid) {
+  // setHoursAllowed(patronType: string): void {
+  //   const foundPatron = this.patrons.find((patron: any) => patron.patron === patronType);
+  //   console.log('Found patron:', foundPatron); 
+  //   if (foundPatron) {
+  //     this.hours_allowed = foundPatron.hours_allowed;
+  //     console.log('hours_allowed set to:', this.hours_allowed); 
+  //   } else {
+  //     console.log('Patron not found for type:', patronType);
+  //   }
+  // }
+
+  setCurrentDate(): void {
+    const today = new Date();
+    // this.currentDate = today.toISOString().substring(0, 10);
+    const formattedDate = today.toISOString().replace('T', ' ').substring(0, 16);
+    this.currentDate = formattedDate;
+  }
+
+  logCheckboxState(event: Event) {
+    console.log('Checkbox state:', this.checkbox);
+    const inputElement = event.target as HTMLInputElement;
+    this.checkbox = inputElement.checked;
+  }
+
+  reserveSubmit(): void {
+    if (!this.requestForm.valid) {
+      Swal.fire({
+        title: 'Invalid Form',
+        text: 'Please fill out all required fields correctly.',
+        icon: 'error',
+        confirmButtonColor: '#4F6F52'
+      });
+      return;
+    }
+
+    console.log('isChecked during submit:', this.checkbox); // Debugging line
+  
+    if (!this.checkbox) { // Validate isChecked separately
+      Swal.fire({
+        title: 'Reminder',
+        text: 'Please read and accept the Terms and Conditions before submitting.',
+        icon: 'error',
+        confirmButtonColor: '#4F6F52'
+      });
+      return;
+    }
+  
       const payloadData = {
         book_id: this.requestForm.value.book_id,
         user_id: this.requestForm.value.user_id,
         reserve_date: this.requestForm.value.start_date, 
         reserve_expiration: this.requestForm.value.end_date,
-        fine: this.requestForm.value.fine // Include fine if it's required
+        fine: this.requestForm.value.fine,
+        isChecked: this.checkbox
       };
       const requestData = {
         payload: JSON.stringify(payloadData)
       };
-
-      console.log(this.requestForm.value)
+  
+      console.log(this.requestForm.value);
       console.log('Payload Data:', payloadData);
-      // 
-      this.mainService.post('circulation/reserve/book',payloadData).subscribe(
+  
+      this.mainService.post('circulation/reserve/book', payloadData).subscribe(
         response => {
-          console.log(response)
+          console.log(response);
           Swal.fire({
             title: 'Success',
             text: 'The borrow request has been submitted successfully.',
             icon: 'success',
-            confirmButtonColor: '#31A463'
+            iconColor: '#4F6F52',
+            confirmButtonColor: '#4F6F52'
           });
         },
         error => {
-          console.error('Form submission error', error);
+          console.log('Sending borrow request with payload:', payloadData);
+          console.error('Book is not available', error);
           Swal.fire({
-            title: 'Error',
-            text: 'There was an error submitting the form. Please try again.',
+            title: 'Book is Unavailable',
+            text: 'The book you want to borrow is not available.',
             icon: 'error',
-            confirmButtonColor: '#31A463'
+            confirmButtonColor: '#4F6F52'
           });
         }
       );
-    } else {
-      console.log(this.requestForm.value)
-      Swal.fire({
-        title: 'Invalid Form',
-        text: 'Please fill up the form.',
-        icon: 'error',
-        confirmButtonColor: '#31A463'
-      });
-    }
-  };
-
-
-  queueSubmit() {
-    if (this.requestForm.valid) {
-      console.log(this.requestForm.value)
-      // mababago this if ever ng queue/book
-      this.mainService.post('queue/book',this.requestForm.value).subscribe(
-        response => {
-          console.log(response)
-          Swal.fire({
-            title: 'Success',
-            text: 'The borrow request has been submitted successfully.',
-            icon: 'success',
-            confirmButtonColor: '#31A463'
-          });
-        },
-        error => {
-          console.error('Form submission error', error);
-          Swal.fire({
-            title: 'Error',
-            text: 'There was an error submitting the form. Please try again.',
-            icon: 'error',
-            confirmButtonColor: '#31A463'
-          });
-        }
-      );
-    } else {
-      console.log(this.requestForm.value)
-      Swal.fire({
-        title: 'Invalid Form',
-        text: 'Function not yet Available. :)',
-        icon: 'error',
-        confirmButtonColor: '#31A463'
-      });
-    }
+    } 
   }
-}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//   addDialog() {
-//     this.dialog.open(AddComponent, {
-//       width: '400px',
-//       height: '250px',
-//     })
-//   };
-
-//   queDialog() {
-//     this.dialog.open(QueueComponent, {
-//       width: '400px',
-//       height: '250px',
-//     })
-//   };
-
-//   addAlert() {
-//     Swal.fire({
-//       width: 400,
-//       title: "Do you want to save this request?",
-//       showDenyButton: true,
-//       // showCancelButton: true,
-//       confirmButtonText: "Yes",
-//       confirmButtonColor: '#31A463',
-//       denyButtonText: `Cancel Request`,
-//       customClass: {
-//         container: 'my-swal-container',
-//         title: 'my-swal-title',
-//         confirmButton: 'my-swal-confirm-button',
-//         denyButton: 'my-swal-deny-button',
-//         cancelButton: 'my-swal-cancel-button'
-//       }
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         Swal.fire({
-//           width: 300,
-//           title: "Added to list.",
-//           icon: "success",
-//           confirmButtonColor: '#31A463',
-//           customClass: {
-//             popup: 'my-swal-popup',
-//             icon: 'my-swal-icon',
-//             confirmButton: 'my-swal-confirm-button'
-//           }
-//         });
-//       } else if (result.isDenied) {
-//         Swal.fire({
-//           width: 300,
-//           title: "Request is cancelled.",
-//           icon: "success",
-//           iconColor: 'red',
-//           confirmButtonColor: 'grey',
-//           customClass: {
-//             popup: 'my-swal-popup',
-//             icon: 'my-swal-icon',
-//             confirmButton: 'my-swal-confirm-button'
-//           }
-//         });
-//       }
-//     });
-//   }
-  
-
-//   queAlert() {
-//     Swal.fire({
-//       width: 400,
-//       title: "Do you want to Queue this request?",
-//       showDenyButton: true,
-//       // showCancelButton: true,
-//       confirmButtonText: "Yes",
-//       confirmButtonColor: '#31A463',
-//       denyButtonText: `Cancel Request`,
-//       customClass: {
-//         container: 'my-swal-container',
-//         title: 'my-swal-title',
-//         confirmButton: 'my-swal-confirm-button',
-//         denyButton: 'my-swal-deny-button',
-//         cancelButton: 'my-swal-cancel-button'
-//       }
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         Swal.fire({
-//           width: 300,
-//           title: "Added to Queue.",
-//           icon: "success",
-//           confirmButtonColor: '#31A463',
-//           customClass: {
-//             popup: 'my-swal-popup',
-//             icon: 'my-swal-icon',
-//             confirmButton: 'my-swal-confirm-button'
-//           }
-//         });
-//       } else if (result.isDenied) {
-//         Swal.fire({
-//           width: 300,
-//           title: "Request Queue is cancelled.",
-//           icon: "success",
-//           iconColor: 'red',
-//           confirmButtonColor: 'grey',
-//           customClass: {
-//             popup: 'my-swal-popup',
-//             icon: 'my-swal-icon',
-//             confirmButton: 'my-swal-confirm-button'
-//           }
-//         });
-//       }
-//     });
-//   }
-  
-
-// }  
-// // ngOnInit(): void {
-// //     throw new Error('Method not implemented.');
-  // }

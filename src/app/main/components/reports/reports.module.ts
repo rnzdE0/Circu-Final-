@@ -31,7 +31,8 @@ import { MaterialModule } from '../../../modules/material/material.module';
     FormsModule,
     HttpClientModule,
     LoadingsComponent,
-    MaterialModule
+    MaterialModule,
+    LoadingsComponent
     
   ]
 })

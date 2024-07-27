@@ -1,10 +1,13 @@
-  import { Component, Inject, OnInit } from '@angular/core';
+  import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../../../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MainService } from '../../../../../services/main.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { User } from '../user-table/user.model';
+import { MatPaginator } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-user-popup',
@@ -13,39 +16,17 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class UserPopupComponent implements OnInit{
 
-  displayedColumns: string[] = [ 'Date', 'Book', 'Accession', 'Status']
-  dataSource = new MatTableDataSource();
+  displayedColumns: string[] = [ 'Date', 'Book', 'Accession', 'Status', 'Remarks'];
+  dataSource = new MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   totalReturnedBooks: number = 0;
    id: any;
    borrowedBooks: any;
    users: any
 
-  //  user = {
-  //   id: '',
-  //   name: '',
-  //   gender: '',
-  //   department: '',
-  //   count:0,
-  //   program: {
-  //     department_short: ''
-  //   },
-  //   patron: {
-  //     hours_allowed: '',
-  //     patron: '',
-  //     fine:''
-  //   }
-  // } 
-  // book = {
-  //   accession: '',
-  //   title: '',
-  //   author: '',
-  //   location: ''
-  // }
-  // admin = {
-  //   id: '',
-  //   position: ''
-  // }
+   isLoading = true;
 
    constructor (
     @Inject(MAT_DIALOG_DATA)
@@ -58,8 +39,10 @@ export class UserPopupComponent implements OnInit{
    }
 
    ngOnInit(): void {
+    this.dataSource = new MatTableDataSource(this.borrowedBooks);
     this.fetchUserDetails(this.user.id);
-    this.fetchBorrowedBooks(this.user.id); // Fetch user details using the passed id
+    this.fetchBorrowedBooks(this.user.id); 
+    this.dataSource.paginator = this.paginator;
   }
 
   fetchUserDetails(userId: any): void {
@@ -77,12 +60,51 @@ export class UserPopupComponent implements OnInit{
   }
 
   
+  // fetchBorrowedBooks(userId: any): void {
+  //   this.ds.get('circulation/returned-list/' + userId).subscribe(
+  //     (response: any) => {
+  //       if (response && response.returnedItems && Array.isArray(response.returnedItems)) {
+  //         this.borrowedBooks = response.returnedItems;
+  //         this.totalReturnedBooks = response.totalReturnedBooks || 0; 
+  //       } else {
+  //         console.error('Invalid response format:', response);
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching borrowed books:', error);
+  //     }
+  //   );
+  // }
+  
+
   fetchBorrowedBooks(userId: any): void {
-    this.ds.get('returned-list/' + userId).subscribe(
+    this.isLoading = true;
+    this.ds.get('circulation/returned-list/' + userId).subscribe(
       (response: any) => {
+  
+        console.log('returned details:', response);
+  
         if (response && response.returnedItems && Array.isArray(response.returnedItems)) {
-          this.borrowedBooks = response.returnedItems;
-          this.totalReturnedBooks = response.totalReturnedBooks || 0; // Assign totalReturnedBooks or default to 0
+          // Process each returned item to ensure it includes the material data
+          this.borrowedBooks = response.returnedItems.map((item: any) => {
+            if (item.material) {
+              return {
+                ...item,
+                title: item.material.title,
+                authors: item.material.authors,
+                publisher: item.material.publisher,
+                // Add other material properties as needed
+              };
+            } else {
+              console.warn('Item without material data:', item);
+              return item; // or handle the missing material data case as needed
+            }
+          });
+          this.totalReturnedBooks = response.totalReturnedBooks || 0; 
+          this.dataSource = new MatTableDataSource(this.borrowedBooks);
+          this.dataSource.paginator = this.paginator;
+
+          this.isLoading = false;
         } else {
           console.error('Invalid response format:', response);
         }
