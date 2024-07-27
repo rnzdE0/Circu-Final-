@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
 import jsPDF from 'jspdf';
 import { HttpParams } from '@angular/common/http';
 import { AuthService } from '../../../../../services/auth.service';
 import html2canvas from 'html2canvas';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-top',
@@ -31,6 +32,7 @@ export class TopComponent implements OnInit {
   isLoading: boolean = true;
   dataSource = new MatTableDataSource();
 
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   constructor(private authservice: AuthService) { }
 
@@ -87,23 +89,24 @@ export class TopComponent implements OnInit {
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
     
-    const chartWidth = 400; // Width of the chart in points
-    const chartHeight = 300; // Height of the chart in points
-    const chartMarginX = (pdf.internal.pageSize.getWidth() - chartWidth) / 2; // Center horizontally
-    const chartMarginY = 100; // Start below header
-  
+    const chartWidth = 300; // Width of the chart in points
+    const chartHeight = 150; // Height of the chart in points
+    // const chartMarginX = (pdf.internal.pageSize.getWidth() - chartWidth) / 2; // Center horizontally
+    // const chartMarginY = 100; // Start below header
+     // Determine scale to fit chart within A4 page
+     const scaleFactor = Math.min((pdfWidth - 40) / chartWidth, (pdfHeight - 100) / chartHeight);
 
     // // Adjust dimensions based on scale factor
-    // const targetWidth = chartWidth * scaleFactor;
-    // const targetHeight = chartHeight * scaleFactor;
-    // const chartMarginX = (pdfWidth - targetWidth) / 2;
-    // const chartMarginY = (pdfHeight - targetHeight) / 2 + 10;
+    const targetWidth = chartWidth * scaleFactor;
+    const targetHeight = chartHeight * scaleFactor;
+    const chartMarginX = (pdfWidth - targetWidth) / 2;
+    const chartMarginY = (pdfHeight - targetHeight) / 2 + 10;
 
     // // Capture chart canvas as image
-    // const chartImgData = await html2canvas(chartCanvas, { scale: scaleFactor }).then(canvas => canvas.toDataURL('image/png'));
+    const chartImgData = await html2canvas(chartCanvas, { scale: scaleFactor }).then(canvas => canvas.toDataURL('image/png'));
 
     // // Add chart image to PDF
-    // pdf.addImage(chartImgData, 'PNG', chartMarginX, chartMarginY, targetWidth, targetHeight);
+    pdf.addImage(chartImgData, 'PNG', chartMarginX, chartMarginY, targetWidth, targetHeight);
 
     // Save PDF
     pdf.save('Top10-BookBorrowers.pdf');

@@ -17,6 +17,7 @@ import { GraphComponent } from './components/reports/components/graph/graph.comp
 import { LogsComponent } from './components/logs/logs.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingsComponent } from './components/loadings/loadings.component';
+import { LogoutComponent } from '../components/logout/logout.component';
 
 
 
@@ -40,7 +41,8 @@ import { LoadingsComponent } from './components/loadings/loadings.component';
     MaterialModule,
     FormsModule,
     HttpClientModule,
-    LoadingsComponent
+    LoadingsComponent,
+    LogoutComponent
   ],
   exports: [
     LoadingsComponent

@@ -28,6 +28,8 @@ export class GraphComponent implements OnInit {
   barChart: any;
   isProgramChartVisible: any;
 
+  isLoading = true;
+
   constructor(private authService: AuthService, private http: HttpClient) { }
 
   //png download
@@ -103,7 +105,7 @@ export class GraphComponent implements OnInit {
     const pdfHeight = pdf.internal.pageSize.getHeight();
     
     const chartWidth = 200;
-    const chartHeight = 200; 
+    const chartHeight = 170; 
     const chartMarginX = (pdfWidth - chartWidth * 2) / 2; // Center horizontally
     const chartMarginY = (pdfHeight - chartHeight) / 2 + 10; // Start below header, adjust vertical position
 
@@ -168,6 +170,8 @@ export class GraphComponent implements OnInit {
         this.departmentData = data.programsCount;
         this.genderData = data.genderCount;
         this.renderCharts();
+
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error fetching data:', error);

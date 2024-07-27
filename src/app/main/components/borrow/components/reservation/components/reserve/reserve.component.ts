@@ -50,8 +50,9 @@ export class ReserveComponent implements AfterViewInit{
         this.dataSource.data = this.reservationList;
         this.dataSource.filterPredicate = (data: ReservationList, filter: string) => {
           return data.first_name.toLowerCase().includes(filter) || 
-          data.title.toLowerCase().includes(filter) || 
-          data.department.toLowerCase().includes(filter);  
+          data.title.toLowerCase().includes(filter) 
+          // || 
+          // data.department.toLowerCase().includes(filter);  
         };
         this.isLoading = false;
       },
@@ -70,8 +71,7 @@ export class ReserveComponent implements AfterViewInit{
   }
   
   redirectToListPage() {
-    // this.router.navigate(['main/borrow/reservation/reserve']); 
-    this.router.navigate(['main/borrow/reservation/reserve/reservation.component']); 
+    this.router.navigate(['main/borrow/reservation/reserve']); 
   }
 
 
@@ -88,7 +88,7 @@ export class ReserveComponent implements AfterViewInit{
       data: id
     });
     _popup.afterClosed().subscribe(result => {
-      this.redirectToListPage();
+      // this.redirectToListPage();
       if(result === 'Changed Data') {
         this.fetchReserveList()
         // this.fetchOnlineList()

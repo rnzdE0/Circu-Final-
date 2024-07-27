@@ -33,6 +33,8 @@ export class TableComponent implements AfterViewInit {
   
   ngAfterViewInit(): void {
     this.fetchBorrowList();
+    this.dataSource.paginator = this.paginator;
+    this.cdr.detectChanges();
   } 
 
   applyFilter(event: Event): void {
@@ -47,15 +49,17 @@ export class TableComponent implements AfterViewInit {
       (data: any) => {
         console.log('Received data from backend:', data);
         console.log('Type of data:', typeof data);
-        this.borrowMaterials = data as BorrowMaterial[]; // Assign the fetched user data to the users array
+        this.borrowMaterials = data as BorrowMaterial[];
         this.filteredMaterials = this.borrowMaterials.slice();
         this.dataSource.data = this.borrowMaterials;
         this.dataSource.filterPredicate = (data: BorrowMaterial, filter: string) => {
           return data.name.toLowerCase().includes(filter) ||
                  data.email.toLowerCase().includes(filter) ||
-                 data.department.toLowerCase().includes(filter) ||
-                 data.status.toLowerCase().includes(filter) ||
-                 data.fine.toLowerCase().includes(filter);
+                 data.title.toLowerCase().includes(filter);
+                //  ||
+                //  data.department.toLowerCase().includes(filter) ||
+                //  data.status.toLowerCase().includes(filter) ||
+                //  data.fine.toLowerCase().includes(filter);
         };
         this.isLoading = false;
       },
@@ -78,9 +82,9 @@ elements: any;
   private router: Router,
   private ds: MainService,
   private cdr: ChangeDetectorRef,
-    private paginatorIntl :MatPaginatorIntl
+    // private paginatorIntl :MatPaginatorIntl
   ) {
-    this.paginator = new MatPaginator(this.paginatorIntl, this.cdr);
+    // this.paginator = new MatPaginator(this.paginatorIntl, this.cdr);
   }
 
   redirectToListPage() {
@@ -121,7 +125,7 @@ elements: any;
       data: id
     });
     _popup.afterClosed().subscribe(result => {
-      this.redirectToListPage();
+      // this.redirectToListPage();
       console.log(result)
       if(result === 'Changed Data') {
         this.fetchBorrowList()
@@ -142,7 +146,7 @@ elements: any;
       data: id
     });
     _popup.afterClosed().subscribe(result => {
-      this.redirectToListPage();
+      // this.redirectToListPage();
       if(result === 'Changed Data') {
         this.fetchBorrowList()
       }

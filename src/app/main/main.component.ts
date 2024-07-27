@@ -1,15 +1,16 @@
-import { Component, HostListener, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2'
 import { AuthService } from '../services/auth.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
-export class MainComponent implements OnDestroy {
+export class MainComponent implements AfterViewInit {
  
   dropdownOpen: boolean | undefined;
   projectDropdownOpen: boolean | undefined;
@@ -21,7 +22,8 @@ export class MainComponent implements OnDestroy {
 
   constructor(
     private router: Router,
-    private as: AuthService
+    private as: AuthService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.checkScreenWidth();
   }
@@ -78,9 +80,13 @@ export class MainComponent implements OnDestroy {
 
   }
 
-  ngOnDestroy(): void {
+  ngAfterViewInit(): void {
     clearInterval(this.timer)
-}
+    if (isPlatformBrowser(this.platformId)) {
+      this.name = sessionStorage.getItem('name');
+      this.role = sessionStorage.getItem('role');
+    }
+  }
 
 isSidebarCollapsed = false;
 isOverlayActive = false;

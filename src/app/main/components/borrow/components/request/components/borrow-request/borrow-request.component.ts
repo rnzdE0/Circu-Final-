@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MainService } from '../../../../../../../services/main.service';
 import { PoliciesComponent } from '../policies/policies.component';
+import { BlobOptions } from 'buffer';
 
 @Component({
   selector: 'app-borrow-request',
@@ -45,6 +46,8 @@ export class BorrowRequestComponent implements OnInit {
   patrons: any;
   fine = 0;
   hours_allowed: number = 0;
+  checkbox: boolean = false;
+
 
   constructor(
     private dialog : MatDialog,
@@ -60,7 +63,6 @@ export class BorrowRequestComponent implements OnInit {
       borrow_date: ["", Validators.required],
       borrow_expiration: ["", Validators.required],
       fine: ["", Validators.required],
-      isChecked: [false, Validators.requiredTrue]
     });
   }
  
@@ -69,8 +71,11 @@ export class BorrowRequestComponent implements OnInit {
   this.setCurrentDate();
   console.log('User patron type:', this.user.patron);
 
-  // Initialize borrow_date with the current date
-  this.borrowForm.controls['borrow_date'].setValue(this.currentDate);
+    this.borrowForm.controls['borrow_date'].setValue(this.currentDate);
+
+    const now = new Date();
+    this.currentDate = now.toLocaleString('sv-SE');
+
 
     this.ds.get('circulation/getpatrons').subscribe({
       next: (res: any) => {
@@ -113,8 +118,7 @@ export class BorrowRequestComponent implements OnInit {
   }
   setCurrentDate(): void {
     const today = new Date();
-    // this.currentDate = today.toISOString().substring(0, 10);
-    const formattedDate = today.toISOString().replace('T', ' ').substring(0, 19);
+    const formattedDate = today.toISOString().replace('T', ' ').substring(0, 16);
     this.currentDate = formattedDate;
   }
 
@@ -232,135 +236,74 @@ export class BorrowRequestComponent implements OnInit {
 
   
 
+  logCheckboxState(event: Event) {
+    console.log('Checkbox state:', this.checkbox);
+    const inputElement = event.target as HTMLInputElement;
+    this.checkbox = inputElement.checked;
+  }
 
-  bookSubmit() {
-    if (this.borrowForm.valid) {
-      const payload = {
+
+  bookSubmit(): void {
+    if (!this.borrowForm.valid) {
+      Swal.fire({
+        title: 'Invalid Form',
+        text: 'Please fill out all required fields correctly.',
+        icon: 'error',
+        confirmButtonColor: '#4F6F52'
+      });
+      return;
+    }
+
+    console.log('isChecked during submit:', this.checkbox); // Debugging line
+  
+    if (!this.checkbox) { // Validate isChecked separately
+      Swal.fire({
+        title: 'Reminder',
+        text: 'Please read and accept the Terms and Conditions before submitting.',
+        icon: 'error',
+        confirmButtonColor: '#4F6F52'
+      });
+      return;
+    }
+  
+    const payload = {
       book_id: this.borrowForm.value.book_id,
       user_id: this.borrowForm.value.user_id,
       borrow_date: this.borrowForm.value.borrow_date,
       borrow_expiration: this.borrowForm.value.borrow_expiration,
       fine: this.borrowForm.value.fine,
-      isChecked: this.borrowForm.value.isChecked
+      isChecked: this.checkbox  // Use form control value
     };
-    console.log("Sending borrow request sadsdasd:", payload)
-
+    console.log("Sending borrow request:", payload);
+  
     const httpOptions = {
       headers: {
         'Content-Type': 'application/json'
       }
     };
-
-    
-      this.mainService.post('circulation/borrow/book',payload).subscribe(
-        response => {
-          Swal.fire({
-            title: 'Success',
-            text: 'The borrow request has been submitted successfully.',
-            icon: 'success',
-            confirmButtonColor: '#31A463'
-          });
-        },
-        error => {
-          console.log('Sending borrow request with payload:', payload);
-          console.error('Book is not available', error);
-          Swal.fire({
-            title: 'Book is Unavailable',
-            text: 'The book you want to borrow is not available.',
-            icon: 'error',
-            confirmButtonColor: '#31A463'
-          });
-        }
-      );
-    } else {
-      console.log(this.borrowForm.value)
-      Swal.fire({
-        title: 'Invalid Form',
-        text: 'Please fill out all required fields correctly.',
-        icon: 'error',
-        confirmButtonColor: '#31A463'
-      });
-    }
+  
+    this.mainService.post('circulation/borrow/book', payload).subscribe(
+      response => {
+        Swal.fire({
+          title: 'Success',
+          text: 'The borrow request has been submitted successfully.',
+          icon: 'success',
+          iconColor: '#4F6F52',
+          confirmButtonColor: '#4F6F52'
+        });
+      },
+      error => {
+        console.log('Sending borrow request with payload:', payload);
+        console.error('Book is not available', error);
+        Swal.fire({
+          title: 'Book is Unavailable',
+          text: 'The book you want to borrow is not available.',
+          icon: 'error',
+          confirmButtonColor: '#4F6F52'
+        });
+      }
+    );
   }
-
-
-
-
-
-  //   var form = document.getElementById('request-form') as HTMLFormElement;
-
-  //   form.addEventListener('submit', (event) => {
-  //     // Prevent the default form submission behavior
-  //     event.preventDefault();
-
-  //     let valid = true;
-  //     let validFile = true;   
-  //     const fields = [
-  //       'user_id', 
-  //       'book_id',
-  //       'fine',
-  //       'borrow_date',
-  //       'borrow_expiration'
-      
-  //       ];
   
-  //     // Get the form elements
-  //     const elements = form.elements;
-
-  //     let formData = new FormData();
-
-  //     console.log(formData)
-  
-  //     // Loop through each form element
-  //     for (let i = 0; i < elements.length; i++) {
-  //       const element = elements[i] as HTMLInputElement;
-
-  //       // Check if the element is an input field
-  //       if (element.tagName === 'INPUT' || element.tagName === 'SELECT' && element.id !== 'submit') {
-  //       }
-  //     }
-
-  //     // DATA IS VALID
-  //     if(valid && validFile) {
-  //       this.ds.post('borrow/book', formData).subscribe({
-  //         next: (res: any) => {
-  //           console.log('hello renze')
-  //           Swal.fire({
-  //             title: 'Success',
-  //             text: formData.get('title') + " has been added successfully",
-  //             icon: 'success',
-  //             confirmButtonText: 'Close',
-  //             confirmButtonColor: "#777777",
-  //           });
-  //         },
-  //         error:(err: any) => {
-  //           Swal.fire({
-  //             title: 'Error',
-  //             text: "Oops an error occured",
-  //             icon: 'error',
-  //             confirmButtonText: 'Close',
-  //             confirmButtonColor: "#777777",
-  //           });
-  //         }
-  //       });
-  //     } else if (!validFile) {
-  //       Swal.fire({
-  //         title: 'Oops! Error on form',
-  //         text: 'Invalid image. Must be of type png, jpeg, or jpg.',
-  //         icon: 'error',
-  //         confirmButtonText: 'Close',
-  //         confirmButtonColor: "#777777",
-  //       });
-  //     } else {
-  //       Swal.fire({
-  //         title: 'Oops! Error on form',
-  //         text: 'Please check if required fields have values',
-  //         icon: 'error',
-  //         confirmButtonText: 'Close',
-  //         confirmButtonColor: "#777777",
-  //       });
-  //     }
-  //   });
-  // }
 
 }
