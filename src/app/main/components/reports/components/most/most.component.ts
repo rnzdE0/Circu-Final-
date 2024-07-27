@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
-import jsPDF from 'jspdf';
-import { AuthService } from '../../../../../services/auth.service';
 import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import { HttpParams } from '@angular/common/http';
+import { AuthService } from '../../../../../services/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -10,10 +11,12 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './most.component.html',
   styleUrl: './most.component.scss'
 })
-export class MostComponent implements OnInit{
+export class MostComponent implements OnInit {
   displayedColumns: string[] = ['Accession Number', 'Location', 'Published', 'Date Published', 'Borrow Count'];
   selectedDepartment: string = '';
   selectedSecondFilter: string = '';
+  startDate: string = '';
+  endDate: string = '';
   departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
   secondFilterOptions: { [key: string]: string[] } = {
     CBA: ['BSA', 'BSCA', 'BSBA-FM', 'BSBA-HRM', 'BSBA-MKT'],
@@ -22,23 +25,9 @@ export class MostComponent implements OnInit{
     CHTM: ['BSHM', 'BSTM'],
     CAHS: ['BSN', 'BSM', 'GM']
   };
-  
-  isProgramChartVisible: any;
-  isLoading= true;
-  dataSource= new MatTableDataSource;
 
-  // downloadPDF() {
-  // throw new Error('Method not implemented.');
-  // }
-  // downloadFile(arg0: string) {
-  // throw new Error('Method not implemented.');
-  // }
-  // export(arg0: string) {
-  // throw new Error('Method not implemented.');
-  // }
-  // print() {
-  //   throw new Error('Method not implemented.');
-  //   }
+  isLoading = true;
+  dataSource = new MatTableDataSource<any>();
   mostChart: any;
 
   constructor(private authservice: AuthService) { }
@@ -128,50 +117,78 @@ export class MostComponent implements OnInit{
     return '../assets/img/gclibrary.png';
   }
 
-
   ngOnInit(): void {
-    this.authservice.mostBorrowedBook().subscribe(
-      (data: any) => {
-        const labels = data.map((item: any) => 'Book ' + item.book_id);
-        const counts = data.map((item: any) => item.borrow_count);
+    this.applyFilters(); // Initial load
+  }
 
-        const barCanvas = document.getElementById('mostChart');
-        this.mostChart = new Chart('mostChart', {
-          type: 'bar',
-          data: {
-            labels: labels,
-            datasets: [{
-              data: counts,
-              backgroundColor: this.getColorGradient(data.length),
-              borderWidth: 1
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                display: false // Hide the legend
-              }
-            },
-            indexAxis: 'x',
-            scales: {
-              y: {
-                ticks: {
-                  stepSize: 1
-                }
-              }
-            }
-          },
-        });
+  applyFilters(): void {
+    let params = new HttpParams();
+
+    if (this.selectedDepartment) {
+      params = params.set('department', this.selectedDepartment);
+    }
+    if (this.selectedSecondFilter) {
+      params = params.set('program', this.selectedSecondFilter);
+    }
+    if (this.startDate) {
+      params = params.set('date_from', this.startDate);
+    }
+    if (this.endDate) {
+      params = params.set('date_to', this.endDate);
+    }
+
+    this.authservice.mostBorrowedBook(params).subscribe(
+      (data: any) => {
+        this.renderChart(data);
+        this.dataSource.data = data;
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error fetching most borrowed books:', error);
+        this.isLoading = false;
       }
     );
   }
 
+  renderChart(data: any): void {
+    const labels = data.map((item: any) => item.title);
+    const counts = data.map((item: any) => item.borrow_count);
+
+    if (this.mostChart) {
+      this.mostChart.destroy();
+    }
+
+    const barCanvas = document.getElementById('mostChart') as HTMLCanvasElement;
+    this.mostChart = new Chart(barCanvas, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: counts,
+          backgroundColor: this.getColorGradient(data.length),
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false // Hide the legend
+          }
+        },
+        indexAxis: 'x',
+        scales: {
+          y: {
+            ticks: {
+              stepSize: 1
+            }
+          }
+        }
+      }
+    });
+  }
+
   getColorGradient(numBars: number): string[] {
-    // Generate a gradient of colors based on the number of bars
     const colors = ['#FF5733', '#FFC300', '#DAF7A6', '#4CAF50', '#3498DB'];
     const gradient = [];
     for (let i = 0; i < numBars; i++) {

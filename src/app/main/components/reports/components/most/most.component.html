@@ -7,34 +7,33 @@
  
 <div class="container">
   <p class="title">Most Borrowed Books</p>
-    <!-- filter -->
-
-    <div class="filter-container">
-      <div class="filter-options">
-        <div class="filter-group">
-          <label for="department">Department:</label>
-          <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
-            <option value="">All Departments</option>
-            <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
-          </select>
-        </div>
-        <div class="filter-group" *ngIf="selectedDepartment">
-          <label for="secondFilter">Program:</label>
-          <select id="secondFilter" [(ngModel)]="selectedSecondFilter">
-            <option value="">All Options</option>
-            <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="startDate">From:</label>
-          <input type="date" id="startDate" min="2024-01-01">
-        </div>
-        <div class="filter-group">
-          <label for="endDate">To:</label>
-          <input type="date" id="endDate" min="2024-01-01">
-        </div>
+   <!-- Filter Section -->
+   <div class="filter-container">
+    <div class="filter-options">
+      <div class="filter-group">
+        <label for="department">Department:</label>
+        <select id="department" [(ngModel)]="selectedDepartment" (ngModelChange)="applyFilters()">
+          <option value="">All Departments</option>
+          <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+        </select>
+      </div>
+      <div class="filter-group" *ngIf="selectedDepartment">
+        <label for="secondFilter">Program:</label>
+        <select id="secondFilter" [(ngModel)]="selectedSecondFilter" (ngModelChange)="applyFilters()">
+          <option value="">All Options</option>
+          <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="startDate">From:</label>
+        <input type="date" id="startDate" [(ngModel)]="startDate" min="2024-01-01" (ngModelChange)="applyFilters()">
+      </div>
+      <div class="filter-group">
+        <label for="endDate">To:</label>
+        <input type="date" id="endDate" [(ngModel)]="endDate" min="2024-01-01" (ngModelChange)="applyFilters()">
       </div>
     </div>
+  </div>
 
 
     <!-- Print button -->

@@ -18,29 +18,55 @@ export class ResformComponent implements OnInit {
   requestForm: FormGroup;
   [x: string]: any;
 
+  // user = {
+  //   id: '',
+  //   name: '',
+  //   gender: '',
+  //   department: '',
+  //   program: {
+  //     department_short: ''
+  //   },
+  //   patron: {
+  //     hours_allowed: '',
+  //     patron: '',
+  //     fine: ''
+  //   }
+  // }
+  // book = {
+  //   accession: '',
+  //   title: '',
+  //   author: '',
+  //   location: ''
+  // }
+  // admin: any;
+  // patrons: any;
+  // fine = 0;
+
   user = {
-    id: '',
-    name: '',
-    gender: '',
+    id:'',
+    patron:'',
+    first_name: '',
+    last_name: '',
     department: '',
-    program: {
-      department_short: ''
-    },
-    patron: {
-      hours_allowed: '',
-      patron: '',
-      fine: ''
-    }
-  }
+    gender: '',
+    books_allowed: '',
+    fine: '',
+    name: '',
+    hours_allowed: '',
+    count: 0,
+  } 
   book = {
     accession: '',
     title: '',
     author: '',
     location: ''
   }
-  admin: any;
+  admin = {
+    id: '',
+    position: ''
+  }
+
   patrons: any;
-  fine = 0;
 
   constructor(
     private dialog : MatDialog,
@@ -112,35 +138,72 @@ export class ResformComponent implements OnInit {
     let target = event.target as HTMLInputElement;
     this.ds.get('circulation/get-user/' + target.value).subscribe({
       next: (res: any) => {
+        // this.user.id=res.id;
+        // this.user.name=res.first_name+' '+res.last_name;
+        // this.user.program.department_short=res.program.department_short;
+        // this.user.gender=res.gender;
+        // this.user.patron.fine=res.patron.fine;
+        // this.user.patron.patron=res.patron.patron
+        // console.log(res)
         this.user.id=res.id;
-        this.user.name=res.first_name+' '+res.last_name;
-        this.user.program.department_short=res.program.department_short;
+        this.user.name=res.first_name+' '+res.last_name+' ';
         this.user.gender=res.gender;
-        this.user.patron.fine=res.patron.fine;
-        this.user.patron.patron=res.patron.patron
-        console.log(res)
+        this.user.department=res.department;
+        this.user.hours_allowed=res.hours_allowed;
+        this.user.patron=res.patron;
+        this.user.fine=res.fine;
       }
     })
   }
 
+  // getBook(event: Event) {
+  //   let target = event.target as HTMLInputElement;
+  //   this.ds.get('circulation/get-book' + target.value).subscribe({
+  //     next: (res: any) => {
+  //       console.log(res)
+  //       let authors = JSON.parse(res.authors);
+  //       authors.forEach(((x:any,index:any) => {
+
+  //         this.book.author=this.book.author+x;
+  //         if(index != authors.length - 1)
+  //           this.book.author = this.book.author+', ';
+  //       }));
+  //       this.book.title=res.title;
+  //       this.book.location=res.location;
+        
+  //     },
+  //     error:(err:any)=>console.log(err)
+  //   })
+  // }
+
   getBook(event: Event) {
     let target = event.target as HTMLInputElement;
-    this.ds.get('circulation/get-book/' + target.value).subscribe({
-      next: (res: any) => {
-        console.log(res)
-        let authors = JSON.parse(res.authors);
-        authors.forEach(((x:any,index:any) => {
+    let query = target.value; // This will be either accession or title
 
-          this.book.author=this.book.author+x;
-          if(index != authors.length - 1)
-            this.book.author = this.book.author+', ';
-        }));
-        this.book.title=res.title;
-        this.book.location=res.location;
-        
+    // Determine if the value should be treated as title or accession
+    let isTitle = this.isTitle(query); // Use the method defined in the same class
+
+    let url = 'circulation/get-book';
+    let params = isTitle ? `?title=${encodeURIComponent(query)}` : `?accession=${encodeURIComponent(query)}`;
+
+    this.ds.get(url + params).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        let authors = JSON.parse(res.authors);
+        this.book.author = authors.join(', ');  // Join authors with comma and space
+        this.book.title = res.title;
+        this.book.location = res.location;
+        this.book.accession = res.accession;
       },
-      error:(err:any)=>console.log(err)
-    })
+      error: (err: any) => console.log(err)
+    });
+  }
+
+  // Method to determine if the query is a title
+  isTitle(query: string): boolean {
+    // Implement logic to determine if the query is a title
+    // Example: checking for spaces and a reasonable length for a title
+    return query.includes(' ') && query.length > 10; // Adjust the condition as needed
   }
 
   getAdmin(event: Event) {

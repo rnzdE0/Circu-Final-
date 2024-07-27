@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import jsPDF from 'jspdf';
+import { HttpParams } from '@angular/common/http';
 import { AuthService } from '../../../../../services/auth.service';
 import html2canvas from 'html2canvas';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,10 +11,12 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './top.component.html',
   styleUrl: './top.component.scss'
 })
-export class TopComponent implements OnInit{
-  displayedColumns: string[] = ['Patron', 'Name', 'ID', 'Department', 'Program', 'Borrow Count']
+export class TopComponent implements OnInit {
+  displayedColumns: string[] = ['Patron', 'Name', 'ID', 'Department', 'Program', 'Borrow Count'];
   selectedDepartment: string = '';
-  selectedSecondFilter: string = '';
+  selectedProgram: string = '';
+  startDate: string = '';
+  endDate: string = '';
   departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
   secondFilterOptions: { [key: string]: string[] } = {
     CBA: ['BSA', 'BSCA', 'BSBA-FM', 'BSBA-HRM', 'BSBA-MKT'],
@@ -22,24 +25,11 @@ export class TopComponent implements OnInit{
     CHTM: ['BSHM', 'BSTM'],
     CAHS: ['BSN', 'BSM', 'GM']
   };
-  
-isProgramChartVisible: any;
-// downloadPDF() {
-// throw new Error('Method not implemented.');
-// }
-// downloadFile(arg0: string) {
-// throw new Error('Method not implemented.');
-// }
-// export(arg0: string) {
-// throw new Error('Method not implemented.');
-// }
-//   // for printing
-// print() {
-// throw new Error('Method not implemented.');
-// }
+
+  isProgramChartVisible: boolean = false;
   topChart: any;
-  isLoading= true;
-  dataSource= new MatTableDataSource;
+  isLoading: boolean = true;
+  dataSource = new MatTableDataSource();
 
 
   constructor(private authservice: AuthService) { }
@@ -127,59 +117,139 @@ isProgramChartVisible: any;
     return '../assets/img/gclibrary.png';
   }
  
-
-
   ngOnInit(): void {
-    this.authservice.topBorrowers().subscribe(
-      (data: any) => {
-        const labels = data.map((item: any) => '' + item.last_name);
-        const counts = data.map((item: any) => item.borrow_count);
+    this.applyFilters(); // Initial load
+  }
 
-        const barCanvas = document.getElementById('topChart');
-        this.topChart = new Chart('topChart', {
-          type: 'bar',
-          data: {
-            labels: labels,
-            datasets: [{
-              data: counts,
-              backgroundColor: this.getColorGradient(data.length),
-              borderWidth: 1
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                display: false // Hide the legend
-              }
-            },
-            indexAxis: 'x',
-            scales: {
-              y: {
-                ticks: {
-                  stepSize: 1
-                }
-              }
-            }
-          },
-        });
+  onDepartmentChange() {
+    this.selectedProgram = ''; // Reset the selected program when department changes
+    this.isProgramChartVisible = this.selectedDepartment !== '';
+  }
+
+  applyFilters(): void {
+    let params = new HttpParams();
+
+    if (this.selectedDepartment) {
+      params = params.set('department', this.selectedDepartment);
+    }
+    if (this.selectedProgram) {
+      params = params.set('program', this.selectedProgram);
+    }
+    if (this.startDate) {
+      params = params.set('date_from', this.startDate);
+    }
+    if (this.endDate) {
+      params = params.set('date_to', this.endDate);
+    }
+
+    this.authservice.topBorrowers(params).subscribe(
+      (data: any) => {
+        this.renderChart(data);
+        this.dataSource.data = data;
+        this.isLoading = false;
       },
       (error) => {
-        console.error('Error fetching most borrowed books:', error);
+        console.error('Error fetching top borrowers:', error);
+        this.isLoading = false;
       }
     );
   }
 
-  getColorGradient(numBars: number): string[] {
-    // Generate a gradient of colors based on the number of bars
-    const colors = ['#FF5733', '#FFC300', '#DAF7A6', '#4CAF50', '#3498DB'];
-    const gradient = [];
-    for (let i = 0; i < numBars; i++) {
-      gradient.push(colors[i % colors.length]);
+  renderChart(data: any): void {
+    const labels = data.map((item: any) => `${item.first_name} ${item.last_name}`);
+    const counts = data.map((item: any) => item.borrow_count);
+
+    if (this.topChart) {
+      this.topChart.destroy();
     }
-    return gradient;
+
+    const barCanvas = document.getElementById('topChart') as HTMLCanvasElement;
+    this.topChart = new Chart(barCanvas, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: counts,
+          backgroundColor: this.getColorGradient(data.length),
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false // Hide the legend
+          }
+        },
+        indexAxis: 'x',
+        scales: {
+          y: {
+            ticks: {
+              stepSize: 1
+            }
+          }
+        }
+      }
+    });
   }
-  onDepartmentChange(): void {
-    this.selectedSecondFilter = '';
+
+  getColorGradient(length: number): string[] {
+    // Generate a gradient of colors based on the number of items
+    return Array(length).fill('rgba(75, 192, 192, 0.6)');
   }
+
+
+  // ngOnInit(): void {
+  //   this.authservice.topBorrowers().subscribe(
+  //     (data: any) => {
+  //       const labels = data.map((item: any) => '' + item.last_name);
+  //       const counts = data.map((item: any) => item.borrow_count);
+
+  //       const barCanvas = document.getElementById('topChart');
+  //       this.topChart = new Chart('topChart', {
+  //         type: 'bar',
+  //         data: {
+  //           labels: labels,
+  //           datasets: [{
+  //             data: counts,
+  //             backgroundColor: this.getColorGradient(data.length),
+  //             borderWidth: 1
+  //           }]
+  //         },
+  //         options: {
+  //           responsive: true,
+  //           plugins: {
+  //             legend: {
+  //               display: false // Hide the legend
+  //             }
+  //           },
+  //           indexAxis: 'x',
+  //           scales: {
+  //             y: {
+  //               ticks: {
+  //                 stepSize: 1
+  //               }
+  //             }
+  //           }
+  //         },
+  //       });
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching most borrowed books:', error);
+  //     }
+  //   );
+  // }
+
+  // getColorGradient(numBars: number): string[] {
+  //   // Generate a gradient of colors based on the number of bars
+  //   const colors = ['#FF5733', '#FFC300', '#DAF7A6', '#4CAF50', '#3498DB'];
+  //   const gradient = [];
+  //   for (let i = 0; i < numBars; i++) {
+  //     gradient.push(colors[i % colors.length]);
+  //   }
+  //   return gradient;
+  // }
+  // onDepartmentChange(): void {
+  //   this.selectedSecondFilter = '';
+  // }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import Chart from 'chart.js/auto';
 import { AuthService } from '../../../../../services/auth.service';
 
@@ -27,7 +28,7 @@ export class GraphComponent implements OnInit {
   barChart: any;
   isProgramChartVisible: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private http: HttpClient) { }
 
   //png download
   async downloadPNG(): Promise<void> {
@@ -135,10 +136,35 @@ export class GraphComponent implements OnInit {
     this.fetchDataAndRenderCharts();
   }
 
+  onFilterChange(): void {
+    this.fetchDataAndRenderCharts();
+  }
+
+  // fetchDataAndRenderCharts(): void {
+  //   this.authService.getBorrowersReport().subscribe(
+  //     (data: any) => {
+  //       console.log('Received data from backend:', data);
+  //       this.departmentData = data.programsCount;
+  //       this.genderData = data.genderCount;
+  //       this.renderCharts();
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   );
+  // }
+
   fetchDataAndRenderCharts(): void {
-    this.authService.getBorrowersReport().subscribe(
+    const params = new HttpParams()
+      .set('department', this.selectedDepartment || '')
+      .set('program', this.selectedSecondFilter || '')
+      .set('date_from', this.startDate || '')
+      .set('date_to', this.endDate || '');
+
+    this.authService.getBorrowersReport(params).subscribe(
       (data: any) => {
         console.log('Received data from backend:', data);
+        // Assuming data contains departmentData and genderData
         this.departmentData = data.programsCount;
         this.genderData = data.genderCount;
         this.renderCharts();
@@ -149,10 +175,72 @@ export class GraphComponent implements OnInit {
     );
   }
 
+  // renderCharts(): void {
+  //   // Pie chart || department borrowers count
+  //   const pieCanvas = document.getElementById('pieChart');
+  //   this.pieChart = new Chart('pieChart', {
+  //     type: 'pie',
+  //     data: {
+  //       labels: Object.keys(this.departmentData),
+  //       datasets: [{
+  //         data: Object.values(this.departmentData),
+  //         backgroundColor: ['rgb(15, 127, 228, 1)', 'orange', 'pink', 'red', 'yellow'], 
+  //       }]
+  //     },
+  //     options: {
+  //       responsive: true,
+  //       maintainAspectRatio: false,
+  //       plugins: {
+  //         title: {
+  //           display: true,
+  //           text: 'Book Borrowers by Department',
+  //           font: {
+  //             weight: 'bold' // Make the text bold
+  //           }
+  //         }
+  //       }
+  //     }
+  //   });
+
+  //   // Bar chart || Gender Borrow Count
+  //   const barCanvas = document.getElementById('barChart');
+  //   this.barChart = new Chart('barChart', {
+  //     type: 'bar',
+  //     data: {
+  //       labels: ['Male', 'Female'],
+  //       datasets: [{
+  //         data: Object.values(this.genderData),
+  //         backgroundColor: ['rgb(15, 172, 228, 1)', 'pink'],
+  //       }]
+  //     },
+  //     options: {
+  //       responsive: true,
+  //       maintainAspectRatio: false,
+  //       plugins: {
+  //           legend: {
+  //             display: false // Hide the legend
+  //           },
+  //           title: {
+  //           display: true,
+  //           text: 'Book Borrowers by Gender',
+  //           font: {
+  //             weight: 'bold' // Make the text bold
+  //           }
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
+
   renderCharts(): void {
-    // Pie chart || department borrowers count
-    const pieCanvas = document.getElementById('pieChart');
-    this.pieChart = new Chart('pieChart', {
+    // Destroy existing pie chart if it exists
+    if (this.pieChart) {
+      this.pieChart.destroy();
+    }
+
+    // Create new pie chart
+    const pieCanvas = document.getElementById('pieChart') as HTMLCanvasElement;
+    this.pieChart = new Chart(pieCanvas, {
       type: 'pie',
       data: {
         labels: Object.keys(this.departmentData),
@@ -169,16 +257,21 @@ export class GraphComponent implements OnInit {
             display: true,
             text: 'Book Borrowers by Department',
             font: {
-              weight: 'bold' // Make the text bold
+              weight: 'bold'
             }
           }
         }
       }
     });
 
-    // Bar chart || Gender Borrow Count
-    const barCanvas = document.getElementById('barChart');
-    this.barChart = new Chart('barChart', {
+    // Destroy existing bar chart if it exists
+    if (this.barChart) {
+      this.barChart.destroy();
+    }
+
+    // Create new bar chart
+    const barCanvas = document.getElementById('barChart') as HTMLCanvasElement;
+    this.barChart = new Chart(barCanvas, {
       type: 'bar',
       data: {
         labels: ['Male', 'Female'],
@@ -191,14 +284,14 @@ export class GraphComponent implements OnInit {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: {
-              display: false // Hide the legend
-            },
-            title: {
+          legend: {
+            display: false
+          },
+          title: {
             display: true,
             text: 'Book Borrowers by Gender',
             font: {
-              weight: 'bold' // Make the text bold
+              weight: 'bold'
             }
           }
         }

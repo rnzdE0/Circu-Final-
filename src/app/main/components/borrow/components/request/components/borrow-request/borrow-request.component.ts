@@ -18,19 +18,17 @@ export class BorrowRequestComponent implements OnInit {
   data: any
 
   user = {
-    id: '',
-    name: '',
-    gender: '',
+    id:'',
+    patron:'',
+    first_name: '',
+    last_name: '',
     department: '',
-    count:0,
-    program: {
-      department_short: ''
-    },
-    patron: {
-      hours_allowed: '',
-      patron: '',
-      fine:''
-    }
+    gender: '',
+    books_allowed: '',
+    fine: '',
+    name: '',
+    hours_allowed: '',
+    count: 0,
   } 
   book = {
     accession: '',
@@ -69,7 +67,7 @@ export class BorrowRequestComponent implements OnInit {
   ngOnInit(): void {
   //  this.bookSubmit();
   this.setCurrentDate();
-  console.log('User patron type:', this.user.patron.patron);
+  console.log('User patron type:', this.user.patron);
 
   // Initialize borrow_date with the current date
   this.borrowForm.controls['borrow_date'].setValue(this.currentDate);
@@ -81,7 +79,7 @@ export class BorrowRequestComponent implements OnInit {
         this.borrowForm.get('fine')?.setValue(res[0].fine);
 
 
-        this.setHoursAllowed(this.user.patron.patron);
+        this.setHoursAllowed(this.user.patron);
         console.log('hours_allowed set in component:', this.hours_allowed);
       }
     }) 
@@ -151,12 +149,11 @@ export class BorrowRequestComponent implements OnInit {
       next: (res: any) => {
         this.user.id=res.id;
         this.user.name=res.first_name+' '+res.last_name+' ';
-        // this.user.program.department=res.program.program;
         this.user.gender=res.gender;
-        this.user.program.department_short=res.program.department_short;
-        this.user.patron.hours_allowed=res.patron.hours_allowed;
-        this.user.patron.patron=res.patron.patron;
-        this.user.patron.fine=res.patron.fine;
+        this.user.department=res.department;
+        this.user.hours_allowed=res.hours_allowed;
+        this.user.patron=res.patron;
+        this.user.fine=res.fine;
         console.log(res)
       }
     })
@@ -177,36 +174,63 @@ export class BorrowRequestComponent implements OnInit {
         console.log(res)
       }
     })
-    this.ds.get('circulation/get-user/'+target.value).subscribe({
-      next: (res: any) => {
-        this.user.count=res.count;
-        console.log(res)
-      }
-    })
   }
 
     // this.admin.id=res.id;
     // this.admin.position=res.position; 
 
+  // getBook(event: Event) {
+  //   let target = event.target as HTMLInputElement;
+  //   this.ds.get('circulation/get-book/' + target.value).subscribe({
+  //     next: (res: any) => {
+  //       console.log(res)
+  //       let authors = JSON.parse(res.authors);
+  //       authors.forEach(((x:any,index:any) => {
+
+  //         this.book.author=this.book.author+x;
+  //         if(index != authors.length - 1)
+  //           this.book.author = this.book.author+', ';
+  //       }));
+  //       this.book.title=res.title;
+  //       this.book.location=res.location;
+        
+  //     },
+  //     error:(err:any)=>console.log(err)
+  //   })
+  // }
+
+  // Method to handle book retrieval
   getBook(event: Event) {
     let target = event.target as HTMLInputElement;
-    this.ds.get('circulation/get-book/' + target.value).subscribe({
-      next: (res: any) => {
-        console.log(res)
-        let authors = JSON.parse(res.authors);
-        authors.forEach(((x:any,index:any) => {
+    let query = target.value; // This will be either accession or title
 
-          this.book.author=this.book.author+x;
-          if(index != authors.length - 1)
-            this.book.author = this.book.author+', ';
-        }));
-        this.book.title=res.title;
-        this.book.location=res.location;
-        
+    // Determine if the value should be treated as title or accession
+    let isTitle = this.isTitle(query); // Use the method defined in the same class
+
+    let url = 'circulation/get-book';
+    let params = isTitle ? `?title=${encodeURIComponent(query)}` : `?accession=${encodeURIComponent(query)}`;
+
+    this.ds.get(url + params).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        let authors = JSON.parse(res.authors);
+        this.book.author = authors.join(', ');  // Join authors with comma and space
+        this.book.title = res.title;
+        this.book.location = res.location;
+        this.book.accession = res.accession;
       },
-      error:(err:any)=>console.log(err)
-    })
+      error: (err: any) => console.log(err)
+    });
   }
+
+  // Method to determine if the query is a title
+  isTitle(query: string): boolean {
+    // Implement logic to determine if the query is a title
+    // Example: checking for spaces and a reasonable length for a title
+    return query.includes(' ') && query.length > 10; // Adjust the condition as needed
+  }
+
+  
 
 
   bookSubmit() {

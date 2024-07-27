@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HeaderService } from './header.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,  HttpParams } from '@angular/common/http';
 import { response } from 'express';
 import { Observable, tap } from 'rxjs';
 
@@ -81,21 +81,38 @@ export class AuthService {
     return this.http.get(this.url + 'reservation-list/online', {headers: this.headers.get()})
   }
 
-  public getBorrowersReport(){
-    return this.http.get(this.url + 'circulation/report', {headers: this.headers.get() })
+  getBorrowersReport(params: HttpParams) {
+    return this.http.get(this.url + 'circulation/report', { 
+      headers: this.headers.get(),
+      params: params
+    });
+  }
+
+  topBorrowers(params: HttpParams) {
+    return this.http.get(this.url + 'circulation/topborrowers', {
+      headers: this.headers.get(),
+      params: params
+    });
+  }
+
+  mostBorrowedBook(params: HttpParams) {
+    return this.http.get(this.url + 'circulation/mostborrowed', {
+      headers: this.headers.get(),
+      params: params
+    });
   }
 
   public getReturned(){
     return this.http.get(this.url + 'circulation/returned-list', {headers: this.headers.get() })
   }
 
-  public mostBorrowedBook(){
-    return this.http.get(this.url + 'mostborrowed', {headers: this.headers.get() })
-  }
+  // public mostBorrowedBook(){
+  //   return this.http.get(this.url + 'mostborrowed', {headers: this.headers.get() })
+  // }
 
-  public topBorrowers(){
-    return this.http.get(this.url + 'topborrowers', {headers: this.headers.get() })
-  }
+  // public topBorrowers(){
+  //   return this.http.get(this.url + 'topborrowers', {headers: this.headers.get() })
+  // }
 
   public getqueue(){
     return this.http.get(this.url + 'queue', {headers: this.headers.get() })

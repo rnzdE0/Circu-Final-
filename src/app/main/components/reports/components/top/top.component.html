@@ -1,127 +1,113 @@
 <body>
-  
   <div class="container">
     <p class="title">Top 10 Borrowers</p>
- 
-  <!-- filter -->
- 
-  <div class="filter-container">
-   <div class="filter-options">
-     <div class="filter-group">
-       <label for="department">Department:</label>
-       <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
-         <option value="">All Departments</option>
-         <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
-       </select>
-     </div>
-     <div class="filter-group" *ngIf="selectedDepartment">
-       <label for="secondFilter">Program:</label>
-       <select id="secondFilter" [(ngModel)]="selectedSecondFilter">
-         <option value="">All Options</option>
-         <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
-       </select>
-     </div>
-     <div class="filter-group">
-       <label for="startDate">From:</label>
-       <input type="date" id="startDate" min="2024-01-01">
-     </div>
-     <div class="filter-group">
-       <label for="endDate">To:</label>
-       <input type="date" id="endDate" min="2024-01-01">
-     </div>
-   </div>
- </div>
- 
- 
-     <div class="parent-container">
-       <div class="menu-container">
-         <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
-          <span class="tab-link-icon1"> <i class='bx bx-printer'></i> </span>
-           <span class="download-text">Download</span>
-         </button>
-         <mat-menu #menu="matMenu">
-           <button mat-menu-item (click)="downloadPNG()">
+
+     <!-- Filter Section -->
+     <div class="filter-container">
+      <div class="filter-options">
+        <div class="filter-group">
+          <label for="department">Department:</label>
+          <select id="department" [(ngModel)]="selectedDepartment" (ngModelChange)="applyFilters()">
+            <option value="">All Departments</option>
+            <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+          </select>
+        </div>
+        <div class="filter-group" *ngIf="selectedDepartment">
+          <label for="secondFilter">Program:</label>
+          <select id="secondFilter" [(ngModel)]="selectedProgram" (ngModelChange)="applyFilters()">
+            <option value="">All Programs</option>
+            <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="startDate">From:</label>
+          <input type="date" id="startDate" [(ngModel)]="startDate" min="2024-01-01" (ngModelChange)="applyFilters()">
+        </div>
+        <div class="filter-group">
+          <label for="endDate">To:</label>
+          <input type="date" id="endDate" [(ngModel)]="endDate" min="2024-01-01" (ngModelChange)="applyFilters()">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Download Options -->
+    <div class="parent-container">
+      <div class="menu-container">
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+          <span class="tab-link-icon1"><i class='bx bx-printer'></i></span>
+          <span class="download-text">Download</span>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="downloadPNG()">
             <span class="download-text1">Save as PNG</span>
-           </button>
-           <button mat-menu-item (click)="downloadPDF()">
+          </button>
+          <button mat-menu-item (click)="downloadPDF()">
             <span class="download-text1">Save as PDF</span>
-           </button>
-           <button mat-menu-item (click)="downloadPDF()">
-            <span class="download-text1">Save as XSLX</span>
-           </button>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
 
-           <!-- <button mat-menu-item (click)="downloadFile('svg')">
-             <mat-icon>image</mat-icon> Download SVG
-           </button>
-           <button mat-menu-item [disabled]="isProgramChartVisible" (click)="downloadPDF()">
-             <mat-icon>picture_as_pdf</mat-icon> Download PDF
-           </button> -->
-         </mat-menu>
-       </div>
-     </div>
- 
-     <hr>
-       <!-- chart for most top 10 book borrower -->
- <div style="display: flex; justify-content: space-around;">
-   <div style="width: 60%;">
-     <canvas id="topChart" ></canvas>
-   </div>
- </div>
+    <hr>
 
- <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
-  
- <div class="table">
-          
-  <table mat-table [dataSource]="dataSource" *ngIf="!isLoading">
-    
-        <!-- Name Column -->
+    <!-- Chart for Top 10 Borrowers -->
+    <div style="display: flex; justify-content: space-around;">
+      <div style="width: 60%;">
+        <canvas id="topChart"></canvas>
+      </div>
+    </div>
+
+    <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+
+    <!-- Table for Top Borrowers Data -->
+    <div class="table" *ngIf="!isLoading">
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- Patron Column -->
         <ng-container matColumnDef="Patron">
-          <th mat-header-cell *matHeaderCellDef class="tbl-head"> Patron </th>
-          <td mat-cell *matCellDef="let element"></td>
+          <th mat-header-cell *matHeaderCellDef class="tbl-head">Patron</th>
+          <td mat-cell *matCellDef="let element">{{element.patron}}</td>
         </ng-container>
 
-        <!-- Gender Column -->
+        <!-- Name Column -->
         <ng-container matColumnDef="Name">
-          <th mat-header-cell *matHeaderCellDef class="tbl-head"> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+          <th mat-header-cell *matHeaderCellDef class="tbl-head">Name</th>
+          <td mat-cell *matCellDef="let element">{{element.name}}</td>
         </ng-container>
 
-        <!-- Email Column -->
+        <!-- ID Column -->
         <ng-container matColumnDef="ID">
-          <th mat-header-cell *matHeaderCellDef class="tbl-head"> ID Number </th>
-          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          <th mat-header-cell *matHeaderCellDef class="tbl-head">ID Number</th>
+          <td mat-cell *matCellDef="let element">{{element.id}}</td>
         </ng-container>
 
         <!-- Department Column -->
         <ng-container matColumnDef="Department">
-          <th mat-header-cell *matHeaderCellDef class="tbl-head"> Department </th>
-          <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+          <th mat-header-cell *matHeaderCellDef class="tbl-head">Department</th>
+          <td mat-cell *matCellDef="let element">{{element.department}}</td>
         </ng-container>
 
         <!-- Program Column -->
         <ng-container matColumnDef="Program">
-          <th mat-header-cell *matHeaderCellDef class="tbl-head"> Program </th>
-          <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+          <th mat-header-cell *matHeaderCellDef class="tbl-head">Program</th>
+          <td mat-cell *matCellDef="let element">{{element.program}}</td>
         </ng-container>
 
-        <!-- Action Column -->
+        <!-- Borrow Count Column -->
         <ng-container matColumnDef="Borrow Count">
-          <th mat-header-cell *matHeaderCellDef class="tbl-head"> Borrow Count </th>
-          <td mat-cell *matCellDef="let element"> 
-
-          </td>
+          <th mat-header-cell *matHeaderCellDef class="tbl-head">Borrow Count</th>
+          <td mat-cell *matCellDef="let element">{{element.borrow_count}}</td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-    
-    
+
       <mat-paginator class="page" [pageSizeOptions]="[10, 15]"
-      showFirstLastButtons
-      aria-label="Select page of users">
+        showFirstLastButtons
+        aria-label="Select page of users">
       </mat-paginator>
-   </div>
- </div>
- </body>
- 
+    </div>
+  </div>
+</body>

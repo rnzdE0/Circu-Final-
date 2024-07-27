@@ -3,6 +3,7 @@ export interface List {
    fname:string;
    lname:string;
    email:string;
+   program: string;
    department:string;
    date_borrowed:string;
    date_retuened:string;
