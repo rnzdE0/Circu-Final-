@@ -38,13 +38,13 @@
             <!-- Department Column -->
             <ng-container matColumnDef="Department">
               <th mat-header-cell *matHeaderCellDef class="tbl-head"> Department </th>
-              <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.department?.department_short || 'N/A'}} </td>
             </ng-container>
 
             <!-- Program Column -->
             <ng-container matColumnDef="Program">
               <th mat-header-cell *matHeaderCellDef class="tbl-head"> Program </th>
-              <td mat-cell *matCellDef="let element"> {{element.program}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.department?.program_short || 'N/A'}} </td>
             </ng-container>
 
             <!-- Action Column -->

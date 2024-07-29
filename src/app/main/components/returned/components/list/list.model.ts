@@ -4,7 +4,10 @@ export interface List {
    lname:string;
    email:string;
    program: string;
-   department:string;
+   department: {
+      program_short: string;
+      department_short: string;
+   };
    date_borrowed:string;
    date_retuened:string;
    title:string;

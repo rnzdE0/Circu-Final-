@@ -27,6 +27,7 @@ export class GraphComponent implements OnInit {
   pieChart: any;
   barChart: any;
   isProgramChartVisible: any;
+  isLoading = true;
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
@@ -168,6 +169,7 @@ export class GraphComponent implements OnInit {
         this.departmentData = data.programsCount;
         this.genderData = data.genderCount;
         this.renderCharts();
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error fetching data:', error);

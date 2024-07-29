@@ -47,8 +47,8 @@ export class UserTableComponent implements AfterViewInit {
       (data: any) => {
         console.log('Received data from backend:', data);
         console.log('Type of data:', typeof data);
-        this.userList = data as User[]; // Assign the fetched user data to the users array
-        this.dataSource.data = this.userList; // Initialize filteredUserList with all users
+        this.userList = data as User[];
+        this.dataSource.data = this.userList;
         this.dataSource.filterPredicate = ( data: User, filter: string ) => {
           return data.fname.toLowerCase().includes(filter) ||
           data.lname.toLowerCase().includes(filter) 

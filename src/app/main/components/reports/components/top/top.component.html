@@ -1,6 +1,6 @@
 <body>
   <div class="container">
-    <p class="title">Top 10 Borrowers</p>
+    <p class="title">Top Borrowers</p>
 
      <!-- Filter Section -->
      <div class="filter-container">
@@ -52,6 +52,7 @@
     <hr>
 
     <!-- Chart for Top 10 Borrowers -->
+    <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
     <div style="display: flex; justify-content: space-around;">
       <div style="width: 60%;">
         <canvas id="topChart"></canvas>
@@ -67,25 +68,25 @@
         <!-- Patron Column -->
         <ng-container matColumnDef="Patron">
           <th mat-header-cell *matHeaderCellDef class="tbl-head">Patron</th>
-          <td mat-cell *matCellDef="let element">{{element.patron}}</td>
+          <td mat-cell *matCellDef="let element">{{element.role}}</td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="Name">
           <th mat-header-cell *matHeaderCellDef class="tbl-head">Name</th>
-          <td mat-cell *matCellDef="let element">{{element.name}}</td>
+          <td mat-cell *matCellDef="let element">{{element.first_name}} {{element.last_name}}</td>
         </ng-container>
 
         <!-- ID Column -->
         <ng-container matColumnDef="ID">
           <th mat-header-cell *matHeaderCellDef class="tbl-head">ID Number</th>
-          <td mat-cell *matCellDef="let element">{{element.id}}</td>
+          <td mat-cell *matCellDef="let element">{{element.user_id}}</td>
         </ng-container>
 
         <!-- Department Column -->
         <ng-container matColumnDef="Department">
           <th mat-header-cell *matHeaderCellDef class="tbl-head">Department</th>
-          <td mat-cell *matCellDef="let element">{{element.department}}</td>
+          <td mat-cell *matCellDef="let element">{{element.department_short}}</td>
         </ng-container>
 
         <!-- Program Column -->
@@ -104,7 +105,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
-      <mat-paginator class="page" [pageSizeOptions]="[10, 15]"
+      <mat-paginator class="page" pageSize="10"
         showFirstLastButtons
         aria-label="Select page of users">
       </mat-paginator>

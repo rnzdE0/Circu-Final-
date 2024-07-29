@@ -58,7 +58,7 @@
   <!-- chart for most borrowed books -->
 <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
   
-  <div style="display: flex; justify-content: space-around;">
+  <div style="display: flex; justify-content: space-around;" >
     <div style="width: 80%;">
       <canvas id="mostChart" ></canvas>
     </div>
@@ -67,37 +67,38 @@
 
  
   <div class="table">
+    <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
           
-    <table mat-table [dataSource]="dataSource" >
+    <table mat-table [dataSource]="dataSource" *ngIf="!isLoading">
     
       <ng-container matColumnDef="Accession Number">
         <th mat-header-cell *matHeaderCellDef class="tbl-head"> Accession Number </th>
-        <td mat-cell *matCellDef="let element"> Missing Accession </td>
+        <td mat-cell *matCellDef="let element"> {{element.book_id}} </td>
       </ng-container>
   
       <ng-container matColumnDef="Location">
         <th mat-header-cell *matHeaderCellDef class="tbl-head"> Location </th>
-        <td mat-cell *matCellDef="let element"> Missing Location </td>
+        <td mat-cell *matCellDef="let element"> {{element.language}} </td>
       </ng-container>
   
       <ng-container matColumnDef="Book Title">
         <th mat-header-cell *matHeaderCellDef class="tbl-head"> Book Title </th>
-        <td mat-cell *matCellDef="let element"> Missing Book Title </td>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
       </ng-container>
   
       <ng-container matColumnDef="Publisher">
         <th mat-header-cell *matHeaderCellDef class="tbl-head"> Publisher </th>
-        <td mat-cell *matCellDef="let element"> Missing Publisher </td>
+        <td mat-cell *matCellDef="let element"> {{element.publisher}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Date Published">
         <th mat-header-cell *matHeaderCellDef class="tbl-head"> Date Published </th>
-        <td mat-cell *matCellDef="let element"> Missing Date Published </td>
+        <td mat-cell *matCellDef="let element"> {{element.acquired_date}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Borrow Count">
         <th mat-header-cell *matHeaderCellDef class="tbl-head"> Borrow Count </th>
-        <td mat-cell *matCellDef="let element"> Missing Borrow Count </td>
+        <td mat-cell *matCellDef="let element"> {{element.borrow_count}} </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

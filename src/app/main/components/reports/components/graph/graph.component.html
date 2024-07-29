@@ -5,35 +5,7 @@
   <div class="container">
 
     <p class="title"> Report </p>
-
-      <!-- filter -->
-      <!-- <div class="filter-container">
-        <div class="filter-options">
-          <div class="filter-group">
-            <label for="department">Department:</label>
-            <select id="department" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
-              <option value="">All Departments</option>
-              <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
-            </select>
-          </div>
-          <div class="filter-group" *ngIf="selectedDepartment">
-            <label for="secondFilter">Program:</label>
-            <select id="secondFilter" [(ngModel)]="selectedSecondFilter">
-              <option value="">All Options</option>
-              <option *ngFor="let option of secondFilterOptions[selectedDepartment]" [value]="option">{{ option }}</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label for="startDate">From:</label>
-            <input type="date" id="startDate" min="2024-01-01">
-          </div>
-          <div class="filter-group">
-            <label for="endDate">To:</label>
-            <input type="date" id="endDate" min="2024-01-01">
-          </div>
-        </div>
-      </div> -->
-
+    
       <div class="filter-container">
         <div class="filter-options">
           <div class="filter-group">
@@ -92,8 +64,9 @@
       <hr>
 
       <!-- Pie chart and bar graph -->
+      <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
       
-      <div class="chartsBx">
+      <div class="chartsBx" *ngIf="!isLoading">
         <div class="chart" style="margin-left: 60px;">
           <canvas #chart1 class="chart-canvas" id="pieChart"></canvas>
         </div>

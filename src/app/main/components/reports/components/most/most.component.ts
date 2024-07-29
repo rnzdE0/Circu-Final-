@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { HttpParams } from '@angular/common/http';
 import { AuthService } from '../../../../../services/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-most',
   templateUrl: './most.component.html',
   styleUrl: './most.component.scss'
 })
-export class MostComponent implements OnInit {
-  displayedColumns: string[] = ['Accession Number', 'Location', 'Published', 'Date Published', 'Borrow Count'];
+export class MostComponent implements AfterViewInit {
+  displayedColumns: string[] = ['Accession Number', 'Location', 'Book Title', 'Publisher', 'Date Published', 'Borrow Count'];
   selectedDepartment: string = '';
   selectedSecondFilter: string = '';
   startDate: string = '';
@@ -25,6 +26,8 @@ export class MostComponent implements OnInit {
     CHTM: ['BSHM', 'BSTM'],
     CAHS: ['BSN', 'BSM', 'GM']
   };
+
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   isLoading = true;
   dataSource = new MatTableDataSource<any>();
@@ -119,8 +122,9 @@ export class MostComponent implements OnInit {
     return '../assets/img/gclibrary.png';
   }
 
-  ngOnInit(): void {
-    this.applyFilters(); // Initial load
+  ngAfterViewInit(): void {
+    this.applyFilters();
+    this.dataSource.paginator = this.paginator;
   }
 
   applyFilters(): void {
@@ -153,24 +157,26 @@ export class MostComponent implements OnInit {
   }
 
   renderChart(data: any): void {
+
     const labels = data.map((item: any) => item.title);
     const counts = data.map((item: any) => item.borrow_count);
 
-    if (this.mostChart) {
-      this.mostChart.destroy();
-    }
+        const maxEntries = 10;
+        const limitedLabels = labels.slice(0, maxEntries);
+        const limitedCounts = counts.slice(0, maxEntries);
 
-    const barCanvas = document.getElementById('mostChart') as HTMLCanvasElement;
-    this.mostChart = new Chart(barCanvas, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          data: counts,
-          backgroundColor: this.getColorGradient(data.length),
-          borderWidth: 1
-        }]
-      },
+        const barCanvas = document.getElementById('mostChart');
+        this.isLoading = false;
+        this.mostChart = new Chart('mostChart', {
+          type: 'bar',
+           data: {
+            labels: limitedLabels, 
+            datasets: [{
+                data: limitedCounts, 
+                backgroundColor: '#264834',
+                borderWidth: 1
+            }]
+        },
       options: {
         responsive: true,
         plugins: {
