@@ -7,6 +7,7 @@ export interface BorrowMaterial {
   title: string;
   status:string;
   fine:string;
+  accession:string;
 
   id: number;
   user_id: number;

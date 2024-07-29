@@ -54,8 +54,9 @@ export class TableComponent implements AfterViewInit {
         this.dataSource.data = this.borrowMaterials;
         this.dataSource.filterPredicate = (data: BorrowMaterial, filter: string) => {
           return data.name.toLowerCase().includes(filter) ||
-                 data.email.toLowerCase().includes(filter) ||
-                 data.title.toLowerCase().includes(filter);
+                  data.email.toLowerCase().includes(filter) ||
+                  data.title.toLowerCase().includes(filter) ||
+                  data.user_id.toString().includes(filter); 
                 //  ||
                 //  data.department.toLowerCase().includes(filter) ||
                 //  data.status.toLowerCase().includes(filter) ||
@@ -96,13 +97,13 @@ elements: any;
     this.Editpopup(data, 'edit Popup', EditPopupComponent);
   }
 
-  Editpopup(user_id: number, title: any, component:any) {
+  Editpopup(user_id: number, accession: string, component:any) {
     var _popup = this.dialog.open(component, {
       width: '55%',
       height: '760px',
       enterAnimationDuration: '100ms',
       exitAnimationDuration: '100ms',
-      data: user_id
+      data: user_id || accession
     });
     _popup.afterClosed().subscribe(result => {
       this.redirectToListPage();
