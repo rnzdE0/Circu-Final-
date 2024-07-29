@@ -42,14 +42,12 @@ export class ReservationPopupComponent {
     department: '',
     count:0,
     role: '',
-    patron: {
       patron:'',
       materials_allowed:'',
-      fine: ''
-    },
-    program: {
-      department: ''
-    }
+      fine: '',
+   
+    program: '',
+    
   } 
   book = {
     accession: '',
@@ -71,15 +69,19 @@ export class ReservationPopupComponent {
         this.user.gender=res.gender;
         this.user.department=res.department;
         this.user.role=res.role;
-        this.user.patron.patron=res.patron.patron;
-        this.user.patron.materials_allowed=res.patron.materials_allowed;
-        this.user.patron.fine=res.patron.fine;
+        this.user.patron=res.patron;
+        this.user.materials_allowed=res.books_allowed;
+        this.user.fine=res.fine;
         console.log(res)
       }
     })
   }
     getBook() {console.log(this.material.book_id);
-      this.ds.get('circulation/get-book/' + this.material.book_id ).subscribe({   
+
+      // Construct the URL with the query parameter
+    const params = `?accession=${encodeURIComponent(this.material.book_id)}`;
+    const url = 'circulation/get-book' + params;
+      this.ds.get(url).subscribe({   
         next: (res: any) => {
           console.log(res)
           let authors = JSON.parse(res.authors);
@@ -90,7 +92,7 @@ export class ReservationPopupComponent {
               this.book.author = this.book.author+', ';
           }));
           this.book.title=res.title;
-          this.book.location=res.location.location;
+          this.book.location=res.location;
           
         },
         error:(err:any)=>console.log(err)
