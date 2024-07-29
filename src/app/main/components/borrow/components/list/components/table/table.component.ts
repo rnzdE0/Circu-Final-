@@ -96,13 +96,13 @@ elements: any;
     this.Editpopup(data, 'edit Popup', EditPopupComponent);
   }
 
-  Editpopup(id: number, title: any, component:any) {
+  Editpopup(user_id: number, title: any, component:any) {
     var _popup = this.dialog.open(component, {
       width: '55%',
       height: '760px',
       enterAnimationDuration: '100ms',
       exitAnimationDuration: '100ms',
-      data: id
+      data: user_id
     });
     _popup.afterClosed().subscribe(result => {
       this.redirectToListPage();

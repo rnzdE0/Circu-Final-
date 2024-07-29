@@ -18,11 +18,11 @@ export class DeleteComponent {
    }
    
    submit(id: number){
-    this.ds.delete('delete-reservation/' + this.material.id).subscribe({
+    this.ds.put('circulation/cancel/' + id, {}).subscribe({
       next: () => {
         Swal.fire({
-          title: "Archiving complete!",
-          text: "Journal has been successfully archived.",
+          title: "Cancelation complete!",
+          text: "Succesfully cancelled.",
           icon: "success",
           confirmButtonText: 'Close',
           confirmButtonColor: "#777777",

@@ -157,26 +157,28 @@ export class MostComponent implements AfterViewInit {
   }
 
   renderChart(data: any): void {
-
     const labels = data.map((item: any) => item.title);
     const counts = data.map((item: any) => item.borrow_count);
-
-        const maxEntries = 10;
-        const limitedLabels = labels.slice(0, maxEntries);
-        const limitedCounts = counts.slice(0, maxEntries);
-
-        const barCanvas = document.getElementById('mostChart');
-        this.isLoading = false;
-        this.mostChart = new Chart('mostChart', {
-          type: 'bar',
-           data: {
-            labels: limitedLabels, 
-            datasets: [{
-                data: limitedCounts, 
-                backgroundColor: '#264834',
-                borderWidth: 1
-            }]
-        },
+  
+    const maxEntries = 10;
+    const limitedLabels = labels.slice(0, maxEntries);
+    const limitedCounts = counts.slice(0, maxEntries);
+  
+    // Check if the chart instance already exists and destroy it
+    if (this.mostChart) {
+      this.mostChart.destroy();
+    }
+  
+    this.mostChart = new Chart('mostChart', {
+      type: 'bar',
+      data: {
+        labels: limitedLabels, 
+        datasets: [{
+          data: limitedCounts, 
+          backgroundColor: '#264834',
+          borderWidth: 1
+        }]
+      },
       options: {
         responsive: true,
         plugins: {
@@ -194,7 +196,10 @@ export class MostComponent implements AfterViewInit {
         }
       }
     });
+  
+    this.isLoading = false;
   }
+  
 
   getColorGradient(numBars: number): string[] {
     const colors = ['#FF5733', '#FFC300', '#DAF7A6', '#4CAF50', '#3498DB'];

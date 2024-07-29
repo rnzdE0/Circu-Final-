@@ -62,7 +62,7 @@ export class BorrowRequestComponent implements OnInit {
       user_id: ["", Validators.required],
       borrow_date: ["", Validators.required],
       borrow_expiration: ["", Validators.required],
-      fine: ["", Validators.required],
+      fine: [this.user.fine || '', Validators.required],
     });
   }
  
@@ -81,8 +81,8 @@ export class BorrowRequestComponent implements OnInit {
       next: (res: any) => {
         console.log('Response from backend:', res);
         this.patrons = res;
-        this.borrowForm.get('fine')?.setValue(res[0].fine);
-
+        // this.borrowForm.get('fine')?.setValue(res[0].fine);
+        this.borrowForm.get('fine')?.setValue(this.user.fine);
 
         this.setHoursAllowed(this.user.patron);
         console.log('hours_allowed set in component:', this.hours_allowed);
@@ -158,6 +158,7 @@ export class BorrowRequestComponent implements OnInit {
         this.user.hours_allowed=res.hours_allowed;
         this.user.patron=res.patron;
         this.user.fine=res.fine;
+        this.borrowForm.get('fine')?.setValue(this.user.fine);
         console.log(res)
       }
     })

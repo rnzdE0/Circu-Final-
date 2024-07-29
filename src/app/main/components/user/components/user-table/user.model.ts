@@ -5,6 +5,7 @@ export interface User
   lname:string;
   gender:string;
   email:string;
+  department_short: string;
   patron: {
     patron: string;
   }

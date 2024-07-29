@@ -31,7 +31,7 @@ export class PushComponent {
     const url = 'circulation/fromreserve/book/';
 
     // Assuming this.material contains the necessary data
-    const {id, user_id, book_id, start_date, end_date, fine} = this.material; 
+    const {id, user_id, book_id, start_date, end_date, queue_position, fine} = this.material; 
     console.log('Extracted ID:', id);
     const payload = {
       id: material.id,
@@ -39,13 +39,14 @@ export class PushComponent {
       book_id: book_id, 
       borrow_date: start_date,
       borrow_expiration: end_date,
+      queue_position: queue_position,
       fine: fine
   
       // Add any other data you want to send here
     };
     console.log(this.material);
     // Use Angular HttpClient (this.ds.post) to send a POST request to your backend
-    this.ds.post(url + this.material.id, payload).subscribe(
+    this.ds.put(url + this.material.id, payload).subscribe(
       (response: any) => {
         
         console.log('Book borrowed successfully:', response);
