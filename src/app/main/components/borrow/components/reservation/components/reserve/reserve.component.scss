@@ -1,7 +1,11 @@
 main {
     background: #F5EFE6;
 }   
-
+.tab-link-icon2 i{
+  font-size: 33px;
+  margin-left: 15px;
+  color:#444444;
+}
 .search {
     display: inline-block;
     position: relative;
@@ -61,6 +65,7 @@ main {
     font-weight: 700;
     font-size: 40px;
     margin-top: 30px;
+    left: -5%;
 }
 
 // container
