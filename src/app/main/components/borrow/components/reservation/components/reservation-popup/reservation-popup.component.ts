@@ -72,8 +72,8 @@ export class ReservationPopupComponent {
         this.user.department=res.department;
         this.user.role=res.role;
         this.user.patron=res.patron;
-        this.user.materials_allowed=res.patron.materials_allowed;
-        this.user.fine=res.patron.fine;
+        this.user.materials_allowed=res.books_allowed;
+        this.user.fine=res.fine;
         console.log(res)
         this.isLoading = false;
       }
@@ -90,10 +90,15 @@ export class ReservationPopupComponent {
         next: (res: any) => {
           console.log(res);
           let authors = JSON.parse(res.authors);
-          this.book.author = authors.join(', ');  // Join authors with comma and space
-          this.book.title = res.title;
-          this.book.location = res.book_location.location_short;
-          this.isLoading = false;
+          authors.forEach(((x:any,index:any) => {
+  
+            this.book.author=this.book.author+x;
+            if(index != authors.length - 1)
+              this.book.author = this.book.author+', ';
+          }));
+          this.book.title=res.title;
+          this.book.location=res.location;
+          
         },
         error: (err: any) => console.log(err)
       });
