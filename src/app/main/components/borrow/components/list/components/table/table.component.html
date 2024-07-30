@@ -10,7 +10,10 @@
 
   </div>
 
-  <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+  <div class="loading"  *ngIf="isLoading">
+     <app-loadings></app-loadings>
+  </div>
+ 
 
   <div class="table">
     <table mat-table [dataSource]="dataSource" *ngIf="!isLoading">

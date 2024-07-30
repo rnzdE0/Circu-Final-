@@ -72,6 +72,40 @@ export class PushComponent {
         icon: 'my-swal-icon',
         confirmButton: 'my-swal-confirm-button'
       }
-    })
-  }}
+    });
+  
 
+  }
+
+//   updateBookStatus(success: any) {
+//     if (success) {
+//         Swal.fire({
+//             width: 300,
+//             title: "Book Borrowed!",
+//             icon: "success",
+//             iconColor: '#4F6F52',
+//             confirmButtonColor: '#4F6F52',
+//             customClass: {
+//                 popup: 'my-swal-popup',
+//                 icon: 'my-swal-icon',
+//                 confirmButton: 'my-swal-confirm-button'
+//             }
+//         });
+//     } else {
+//         Swal.fire({
+//             width: 300,
+//             title: "Error!",
+//             text: "Something went wrong. Please try again.",
+//             icon: "error",
+//             iconColor: '#F27474',
+//             confirmButtonColor: '#F27474',
+//             customClass: {
+//                 popup: 'my-swal-popup',
+//                 icon: 'my-swal-icon',
+//                 confirmButton: 'my-swal-confirm-button'
+//             }
+//         });
+//     }
+// }
+
+}

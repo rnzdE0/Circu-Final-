@@ -88,15 +88,11 @@ export class ReserveComponent implements AfterViewInit{
       data: id
     });
     _popup.afterClosed().subscribe(result => {
-      // this.redirectToListPage();
+      this.redirectToListPage();
       if(result === 'Changed Data') {
         this.fetchReserveList()
-        // this.fetchOnlineList()
       }
     });
-  }
-  getData() {
-    throw new Error('Method not implemented.');
   }
 
 

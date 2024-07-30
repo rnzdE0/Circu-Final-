@@ -3,9 +3,12 @@
   <div class="header">
     <p class="title">Borrow Details</p>
   </div>
-      
 
-      <div class="form">
+    <div class="loading" *ngIf="isLoading">
+       <app-loadings></app-loadings>   
+    </div>
+
+      <div class="form" *ngIf="!isLoading">
         
         <p class="user">User</p>
 
@@ -66,11 +69,11 @@
                 <label class="user-label">Title</label>
               </div>
               <!-- Number of materials -->
-              <div class="input-group">
+              <!-- <div class="input-group">
                 <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" disabled>
                 <label class="userlabel2" for="NumOfMat">No. of Materials</label>
                 <label for="NumOfMat" class="max">/ {{user.materials_allowed}}</label>
-              </div>
+              </div> -->
               </div>
 
               <div class="group2">
@@ -89,6 +92,7 @@
                   
               </div>
           </div>
+          
 
       <p class="staff">Staff</p>
         <div class="staffs">
@@ -138,7 +142,7 @@
             <!-- <a class="list" routerLink="/sample">List</a> -->            
             
             <a class="close" matDialogClose>Close</a>'
-            <a class="save" (click)="saveAlert()">Save</a>'
+            <!-- <a class="save" (click)="saveAlert()">Save</a>' -->
             <!-- <a class="reserve">Returned</a> -->
 
 

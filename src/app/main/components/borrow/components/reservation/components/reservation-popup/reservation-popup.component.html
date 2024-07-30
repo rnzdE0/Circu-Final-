@@ -3,9 +3,13 @@
   <div class="header">
     <p class="title">Reserve Details</p>
   </div>
+
+   <div class="loading" *ngIf="isLoading">
+      <app-loadings></app-loadings>   
+   </div>
       
 
-      <div class="form">
+      <div class="form" *ngIf="!isLoading">
         
         <p class="user">User</p>
 
@@ -39,12 +43,12 @@
 
             <!-- patron type (staff/student/faculty/.etc) -->
             <div class="input-group">
-              <input required="" type="text" name="text" autocomplete="off" class="input" [value]="user.patron.patron"  disabled>
+              <input required="" type="text" name="text" autocomplete="off" class="input" [value]="user.patron"  disabled>
               <label class="user-label">Patron type</label>
             </div>
             <!-- department id -->
             <div class="input-group">
-              <input required="" type="text" name="text" autocomplete="off" class="input" [value]="user.program" disabled>
+              <input required="" type="text" name="text" autocomplete="off" class="input" [value]="user.department" disabled>
               <label class="user-label">Department</label>
             </div>
 
@@ -53,43 +57,42 @@
 
         <p class="material">Book</p>
         <div class="materials">
-              <div class="group1">
-                <!-- Accession id -->
-              <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input" [value]="material.book_id" >
-                <label class="user-label">Accession Number</label>
-              </div> 
-                
-              <!-- book title -->
-              <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.title" disabled>
-                <label class="user-label">Title</label>
-              </div>
-              <!-- Number of materials -->
-              <div class="input-group">
-                <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" disabled>
-                <label class="userlabel2" for="NumOfMat">No. of Materials</label>
-                <label for="NumOfMat" class="max">/ {{user.patron.materials_allowed}}</label>
-              </div>
-       
-              </div>
-
-              <div class="group2">
-              <!-- Book Location -->
-                <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.location"   disabled>
-                  <label class="user-label">Location</label>
-                </div> 
-                  
-              <!-- book author -->
-                <div class="input-group">
-                  <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.author"   disabled>
-                  <label class="user-label">Author</label>
-                </div>
-
-                  
-              </div>
+          <div class="group1">
+            <!-- Accession id -->
+          <div class="input-group">
+            <input required="" type="text" name="text" autocomplete="off" class="input" [value]="material.book_id">
+            <label class="user-label">Accession Number</label>
+          </div> 
+            
+          <!-- book title -->
+          <div class="input-group">
+            <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.title" disabled>
+            <label class="user-label">Title</label>
           </div>
+          <!-- Number of materials -->
+          <!-- <div class="input-group">
+            <input required="" type="number" id="NumOfMat" name="NumOfMat" min="1" max="3" autocomplete="off" class="input2" disabled>
+            <label class="userlabel2" for="NumOfMat">No. of Materials</label>
+            <label for="NumOfMat" class="max">/ {{user.materials_allowed}}</label>
+          </div> -->
+          </div>
+
+          <div class="group2">
+          <!-- Book Location -->
+            <div class="input-group">
+              <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.location"   disabled>
+              <label class="user-label">Location</label>
+            </div> 
+              
+          <!-- book author -->
+            <div class="input-group">
+              <input required="" type="text" name="text" autocomplete="off" class="input" [value]="book.author"   disabled>
+              <label class="user-label">Author</label>
+            </div>
+
+              
+          </div>
+      </div>
 
       <!-- <p class="staff">Staff</p>
         <div class="staffs">
@@ -137,7 +140,7 @@
             <!-- <button class="reserve" (click)="openDialog()">Reserve</button> -->
             <!-- <a class="list" routerLink="/sample">List</a> -->            
             <a class="close" matDialogClose>Close</a>
-            <a class="save" (click)="saveAlert()">Save</a>
+            <!-- <a class="save" (click)="saveAlert()">Save</a> -->
             <!-- <a class="reserve">Returned</a> -->
 
 

@@ -21,11 +21,11 @@
         </div>
         <div class="filter-group">
           <label for="startDate">From:</label>
-          <input type="date" id="startDate" [(ngModel)]="startDate" min="2024-01-01" (ngModelChange)="applyFilters()">
+          <input type="date" id="startDate" [(ngModel)]="startDate" (ngModelChange)="applyFilters()">
         </div>
         <div class="filter-group">
           <label for="endDate">To:</label>
-          <input type="date" id="endDate" [(ngModel)]="endDate" min="2024-01-01" (ngModelChange)="applyFilters()">
+          <input type="date" id="endDate" [(ngModel)]="endDate" (ngModelChange)="applyFilters()">
         </div>
       </div>
     </div>

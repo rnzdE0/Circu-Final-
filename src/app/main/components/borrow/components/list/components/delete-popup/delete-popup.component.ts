@@ -64,7 +64,7 @@ export class DeletePopupComponent {
   
 
   submit(){
-        this.ds.delete('delete-borrowlist/' + this.material.id).subscribe({
+        this.ds.delete('circulation/delete-borrowlist/' + this.material.id).subscribe({
           next: () => {
             this.ref.close('Changed Data');
             Swal.fire({

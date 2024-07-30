@@ -14,6 +14,8 @@ import { MainService } from '../../../../../../../services/main.service';
 export class ReservationPopupComponent {
 
   reserve: any;
+  isLoading = true;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public material: any,
     private http: HttpClient,
@@ -42,15 +44,13 @@ export class ReservationPopupComponent {
     department: '',
     count:0,
     role: '',
-    patron: {
-      patron:'',
-      materials_allowed:'',
-      fine: ''
-    },
-    program: {
-      department: ''
-    }
-  } 
+    patron:'',
+    materials_allowed:'',
+    fine: '',
+    program: '',
+    title:'',
+ 
+  }
   book = {
     accession: '',
     title: '',
@@ -62,7 +62,7 @@ export class ReservationPopupComponent {
   admin: any;
 
   getUser() {
-    console.log(this.material.id)
+    console.log(this.user.id)
     this.ds.get('circulation/get-user/' + this.material.user_id).subscribe({
       next: (res: any) => {
         this.user.id=res.id;
@@ -71,30 +71,32 @@ export class ReservationPopupComponent {
         this.user.gender=res.gender;
         this.user.department=res.department;
         this.user.role=res.role;
-        this.user.patron.patron=res.patron.patron;
-        this.user.patron.materials_allowed=res.patron.materials_allowed;
-        this.user.patron.fine=res.patron.fine;
+        this.user.patron=res.patron;
+        this.user.materials_allowed=res.patron.materials_allowed;
+        this.user.fine=res.patron.fine;
         console.log(res)
+        this.isLoading = false;
       }
     })
   }
-    getBook() {console.log(this.material.book_id);
-      this.ds.get('circulation/get-book/' + this.material.book_id ).subscribe({   
+    getBook() {
+      console.log(this.material.book_id);
+      
+      // Construct the URL with the query parameter
+      const params = `?accession=${encodeURIComponent(this.material.book_id)}`;
+      const url = 'circulation/get-book' + params;
+      
+      this.ds.get(url).subscribe({   
         next: (res: any) => {
-          console.log(res)
+          console.log(res);
           let authors = JSON.parse(res.authors);
-          authors.forEach(((x:any,index:any) => {
-  
-            this.book.author=this.book.author+x;
-            if(index != authors.length - 1)
-              this.book.author = this.book.author+', ';
-          }));
-          this.book.title=res.title;
-          this.book.location=res.location.location;
-          
+          this.book.author = authors.join(', ');  // Join authors with comma and space
+          this.book.title = res.title;
+          this.book.location = res.book_location.location_short;
+          this.isLoading = false;
         },
-        error:(err:any)=>console.log(err)
-      })
+        error: (err: any) => console.log(err)
+      });
     }
   
     getAdmin(event: Event) {

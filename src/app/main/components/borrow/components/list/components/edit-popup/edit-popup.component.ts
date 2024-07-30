@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class EditPopupComponent implements OnInit{
 
   borrow: any;
+  isLoading = true;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public material: any,
@@ -74,6 +75,7 @@ export class EditPopupComponent implements OnInit{
         this.user.materials_allowed=res.patron.materials_allowed;
         this.user.fine=res.patron.fine;
         console.log(res)
+        this.isLoading = false;
       }
     })
   }
@@ -90,7 +92,9 @@ export class EditPopupComponent implements OnInit{
         let authors = JSON.parse(res.authors);
         this.book.author = authors.join(', ');  // Join authors with comma and space
         this.book.title = res.title;
-        this.book.location = res.location.location;
+        this.book.location = res.book_location.location_short;
+
+        this.isLoading = false;
       },
       error: (err: any) => console.log(err)
     });

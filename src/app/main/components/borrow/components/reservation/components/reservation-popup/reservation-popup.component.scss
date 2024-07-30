@@ -173,7 +173,7 @@ body {
 
 .close {
     background-color: #BE2E2E;
-    margin-right: 10px;
+    // margin-right: 10px;
     justify-content: center;
     position: relative;
     padding: .1rem;
@@ -363,4 +363,8 @@ body {
 
 ::placeholder {
     color: black;
+}
+
+.loading {
+    margin-top: 25%;
 }

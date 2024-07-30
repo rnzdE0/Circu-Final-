@@ -27,6 +27,8 @@ export class TopComponent implements OnInit {
     CAHS: ['BSN', 'BSM', 'GM']
   };
 
+
+  currentDate: string = '';
   isProgramChartVisible: boolean = false;
   topChart: any;
   isLoading: boolean = true;
@@ -121,7 +123,17 @@ export class TopComponent implements OnInit {
   }
  
   ngOnInit(): void {
-    this.applyFilters(); // Initial load
+    this.applyFilters();
+    this.setCurrentDate();
+    
+    const now = new Date();
+    this.currentDate = now.toLocaleString('sv-SE');
+  }
+
+  setCurrentDate(): void {
+    const today = new Date();
+    const formattedDate = today.toISOString().replace('T', ' ').substring(0, 16);
+    this.currentDate = formattedDate;
   }
 
   onDepartmentChange() {
@@ -173,7 +185,7 @@ export class TopComponent implements OnInit {
         labels: labels,
         datasets: [{
           data: counts,
-          backgroundColor: this.getColorGradient(data.length),
+          backgroundColor: '#264834',
           borderWidth: 1
         }]
       },
