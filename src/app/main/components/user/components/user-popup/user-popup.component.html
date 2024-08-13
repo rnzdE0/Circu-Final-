@@ -1,5 +1,5 @@
 <main>
-        <body>
+        <body class="body">
           
               <div class="header">
                 <p class="title">User Details</p>
@@ -33,7 +33,9 @@
 
                 <div class="container2">
 
-                  <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+                  <div class="loading" *ngIf="isLoading">
+                    <app-loadings></app-loadings>
+                  </div>
 
                   <div class="table">
                   
@@ -42,28 +44,28 @@
                       <!-- Name Column -->
                       <ng-container matColumnDef="Date">
                         <th mat-header-cell *matHeaderCellDef class="tbl-head"> Date Returned </th>
-                        <td mat-cell *matCellDef="let book">{{ book.borrow_date }}</td>
+                        <td mat-cell *matCellDef="let book">{{ book.borrow_date || 'N/A' }}</td>
                       </ng-container>
                   
                       <!-- Email Column -->
                       <ng-container matColumnDef="Book">
-                        <th mat-header-cell *matHeaderCellDef class="tbl-head"> Book Title </th>
-                        <td mat-cell *matCellDef="let book">{{ book.title }}</td>
+                        <th mat-header-cell *matHeaderCellDef class="tbl-head scrollable-column"> Book Title </th>
+                        <td mat-cell *matCellDef="let book">{{ book.title || 'N/A' }}</td>
                       </ng-container>
                   
                       <!-- Department Column -->
                       <ng-container matColumnDef="Accession">
                         <th mat-header-cell *matHeaderCellDef class="tbl-head"> Accession Number </th>
-                        <td mat-cell *matCellDef="let book">{{ book.book_id}}</td>
+                        <td mat-cell *matCellDef="let book">{{ book.book_id || 'N/A' }}</td>
                       </ng-container>
           
                       <!-- Program Column -->
                       <ng-container matColumnDef="Status">
                         <th mat-header-cell *matHeaderCellDef class="tbl-head"> Status </th>
-                        <td mat-cell *matCellDef="let book">{{ getstatusString(book.status) }}</td>
+                        <td mat-cell *matCellDef="let book">{{ getstatusString(book.status) || 'N/A' }}</td>
                       </ng-container>
 
-                      <ng-container matColumnDef="Remarks">
+                      <!-- <ng-container matColumnDef="Remarks">
                         <th mat-header-cell *matHeaderCellDef class="tbl-head"> Remarks </th>
                         <td mat-cell *matCellDef="let book">
 
@@ -82,10 +84,11 @@
                           </div>
 
                         </td>
-                      </ng-container>
+                      </ng-container> -->
 
                       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      <tr mat-row *matRowDef="let row; columns:
+                      displayedColumns;"></tr>
                     </table>
 
                     <mat-paginator class="page" pageSize="5"
@@ -101,12 +104,12 @@
                   <table class="user-table1">
                     <tr>
                       <th>Total Returned Books</th>
-                      <td>4</td>
+                      <td>{{totalReturnedBooks}}</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <th>Total Fine</th>
                       <td>₱{{user.fine}}</td>
-                    </tr>
+                    </tr> -->
                   </table>
                   </div> 
 

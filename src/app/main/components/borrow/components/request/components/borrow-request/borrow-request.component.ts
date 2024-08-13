@@ -156,6 +156,7 @@ export class BorrowRequestComponent implements OnInit {
         this.user.gender=res.gender;
         this.user.department=res.department;
         this.user.hours_allowed=res.hours_allowed;
+        this.user.books_allowed=res.books_allowed;
         this.user.patron=res.patron;
         this.user.fine=res.fine;
         this.borrowForm.get('fine')?.setValue(this.user.fine);
@@ -266,6 +267,16 @@ export class BorrowRequestComponent implements OnInit {
       });
       return;
     }
+
+  //   if (this.user.books_allowed >= this.user.books_allowed) {
+  //     Swal.fire({
+  //         title: 'Maximum Books Reached',
+  //         text: 'You have reached the maximum number of books allowed to borrow.',
+  //         icon: 'error',
+  //         confirmButtonColor: '#4F6F52'
+  //     });
+  //     return;
+  // }
   
     const payload = {
       book_id: this.borrowForm.value.book_id,

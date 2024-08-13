@@ -56,27 +56,51 @@ export class ListComponent implements AfterViewInit{
     this.dataSource.filter = searchValue;
   }
 
-  fetchReturned(): void{
-    this.isLoading = true;
-    this.authService.getReturned().subscribe(
-      (data: any) => {
-        console.log('Recieved data from backend', data);
-        this.returned = data as List[];
-        this.dataSource.data = this.returned;
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.filterPredicate = ( data: List, filter: string) => {
-          return data.fname.toLowerCase().includes(filter) ||
-          data.lname.toLowerCase().includes(filter) ||
-          // data.department.department_short.toLowerCase().includes(filter) ||
-          // data.department.program_short.toLowerCase().includes(filter) ||
-          data.title.toLowerCase().includes(filter);
-        };
-        this.cdr.detectChanges();
-        this.isLoading = false;
-      }
-    );
-  }
+  // fetchReturned(): void{
+  //   this.isLoading = true;
+  //   this.authService.getReturned().subscribe(
+  //     (data: any) => {
+  //       console.log('Recieved data from backend', data);
+  //       this.returned = data as List[];
+  //       this.dataSource.data = this.returned;
+  //       this.dataSource.sort = this.sort;
+  //       this.dataSource.paginator = this.paginator;
+  //       this.dataSource.filterPredicate = ( data: List, filter: string) => {
+  //         return data.fname.toLowerCase().includes(filter) ||
+  //         data.lname.toLowerCase().includes(filter) ||
+  //         data.title.toLowerCase().includes(filter);
+  //       };
+  //       this.cdr.detectChanges();
+  //       this.isLoading = false;
+  //     }
+  //   );
+  // }
+
+  // component.ts
+fetchReturned(): void {
+  this.isLoading = true;
+  this.authService.getReturned().subscribe(
+    (response: any) => {
+      console.log('Received data from backend', response);
+      this.returned = response.data; // Access the `data` property from the response
+      this.dataSource.data = this.returned;
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.filterPredicate = (data: List, filter: string) => {
+        return data.fname.toLowerCase().includes(filter) ||
+               data.lname.toLowerCase().includes(filter) ||
+               data.title.toLowerCase().includes(filter);
+      };
+      this.cdr.detectChanges();
+      this.isLoading = false;
+    },
+    (error: any) => {
+      console.error('Error fetching returned data', error);
+      this.isLoading = false;
+    }
+  );
+}
+
 
   onDepartmentChange(): void {
     this.selectedProgram = '';
@@ -86,18 +110,18 @@ export class ListComponent implements AfterViewInit{
   // private authService: AuthService
   // ) {}
 
-  openEdit() {
-    this.dialog.open(EditComponent, {
-      width: '55%',
-      height: '760px',
-    })
-  };
+  // openEdit() {
+  //   this.dialog.open(EditComponent, {
+  //     width: '55%',
+  //     height: '760px',
+  //   })
+  // };
 
-  deletePop() {
-    this.dialog.open(DeletePopupComponent, {
-      width: '400px',
-      height: '250px',
-    })
-  };
+  // deletePop() {
+  //   this.dialog.open(DeletePopupComponent, {
+  //     width: '400px',
+  //     height: '250px',
+  //   })
+  // };
   
 }

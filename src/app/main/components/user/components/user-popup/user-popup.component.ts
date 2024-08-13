@@ -16,7 +16,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class UserPopupComponent implements OnInit{
 
-  displayedColumns: string[] = [ 'Date', 'Book', 'Accession', 'Status', 'Remarks'];
+  displayedColumns: string[] = [ 'Date', 'Book', 'Accession', 'Status'];
   dataSource = new MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;

@@ -24,7 +24,7 @@ body {
     box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
     border: 0.5px solid grey;
 
-    max-height: 770px;
+    max-height: 840px;
     overflow-y: scroll;
 }
 
@@ -149,6 +149,8 @@ table {
       border-bottom: 1.5px solid grey;
       justify-content: center;
       transition: all 0.3s ease-in;
+
+      max-width: 30px;
   }
 
   th.mat-sort-header-sorted {
@@ -305,6 +307,6 @@ th {
   }
 
   .loading {
-    margin-top: 250px;
+    margin-top: 200px;
     margin-bottom: 250px;
   }

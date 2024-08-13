@@ -9,6 +9,8 @@ export interface ReservationList {
   status_label: string;
   mode_of_reservation: number;
   department: string;
+  reserve_date: string;
+  reserve_expiration: string;
 }
 
 export interface OnlineList {

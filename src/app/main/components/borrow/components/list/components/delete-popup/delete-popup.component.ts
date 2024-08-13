@@ -68,8 +68,8 @@ export class DeletePopupComponent {
           next: () => {
             this.ref.close('Changed Data');
             Swal.fire({
-              title: "Archiving complete!",
-              text: "Journal has been successfully archived.",
+              title: "Deleted Successfully!",
+              text: "Book has been successfully deleted.",
               icon: "success",
               iconColor: '#4F6F52',
               confirmButtonText: 'Close',
@@ -84,7 +84,7 @@ export class DeletePopupComponent {
               text: "Please try again later.",
               icon: "error",
               confirmButtonText: 'Close',
-              confirmButtonColor: "#777777",
+              confirmButtonColor: "#4F6F52",
               scrollbarPadding: false,
             });
           }

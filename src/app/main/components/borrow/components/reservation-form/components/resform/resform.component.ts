@@ -158,6 +158,7 @@ export class ResformComponent implements OnInit {
         this.user.gender=res.gender;
         this.user.department=res.department;
         this.user.hours_allowed=res.hours_allowed;
+        this.user.books_allowed=res.books_allowed;
         this.user.patron=res.patron;
         this.user.fine=res.fine;
       }
@@ -301,8 +302,8 @@ export class ResformComponent implements OnInit {
           console.log('Sending borrow request with payload:', payloadData);
           console.error('Book is not available', error);
           Swal.fire({
-            title: 'Book is Unavailable',
-            text: 'The book you want to borrow is not available.',
+            title: 'Request Invalid!',
+            text: 'Multiple reservations for the same book are not allowed',
             icon: 'error',
             confirmButtonColor: '#4F6F52'
           });

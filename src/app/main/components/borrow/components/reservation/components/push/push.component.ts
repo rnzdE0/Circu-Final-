@@ -48,14 +48,19 @@ export class PushComponent {
     // Use Angular HttpClient (this.ds.post) to send a POST request to your backend
     this.ds.put(url + this.material.id, payload).subscribe(
       (response: any) => {
-        
+        this.ref.close('Changed Data')
         console.log('Book borrowed successfully:', response);
         // Optionally handle success here, e.g., show a success message
         this.updateBookStatus();
       },
       (error: any) => {
         console.error('Error borrowing book:', error);
-        // Optionally handle error here, e.g., show an error message
+        Swal.fire({
+          title: 'Book is still Unavailable',
+          text: 'This book is currently borrowed or not available.',
+          icon: 'error',
+          confirmButtonColor: '#4F6F52'
+        });
       }
     );
   }

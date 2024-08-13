@@ -78,6 +78,7 @@ body, input {
     margin-bottom: 10px;
     text-align: center; 
     letter-spacing: 0.4px;
+    // line-height: 45px;
   }
   
   .upper-text {
@@ -118,6 +119,13 @@ body, input {
     padding: 0 0.4rem;
     position: relative;
   }
+
+  // .input-field {
+  //   display: grid;
+  //   grid-template-columns: 15% 85%;
+  //   padding: 0 0.4rem;
+  //   pos
+  // }
   
   .input-field i {
     text-align: center;
@@ -201,6 +209,7 @@ body, input {
     z-index: 0;
     opacity: 1.2;
   }
+
   
   .image {
     transition: transform 1.1s ease-in-out;

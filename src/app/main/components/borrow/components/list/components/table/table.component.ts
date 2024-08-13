@@ -70,9 +70,43 @@ export class TableComponent implements AfterViewInit {
     );
   }
 
-  getStatusString(status: number): string {
-    return status === 1 ? 'Borrowed' : 'Returned';
+  // getStatusString(status: number): string {
+  //   return status === 1  ? 'Borrowed' : 'Returned';
+  // }
+
+//   getStatusString(status: number): string {
+//     if (status === 1) {
+//         return 'Borrowed';
+//     } else if (status === 2) {
+//         return 'Overdue';
+//     } else {
+//         return 'Borrowed';
+//     }
+// }
+
+getStatusString(status: number): string {
+  switch (status) {
+    case 1:
+      return 'Borrowed';
+    case 2:
+      return 'Overdue';
+    default:
+      return 'Returned';
   }
+}
+
+getStatusClass(status: number): string {
+  switch (status) {
+    case 1:
+      return 'status-borrowed';
+    case 2:
+      return 'status-overdue';
+    default:
+      return 'status-returned';
+  }
+}
+
+
   
   
 elements: any;
