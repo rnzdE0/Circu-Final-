@@ -17,7 +17,7 @@ export class DeletePopupComponent {
     @Inject(MAT_DIALOG_DATA)
     public material: any 
   ) { 
-    console.log(this.material)
+    // console.log(this.material)
   }
 
 
@@ -78,7 +78,7 @@ export class DeletePopupComponent {
             })
           },
           error: (err: any) => {
-            console.log(err)
+            // console.log(err)
             Swal.fire({
               title: "Delete Error!",
               text: "Please try again later.",

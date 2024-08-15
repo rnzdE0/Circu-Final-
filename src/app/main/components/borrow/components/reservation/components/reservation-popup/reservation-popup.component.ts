@@ -22,13 +22,13 @@ export class ReservationPopupComponent {
     private ds: MainService,
     private router: Router
   ) {
-    console.log('Data received in dialog:', this.material);
+    // console.log('Data received in dialog:', this.material);
   }
 
   ngOnInit(): void {
     this.ds.get('circulation/reservelist').subscribe((res: any) => {
       this.reserve = res;
-      console.log(this.reserve); // Check if data is retrieved correctly
+      // console.log(this.reserve); // Check if data is retrieved correctly
       // this.mapDataToMaterials(); // This line correctly invokes the function
     });
 
@@ -62,7 +62,7 @@ export class ReservationPopupComponent {
   admin: any;
 
   getUser() {
-    console.log(this.user.id)
+    // console.log(this.user.id)
     this.ds.get('circulation/get-user/' + this.material.user_id).subscribe({
       next: (res: any) => {
         this.user.id=res.id;
@@ -74,13 +74,13 @@ export class ReservationPopupComponent {
         this.user.patron=res.patron;
         this.user.materials_allowed=res.books_allowed;
         this.user.fine=res.fine;
-        console.log(res)
+        // console.log(res)
         this.isLoading = false;
       }
     })
   }
     getBook() {
-      console.log(this.material.book_id);
+      // console.log(this.material.book_id);
       
       // Construct the URL with the query parameter
       const params = `?accession=${encodeURIComponent(this.material.book_id)}`;
@@ -88,7 +88,7 @@ export class ReservationPopupComponent {
       
       this.ds.get(url).subscribe({   
         next: (res: any) => {
-          console.log(res);
+          // console.log(res);
           let authors = JSON.parse(res.authors);
           authors.forEach(((x:any,index:any) => {
   
@@ -100,7 +100,7 @@ export class ReservationPopupComponent {
           this.book.location=res.location;
           
         },
-        error: (err: any) => console.log(err)
+        // error: (err: any) => console.log(err)
       });
     }
   
@@ -109,7 +109,7 @@ export class ReservationPopupComponent {
       this.ds.get('circulation/get-user/' + target.value).subscribe({
         next: (res: any) => {
           this.user = res;
-          console.log(this.user)
+          // console.log(this.user)
         }
       })
     }

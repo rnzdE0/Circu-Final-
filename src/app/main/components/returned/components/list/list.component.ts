@@ -81,7 +81,7 @@ fetchReturned(): void {
   this.isLoading = true;
   this.authService.getReturned().subscribe(
     (response: any) => {
-      console.log('Received data from backend', response);
+      // console.log('Received data from backend', response);
       this.returned = response.data; // Access the `data` property from the response
       this.dataSource.data = this.returned;
       this.dataSource.sort = this.sort;
@@ -95,7 +95,7 @@ fetchReturned(): void {
       this.isLoading = false;
     },
     (error: any) => {
-      console.error('Error fetching returned data', error);
+      // console.error('Error fetching returned data', error);
       this.isLoading = false;
     }
   );

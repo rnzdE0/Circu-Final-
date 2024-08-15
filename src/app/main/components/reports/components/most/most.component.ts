@@ -42,7 +42,7 @@ export class MostComponent implements AfterViewInit {
     const context = canvas.getContext('2d');
 
     if (!context) {
-      console.error('Failed to get 2D context');
+      // console.error('Failed to get 2D context');
       return;
     }
 
@@ -155,7 +155,7 @@ export class MostComponent implements AfterViewInit {
         this.isLoading = false;
       },
       (error) => {
-        console.error('Error fetching most borrowed books:', error);
+        // console.error('Error fetching most borrowed books:', error);
         this.isLoading = false;
       }
     );

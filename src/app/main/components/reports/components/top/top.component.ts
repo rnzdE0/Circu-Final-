@@ -44,7 +44,7 @@ export class TopComponent implements OnInit {
     const context = canvas.getContext('2d');
 
     if (!context) {
-      console.error('Failed to get 2D context');
+      // console.error('Failed to get 2D context');
       return;
     }
 
@@ -166,7 +166,7 @@ export class TopComponent implements OnInit {
         this.isLoading = false;
       },
       (error) => {
-        console.error('Error fetching top borrowers:', error);
+        // console.error('Error fetching top borrowers:', error);
         this.isLoading = false;
       }
     );

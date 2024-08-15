@@ -40,7 +40,7 @@ export class GraphComponent implements OnInit {
     await new Promise(resolve => setTimeout(resolve, 100));
   
     if (!context) {
-      console.error('Failed to get 2D context');
+      // console.error('Failed to get 2D context');
       return;
     }
   
@@ -155,14 +155,14 @@ export class GraphComponent implements OnInit {
 
     this.authService.getBorrowersReport(params).subscribe(
       (data: any) => {
-        console.log('Received data from backend:', data);
+        // console.log('Received data from backend:', data);
         // Assuming data contains departmentData and genderData
         this.departmentData = data.departmentCount;
         this.genderData = data.genderCount;
         this.renderCharts();
       },
       (error) => {
-        console.error('Error fetching data:', error);
+        // console.error('Error fetching data:', error);
       }
     );
   }

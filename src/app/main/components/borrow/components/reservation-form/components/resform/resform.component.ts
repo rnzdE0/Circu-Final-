@@ -106,7 +106,7 @@ export class ResformComponent implements OnInit {
 
   changePatron(event: Event) {
     let selectedPatronId = (event.target as HTMLInputElement).value;
-    console.log('Selected patron ID:', selectedPatronId);
+    // console.log('Selected patron ID:', selectedPatronId);
   
     // Find the selected patron from the patrons array
     const selectedPatron = this.patrons.find((patron: any) => patron.id == selectedPatronId);
@@ -117,7 +117,7 @@ export class ResformComponent implements OnInit {
       // Call setHoursAllowed with the patron type
       // this.setHoursAllowed(selectedPatron.patron);
     } else {
-      console.log('Patron not found for ID:', selectedPatronId);
+      // console.log('Patron not found for ID:', selectedPatronId);
     }
   }
 
@@ -197,14 +197,15 @@ export class ResformComponent implements OnInit {
 
     this.ds.get(url + params).subscribe({
       next: (res: any) => {
-        console.log(res);
+        // console.log(res);
         let authors = JSON.parse(res.authors);
         this.book.author = authors.join(', ');  // Join authors with comma and space
         this.book.title = res.title;
         this.book.location = res.location;
         this.book.accession = res.accession;
       },
-      error: (err: any) => console.log(err)
+      // error: (err: any) => 
+      //   console.log(err)
     });
   }
 
@@ -220,7 +221,7 @@ export class ResformComponent implements OnInit {
     this.ds.get('circulation/get-user/' + target.value).subscribe({
       next: (res: any) => {
         this.user = res;
-        console.log(this.user)
+        // console.log(this.user)
       }
     })
   }
@@ -244,7 +245,7 @@ export class ResformComponent implements OnInit {
   }
 
   logCheckboxState(event: Event) {
-    console.log('Checkbox state:', this.checkbox);
+    // console.log('Checkbox state:', this.checkbox);
     const inputElement = event.target as HTMLInputElement;
     this.checkbox = inputElement.checked;
   }
@@ -260,7 +261,7 @@ export class ResformComponent implements OnInit {
       return;
     }
 
-    console.log('isChecked during submit:', this.checkbox); // Debugging line
+    // console.log('isChecked during submit:', this.checkbox); // Debugging line
   
     if (!this.checkbox) { // Validate isChecked separately
       Swal.fire({
@@ -299,8 +300,8 @@ export class ResformComponent implements OnInit {
           });
         },
         error => {
-          console.log('Sending borrow request with payload:', payloadData);
-          console.error('Book is not available', error);
+          // console.log('Sending borrow request with payload:', payloadData);
+          // console.error('Book is not available', error);
           Swal.fire({
             title: 'Request Invalid!',
             text: 'Multiple reservations for the same book are not allowed',

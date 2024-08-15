@@ -45,8 +45,8 @@ export class UserTableComponent implements AfterViewInit {
     this.isLoading = true;
     this.authService.getUsers().subscribe(
       (data: any) => {
-        console.log('Received data from backend:', data);
-        console.log('Type of data:', typeof data);
+        // console.log('Received data from backend:', data);
+        // console.log('Type of data:', typeof data);
         this.userList = data as User[];
         this.dataSource.data = this.userList;
         this.dataSource.filterPredicate = ( data: User, filter: string ) => {

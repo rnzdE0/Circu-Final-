@@ -47,8 +47,8 @@ export class TableComponent implements AfterViewInit {
     this.isLoading = true;
     this.authService.getBorrowList().subscribe(
       (data: any) => {
-        console.log('Received data from backend:', data);
-        console.log('Type of data:', typeof data);
+        // console.log('Received data from backend:', data);
+        // console.log('Type of data:', typeof data);
         this.borrowMaterials = data as BorrowMaterial[];
         this.filteredMaterials = this.borrowMaterials.slice();
         this.dataSource.data = this.borrowMaterials;
@@ -65,7 +65,7 @@ export class TableComponent implements AfterViewInit {
         this.isLoading = false;
       },
       (error) => {
-        console.error('Error fetching users:', error);
+        // console.error('Error fetching users:', error);
       }
     );
   }
@@ -161,7 +161,7 @@ elements: any;
     });
     _popup.afterClosed().subscribe(result => {
       // this.redirectToListPage();
-      console.log(result)
+      // console.log(result)
       if(result === 'Changed Data') {
         this.fetchBorrowList()
       }

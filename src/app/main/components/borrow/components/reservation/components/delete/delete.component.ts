@@ -15,7 +15,7 @@ export class DeleteComponent {
     public material: any ,
     private ref: MatDialogRef <DeleteComponent>,
   ) {
-    console.log('Data received in dialog:', this.material);
+    // console.log('Data received in dialog:', this.material);
    }
    
    submit(id: number){
@@ -34,7 +34,7 @@ export class DeleteComponent {
         })
       },
       error: (err: any) => {
-        console.log(err)
+        // console.log(err)
         Swal.fire({
           title: "Cancelation Error!",
           text: "Please try again later.",

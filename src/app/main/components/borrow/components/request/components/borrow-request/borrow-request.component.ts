@@ -69,7 +69,7 @@ export class BorrowRequestComponent implements OnInit {
   ngOnInit(): void {
   //  this.bookSubmit();
   this.setCurrentDate();
-  console.log('User patron type:', this.user.patron);
+  // console.log('User patron type:', this.user.patron);
 
     this.borrowForm.controls['borrow_date'].setValue(this.currentDate);
 
@@ -79,13 +79,13 @@ export class BorrowRequestComponent implements OnInit {
 
     this.ds.get('circulation/getpatrons').subscribe({
       next: (res: any) => {
-        console.log('Response from backend:', res);
+        // console.log('Response from backend:', res);
         this.patrons = res;
         // this.borrowForm.get('fine')?.setValue(res[0].fine);
         this.borrowForm.get('fine')?.setValue(this.user.fine);
 
         this.setHoursAllowed(this.user.patron);
-        console.log('hours_allowed set in component:', this.hours_allowed);
+        // console.log('hours_allowed set in component:', this.hours_allowed);
       }
     }) 
   }
@@ -108,12 +108,12 @@ export class BorrowRequestComponent implements OnInit {
 
   setHoursAllowed(patronType: string): void {
     const foundPatron = this.patrons.find((patron: any) => patron.patron === patronType);
-    console.log('Found patron:', foundPatron); // Log the found patron object
+    // console.log('Found patron:', foundPatron); // Log the found patron object
     if (foundPatron) {
       this.hours_allowed = foundPatron.hours_allowed;
-      console.log('hours_allowed set to:', this.hours_allowed); // Log the hours_allowed value being set
+      // console.log('hours_allowed set to:', this.hours_allowed); // Log the hours_allowed value being set
     } else {
-      console.log('Patron not found for type:', patronType); // Log if patron not found
+      // console.log('Patron not found for type:', patronType); // Log if patron not found
     }
   }
   setCurrentDate(): void {
@@ -126,7 +126,7 @@ export class BorrowRequestComponent implements OnInit {
 
   changePatron(event: Event) {
     let selectedPatronId = (event.target as HTMLInputElement).value;
-    console.log('Selected patron ID:', selectedPatronId);
+    // console.log('Selected patron ID:', selectedPatronId);
   
     // Find the selected patron from the patrons array
     const selectedPatron = this.patrons.find((patron: any) => patron.id == selectedPatronId);
@@ -137,7 +137,7 @@ export class BorrowRequestComponent implements OnInit {
       // Call setHoursAllowed with the patron type
       this.setHoursAllowed(selectedPatron.patron);
     } else {
-      console.log('Patron not found for ID:', selectedPatronId);
+      // console.log('Patron not found for ID:', selectedPatronId);
     }
   }
 
@@ -160,13 +160,13 @@ export class BorrowRequestComponent implements OnInit {
         this.user.patron=res.patron;
         this.user.fine=res.fine;
         this.borrowForm.get('fine')?.setValue(this.user.fine);
-        console.log(res)
+        // console.log(res)
       }
     })
     this.ds.get('circulation/get-user/'+target.value).subscribe({
       next: (res: any) => {
         this.user.count=res.count;
-        console.log(res)
+        // console.log(res)
       }
     })
   }
@@ -177,7 +177,7 @@ export class BorrowRequestComponent implements OnInit {
       next: (res: any) => {
         this.admin.id=res.id;
         this.admin.position=res.position; 
-        console.log(res)
+        // console.log(res)
       }
     })
   }
@@ -218,14 +218,14 @@ export class BorrowRequestComponent implements OnInit {
 
     this.ds.get(url + params).subscribe({
       next: (res: any) => {
-        console.log(res);
+        // console.log(res);
         let authors = JSON.parse(res.authors);
         this.book.author = authors.join(', ');  // Join authors with comma and space
         this.book.title = res.title;
         this.book.location = res.location;
         this.book.accession = res.accession;
       },
-      error: (err: any) => console.log(err)
+      // error: (err: any) => console.log(err)
     });
   }
 
@@ -239,7 +239,7 @@ export class BorrowRequestComponent implements OnInit {
   
 
   logCheckboxState(event: Event) {
-    console.log('Checkbox state:', this.checkbox);
+    // console.log('Checkbox state:', this.checkbox);
     const inputElement = event.target as HTMLInputElement;
     this.checkbox = inputElement.checked;
   }
@@ -256,7 +256,7 @@ export class BorrowRequestComponent implements OnInit {
       return;
     }
 
-    console.log('isChecked during submit:', this.checkbox); // Debugging line
+    // console.log('isChecked during submit:', this.checkbox); // Debugging line
   
     if (!this.checkbox) { // Validate isChecked separately
       Swal.fire({
@@ -286,7 +286,7 @@ export class BorrowRequestComponent implements OnInit {
       fine: this.borrowForm.value.fine,
       isChecked: this.checkbox  // Use form control value
     };
-    console.log("Sending borrow request:", payload);
+    // console.log("Sending borrow request:", payload);
   
     const httpOptions = {
       headers: {
@@ -305,8 +305,8 @@ export class BorrowRequestComponent implements OnInit {
         });
       },
       error => {
-        console.log('Sending borrow request with payload:', payload);
-        console.error('Book is not available', error);
+        // console.log('Sending borrow request with payload:', payload);
+        // console.error('Book is not available', error);
         Swal.fire({
           title: 'Book is Unavailable',
           text: 'The book you want to borrow is not available.',
