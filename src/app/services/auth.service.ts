@@ -38,7 +38,7 @@ export class AuthService {
       // return this.http.post(this.url+'login/circulation', formData).pipe(
       tap((res: any) => {
         if(res.token) {
-          console.log(res)
+          // console.log(res)
           sessionStorage.setItem('auth-token', res.token);
           sessionStorage.setItem('name', res.displayName);
           sessionStorage.setItem('role', res.position);
