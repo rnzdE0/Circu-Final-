@@ -56,7 +56,10 @@
 <hr>
   
   <!-- chart for most borrowed books -->
-<app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+
+  <div class="loading" *ngIf="isLoading">
+    <app-loadings></app-loadings>
+  </div>
   
   <div style="display: flex; justify-content: space-around;" >
     <div style="width: 80%;">
@@ -67,7 +70,6 @@
 
  
   <div class="table">
-    <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
           
     <table mat-table [dataSource]="dataSource" *ngIf="!isLoading">
     

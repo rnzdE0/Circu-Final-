@@ -16,7 +16,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrl: './reserve.component.scss'
 })
 export class ReserveComponent implements AfterViewInit{
-  displayedColumns: string[] = ['mode', 'borrowerName', 'BookTitle', 'Department', 'Queue', 'Actions'];
+  displayedColumns: string[] = ['mode', 'borrowerName', 'BookTitle', 'Department', 'Program', 'Queue', 'Actions'];
   dataSource = new MatTableDataSource<ReservationList>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
@@ -43,8 +43,8 @@ export class ReserveComponent implements AfterViewInit{
     this.isLoading = true;
     this.authService.getReserveList().subscribe(
       (data: any) => {
-        console.log('Received data from Reservelist:', data);
-        console.log('Type of data:', typeof data);
+        // console.log('Received data from Reservelist:', data);
+        // console.log('Type of data:', typeof data);
         this.reservationList = data as ReservationList[];
         this.filteredreservationList = this.reservationList.slice();
         this.dataSource.data = this.reservationList;
@@ -57,7 +57,7 @@ export class ReserveComponent implements AfterViewInit{
         this.isLoading = false;
       },
       (error) => {
-        console.error('Error fetching users:', error);
+        // console.error('Error fetching users:', error);
       }
     );
   }

@@ -7,6 +7,7 @@ import { User } from './user.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { LoadingComponent } from '../../../loading/loading.component';
+import { UserCardComponent } from '../user-card/user-card.component';
 
 @Component({
   selector: 'app-user-table',
@@ -45,8 +46,8 @@ export class UserTableComponent implements AfterViewInit {
     this.isLoading = true;
     this.authService.getUsers().subscribe(
       (data: any) => {
-        console.log('Received data from backend:', data);
-        console.log('Type of data:', typeof data);
+        // console.log('Received data from backend:', data);
+        // console.log('Type of data:', typeof data);
         this.userList = data as User[];
         this.dataSource.data = this.userList;
         this.dataSource.filterPredicate = ( data: User, filter: string ) => {
@@ -67,13 +68,16 @@ export class UserTableComponent implements AfterViewInit {
   }
 
   openUser(data: any) {
-    this.UserPopup(data, 'user pop', UserPopupComponent)
+    // this.UserPopup(data, 'user pop', UserPopupComponent)
+    this.UserPopup(data, 'user pop', UserCardComponent)
   }
+
+  
 
   UserPopup(id: number, title: any, component: any) {
     var _popup = this.dialog.open(component, {
-      width: '55%',
-      height: '760px',
+      width: '44.4%',
+      height: '690px',
       enterAnimationDuration: '100ms',
       exitAnimationDuration: '100ms',
       data: id

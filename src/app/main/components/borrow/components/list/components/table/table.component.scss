@@ -57,6 +57,12 @@ input:focus{
   outline: none;
 }
 
+/* Define this in your CSS file */
+.status-overdue {
+  color: red;
+}
+
+
 .search button[type="submit"] {
   background-color: #4F6F52;
   border: none;
@@ -120,6 +126,8 @@ table {
     border-radius: 5px;
     border: 1px solid grey;
     background: rgb(242, 242, 242);
+    
+    table-layout: fixed;
   }
   
   table,

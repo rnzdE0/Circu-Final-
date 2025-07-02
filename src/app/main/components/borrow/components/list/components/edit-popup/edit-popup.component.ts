@@ -23,13 +23,13 @@ export class EditPopupComponent implements OnInit{
     private ds: MainService,
     private router: Router
   ) {
-    console.log('Data received in dialog:', this.material);
+    // console.log('Data received in dialog:', this.material);
   }
 
   ngOnInit(): void {
     this.ds.get('circulation/borrow-list').subscribe((res: any) => {
       this.borrow = res;
-      console.log(this.borrow); // Check if data is retrieved correctly
+      // console.log(this.borrow); // Check if data is retrieved correctly
       // this.mapDataToMaterials(); // This line correctly invokes the function
     });
 
@@ -62,7 +62,7 @@ export class EditPopupComponent implements OnInit{
   admin: any;
 
   getUser() {
-    console.log(this.user.id)
+    // console.log(this.user.id)
     this.ds.get('circulation/get-user/' + this.material.user_id).subscribe({
       next: (res: any) => {
         this.user.id=res.id;
@@ -74,13 +74,13 @@ export class EditPopupComponent implements OnInit{
         this.user.patron=res.patron;
         this.user.materials_allowed=res.patron.materials_allowed;
         this.user.fine=res.patron.fine;
-        console.log(res)
+        // console.log(res)
         this.isLoading = false;
       }
     })
   }
   getBook() {
-    console.log(this.material.accession);
+    // console.log(this.material.accession);
     
     // Construct the URL with the query parameter
     const params = `?accession=${encodeURIComponent(this.material.accession)}`;
@@ -88,7 +88,7 @@ export class EditPopupComponent implements OnInit{
     
     this.ds.get(url).subscribe({   
       next: (res: any) => {
-        console.log(res);
+        // console.log(res);
         let authors = JSON.parse(res.authors);
         this.book.author = authors.join(', ');  // Join authors with comma and space
         this.book.title = res.title;
@@ -96,7 +96,7 @@ export class EditPopupComponent implements OnInit{
 
         this.isLoading = false;
       },
-      error: (err: any) => console.log(err)
+      // error: (err: any) => console.log(err)
     });
   }
 
@@ -105,7 +105,7 @@ export class EditPopupComponent implements OnInit{
     this.ds.get('circulation/get-user/' + target.value).subscribe({
       next: (res: any) => {
         this.user = res;
-        console.log(this.user)
+        // console.log(this.user)
       }
     })
   }

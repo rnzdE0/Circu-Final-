@@ -52,14 +52,17 @@
     <hr>
 
     <!-- Chart for Top 10 Borrowers -->
-    <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
+
+    <div class="loading" *ngIf="isLoading">
+      <app-loadings></app-loadings>
+    </div>
+
     <div style="display: flex; justify-content: space-around;">
       <div style="width: 60%;">
         <canvas id="topChart"></canvas>
       </div>
     </div>
 
-    <app-loadings class="loading" *ngIf="isLoading"></app-loadings>
 
     <!-- Table for Top Borrowers Data -->
     <div class="table" *ngIf="!isLoading">

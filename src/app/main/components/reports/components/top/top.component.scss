@@ -45,7 +45,7 @@ hr {
     box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
     border: 0.5px solid grey;
 
-    max-height: 850px;
+    max-height: 810px;
     overflow-y: scroll;
 }
 
@@ -323,4 +323,9 @@ th {
 
 .page {
   background: rgb(242, 242, 242);
+}
+
+.loading {
+  margin-top: 200px;
+  margin-bottom: 100px;
 }

@@ -23,7 +23,7 @@ export class PushPopupComponent {
     private ds: MainService,
     private ref: MatDialogRef <PushPopupComponent>,
     ) {
-      console.log('Data received in dialog:', this.material);
+      // console.log('Data received in dialog:', this.material);
     }
 
   submit(id: number) {
@@ -33,12 +33,12 @@ export class PushPopupComponent {
     this.ds.put( url+this.material.id ,{}).subscribe(
       (response) => {
         this.ref.close('Changed Data')
-        console.log('Book marked as returned:', response);
+        // console.log('Book marked as returned:', response);
         // Optionally handle success response
         this.updateBookStatus();
       },
       (error) => {
-        console.error('Error marking book as returned:', error);
+        // console.error('Error marking book as returned:', error);
         // Optionally handle error
       })
   }

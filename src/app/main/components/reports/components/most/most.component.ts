@@ -42,7 +42,7 @@ export class MostComponent implements AfterViewInit {
     const context = canvas.getContext('2d');
 
     if (!context) {
-      console.error('Failed to get 2D context');
+      // console.error('Failed to get 2D context');
       return;
     }
 
@@ -84,7 +84,12 @@ export class MostComponent implements AfterViewInit {
     pdf.setFontSize(10);
     pdf.text('MOST BORROWED BOOKS', pdf.internal.pageSize.getWidth() / 2, 100, { align: 'center' });
     pdf.setFontSize(8);
-    pdf.text('As of: MM/DD/YY 00:00:00 AM', pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
+    // pdf.text('As of: MM/DD/YY 00:00:00 AM', pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
+
+    // Add filters
+    pdf.text(`Department: ${this.selectedDepartment || 'All'}`, pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
+    pdf.text(`Program: ${this.selectedSecondFilter || 'All'}`, pdf.internal.pageSize.getWidth() / 2, 125, { align: 'center' });
+    pdf.text(`Date Range: ${this.startDate || 'N/A'} - ${this.endDate || 'N/A'}`, pdf.internal.pageSize.getWidth() / 2, 135, { align: 'center' });
   
     // Calculate dimensions and margins for the chart
     const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -150,7 +155,7 @@ export class MostComponent implements AfterViewInit {
         this.isLoading = false;
       },
       (error) => {
-        console.error('Error fetching most borrowed books:', error);
+        // console.error('Error fetching most borrowed books:', error);
         this.isLoading = false;
       }
     );

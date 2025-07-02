@@ -44,7 +44,7 @@ export class TopComponent implements OnInit {
     const context = canvas.getContext('2d');
 
     if (!context) {
-      console.error('Failed to get 2D context');
+      // console.error('Failed to get 2D context');
       return;
     }
 
@@ -85,7 +85,9 @@ export class TopComponent implements OnInit {
   pdf.setFontSize(10);
   pdf.text('TOP 10 BOOK BORROWERS', pdf.internal.pageSize.getWidth() / 2, 100, { align: 'center' });
   pdf.setFontSize(8);
-  pdf.text('As of: MM/DD/YY 00:00:00 AM', pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
+  // pdf.text('As of: MM/DD/YY 00:00:00 AM', pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
+
+  
 
     // Calculate center position for charts on A4 page
     const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -164,7 +166,7 @@ export class TopComponent implements OnInit {
         this.isLoading = false;
       },
       (error) => {
-        console.error('Error fetching top borrowers:', error);
+        // console.error('Error fetching top borrowers:', error);
         this.isLoading = false;
       }
     );

@@ -21,7 +21,7 @@ export class PushComponent {
     private ds: MainService,
     private ref: MatDialogRef <PushComponent>,
     ) {
-    console.log('Data received in dialog:', this.material);
+    // console.log('Data received in dialog:', this.material);
   }
 
   online: any;
@@ -32,7 +32,7 @@ export class PushComponent {
 
     // Assuming this.material contains the necessary data
     const {id, user_id, book_id, start_date, end_date, queue_position, fine} = this.material; 
-    console.log('Extracted ID:', id);
+    // console.log('Extracted ID:', id);
     const payload = {
       id: material.id,
       user_id: user_id,
@@ -44,18 +44,23 @@ export class PushComponent {
   
       // Add any other data you want to send here
     };
-    console.log(this.material);
+    // console.log(this.material);
     // Use Angular HttpClient (this.ds.post) to send a POST request to your backend
     this.ds.put(url + this.material.id, payload).subscribe(
       (response: any) => {
-        
-        console.log('Book borrowed successfully:', response);
+        this.ref.close('Changed Data')
+        // console.log('Book borrowed successfully:', response);
         // Optionally handle success here, e.g., show a success message
         this.updateBookStatus();
       },
       (error: any) => {
-        console.error('Error borrowing book:', error);
-        // Optionally handle error here, e.g., show an error message
+        // console.error('Error borrowing book:', error);
+        Swal.fire({
+          title: 'Book is still Unavailable',
+          text: 'This book is currently borrowed or not available.',
+          icon: 'error',
+          confirmButtonColor: '#4F6F52'
+        });
       }
     );
   }

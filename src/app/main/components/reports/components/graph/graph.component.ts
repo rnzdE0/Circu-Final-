@@ -40,7 +40,7 @@ export class GraphComponent implements OnInit {
     await new Promise(resolve => setTimeout(resolve, 100));
   
     if (!context) {
-      console.error('Failed to get 2D context');
+      // console.error('Failed to get 2D context');
       return;
     }
   
@@ -96,14 +96,19 @@ export class GraphComponent implements OnInit {
     pdf.setFontSize(10);
     pdf.text('TOP BOOK BORROWERS BY DEPARTMENT AND GENDER', pdf.internal.pageSize.getWidth() / 2, 100, { align: 'center' });
     pdf.setFontSize(8);
-    pdf.text('As of: MM/DD/YY 00:00:00 AM', pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
+    // pdf.text('As of: MM/DD/YY 00:00:00 AM', pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
+
+    // Add filters
+    pdf.text(`Department: ${this.selectedDepartment || 'All'}`, pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
+    pdf.text(`Program: ${this.selectedSecondFilter || 'All'}`, pdf.internal.pageSize.getWidth() / 2, 125, { align: 'center' });
+    pdf.text(`Date Range: ${this.startDate || 'N/A'} - ${this.endDate || 'N/A'}`, pdf.internal.pageSize.getWidth() / 2, 135, { align: 'center' });
 
     // Calculate center position for charts on A4 page
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
     
     const chartWidth = 200;
-    const chartHeight = 200; 
+    const chartHeight = 180; 
     const chartMarginX = (pdfWidth - chartWidth * 2) / 2; // Center horizontally
     const chartMarginY = (pdfHeight - chartHeight) / 2 + 10; // Start below header, adjust vertical position
 
@@ -140,19 +145,6 @@ export class GraphComponent implements OnInit {
     this.fetchDataAndRenderCharts();
   }
 
-  // fetchDataAndRenderCharts(): void {
-  //   this.authService.getBorrowersReport().subscribe(
-  //     (data: any) => {
-  //       console.log('Received data from backend:', data);
-  //       this.departmentData = data.programsCount;
-  //       this.genderData = data.genderCount;
-  //       this.renderCharts();
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   );
-  // }
 
   fetchDataAndRenderCharts(): void {
     const params = new HttpParams()
@@ -163,106 +155,65 @@ export class GraphComponent implements OnInit {
 
     this.authService.getBorrowersReport(params).subscribe(
       (data: any) => {
-        console.log('Received data from backend:', data);
+        // console.log('Received data from backend:', data);
         // Assuming data contains departmentData and genderData
-        this.departmentData = data.programsCount;
+        this.departmentData = data.departmentCount;
         this.genderData = data.genderCount;
         this.renderCharts();
       },
       (error) => {
-        console.error('Error fetching data:', error);
+        // console.error('Error fetching data:', error);
       }
     );
   }
 
-  // renderCharts(): void {
-  //   // Pie chart || department borrowers count
-  //   const pieCanvas = document.getElementById('pieChart');
-  //   this.pieChart = new Chart('pieChart', {
-  //     type: 'pie',
-  //     data: {
-  //       labels: Object.keys(this.departmentData),
-  //       datasets: [{
-  //         data: Object.values(this.departmentData),
-  //         backgroundColor: ['rgb(15, 127, 228, 1)', 'orange', 'pink', 'red', 'yellow'], 
-  //       }]
-  //     },
-  //     options: {
-  //       responsive: true,
-  //       maintainAspectRatio: false,
-  //       plugins: {
-  //         title: {
-  //           display: true,
-  //           text: 'Book Borrowers by Department',
-  //           font: {
-  //             weight: 'bold' // Make the text bold
-  //           }
-  //         }
-  //       }
-  //     }
-  //   });
-
-  //   // Bar chart || Gender Borrow Count
-  //   const barCanvas = document.getElementById('barChart');
-  //   this.barChart = new Chart('barChart', {
-  //     type: 'bar',
-  //     data: {
-  //       labels: ['Male', 'Female'],
-  //       datasets: [{
-  //         data: Object.values(this.genderData),
-  //         backgroundColor: ['rgb(15, 172, 228, 1)', 'pink'],
-  //       }]
-  //     },
-  //     options: {
-  //       responsive: true,
-  //       maintainAspectRatio: false,
-  //       plugins: {
-  //           legend: {
-  //             display: false // Hide the legend
-  //           },
-  //           title: {
-  //           display: true,
-  //           text: 'Book Borrowers by Gender',
-  //           font: {
-  //             weight: 'bold' // Make the text bold
-  //           }
-  //         }
-  //       }
-  //     }
-  //   });
-  // }
 
   renderCharts(): void {
     // Destroy existing pie chart if it exists
     if (this.pieChart) {
-      this.pieChart.destroy();
+        this.pieChart.destroy();
     }
 
     // Create new pie chart
     const pieCanvas = document.getElementById('pieChart') as HTMLCanvasElement;
+    
+    // Define the color mapping for departments
+    const colorMapping: Record<string, string> = {
+        "CAHS": 'red',
+        "CHTM": 'pink',
+        "CBA": 'yellow',
+        "CCS": 'orange',
+        "CEAS": 'rgb(15, 127, 228, 1)' // blue
+    };
+
+    // Extract colors based on the departmentData keys
+    const backgroundColors = Object.keys(this.departmentData).map(department => colorMapping[department]);
+
     this.pieChart = new Chart(pieCanvas, {
-      type: 'pie',
-      data: {
-        labels: Object.keys(this.departmentData),
-        datasets: [{
-          data: Object.values(this.departmentData),
-          backgroundColor: ['rgb(15, 127, 228, 1)', 'orange', 'pink', 'red', 'yellow'], 
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Book Borrowers by Department',
-            font: {
-              weight: 'bold'
+        type: 'pie',
+        data: {
+            labels: Object.keys(this.departmentData),
+            datasets: [{
+                data: Object.values(this.departmentData),
+                backgroundColor: backgroundColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Book Borrowers by Department',
+                    font: {
+                        weight: 'bold'
+                    }
+                }
             }
-          }
         }
-      }
     });
+
+
 
     // Destroy existing bar chart if it exists
     if (this.barChart) {
@@ -341,6 +292,110 @@ export class GraphComponent implements OnInit {
   //           text: 'Book Borrowers by Department',
   //           font: {
   //             weight: 'bold' // Make the text bold
+  //           }
+  //         }
+  //       }
+  //     }
+  //   });
+
+
+
+   // fetchDataAndRenderCharts(): void {
+  //   this.authService.getBorrowersReport().subscribe(
+  //     (data: any) => {
+  //       console.log('Received data from backend:', data);
+  //       this.departmentData = data.programsCount;
+  //       this.genderData = data.genderCount;
+  //       this.renderCharts();
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   );
+  // }
+
+    // renderCharts(): void {
+  //   // Pie chart || department borrowers count
+  //   const pieCanvas = document.getElementById('pieChart');
+  //   this.pieChart = new Chart('pieChart', {
+  //     type: 'pie',
+  //     data: {
+  //       labels: Object.keys(this.departmentData),
+  //       datasets: [{
+  //         data: Object.values(this.departmentData),
+  //         backgroundColor: ['rgb(15, 127, 228, 1)', 'orange', 'pink', 'red', 'yellow'], 
+  //       }]
+  //     },
+  //     options: {
+  //       responsive: true,
+  //       maintainAspectRatio: false,
+  //       plugins: {
+  //         title: {
+  //           display: true,
+  //           text: 'Book Borrowers by Department',
+  //           font: {
+  //             weight: 'bold' // Make the text bold
+  //           }
+  //         }
+  //       }
+  //     }
+  //   });
+
+  //   // Bar chart || Gender Borrow Count
+  //   const barCanvas = document.getElementById('barChart');
+  //   this.barChart = new Chart('barChart', {
+  //     type: 'bar',
+  //     data: {
+  //       labels: ['Male', 'Female'],
+  //       datasets: [{
+  //         data: Object.values(this.genderData),
+  //         backgroundColor: ['rgb(15, 172, 228, 1)', 'pink'],
+  //       }]
+  //     },
+  //     options: {
+  //       responsive: true,
+  //       maintainAspectRatio: false,
+  //       plugins: {
+  //           legend: {
+  //             display: false // Hide the legend
+  //           },
+  //           title: {
+  //           display: true,
+  //           text: 'Book Borrowers by Gender',
+  //           font: {
+  //             weight: 'bold' // Make the text bold
+  //           }
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
+
+  // renderCharts(): void {
+  //   if (this.pieChart) {
+  //     this.pieChart.destroy();
+  //   }
+
+  //   // Create new pie chart
+  //   const pieCanvas = document.getElementById('pieChart') as HTMLCanvasElement;
+  //   this.pieChart = new Chart(pieCanvas, {
+  //     type: 'pie',
+  //     data: {
+  //       labels: Object.keys(this.departmentData),
+  //       datasets: [{
+  //         data: Object.values(this.departmentData),
+  //         backgroundColor: ['rgb(15, 127, 228, 1)', 'orange', 'pink', 'red', 'yellow'], 
+  //       }]
+  //     },
+  //     options: {
+  //       responsive: true,
+  //       maintainAspectRatio: false,
+  //       plugins: {
+  //         title: {
+  //           display: true,
+  //           text: 'Book Borrowers by Department',
+  //           font: {
+  //             weight: 'bold'
   //           }
   //         }
   //       }

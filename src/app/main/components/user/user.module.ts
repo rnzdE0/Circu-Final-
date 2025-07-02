@@ -11,6 +11,7 @@ import { MaterialModule } from '../../../modules/material/material.module';
 import { MainModule } from "../../main.module";
 import { LoadingComponent } from '../loading/loading.component';
 import { LoadingsComponent } from '../loadings/loadings.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
 
 
 
@@ -18,7 +19,8 @@ import { LoadingsComponent } from '../loadings/loadings.component';
 @NgModule({
   declarations: [
     UserTableComponent,
-    UserPopupComponent
+    UserPopupComponent,
+    UserCardComponent
   ],
   imports: [
     CommonModule,

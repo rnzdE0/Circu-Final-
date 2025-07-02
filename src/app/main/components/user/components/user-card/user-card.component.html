@@ -1,0 +1,100 @@
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+<div class="container">
+    <div class="header">
+        <img src="assets/images/lib.png" alt="Image">
+        <div class="center">
+            <h4>Gordon College</h4>
+            <h5>Olongapo City</h5>
+            <h4>Borrower's Card</h4>
+        </div>
+        <!-- Make this profile of student -->
+        <img class="picture" src="assets/images/lib.png" alt="Image">
+    </div>
+
+    <div class="col2">
+        <div class="title">
+          <p>Student Information</p>
+        </div>
+        <div class="info-container">
+          <div class="cont1">
+            <p><span>Full Name: </span>{{user?.first_name}} {{user?.last_name}}</p>
+            <p><span>Patron Type: </span>{{user?.patron}}</p>
+          </div>
+          <div class="cont2">
+            <p><span>Student ID: </span>{{user?.id}}</p>
+            <p><span>College/Program: </span>{{user?.department}} / {{user?.program}}</p>
+          </div>
+        </div>
+      </div>
+      
+
+    <!-- <table class="whole book-return-table">
+        <thead>
+            <tr>
+                <th>Borrowed Date</th>
+                <th>Borrowed Expiration</th>
+                <th>Book Title</th>
+                <th>Returned Date</th>
+            </tr>
+        </thead>
+        <div class="loading" *ngIf="isLoading">
+            <app-loadings></app-loadings>
+        </div>
+        <tbody *ngIf="!isLoading">
+            <tr *ngFor="let book of borrowedBooks" >
+              <td>{{ book.borrow_date | date }}</td>
+              <td>{{ book.borrow_expiration | date }}</td>
+              <td>{{ book.title }}</td>
+              <td>{{ book.date_returned | date }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <div class="pagination">
+            <p>Item per page: {{ displayedBooks.length }}</p>
+            <p>{{ getPaginationSummary() }}</p>
+            <i class="fas fa-chevron-left kaliwa" (click)="currentPage > 1 ? previousPage() : null"></i>
+            <i class="fas fa-chevron-right" (click)="nextPage()" [hidden]="currentPage === totalPages"></i>
+        </div> -->
+
+        <div class="whole book-return-table">
+
+          <div class="loading" *ngIf="isLoading">
+            <app-loadings></app-loadings>
+        </div>
+                  
+          <table mat-table [dataSource]="dataSource" *ngIf="!isLoading">
+         
+            <ng-container matColumnDef="borrow">
+              <th mat-header-cell *matHeaderCellDef class="tbl-head"> Borrow Date </th>
+              <td mat-cell *matCellDef="let book">{{ book.borrow_date || 'N/A' }}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="ex">
+              <th mat-header-cell *matHeaderCellDef class="tbl-head scrollable-column"> Borrowed Expiration </th>
+              <td mat-cell *matCellDef="let book">{{ book.borrow_expiration || 'N/A' }}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef class="tbl-head"> Book Title </th>
+              <td mat-cell *matCellDef="let book">{{ book.title || 'N/A' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="returned">
+              <th mat-header-cell *matHeaderCellDef class="tbl-head"> Returned Date </th>
+              <td mat-cell *matCellDef="let book">{{ book.date_returned || 'N/A' }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns:
+            displayedColumns;"></tr>
+          </table>
+
+          <mat-paginator class="page" pageSize="4"
+                      showFirstLastButtons
+                      aria-label="Select page of users">
+          </mat-paginator>
+
+        </div>
+
+</div>

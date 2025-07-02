@@ -27,10 +27,10 @@ export class AuthService {
 // private url:string = 'http://192.168.10.122:8000/api/';
 
 // hotspot ni jambe
-//private url:string = 'http://192.168.18.185:8000/api/';
+// private url:string = 'http://192.168.243.174:8000/api/';
 
 // vpn ip
-//// private url:string = 'http://26.68.32.39:8000/api/'; 
+//  private url:string = 'http://26.68.32.39:8000/api/'; 
 
 
   public login(formData: FormData) {
@@ -38,7 +38,7 @@ export class AuthService {
       // return this.http.post(this.url+'login/circulation', formData).pipe(
       tap((res: any) => {
         if(res.token) {
-          console.log(res)
+          // console.log(res)
           sessionStorage.setItem('auth-token', res.token);
           sessionStorage.setItem('name', res.displayName);
           sessionStorage.setItem('role', res.position);

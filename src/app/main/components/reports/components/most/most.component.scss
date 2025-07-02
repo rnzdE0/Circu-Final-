@@ -47,7 +47,7 @@ hr {
     box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.322);
     border: 0.5px solid grey;
 
-    max-height: 850px;
+    max-height: 810px;
     overflow-y: scroll;
 }
 
@@ -454,7 +454,7 @@ th {
   
   
   th {
-    background-color: #4F6F52 !important;
+    background-color: #4F6F52 !important; 
     color: white;
     font-weight: 600;
     letter-spacing: 0.8px;
@@ -471,3 +471,7 @@ th {
     background: rgb(242, 242, 242);
   }
   
+  .loading {
+    margin-top: 200px;
+    margin-bottom: 130px;
+  }
