@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{a as r}from"./chunk-HI34ILRH.mjs";import{Y as o}from"./chunk-VLVHQGQR.mjs";var c=(()=>{let t=class t{constructor(){}get(){return new r({Accept:"application/json",Authorization:"Bearer "+sessionStorage.getItem("auth-token")})}};t.\u0275fac=function(a){return new(a||t)},t.\u0275prov=o({token:t,factory:t.\u0275fac,providedIn:"root"});let e=t;return e})();export{c as a};
