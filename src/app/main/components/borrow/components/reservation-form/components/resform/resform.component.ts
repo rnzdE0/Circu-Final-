@@ -3,16 +3,17 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddComponent } from '../add/add.component';
 import { QueueComponent } from '../queue/queue.component';
 
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import { MainService } from '../../../../../../../services/main.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PoliciesComponent } from '../../../request/components/policies/policies.component';
+import { UserService } from '../../../../../../../services/user.service';
 
 @Component({
   selector: 'app-resform',
   templateUrl: './resform.component.html',
-  styleUrl: './resform.component.scss'
+  styleUrl: './resform.component.scss',
 })
 export class ResformComponent implements OnInit {
   requestForm: FormGroup;
@@ -44,8 +45,8 @@ export class ResformComponent implements OnInit {
   // fine = 0;
 
   user = {
-    id:'',
-    patron:'',
+    id: '',
+    patron: '',
     first_name: '',
     last_name: '',
     department: '',
@@ -55,29 +56,29 @@ export class ResformComponent implements OnInit {
     name: '',
     hours_allowed: '',
     count: 0,
-  } 
+  };
   book = {
     accession: '',
     title: '',
     author: '',
-    location: ''
-  }
+    location: '',
+  };
   admin = {
     id: '',
-    position: ''
-  }
+    position: '',
+  };
 
   patrons: any;
   fine = 0;
   checkbox: boolean = false;
 
   constructor(
-    private dialog : MatDialog,
+    private dialog: MatDialog,
     private ds: MainService,
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private mainService: MainService,
-    private router: Router
-  
+    private router: Router,
+    private us: UserService
   ) {
     this.requestForm = this.fb.group({
       book_id: ['', Validators.required],
@@ -85,7 +86,7 @@ export class ResformComponent implements OnInit {
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
       fine: ['', Validators.required],
-      // isChecked: [false, Validators.requiredTrue] 
+      // isChecked: [false, Validators.requiredTrue]
     });
   }
 
@@ -100,17 +101,19 @@ export class ResformComponent implements OnInit {
       next: (res: any) => {
         this.patrons = res;
         this.requestForm.get('fine')?.setValue(res[0].fine);
-      }
-    })
+      },
+    });
   }
 
   changePatron(event: Event) {
     let selectedPatronId = (event.target as HTMLInputElement).value;
     // console.log('Selected patron ID:', selectedPatronId);
-  
+
     // Find the selected patron from the patrons array
-    const selectedPatron = this.patrons.find((patron: any) => patron.id == selectedPatronId);
-  
+    const selectedPatron = this.patrons.find(
+      (patron: any) => patron.id == selectedPatronId
+    );
+
     if (selectedPatron) {
       // Update the form values based on the selected patron
       this.requestForm.get('fine')?.setValue(selectedPatron.fine);
@@ -122,25 +125,25 @@ export class ResformComponent implements OnInit {
   }
 
   redirectToReserveForm() {
-    this.router.navigate(['main/borrow/request/borrowrequest']); 
+    this.router.navigate(['main/borrow/request/borrowrequest']);
   }
 
-  policyDialog(): void{
+  policyDialog(): void {
     const diaref = this.dialog.open(PoliciesComponent, {
       width: '900px',
       height: '650px',
       maxWidth: '900px',
       maxHeight: '650px',
     });
-    diaref.afterClosed().subscribe(result => {
+    diaref.afterClosed().subscribe((result) => {
       this.redirectToReserveForm();
     });
   }
 
-    
-
-  name = sessionStorage.getItem('name');
-  role = sessionStorage.getItem('role');
+  // name = sessionStorage.getItem('name');
+  // role = sessionStorage.getItem('role');
+  name = this.us.savedAuth.name;
+  role = this.us.savedAuth.role;
 
   getUser(event: Event) {
     let target = event.target as HTMLInputElement;
@@ -153,16 +156,16 @@ export class ResformComponent implements OnInit {
         // this.user.patron.fine=res.patron.fine;
         // this.user.patron.patron=res.patron.patron
         // console.log(res)
-        this.user.id=res.id;
-        this.user.name=res.first_name+' '+res.last_name+' ';
-        this.user.gender=res.gender;
-        this.user.department=res.department;
-        this.user.hours_allowed=res.hours_allowed;
-        this.user.books_allowed=res.books_allowed;
-        this.user.patron=res.patron;
-        this.user.fine=res.fine;
-      }
-    })
+        this.user.id = res.id;
+        this.user.name = res.first_name + ' ' + res.last_name + ' ';
+        this.user.gender = res.gender;
+        this.user.department = res.department;
+        this.user.hours_allowed = res.hours_allowed;
+        this.user.books_allowed = res.books_allowed;
+        this.user.patron = res.patron;
+        this.user.fine = res.fine;
+      },
+    });
   }
 
   // getBook(event: Event) {
@@ -179,7 +182,7 @@ export class ResformComponent implements OnInit {
   //       }));
   //       this.book.title=res.title;
   //       this.book.location=res.location;
-        
+
   //     },
   //     error:(err:any)=>console.log(err)
   //   })
@@ -193,18 +196,20 @@ export class ResformComponent implements OnInit {
     let isTitle = this.isTitle(query); // Use the method defined in the same class
 
     let url = 'circulation/get-book';
-    let params = isTitle ? `?title=${encodeURIComponent(query)}` : `?accession=${encodeURIComponent(query)}`;
+    let params = isTitle
+      ? `?title=${encodeURIComponent(query)}`
+      : `?accession=${encodeURIComponent(query)}`;
 
     this.ds.get(url + params).subscribe({
       next: (res: any) => {
         // console.log(res);
         let authors = JSON.parse(res.authors);
-        this.book.author = authors.join(', ');  // Join authors with comma and space
+        this.book.author = authors.join(', '); // Join authors with comma and space
         this.book.title = res.title;
         this.book.location = res.location;
         this.book.accession = res.accession;
       },
-      // error: (err: any) => 
+      // error: (err: any) =>
       //   console.log(err)
     });
   }
@@ -222,16 +227,16 @@ export class ResformComponent implements OnInit {
       next: (res: any) => {
         this.user = res;
         // console.log(this.user)
-      }
-    })
+      },
+    });
   }
 
   // setHoursAllowed(patronType: string): void {
   //   const foundPatron = this.patrons.find((patron: any) => patron.patron === patronType);
-  //   console.log('Found patron:', foundPatron); 
+  //   console.log('Found patron:', foundPatron);
   //   if (foundPatron) {
   //     this.hours_allowed = foundPatron.hours_allowed;
-  //     console.log('hours_allowed set to:', this.hours_allowed); 
+  //     console.log('hours_allowed set to:', this.hours_allowed);
   //   } else {
   //     console.log('Patron not found for type:', patronType);
   //   }
@@ -240,7 +245,10 @@ export class ResformComponent implements OnInit {
   setCurrentDate(): void {
     const today = new Date();
     // this.currentDate = today.toISOString().substring(0, 10);
-    const formattedDate = today.toISOString().replace('T', ' ').substring(0, 16);
+    const formattedDate = today
+      .toISOString()
+      .replace('T', ' ')
+      .substring(0, 16);
     this.currentDate = formattedDate;
   }
 
@@ -256,62 +264,60 @@ export class ResformComponent implements OnInit {
         title: 'Invalid Form',
         text: 'Please fill out all required fields correctly.',
         icon: 'error',
-        confirmButtonColor: '#4F6F52'
+        confirmButtonColor: '#4F6F52',
       });
       return;
     }
 
     // console.log('isChecked during submit:', this.checkbox); // Debugging line
-  
-    if (!this.checkbox) { // Validate isChecked separately
+
+    if (!this.checkbox) {
+      // Validate isChecked separately
       Swal.fire({
         title: 'Reminder',
         text: 'Please read and accept the Terms and Conditions before submitting.',
         icon: 'error',
-        confirmButtonColor: '#4F6F52'
+        confirmButtonColor: '#4F6F52',
       });
       return;
     }
-  
-      const payloadData = {
-        book_id: this.requestForm.value.book_id,
-        user_id: this.requestForm.value.user_id,
-        reserve_date: this.requestForm.value.start_date, 
-        reserve_expiration: this.requestForm.value.end_date,
-        fine: this.requestForm.value.fine,
-        isChecked: this.checkbox
-      };
-      const requestData = {
-        payload: JSON.stringify(payloadData)
-      };
-  
-      // console.log(this.requestForm.value);
-      // console.log('Payload Data:', payloadData);
-  
-      this.mainService.post('circulation/reserve/book', payloadData).subscribe(
-        response => {
-          console.log(response);
-          Swal.fire({
-            title: 'Success',
-            text: 'The borrow request has been submitted successfully.',
-            icon: 'success',
-            iconColor: '#4F6F52',
-            confirmButtonColor: '#4F6F52'
-          });
-        },
-        error => {
-          // console.log('Sending borrow request with payload:', payloadData);
-          // console.error('Book is not available', error);
-          Swal.fire({
-            title: 'Request Invalid!',
-            text: 'Multiple reservations for the same book are not allowed',
-            icon: 'error',
-            confirmButtonColor: '#4F6F52'
-          });
-        }
-      );
-    } 
+
+    const payloadData = {
+      book_id: this.requestForm.value.book_id,
+      user_id: this.requestForm.value.user_id,
+      reserve_date: this.requestForm.value.start_date,
+      reserve_expiration: this.requestForm.value.end_date,
+      fine: this.requestForm.value.fine,
+      isChecked: this.checkbox,
+    };
+    const requestData = {
+      payload: JSON.stringify(payloadData),
+    };
+
+    // console.log(this.requestForm.value);
+    // console.log('Payload Data:', payloadData);
+
+    this.mainService.post('circulation/reserve/book', payloadData).subscribe(
+      (response) => {
+        console.log(response);
+        Swal.fire({
+          title: 'Success',
+          text: 'The borrow request has been submitted successfully.',
+          icon: 'success',
+          iconColor: '#4F6F52',
+          confirmButtonColor: '#4F6F52',
+        });
+      },
+      (error) => {
+        // console.log('Sending borrow request with payload:', payloadData);
+        // console.error('Book is not available', error);
+        Swal.fire({
+          title: 'Request Invalid!',
+          text: 'Multiple reservations for the same book are not allowed',
+          icon: 'error',
+          confirmButtonColor: '#4F6F52',
+        });
+      }
+    );
   }
-
-
-
+}

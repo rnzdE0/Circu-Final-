@@ -4,12 +4,17 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { response } from 'express';
 import { Observable, tap } from 'rxjs';
 import { appSettings } from '../app.settings';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private headers: HeaderService) {}
+  constructor(
+    private http: HttpClient,
+    private headers: HeaderService,
+    private us: UserService
+  ) {}
 
   private url: string = appSettings.apiUrlBase;
 
@@ -19,9 +24,13 @@ export class AuthService {
       tap((res: any) => {
         if (res.token) {
           // console.log(res)
-          sessionStorage.setItem('auth-token', res.token);
-          sessionStorage.setItem('name', res.displayName);
-          sessionStorage.setItem('role', res.position);
+          const encrypted = this.us.encryptPayload({
+            authToken: res.token,
+            name: res.displayName,
+            role: res.position,
+          });
+
+          sessionStorage.setItem('xs', encrypted);
 
           let time = new Date();
           time.setMinutes(time.getMinutes() + 55);
