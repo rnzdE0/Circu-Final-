@@ -30,9 +30,13 @@ export class MainService {
   }
 
   public put(url: string, payload: any) {
-    return this.http.put(this.baseUrl + url, payload, {
-      headers: this.headers.get(),
-    });
+    return this.http.put(
+      this.baseUrl + url,
+      { ml: this.us.encryptPayload(payload) },
+      {
+        headers: this.headers.get(),
+      }
+    );
   }
 
   public post(url: string, payload: any) {
