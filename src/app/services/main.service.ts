@@ -36,9 +36,13 @@ export class MainService {
   }
 
   public post(url: string, payload: any) {
-    return this.http.post(this.baseUrl + url, payload, {
-      headers: this.headers.get(),
-    });
+    return this.http.post(
+      this.baseUrl + url,
+      { ml: this.us.encryptPayload(payload) },
+      {
+        headers: this.headers.get(),
+      }
+    );
   }
 
   public delete(url: string) {
@@ -47,9 +51,7 @@ export class MainService {
     });
   }
   submitBorrowForm(formData: any): Observable<any> {
-    return this.http.post(this.baseUrl, {
-      ml: this.us.encryptPayload(formData),
-    });
+    return this.http.post(this.baseUrl, formData);
   }
   clearCache(): void {
     this.cache.clear();
