@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
 import { UserService } from '../services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @Component({
   selector: 'app-main',
@@ -24,9 +26,11 @@ export class MainComponent implements AfterViewInit {
   timer: any;
   name = this.us.savedAuth?.name || '';
   role = this.us.savedAuth?.role || '';
+  showChangePasswordModal = false;
 
   constructor(
     private router: Router,
+    private dialog: MatDialog,
     private as: AuthService,
     private us: UserService,
     @Inject(PLATFORM_ID) private platformId: Object
@@ -36,6 +40,18 @@ export class MainComponent implements AfterViewInit {
 
   showPopup: boolean = false;
 
+  openChangePassword() {
+    this.showChangePasswordModal = true;
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+      width: '700px',
+      disableClose: true,
+    });
+
+    dialogRef.componentInstance.closed.subscribe(() => {
+      this.showChangePasswordModal = false;
+      dialogRef.close();
+    });
+  }
   togglePopup() {
     this.showPopup = !this.showPopup;
   }

@@ -18,6 +18,7 @@ import { LogsComponent } from './components/logs/logs.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingsComponent } from './components/loadings/loadings.component';
 import { LogoutComponent } from '../components/logout/logout.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 
@@ -28,7 +29,8 @@ import { LogoutComponent } from '../components/logout/logout.component';
     ReportsComponent,
     UserComponent,
     GraphComponent,
-    LogsComponent
+    LogsComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,

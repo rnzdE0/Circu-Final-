@@ -107,6 +107,12 @@ export class AuthService {
     });
   }
 
+  public changePassword(form: object) {
+    return this.http.post(appSettings.apiUrlBase + 'change-password', form, {
+      headers: this.headers.get(),
+    });
+  }
+
   public getReturned() {
     return this.http.get(this.url + 'circulation/returned-list', {
       headers: this.headers.get(),

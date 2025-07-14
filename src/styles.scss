@@ -1,3 +1,27 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+// hue. Available color palettes: https://material.io/design/color/
+$Admin-primary: mat.define-palette(mat.$green-palette, 800);
+$Admin-accent: mat.define-palette(mat.$blue-palette, A200, A100, A400);
+
+$Admin-warn: mat.define-palette(mat.$red-palette);
+
+$Admin-theme: mat.define-light-theme(
+     (
+          color: (
+               primary: $Admin-primary,
+               accent: $Admin-accent,
+               warn: $Admin-warn,
+          ),
+          //   typography: mat.define-typography-config(),
+          density: 0,
+     )
+);
+
+@include mat.all-component-themes($Admin-theme);
+
 :root {
     --bg-color: #F5EFE6;
     --container-color: #F4F4F4;
@@ -34,3 +58,5 @@ body {
     font-family: "Montserrat";
     transition: all 0.5s ease;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
