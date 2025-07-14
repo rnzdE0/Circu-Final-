@@ -50,9 +50,13 @@ export class MainService {
   }
 
   public delete(url: string) {
-    return this.http.delete(this.baseUrl + url, {
-      headers: this.headers.get(),
-    });
+    return this.http.post(
+      this.baseUrl + url,
+      {},
+      {
+        headers: this.headers.get(),
+      }
+    );
   }
   submitBorrowForm(formData: any): Observable<any> {
     return this.http.post(this.baseUrl, formData);
