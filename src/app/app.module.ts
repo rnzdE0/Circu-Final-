@@ -24,6 +24,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ResponseInterceptor } from './response.interceptor';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ResponseInterceptor } from './response.interceptor';
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
     { provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy, },
   ],
   bootstrap: [AppComponent],
 })

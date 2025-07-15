@@ -10,10 +10,17 @@ import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-top',
   templateUrl: './top.component.html',
-  styleUrl: './top.component.scss'
+  styleUrl: './top.component.scss',
 })
 export class TopComponent implements OnInit {
-  displayedColumns: string[] = ['Patron', 'Name', 'ID', 'Department', 'Program', 'Borrow Count'];
+  displayedColumns: string[] = [
+    'Patron',
+    'Name',
+    'ID',
+    'Department',
+    'Program',
+    'Borrow Count',
+  ];
   selectedDepartment: string = '';
   selectedProgram: string = '';
   startDate: string = '';
@@ -21,12 +28,23 @@ export class TopComponent implements OnInit {
   departments: string[] = ['CBA', 'CEAS', 'CCS', 'CHTM', 'CAHS'];
   secondFilterOptions: { [key: string]: string[] } = {
     CBA: ['BSA', 'BSCA', 'BSBA-FM', 'BSBA-HRM', 'BSBA-MKT'],
-    CEAS: ['BEEd', 'BECEd', 'BSEd-E', 'BSEd-FIL', 'BSEd-M', 'BSEd-SCI', 'BSEd-SOC', 'BPEd', 'BCAEd', 'BACOM', 'TCP'],
+    CEAS: [
+      'BEEd',
+      'BECEd',
+      'BSEd-E',
+      'BSEd-FIL',
+      'BSEd-M',
+      'BSEd-SCI',
+      'BSEd-SOC',
+      'BPEd',
+      'BCAEd',
+      'BACOM',
+      'TCP',
+    ],
     CCS: ['BSIT', 'BSCS', 'EMC', 'ACT'],
     CHTM: ['BSHM', 'BSTM'],
-    CAHS: ['BSN', 'BSM', 'GM']
+    CAHS: ['BSN', 'BSM', 'GM'],
   };
-
 
   currentDate: string = '';
   isProgramChartVisible: boolean = false;
@@ -36,10 +54,12 @@ export class TopComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
-  constructor(private authservice: AuthService) { }
+  constructor(private authservice: AuthService) {}
 
   downloadPNG(): void {
-    const chartCanvas = document.getElementById('topChart') as HTMLCanvasElement;
+    const chartCanvas = document.getElementById(
+      'topChart'
+    ) as HTMLCanvasElement;
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
@@ -65,40 +85,74 @@ export class TopComponent implements OnInit {
   }
 
   async downloadPDF(): Promise<void> {
-    const chartCanvas = document.getElementById('topChart') as HTMLCanvasElement;
+    const chartCanvas = document.getElementById(
+      'topChart'
+    ) as HTMLCanvasElement;
     const pdf = new jsPDF('portrait', 'px', 'a4');
 
     // Add logos and header
     const logoLeft = await this.getLogoLeft();
-  const logoRight = await this.getLogoRight();
-  pdf.addImage(logoLeft, 'PNG', 50, 15, 60, 60); // Adjusted positions for portrait mode
-  pdf.addImage(logoRight, 'PNG', pdf.internal.pageSize.getWidth() - 105, 15.7, 59, 59); // Adjusted positions for portrait mode
-  pdf.setTextColor(0);
-  pdf.setFontSize(8);
-  pdf.text('Republic of the Philippines', pdf.internal.pageSize.getWidth() / 2, 25, { align: 'center' });
-  pdf.text('City of Olongapo', pdf.internal.pageSize.getWidth() / 2, 35, { align: 'center' });
-  pdf.setFontSize(10);
-  pdf.text('Gordon College', pdf.internal.pageSize.getWidth() / 2, 45, { align: 'center' });
-  pdf.setFontSize(8);
-  pdf.text('Olongapo City Sports Complex, Donor St, East Tapinac, Olongapo City', pdf.internal.pageSize.getWidth() / 2, 55, { align: 'center' });
-  pdf.text('Tel. No:(047) 224-2089 loc. 401', pdf.internal.pageSize.getWidth() / 2, 65, { align: 'center' });
-  pdf.setFontSize(10);
-  pdf.text('TOP 10 BOOK BORROWERS', pdf.internal.pageSize.getWidth() / 2, 100, { align: 'center' });
-  pdf.setFontSize(8);
-  // pdf.text('As of: MM/DD/YY 00:00:00 AM', pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
-
-  
+    const logoRight = await this.getLogoRight();
+    pdf.addImage(logoLeft, 'PNG', 50, 15, 60, 60); // Adjusted positions for portrait mode
+    pdf.addImage(
+      logoRight,
+      'PNG',
+      pdf.internal.pageSize.getWidth() - 105,
+      15.7,
+      59,
+      59
+    ); // Adjusted positions for portrait mode
+    pdf.setTextColor(0);
+    pdf.setFontSize(8);
+    pdf.text(
+      'Republic of the Philippines',
+      pdf.internal.pageSize.getWidth() / 2,
+      25,
+      { align: 'center' }
+    );
+    pdf.text('City of Olongapo', pdf.internal.pageSize.getWidth() / 2, 35, {
+      align: 'center',
+    });
+    pdf.setFontSize(10);
+    pdf.text('Gordon College', pdf.internal.pageSize.getWidth() / 2, 45, {
+      align: 'center',
+    });
+    pdf.setFontSize(8);
+    pdf.text(
+      'Olongapo City Sports Complex, Donor St, East Tapinac, Olongapo City',
+      pdf.internal.pageSize.getWidth() / 2,
+      55,
+      { align: 'center' }
+    );
+    pdf.text(
+      'Tel. No:(047) 224-2089 loc. 401',
+      pdf.internal.pageSize.getWidth() / 2,
+      65,
+      { align: 'center' }
+    );
+    pdf.setFontSize(10);
+    pdf.text(
+      'TOP 10 BOOK BORROWERS',
+      pdf.internal.pageSize.getWidth() / 2,
+      100,
+      { align: 'center' }
+    );
+    pdf.setFontSize(8);
+    // pdf.text('As of: MM/DD/YY 00:00:00 AM', pdf.internal.pageSize.getWidth() / 2, 115, { align: 'center' });
 
     // Calculate center position for charts on A4 page
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
-    
+
     const chartWidth = 300; // Width of the chart in points
     const chartHeight = 150; // Height of the chart in points
     // const chartMarginX = (pdf.internal.pageSize.getWidth() - chartWidth) / 2; // Center horizontally
     // const chartMarginY = 100; // Start below header
-     // Determine scale to fit chart within A4 page
-     const scaleFactor = Math.min((pdfWidth - 40) / chartWidth, (pdfHeight - 100) / chartHeight);
+    // Determine scale to fit chart within A4 page
+    const scaleFactor = Math.min(
+      (pdfWidth - 40) / chartWidth,
+      (pdfHeight - 100) / chartHeight
+    );
 
     // // Adjust dimensions based on scale factor
     const targetWidth = chartWidth * scaleFactor;
@@ -107,34 +161,46 @@ export class TopComponent implements OnInit {
     const chartMarginY = (pdfHeight - targetHeight) / 2 + 10;
 
     // // Capture chart canvas as image
-    const chartImgData = await html2canvas(chartCanvas, { scale: scaleFactor }).then(canvas => canvas.toDataURL('image/png'));
+    const chartImgData = await html2canvas(chartCanvas, {
+      scale: scaleFactor,
+    }).then((canvas) => canvas.toDataURL('image/png'));
 
     // // Add chart image to PDF
-    pdf.addImage(chartImgData, 'PNG', chartMarginX, chartMarginY, targetWidth, targetHeight);
+    pdf.addImage(
+      chartImgData,
+      'PNG',
+      chartMarginX,
+      chartMarginY,
+      targetWidth,
+      targetHeight
+    );
 
     // Save PDF
     pdf.save('Top10-BookBorrowers.pdf');
   }
 
   private async getLogoLeft(): Promise<string> {
-    return '../assets/img/gc.png';
+    return 'assets/img/gc.png';
   }
 
   private async getLogoRight(): Promise<string> {
-    return '../assets/img/gclibrary.png';
+    return 'assets/img/gclibrary.png';
   }
- 
+
   ngOnInit(): void {
     this.applyFilters();
     this.setCurrentDate();
-    
+
     const now = new Date();
     this.currentDate = now.toLocaleString('sv-SE');
   }
 
   setCurrentDate(): void {
     const today = new Date();
-    const formattedDate = today.toISOString().replace('T', ' ').substring(0, 16);
+    const formattedDate = today
+      .toISOString()
+      .replace('T', ' ')
+      .substring(0, 16);
     this.currentDate = formattedDate;
   }
 
@@ -173,7 +239,9 @@ export class TopComponent implements OnInit {
   }
 
   renderChart(data: any): void {
-    const labels = data.map((item: any) => `${item.first_name} ${item.last_name}`);
+    const labels = data.map(
+      (item: any) => `${item.first_name} ${item.last_name}`
+    );
     const counts = data.map((item: any) => item.borrow_count);
 
     if (this.topChart) {
@@ -185,28 +253,30 @@ export class TopComponent implements OnInit {
       type: 'bar',
       data: {
         labels: labels,
-        datasets: [{
-          data: counts,
-          backgroundColor: '#264834',
-          borderWidth: 1
-        }]
+        datasets: [
+          {
+            data: counts,
+            backgroundColor: '#264834',
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
         responsive: true,
         plugins: {
           legend: {
-            display: false // Hide the legend
-          }
+            display: false, // Hide the legend
+          },
         },
         indexAxis: 'x',
         scales: {
           y: {
             ticks: {
-              stepSize: 1
-            }
-          }
-        }
-      }
+              stepSize: 1,
+            },
+          },
+        },
+      },
     });
   }
 
@@ -214,7 +284,6 @@ export class TopComponent implements OnInit {
     // Generate a gradient of colors based on the number of items
     return Array(length).fill('rgba(75, 192, 192, 0.6)');
   }
-
 
   // ngOnInit(): void {
   //   this.authservice.topBorrowers().subscribe(
