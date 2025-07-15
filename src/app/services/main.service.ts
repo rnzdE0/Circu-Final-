@@ -9,7 +9,7 @@ import { throwError } from 'rxjs';
 import { HeaderService } from './header.service';
 import { map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { appSettings } from '../app.settings';
+import { appSettings } from '../../environments/environment';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -30,7 +30,7 @@ export class MainService {
   }
 
   public put(url: string, payload: any) {
-    return this.http.put(
+    return this.http.post(
       this.baseUrl + url,
       { ml: this.us.encryptPayload(payload) },
       {

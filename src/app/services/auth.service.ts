@@ -3,7 +3,7 @@ import { HeaderService } from './header.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { response } from 'express';
 import { Observable, tap } from 'rxjs';
-import { appSettings } from '../app.settings';
+import { appSettings } from '../../environments/environment';
 import { UserService } from './user.service';
 
 @Injectable({
