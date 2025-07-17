@@ -208,6 +208,8 @@ export class ResformComponent implements OnInit {
         this.book.title = res.title;
         this.book.location = res.location;
         this.book.accession = res.accession;
+
+        this.requestForm.get('book_id')?.setValue(res.accession);
       },
       // error: (err: any) =>
       //   console.log(err)

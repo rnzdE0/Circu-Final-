@@ -226,10 +226,13 @@ export class BorrowRequestComponent implements OnInit {
       next: (res: any) => {
         // console.log(res);
         let authors = JSON.parse(res.authors);
+
         this.book.author = authors.join(', '); // Join authors with comma and space
         this.book.title = res.title;
         this.book.location = res.location;
         this.book.accession = res.accession;
+
+        this.borrowForm.get('book_id')?.setValue(res.accession);
       },
       // error: (err: any) => console.log(err)
     });
@@ -249,6 +252,7 @@ export class BorrowRequestComponent implements OnInit {
   }
 
   bookSubmit(): void {
+    console.log(this.borrowForm.value);
     if (!this.borrowForm.valid) {
       Swal.fire({
         title: 'Invalid Form',
@@ -290,6 +294,7 @@ export class BorrowRequestComponent implements OnInit {
       fine: this.borrowForm.value.fine,
       isChecked: this.checkbox, // Use form control value
     };
+    console.log(payload);
     // console.log("Sending borrow request:", payload);
 
     const httpOptions = {
